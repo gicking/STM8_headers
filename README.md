@@ -1,6 +1,6 @@
 # STM8 Device Headers 
 
-Open-Sources device headers for all [STM8](https://www.st.com/en/microcontrollers-microprocessors/stm8-8-bit-mcus.html]
+Open-Sources device headers for all [STM8](https://www.st.com/en/microcontrollers-microprocessors/stm8-8-bit-mcus.html)
 8-bit microcontroller series, namely STM8A, STM8L, STM8AF and STM8AL. 
 
 Device headers
