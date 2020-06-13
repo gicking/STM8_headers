@@ -11,9 +11,15 @@ Device headers
 SPL must be patched for use with [SDCC](http://sdcc.sourceforge.net/), see e.g. [here](https://github.com/gicking/STM8-SPL_SDCC_patch).
 
 
+# XML Device Description 
+
+Headers were generated from device descriptions in XML format. 
+These descriptions are provided in folder [XML](https://github.com/gicking/STM8_headers/tree/master/XML)
+
+
 # Example Projects 
 
-Below projects have been tested successfully with [SDCC](http://sdcc.sourceforge.net/), 
+These projects have been tested successfully with [SDCC](http://sdcc.sourceforge.net/), 
 [Cosmic](https://cosmic-software.com/stm8.php) and [IAR](https://www.iar.com/iar-embedded-workbench)
 
 **adc_measure**
