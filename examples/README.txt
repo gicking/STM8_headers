@@ -1,17 +1,10 @@
-# STM8_headers
+Collection of simple STM8 projects using the open-source devide headers from 
+https://github.com/gicking/STM8_headers
 
-FOSS device headers and examples for STM8 microcontrollers
+Projects have been tested successfully with SDCC, Cosmic and IAR. Exceptions are SD-card_*, which
+  - fail under Cosmic with "return code 514 (NOT_READY)". Reason unknown
+  - could not be tested under IAR due to 8kB size restriction of demo license
 
-
-##STM8 Device Headers 
-
-Open-Sources device headers for all STM8 8-bit microcontroller families.
-Headers are compatible with SDCC, Cosmic and IAR compilers
-
-
-##Example Projects 
-
-Below projects have been tested successfully with SDCC, Cosmic and IAR
 
 adc_measure
   - measure analog voltage every ~500ms

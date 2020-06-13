@@ -1,0 +1,9 @@
+# SDCC build output
+SDCC
+
+# Cosmic & IAR build output
+Release
+Debug
+
+# untested or unfinished projects (starting with 'x_')
+x_*

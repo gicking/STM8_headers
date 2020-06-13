@@ -1,0 +1,23 @@
+;	STMicroelectronics dependencies file
+
+[Version]
+Keyword=ST7Project
+Number=1.3
+
+[Root.Source Files...\main.c.Config.0]
+ExternDep= ..\main.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"  ..\..\..\include\../../include/STM8S105K6.h  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\stdint.h" ..\stm8s_conf.h  ..\stm8s.h ..\stm8s_clk.h ..\stm8s_gpio.h
+
+[Root.Source Files...\main.c.Config.1]
+ExternDep= ..\main.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"  ..\..\include\../include/STM8S105K6.h
+
+[Root.Source Files...\stm8s_clk.c.Config.0]
+ExternDep= ..\stm8s_clk.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h" ..\stm8s_clk.h  ..\stm8s.h ..\stm8s_conf.h ..\stm8s_gpio.h
+
+[Root.Source Files...\stm8s_gpio.c.Config.0]
+ExternDep= ..\stm8s_gpio.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h" ..\stm8s_gpio.h  ..\stm8s.h ..\stm8s_conf.h ..\stm8s_clk.h
+
+[Root.Source Files.stm8_interrupt_vector.c.Config.0]
+ExternDep= stm8_interrupt_vector.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"
+
+[Root.Source Files.stm8_interrupt_vector.c.Config.1]
+ExternDep= stm8_interrupt_vector.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"

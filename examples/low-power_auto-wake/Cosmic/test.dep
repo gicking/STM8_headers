@@ -1,0 +1,23 @@
+;	STMicroelectronics dependencies file
+
+[Version]
+Keyword=ST7Project
+Number=1.3
+
+[Root.Source Files...\awu.c.Config.0]
+ExternDep= ..\awu.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\stdint.h" ..\awu.h  ..\config.h ..\../../include/STM8S207MB.h
+
+[Root.Source Files...\main.c.Config.0]
+ExternDep= ..\main.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h" ..\config.h  ..\../../include/STM8S207MB.h  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\stdint.h" ..\awu.h  ..\power_saving.h
+
+[Root.Source Files...\main.c.Config.1]
+ExternDep= ..\main.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"  ..\..\include\../include/STM8S105K6.h
+
+[Root.Source Files...\power_saving.c.Config.0]
+ExternDep= ..\power_saving.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\stdint.h"  ..\power_saving.h ..\config.h ..\../../include/STM8S207MB.h ..\awu.h
+
+[Root.Source Files.stm8_interrupt_vector.c.Config.0]
+ExternDep= stm8_interrupt_vector.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"
+
+[Root.Source Files.stm8_interrupt_vector.c.Config.1]
+ExternDep= stm8_interrupt_vector.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"

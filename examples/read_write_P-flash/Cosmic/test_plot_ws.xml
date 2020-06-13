@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding ="utf-8" standalone="yes"?>
+<!-- eternity persistence framework   -->
+<!-- Nicola Santi - www.winghands.it  -->
+<archive version="4.0" sub="beta1">
+<!-- ST Plotter R5 archive file-->
+<version>1.0.2</version>
+<model>
+	<groups count="1">
+		<group count="0" name="Signals">
+		</group>
+	</groups>
+	<markers count="1">
+		<marker alpha="255" b="255" g="0" name="MainMarker" r="0" time="0"></marker>
+	</markers>
+</model>
+<workspace>
+	<active_group>Signals</active_group>
+	<time>
+		<time_min>0</time_min>
+		<time_max>0</time_max>
+		<time_pos>0</time_pos>
+		<time_range>1146</time_range>
+	</time>
+	<window bottom="907" left="225" right="1665" top="225">
+		<header_width>250</header_width>
+	</window>
+</workspace>
+</archive>

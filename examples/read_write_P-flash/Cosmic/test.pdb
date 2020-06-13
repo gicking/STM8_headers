@@ -1,0 +1,72 @@
+[DebugState_v1-Debug.DebugContext]
+DumpRWOnFly1=0
+DumpRWOnFly2=0
+DumpRWOnFly3=0
+DumpRWOnFly4=0
+WatchVariables1=
+FormatWatch1=0
+FormatViewType1=1
+FormatViewAddress1=1
+WatchRWOnFlyTab1=0
+WatchVariables2=
+FormatWatch2=0
+FormatViewType2=1
+FormatViewAddress2=1
+WatchRWOnFlyTab2=0
+WatchVariables3=
+FormatWatch3=0
+FormatViewType3=1
+FormatViewAddress3=1
+WatchRWOnFlyTab3=0
+WatchVariables4=
+FormatWatch4=0
+FormatViewType4=1
+FormatViewAddress4=1
+WatchRWOnFlyTab4=0
+FormatLocals=0
+FormatParameters=0
+[DebugState_v1-Debug.AddOn.St7Registers]
+ActiveTab=2
+HexaTimeDisplay=1
+HexaInstrTimeDisplay=1
+[DebugState_v1-Debug.AddOn.St7PeripheralRegister]
+DisplayFormat=1
+ShowPeriphAddress=0
+ShowRegisterAddress=1
+[DebugState_v1-Debug.AddOn.St7McuIcdConf]
+McuName=STM8S207MB
+[DebugState_v1-Debug.AddOn.IcdBreak]
+ICDBreak0=CR:0x00000000,BK1:0x00000000,BK2:0x00000000
+[DebugState_v1-Debug.AddOn.SteppingMode]
+Mode=hardware
+[DebugState_v1-Debug.AddOn.ST7LoadSaveConfiguration]
+RestoreSP_Control=1
+[DebugState_v1-Debug.AddOn.St7Watchpoint]
+NbDataBreakpoint=0
+[DebugState_v1-Debug.AddOn.St7McuOptionsMemMap]
+McuName=STM8S207MB
+CurrentEmuTypeAndName=STM8 simulator
+NbMcuOption=4
+McuOption0=gdi mcuoption -set Vdd 5.0V
+McuOption1=gdi mcuoption -set Fcpu_kHz 16000
+McuOption2=gdi mcuoption -set INTERRUPT NESTED
+McuOption3=gdi mcuoption -set IRQ_SENSITIVITY RISING_AND_FALLING_EDGE
+NbRange=12
+Range0=mcumap -set [0x0000-0x13ff]:"RAM"
+Range1=mcumap -set [0x1400-0x17ff]:"STACK"
+Range2=mcumap -set [0x1800-0x3fff]:"RESERVED"
+Range3=mcumap -set [0x4000-0x47ff]:"EEPROM"
+Range4=mcumap -set [0x4800-0x4fff]:"RESERVED"
+Range5=mcumap -set [0x5000-0x57ff]:"PERIPHERALS"
+Range6=mcumap -set [0x5800-0x5fff]:"RESERVED"
+Range7=mcumap -set [0x6000-0x67ff]:"ROM"
+Range8=mcumap -set [0x6800-0x7eff]:"RESERVED"
+Range9=mcumap -set [0x7f00-0x7fff]:"PERIPHERALS"
+Range10=mcumap -set [0x8000-0x807f]:"VECTORS"
+Range11=mcumap -set [0x8080-0x27fff]:"ROM"
+[DebugState_v1-Debug.AddOn.St7StackPtrControl]
+SP_Ctrl_Enable=
+SP_Ctrl_OverFlow=
+[DebugState_v1-Debug.AddOn.Plotter]
+data=504103000000000000006C
+xml_checksum=86
