@@ -13,8 +13,9 @@ SPL must be patched for use with [SDCC](http://sdcc.sourceforge.net/), see e.g. 
 
 # XML Device Description 
 
-Headers were generated from device descriptions in XML format. 
-These descriptions are provided in folder [XML](https://github.com/gicking/STM8_headers/tree/master/XML)
+Headers were generated from device descriptions in XML format, which are in folder 
+[XML](https://github.com/gicking/STM8_headers/tree/master/XML). These descriptions could be used e.g. for
+a graphical debugger interface.
 
 
 # Example Projects 
