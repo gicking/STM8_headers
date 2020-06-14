@@ -1,7 +1,7 @@
 # STM8 Device Headers 
 
 Open-Sources device headers for all [STM8 microcontroller](https://www.st.com/en/microcontrollers-microprocessors/stm8-8-bit-mcus.html)
-series, namely STM8A, STM8L, STM8AF and STM8AL. 
+series, namely STM8A, STM8S, STM8L, STM8AF and STM8AL. 
 
 Device headers
   - are compatible with [SDCC](http://sdcc.sourceforge.net/), 
