@@ -26,19 +26,19 @@
 #if defined(STM8S_DISCOVERY)
   #include "../../include/STM8S105C6.h"
   #define LED_PORT   sfr_PORTD
-  #define LED_PIN    0
+  #define LED_PIN    PIN0
 #elif defined(STM8L_DISCOVERY)
   #include "../../include/STM8L152C6.h"
   #define LED_PORT   sfr_PORTC
-  #define LED_PIN    7
+  #define LED_PIN    PIN7
 #elif defined(SDUINO)
   #include "../../include/STM8S105K6.h"
   #define LED_PORT   sfr_PORTC
-  #define LED_PIN    5
+  #define LED_PIN    PIN5
 #elif defined(MUDUINO)
   #include "../../include/STM8S207MB.h"
   #define LED_PORT   sfr_PORTH
-  #define LED_PIN    2
+  #define LED_PIN    PIN2
 #else
   #error undefined board
 #endif
@@ -72,7 +72,7 @@
     count = 0;
 
     // toggle LED
-    LED_PORT.ODR.byte ^= (1 << LED_PIN);    
+    LED_PORT.ODR.byte ^= LED_PIN;    
 
   } // 500ms
   
@@ -143,9 +143,9 @@ void main (void) {
   #endif
    
   // configure LED pin as output
-  LED_PORT.DDR.byte = (uint8_t) (1 << LED_PIN);    // input(=0) or output(=1)
-  LED_PORT.CR1.byte = (uint8_t) (1 << LED_PIN);    // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
-  LED_PORT.CR2.byte = (uint8_t) (1 << LED_PIN);    // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+  LED_PORT.DDR.byte = LED_PIN;    // input(=0) or output(=1)
+  LED_PORT.CR1.byte = LED_PIN;    // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
+  LED_PORT.CR2.byte = LED_PIN;    // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
   
   // init 1ms interrupt
   TIM4_init();
@@ -155,8 +155,10 @@ void main (void) {
   
     
   // dummy main loop. Action happens in ISR TIM4 TIM4_UPD 
-  while(1);
-
+  while(1) {
+    WAIT_FOR_INTERRUPT();
+  }
+  
 } // main
 
 /*-----------------------------------------------------------------------------
