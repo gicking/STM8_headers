@@ -121,6 +121,20 @@ These projects have been tested successfully with [SDCC](http://sdcc.sourceforge
 
 ------------------------
 
+**Single-Wire_DS18B20**
+  - adapted from [https://github.com/jukkas/stm8-sdcc-examples](https://github.com/jukkas/stm8-sdcc-examples)
+  - read temperature from DS18B20 sensor using 1-wire
+  - display readying to 8 digit 7-segment LED display with MAX7219 controller
+
+------------------------
+
+**SPI_LED_MAX7219**
+  - adapted from [https://github.com/jukkas/stm8-sdcc-examples](https://github.com/jukkas/stm8-sdcc-examples)
+  - SPI output to 8 digit 7-segment LED display with MAX7219 controller chip
+  - count up every 1s
+
+------------------------
+
 **STM8_StdPeriphLib**
   - mix with functions/headers of the STM8S Standard Peripheral Library (SPL)
   - SDCC compatibility requires patch, see e.g. [here](https://github.com/gicking/STM8-SPL_SDCC_patch).
