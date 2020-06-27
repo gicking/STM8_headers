@@ -81,6 +81,9 @@ void main (void) {
   // main loop
   while(1) {
   
+    // for low-power wait for next timer interrupt
+    WAIT_FOR_INTERRUPT();
+    
     // print time every 500ms. Either non-blocking or blocking
     if (millis() >= nextPrint) {
     //if (1) {
