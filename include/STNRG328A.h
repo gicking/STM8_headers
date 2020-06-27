@@ -33,13 +33,16 @@
 
 -------------------------------------------------------------------------*/
 
-
 /*-------------------------------------------------------------------------
   MODULE DEFINITION FOR MULTIPLE INCLUSION
 -------------------------------------------------------------------------*/
 #ifndef STNRG328A_H
 #define STNRG328A_H
 
+// DEVICE DECLARATION
+#define DEVICE  STNRG328A
+
+// required for C++
 #ifdef __cplusplus
   extern "C" {
 #endif
@@ -9011,9 +9014,9 @@ typedef struct {
 // undefine local macros
 #undef  BITS
 
-// extern "C"
+// required for C++
 #ifdef __cplusplus
-  }
+  }   // extern "C"
 #endif
 
 /*-------------------------------------------------------------------------

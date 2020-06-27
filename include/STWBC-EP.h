@@ -32,13 +32,16 @@
 
 -------------------------------------------------------------------------*/
 
-
 /*-------------------------------------------------------------------------
   MODULE DEFINITION FOR MULTIPLE INCLUSION
 -------------------------------------------------------------------------*/
 #ifndef STWBC_EP_H
 #define STWBC_EP_H
 
+// DEVICE DECLARATION
+#define DEVICE  STWBC_EP
+
+// required for C++
 #ifdef __cplusplus
   extern "C" {
 #endif
@@ -8510,9 +8513,9 @@ typedef struct {
 // undefine local macros
 #undef  BITS
 
-// extern "C"
+// required for C++
 #ifdef __cplusplus
-  }
+  }   // extern "C"
 #endif
 
 /*-------------------------------------------------------------------------

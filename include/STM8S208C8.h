@@ -33,13 +33,16 @@
 
 -------------------------------------------------------------------------*/
 
-
 /*-------------------------------------------------------------------------
   MODULE DEFINITION FOR MULTIPLE INCLUSION
 -------------------------------------------------------------------------*/
 #ifndef STM8S208C8_H
 #define STM8S208C8_H
 
+// DEVICE DECLARATION
+#define DEVICE  STM8S208C8
+
+// required for C++
 #ifdef __cplusplus
   extern "C" {
 #endif
@@ -5081,9 +5084,9 @@ typedef struct {
 // undefine local macros
 #undef  BITS
 
-// extern "C"
+// required for C++
 #ifdef __cplusplus
-  }
+  }   // extern "C"
 #endif
 
 /*-------------------------------------------------------------------------

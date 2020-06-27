@@ -32,13 +32,16 @@
 
 -------------------------------------------------------------------------*/
 
-
 /*-------------------------------------------------------------------------
   MODULE DEFINITION FOR MULTIPLE INCLUSION
 -------------------------------------------------------------------------*/
 #ifndef STLUX325A_H
 #define STLUX325A_H
 
+// DEVICE DECLARATION
+#define DEVICE  STLUX325A
+
+// required for C++
 #ifdef __cplusplus
   extern "C" {
 #endif
@@ -8986,9 +8989,9 @@ typedef struct {
 // undefine local macros
 #undef  BITS
 
-// extern "C"
+// required for C++
 #ifdef __cplusplus
-  }
+  }   // extern "C"
 #endif
 
 /*-------------------------------------------------------------------------
