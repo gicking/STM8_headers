@@ -3,7 +3,7 @@
   
   supported hardware:
     - Sduino Uno 32kB (https://github.com/roybaer/sduino_uno)
-    - muDuino 128kB (http://www.cream-tea.de/presentations/160305_PiAndMore.pdf)
+    - muBoard 128kB (http://www.cream-tea.de/presentations/160305_PiAndMore.pdf)
   
   Functionality:
     - save data to EEPROM

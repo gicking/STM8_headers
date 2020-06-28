@@ -17,7 +17,7 @@
     SELECT BOARD (for Cosmic and IAR also set in IDE!)
 ----------------------------------------------------------*/
 #define SDUINO
-//#define MUDUINO
+//#define MUBOARD
 
 
 /*----------------------------------------------------------
@@ -27,7 +27,7 @@
 // select respective UART 
 #if defined(SDUINO)
   #define sfr_UART    sfr_UART2
-#elif defined(MUDUINO)
+#elif defined(MUBOARD)
   #define sfr_UART    sfr_UART1
 #else
   #error board not supported
@@ -39,7 +39,7 @@
 ----------------------------------------------------------*/
 #if defined(SDUINO)
   #include "../../include/STM8S105K6.h"
-#elif defined(MUDUINO)
+#elif defined(MUBOARD)
   #include "../../include/STM8S207MB.h"
 #else
   #error board not supported

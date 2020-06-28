@@ -2,7 +2,7 @@
   Periodically print text to 2x16 char LCD attached to I2C
    
   supported hardware:
-    - muDuino (http://www.cream-tea.de/presentations/160305_PiAndMore.pdf)
+    - muBoard (http://www.cream-tea.de/presentations/160305_PiAndMore.pdf)
     - Batron BTHQ21605V-COG-FSRE-I2C 2X16 (Farnell 1220409). Pins PE1/SCL, PE2/SDA, and PE3/LCD reset
   
   Functionality:

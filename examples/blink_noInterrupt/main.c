@@ -5,7 +5,7 @@
     - STM8S Discovery board (https://www.st.com/en/evaluation-tools/stm8s-discovery.html)
     - STM8L Discovery board (https://www.st.com/en/evaluation-tools/stm8l-discovery.html)
     - Sduino Uno (https://github.com/roybaer/sduino_uno)
-    - muDuino (http://www.cream-tea.de/presentations/160305_PiAndMore.pdf)
+    - muBoard (http://www.cream-tea.de/presentations/160305_PiAndMore.pdf)
   
   Functionality:
     - blink LED w/o ISR. Mainly for testing toolchain
@@ -18,7 +18,7 @@
 //#define STM8S_DISCOVERY
 //#define STM8L_DISCOVERY
 #define SDUINO
-//#define MUDUINO
+//#define MUBOARD
 
 /*----------------------------------------------------------
     INCLUDE FILES
@@ -35,7 +35,7 @@
   #include "../../include/STM8S105K6.h"
   #define LED_PORT   sfr_PORTC
   #define LED_PIN    PIN5
-#elif defined(MUDUINO)
+#elif defined(MUBOARD)
   #include "../../include/STM8S207MB.h"
   #define LED_PORT   sfr_PORTH
   #define LED_PIN    PIN2

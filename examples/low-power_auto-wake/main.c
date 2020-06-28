@@ -5,7 +5,7 @@
     - external interrupt (lowPower_Halt)
   
   supported hardware:
-    - muDuino (http://www.cream-tea.de/presentations/160305_PiAndMore.pdf)
+    - muBoard (http://www.cream-tea.de/presentations/160305_PiAndMore.pdf)
   
   Functionality:
     - configure wake pin as input pull-up with interrupt on falling edge
