@@ -3385,8 +3385,6 @@ typedef struct {
     /// register _TIM2_CCMR1_OUT reset value
     #define sfr_TIM2_CCMR1_OUT_RESET_VALUE   ((uint8_t) 0x00)
 
-  } CCMR1_OUT_CCMR1_IN;
-
 
     /// bitwise access to register CCMR1_IN
     struct {
@@ -3419,8 +3417,6 @@ typedef struct {
 
     /// register _TIM2_CCMR2_OUT reset value
     #define sfr_TIM2_CCMR2_OUT_RESET_VALUE   ((uint8_t) 0x00)
-
-  } CCMR2_OUT_CCMR2_IN;
 
 
     /// bitwise access to register CCMR2_IN
@@ -3854,8 +3850,6 @@ typedef struct {
     /// register _TIM3_CCMR1_OUT reset value
     #define sfr_TIM3_CCMR1_OUT_RESET_VALUE   ((uint8_t) 0x00)
 
-  } CCMR1_OUT_CCMR1_IN;
-
 
     /// bitwise access to register CCMR1_IN
     struct {
@@ -3888,8 +3882,6 @@ typedef struct {
 
     /// register _TIM3_CCMR2_OUT reset value
     #define sfr_TIM3_CCMR2_OUT_RESET_VALUE   ((uint8_t) 0x00)
-
-  } CCMR2_OUT_CCMR2_IN;
 
 
     /// bitwise access to register CCMR2_IN

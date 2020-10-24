@@ -2210,8 +2210,6 @@ typedef struct {
     /// register _DAC_DORH reset value
     #define sfr_DAC_DORH_RESET_VALUE   ((uint8_t) 0x00)
 
-  } DORH_CH1DORH;
-
 
     /// bitwise access to register CH1DORH
     struct {
@@ -2241,8 +2239,6 @@ typedef struct {
 
     /// register _DAC_DORL reset value
     #define sfr_DAC_DORL_RESET_VALUE   ((uint8_t) 0x00)
-
-  } DORL_CH1DORL;
 
 
     /// bitwise access to register CH1DORL
@@ -3152,8 +3148,6 @@ typedef struct {
     /// register _DMA1_C3PARH reset value
     #define sfr_DMA1_C3PARH_RESET_VALUE   ((uint8_t) 0x40)
 
-  } C3PARH_C3M1ARH;
-
 
     /// bitwise access to register C3M1ARH
     struct {
@@ -3193,8 +3187,6 @@ typedef struct {
 
     /// register _DMA1_C3PARL reset value
     #define sfr_DMA1_C3PARL_RESET_VALUE   ((uint8_t) 0x00)
-
-  } C3PARL_C3M1ARL;
 
 
     /// bitwise access to register C3M1ARL

@@ -2293,8 +2293,6 @@ typedef struct {
     /// register _TIM2_CCMR1_CAPTURE reset value
     #define sfr_TIM2_CCMR1_CAPTURE_RESET_VALUE   ((uint8_t) 0x00)
 
-  } CCMR1_CAPTURE_CCMR1_COMPARE;
-
 
     /// bitwise access to register CCMR1_COMPARE
     struct {
@@ -2326,8 +2324,6 @@ typedef struct {
 
     /// register _TIM2_CCMR2_CAPTURE reset value
     #define sfr_TIM2_CCMR2_CAPTURE_RESET_VALUE   ((uint8_t) 0x00)
-
-  } CCMR2_CAPTURE_CCMR2_COMPARE;
 
 
     /// bitwise access to register CCMR2_COMPARE
@@ -2760,8 +2756,6 @@ typedef struct {
     /// register _TIM3_CCMR1_CAPTURE reset value
     #define sfr_TIM3_CCMR1_CAPTURE_RESET_VALUE   ((uint8_t) 0x00)
 
-  } CCMR1_CAPTURE_CCMR1_COMPARE;
-
 
     /// bitwise access to register CCMR1_COMPARE
     struct {
@@ -2793,8 +2787,6 @@ typedef struct {
 
     /// register _TIM3_CCMR2_CAPTURE reset value
     #define sfr_TIM3_CCMR2_CAPTURE_RESET_VALUE   ((uint8_t) 0x00)
-
-  } CCMR2_CAPTURE_CCMR2_COMPARE;
 
 
     /// bitwise access to register CCMR2_COMPARE

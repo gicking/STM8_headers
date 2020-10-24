@@ -4838,8 +4838,6 @@ typedef struct {
     /// register _BECAN_ESR reset value
     #define sfr_BECAN_ESR_RESET_VALUE   ((uint8_t) 0x00)
 
-  } ESR_P0;
-
 
     /// skip bitwise access to register P0
 
@@ -4868,8 +4866,6 @@ typedef struct {
 
     /// register _BECAN_EIER reset value
     #define sfr_BECAN_EIER_RESET_VALUE   ((uint8_t) 0x00)
-
-  } EIER_P1;
 
 
     /// skip bitwise access to register P1
