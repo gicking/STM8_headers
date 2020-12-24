@@ -22,6 +22,18 @@ blink_noInterrupt
 
 ------------------------
 
+blink_RAM
+  - same as blink_noInterrupt but linked as a RAM only program
+
+------------------------
+
+calculate_CRC
+    - periodically calculate CRC over pre-defined data
+    - measure time for CRC calculation
+    - print time and calculated CRC to UART
+
+------------------------
+
 I2C_LCD
   - Periodically print text to 2x16 char LCD attached to I2C
   - LCD type Batron BTHQ21605V-COG-FSRE-I2C 2X16 (Farnell 1220409)
