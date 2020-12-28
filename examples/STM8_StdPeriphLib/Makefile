@@ -112,16 +112,16 @@ swim_Cosmic:
 	$(PATH_stm8flash) -c $(stm8flash_SWIM) -w ./IAR/Debug/Exe/test.s19 -p $(stm8flash_DEVICE)
 
 
-# upload SDCC output via STM8 bootloader ( https://github.com/gicking/STM8_serial_flasher )
+# upload SDCC output via STM8 bootloader ( https://github.com/gicking/stm8gal )
 serial:
-	$(stm8gal_PATH) -port $(stm8gal_PORT) -write-file $(TARGET) -reset 0 -no-verify -verbose 1
+	$(stm8gal_PATH) -port $(stm8gal_PORT) -write-file $(TARGET) -reset 0 -verify 0 -verbose 1
 
-# upload IAR output via STM8 bootloader
+# upload IAR output via STM8 bootloader ( https://github.com/gicking/stm8gal )
 serial_IAR:
-	$(stm8gal_PATH) -port $(stm8gal_PORT) -write-file ./IAR/Debug/Exe/test.s19 -reset 0 -no-verify -verbose 1
+	$(stm8gal_PATH) -port $(stm8gal_PORT) -write-file ./IAR/Debug/Exe/test.s19 -reset 0 -verify 0 -verbose 1
 
-# upload Cosmic output via STM8 bootloader
+# upload Cosmic output via STM8 bootloader ( https://github.com/gicking/stm8gal )
 serial_Cosmic:
-	$(stm8gal_PATH) -port $(stm8gal_PORT) -write-file ./Cosmic/Debug/test.s19 -reset 0 -no-verify -verbose 1
+	$(stm8gal_PATH) -port $(stm8gal_PORT) -write-file ./Cosmic/Debug/test.s19 -reset 0 -verify 0 -verbose 1
 
 #EOF
