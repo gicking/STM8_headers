@@ -21,7 +21,9 @@ a graphical debugger interface.
 # Example Projects 
 
 These projects have been tested successfully with [SDCC](http://sdcc.sourceforge.net/), 
-[Cosmic](https://cosmic-software.com/stm8.php) and [IAR](https://www.iar.com/iar-embedded-workbench)
+[Cosmic](https://cosmic-software.com/stm8.php) and [IAR](https://www.iar.com/iar-embedded-workbench).
+
+
 
 **adc_measure**
   - measure analog voltage every ~500ms
@@ -36,6 +38,20 @@ These projects have been tested successfully with [SDCC](http://sdcc.sourceforge
 
 **blink_noInterrupt**
   - blink LED with a simple NOP() loop
+
+------------------------
+
+**blink_RAM**
+  - same as blink_noInterrupt but linked as a RAM only program
+
+------------------------
+
+**calculate_CRC**
+  - periodically calculate CRC over pre-defined data
+  - measure time for CRC calculation
+  - print time and calculated CRC to UART
+  - CRC32 code copied from [https://github.com/basilhussain/stm8-crc](https://github.com/basilhussain/stm8-crc)
+  - SDCC uses optimized assembler, IAR and Cosmic C implementation
 
 ------------------------
 
@@ -72,6 +88,12 @@ These projects have been tested successfully with [SDCC](http://sdcc.sourceforge
 
 **PWM_generate**
   - generate a PWM on pin PD2/TIM3_CH1 (=pin 3 on sduino)
+
+------------------------
+
+**read_unique_ID**
+  - read unique identifier and print via UART
+  - Note: UID not supported by all devices
 
 ------------------------
 
