@@ -41,11 +41,6 @@ These projects have been tested successfully with [SDCC](http://sdcc.sourceforge
 
 ------------------------
 
-**blink_RAM**
-  - same as blink_noInterrupt but linked as a RAM only program
-
-------------------------
-
 **calculate_CRC**
   - periodically calculate CRC over pre-defined data
   - measure time for CRC calculation

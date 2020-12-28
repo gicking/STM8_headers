@@ -23,11 +23,6 @@ blink_noInterrupt
 
 ------------------------
 
-blink_RAM
-  - same as blink_noInterrupt but linked as a RAM only program
-
-------------------------
-
 calculate_CRC
   - periodically calculate CRC over pre-defined data
   - measure time for CRC calculation
