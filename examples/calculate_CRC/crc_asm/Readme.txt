@@ -1,0 +1,1 @@
+these routines are only compatible with SDCC due to used inline assembly
