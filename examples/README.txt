@@ -2,9 +2,10 @@ Collection of simple STM8 projects using the open-source devide headers from
 https://github.com/gicking/STM8_headers
 
 Projects have been tested successfully with SDCC, Cosmic and IAR. Exceptions are SD-card_*, which
-  - fail under Cosmic with "return code 514 (NOT_READY)". Reason unknown
-  - could not be tested under IAR due to 8kB size restriction of demo license
+    - fail under Cosmic with "return code 514 (NOT_READY)". Reason unknown
+    - could not be tested under IAR due to 8kB size restriction of demo license
 
+================================================================================
 
 adc_measure
   - measure analog voltage every ~500ms
@@ -28,9 +29,11 @@ blink_RAM
 ------------------------
 
 calculate_CRC
-    - periodically calculate CRC over pre-defined data
-    - measure time for CRC calculation
-    - print time and calculated CRC to UART
+  - periodically calculate CRC over pre-defined data
+  - measure time for CRC calculation
+  - print time and calculated CRC to UART
+  - CRC32 code copied from https://github.com/basilhussain/stm8-crc
+  - SDCC uses optimized assembler, IAR and Cosmic C implementation
 
 ------------------------
 
