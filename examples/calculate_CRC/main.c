@@ -117,7 +117,7 @@ void main (void) {
     timeStop = micros();
     
     // print duration and CRC result
-    printf("%ldus  0x%8lX\n\n", (long)(timeStop-timeStart), crc, crc<<16);
+    printf("%ldus  0x%8lX\n\n", (long)(timeStop-timeStart), crc);
     
     // wait a bit
     delay(500);
