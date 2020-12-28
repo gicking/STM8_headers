@@ -73,7 +73,7 @@ Int.108=0
 String.6.0=2020,4,27,19,17,36
 String.100.0=$(TargetFName)
 String.101.0=
-String.103.0=.\;..;..\..\include;..\..\..\include;
+String.103.0=.\;..;..\..\include;..\..\..\include;..\crc;..\crc_c;
 
 [Root.Config.0.Settings.2]
 String.2.0=
@@ -82,7 +82,7 @@ String.100.0=STM8S105K6
 
 [Root.Config.0.Settings.3]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..  -i..\..\..\include  -i..\..\include  -customDbg -customDebCompat -customOpt-no -customLst -l +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\crc_c  -i..  -i..\..\..\include  -i..\..\include  -customDbg -customDebCompat -customOpt-no -customLst -l +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2020,4,27,19,17,36
@@ -153,7 +153,7 @@ Int.108=0
 String.6.0=2020,4,27,19,17,36
 String.100.0=$(TargetFName)
 String.101.0=
-String.103.0=.\;..;..\..\include;..\..\..\include;
+String.103.0=.\;..;..\..\include;..\..\..\include;..\crc;..\crc_c;
 
 [Root.Config.1.Settings.2]
 String.2.0=
@@ -162,7 +162,7 @@ String.100.0=STM8S105K6
 
 [Root.Config.1.Settings.3]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..  -i..\..\..\include  -i..\..\include  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\crc_c  -i..  -i..\..\..\include  -i..\..\include  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2020,4,27,19,17,36
@@ -240,7 +240,7 @@ Int.1=0
 
 [Root.Source Files.Config.0.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..  -i..\..\..\include  -i..\..\include  -customDbg -customDebCompat -customOpt-no -customLst -l +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\crc_c  -i..  -i..\..\..\include  -i..\..\include  -customDbg -customDebCompat -customOpt-no -customLst -l +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2020,4,27,19,17,36
@@ -267,7 +267,7 @@ Int.1=0
 
 [Root.Source Files.Config.1.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..  -i..\..\..\include  -i..\..\include  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\crc_c  -i..  -i..\..\..\include  -i..\..\include  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2020,4,27,19,17,36
@@ -299,7 +299,17 @@ Next=Root.Source Files...\uart2.c
 [Root.Source Files...\uart2.c]
 ElemType=File
 PathName=..\uart2.c
+Next=Root.Source Files.Source Files\crc
+
+[Root.Source Files.Source Files\crc]
+ElemType=Folder
+PathName=Source Files\crc
+Child=Root.Source Files.Source Files\crc...\crc_c\crc_ref.c
 Next=Root.Source Files.stm8_interrupt_vector.c
+
+[Root.Source Files.Source Files\crc...\crc_c\crc_ref.c]
+ElemType=File
+PathName=..\crc_c\crc_ref.c
 
 [Root.Source Files.stm8_interrupt_vector.c]
 ElemType=File
@@ -332,7 +342,7 @@ Int.1=0
 
 [Root.Include Files.Config.0.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..  -i..\..\..\include  -i..\..\include  -customDbg -customDebCompat -customOpt-no -customLst -l +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\crc_c  -i..  -i..\..\..\include  -i..\..\include  -customDbg -customDebCompat -customOpt-no -customLst -l +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2020,4,27,19,17,36
@@ -359,7 +369,7 @@ Int.1=0
 
 [Root.Include Files.Config.1.Settings.1]
 String.2.0=Compiling $(InputFile)...
-String.3.0=cxstm8 -i..  -i..\..\..\include  -i..\..\include  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
+String.3.0=cxstm8 -i..\crc_c  -i..  -i..\..\..\include  -i..\..\include  +mods0 -customC-pp $(ToolsetIncOpts) -cl$(IntermPath) -co$(IntermPath) $(InputFile) 
 String.4.0=$(IntermPath)$(InputName).$(ObjectExt)
 String.5.0=$(IntermPath)$(InputName).ls
 String.6.0=2020,4,27,19,17,36
@@ -381,6 +391,21 @@ String.6.0=2020,4,27,19,17,36
 [Root.Include Files...\..\..\include\stm8s105k6.h]
 ElemType=File
 PathName=..\..\..\include\stm8s105k6.h
+Next=Root.Include Files...\config.h
+
+[Root.Include Files...\config.h]
+ElemType=File
+PathName=..\config.h
+Next=Root.Include Files...\crc.h
+
+[Root.Include Files...\crc.h]
+ElemType=File
+PathName=..\crc.h
+Next=Root.Include Files...\crc_c\crc_ref.h
+
+[Root.Include Files...\crc_c\crc_ref.h]
+ElemType=File
+PathName=..\crc_c\crc_ref.h
 Next=Root.Include Files...\timer4.h
 
 [Root.Include Files...\timer4.h]

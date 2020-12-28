@@ -2153,6 +2153,21 @@
             </data>
         </settings>
     </configuration>
+    <group>
+        <name>CRC</name>
+        <file>
+            <name>$PROJ_DIR$\..\crc_c\crc_ref.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\crc_c\crc_ref.h</name>
+        </file>
+    </group>
+    <file>
+        <name>$PROJ_DIR$\..\config.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\..\crc.h</name>
+    </file>
     <file>
         <name>$PROJ_DIR$\..\main.c</name>
     </file>

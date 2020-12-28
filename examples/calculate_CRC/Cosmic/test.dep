@@ -16,6 +16,9 @@ ExternDep= ..\timer4.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods
 [Root.Source Files...\uart2.c.Config.0]
 ExternDep= ..\uart2.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\stdint.h" ..\uart2.h  ..\config.h ..\../../include/STM8S105K6.h
 
+[Root.Source Files.Source Files\crc...\crc_c\crc_ref.c.Config.0]
+ExternDep= ..\crc_c\crc_ref.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h" ..\config.h  ..\../../include/STM8S105K6.h  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\stdint.h"  ..\crc_c\crc_ref.h
+
 [Root.Source Files.stm8_interrupt_vector.c.Config.0]
 ExternDep= stm8_interrupt_vector.c  "C:\Program Files\COSMIC\FSE_Compilers\CXSTM8\HSTM8\mods0.h"
 
