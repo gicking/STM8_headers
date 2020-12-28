@@ -31,7 +31,7 @@
   
   // read & write data from memory (16-bit address). For size use 16b pointers
   #if (FLASH_ADDR_WIDTH==16)
-		#define read_1B(addr)       (*((uint8_t*) addr))                     /**< read 1B from 16-bit address */
+    #define read_1B(addr)       (*((uint8_t*) addr))                     /**< read 1B from 16-bit address */
     #define read_2B(addr)       (*((uint16_t*) addr))                    /**< read 2B from 16-bit address */
     #define read_4B(addr)       (*((uint32_t*) addr))                    /**< read 4B from 16-bit address */
     #define write_1B(addr,val)  *((uint8_t*) addr) = val                 /**< write 1B to 16-bit address */
@@ -40,7 +40,7 @@
   
   // read & write data from memory (24-bit address). Use 24b far pointers
   #else
-		#define read_1B(addr)       (*((@far uint8_t*) addr))                /**< read 1B from 24-bit address */
+    #define read_1B(addr)       (*((@far uint8_t*) addr))                /**< read 1B from 24-bit address */
     #define read_2B(addr)       (*((@far uint16_t*) addr))               /**< read 2B from 24-bit address */
     #define read_4B(addr)       (*((@far uint32_t*) addr))               /**< read 4B from 24-bit address */
     #define write_1B(addr,val)  *((@far uint8_t*) addr) = val            /**< write 1B to 24-bit address */
@@ -124,8 +124,10 @@
       
       // use inline assembler for actual read
       __asm
-        ldf	a,[_g_mem_addr+1].e
-        ld	_g_mem_val, a
+        push a 
+        ldf  a,[_g_mem_addr+1].e
+        ld   _g_mem_val, a
+        pop  a
       __endasm;
 
       // return data
@@ -157,11 +159,13 @@
       
       // use inline assembler for actual read
       __asm
-        ldf	a,[_g_mem_addr+1].e
-        ld	_g_mem_val,a
-        ldw	x,#1
-        ldf	a,([_g_mem_addr+1].e,x)
-        ld	_g_mem_val+1,a
+        push a 
+        ldf  a,[_g_mem_addr+1].e
+        ld   _g_mem_val,a
+        ldw  x,#1
+        ldf  a,([_g_mem_addr+1].e,x)
+        ld   _g_mem_val+1,a
+        pop  a
       __endasm;
 
       // return data
@@ -193,17 +197,19 @@
       
       // use inline assembler for actual read
       __asm
-        ldf	a,[_g_mem_addr+1].e
-        ld	_g_mem_val,a
-        ldw	x,#1
-        ldf	a,([_g_mem_addr+1].e,x)
-        ld	_g_mem_val+1,a
-        ldw	x,#2
-        ldf	a,([_g_mem_addr+1].e,x)
-        ld	_g_mem_val+2,a
-        ldw	x,#3
-        ldf	a,([_g_mem_addr+1].e,x)
-        ld	_g_mem_val+3,a
+        push a
+        ldf  a,[_g_mem_addr+1].e
+        ld   _g_mem_val,a
+        ldw  x,#1
+        ldf  a,([_g_mem_addr+1].e,x)
+        ld  _g_mem_val+1,a
+        ldw  x,#2
+        ldf  a,([_g_mem_addr+1].e,x)
+        ld   _g_mem_val+2,a
+        ldw  x,#3
+        ldf  a,([_g_mem_addr+1].e,x)
+        ld   _g_mem_val+3,a
+        pop  a
       __endasm;
 
       // return data
@@ -235,8 +241,10 @@
       
       // use inline assembler for actual write
       __asm
-        ld	a,_g_mem_val
-        ldf	[_g_mem_addr+1].e,a
+        push a
+        ld   a,_g_mem_val
+        ldf  [_g_mem_addr+1].e,a
+        pop  a
       __endasm;
 
     } // write_1B
@@ -265,11 +273,13 @@
       
       // use inline assembler for actual write
       __asm
-        ld	a,_g_mem_val
-        ldf	[_g_mem_addr+1].e,a
-        ld	a,_g_mem_val+1
-        ldw	x,#1
-        ldf	([_g_mem_addr+1].e,x),a
+        push a
+        ld   a,_g_mem_val
+        ldf  [_g_mem_addr+1].e,a
+        ld   a,_g_mem_val+1
+        ldw  x,#1
+        ldf  ([_g_mem_addr+1].e,x),a
+        pop  a
       __endasm;
 
     } // write_2B
@@ -298,17 +308,19 @@
       
       // use inline assembler for actual write
       __asm
-        ld	a,_g_mem_val
-        ldf	[_g_mem_addr+1].e,a
-        ld	a,_g_mem_val+1
-        ldw	x,#1
-        ldf	([_g_mem_addr+1].e,x),a
-        ld	a,_g_mem_val+2
-        ldw	x,#2
-        ldf	([_g_mem_addr+1].e,x),a
-        ld	a,_g_mem_val+3
-        ldw	x,#3
-        ldf	([_g_mem_addr+1].e,x),a
+        push a
+        ld   a,_g_mem_val
+        ldf  [_g_mem_addr+1].e,a
+        ld   a,_g_mem_val+1
+        ldw  x,#1
+        ldf  ([_g_mem_addr+1].e,x),a
+        ld   a,_g_mem_val+2
+        ldw  x,#2
+        ldf  ([_g_mem_addr+1].e,x),a
+        ld   a,_g_mem_val+3
+        ldw  x,#3
+        ldf  ([_g_mem_addr+1].e,x),a
+        pop  a
       __endasm;
 
     } // write_4B
