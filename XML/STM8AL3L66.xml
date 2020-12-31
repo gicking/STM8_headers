@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model chipname="STM8AL3L66">
+  <family>STM8L/STM8AL, medium density</family>
   <chip_description>Automotive 8-bit ultra-low-power MCU with 32 Kbytes Flash, LIN, RTC, LCD, data EEPROM, timers, USARTs, I2C, SPIs, ADC, DAC, COMPs </chip_description>
   <feature_list>Key Features
     AEC-Q100 grade 1 conform qualification
@@ -76,6 +77,7 @@
   <unique_identifier addr_start="0x4926" size="12">
     <!--unique identifier size in bytes-->
   </unique_identifier>
+  <ROM_bootloader>with ROM bootloader</ROM_bootloader>
   <interrupt_table>
     <!--interrupt sources may share an IRQ; IAR requires IRQ+2-->
     <interrupt name="RESET" addr="0x8000" irq=""/>

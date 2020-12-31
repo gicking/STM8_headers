@@ -2,6 +2,8 @@
 
   STM8L152K6.h - Device Declarations
 
+  STM8L/STM8AL, medium density with ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Ultra-low-power 8-bit MCU with 32 Kbytes Flash, 16 MHz CPU, integrated EEPROM 

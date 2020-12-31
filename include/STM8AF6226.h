@@ -2,6 +2,8 @@
 
   STM8AF6226.h - Device Declarations
 
+  STM8S/STM8AF, low density without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Automotive 8-bit MCU with 8 Kbytes Flash, LIN, 16 MHz CPU, integrated EEPROM 

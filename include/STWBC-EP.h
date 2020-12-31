@@ -2,6 +2,8 @@
 
   STWBC-EP.h - Device Declarations
 
+  STWBC without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Digital controller for wireless battery charger transmitters (WBC) in 15 W medium power applications 

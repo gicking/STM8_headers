@@ -2,6 +2,8 @@
 
   STNRG288A.h - Device Declarations
 
+  STNRG without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Digital controller for power conversion applications with up to 6 programmable PWM generators, 96 MHz PLL 

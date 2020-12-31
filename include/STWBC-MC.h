@@ -2,6 +2,8 @@
 
   STWBC-MC.h - Device Declarations
 
+  STWBC without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Digital controller for wireless battery chargers transmitters for Qi multicoil applications

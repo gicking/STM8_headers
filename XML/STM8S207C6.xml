@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model chipname="STM8S207C6">
+  <family>STM8S/STM8AF, medium density</family>
   <chip_description>Mainstream Performance line 8-bit MCU with 32 Kbytes Flash, 24 MHz CPU, integrated EEPROM </chip_description>
   <feature_list>Key Features
     Core
@@ -61,6 +62,7 @@
   <unique_identifier addr_start="0x48CD" size="12">
     <!--unique identifier size in bytes-->
   </unique_identifier>
+  <ROM_bootloader>with ROM bootloader</ROM_bootloader>
   <interrupt_table>
     <!--interrupt sources may share an IRQ; IAR requires IRQ+2-->
     <interrupt name="RESET" addr="0x8000" irq=""/>

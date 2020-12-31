@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model chipname="STM8AF6286">
+  <family>STM8S/STM8AF, high density</family>
   <chip_description>Automotive 8-bit MCU with 64 Kbytes Flash, LIN, 24 MHz CPU, integrated EEPROM </chip_description>
   <feature_list>Key Features
     AEC-Q10x qualified
@@ -56,6 +57,7 @@
     <OPTION addr_start="0x004800" addr_end="0x0048FF" size="256"/>
     <BOOTROM addr_start="0x006000" addr_end="0x0067FF" size="2048"/>
   </memory>
+  <ROM_bootloader>with ROM bootloader</ROM_bootloader>
   <interrupt_table>
     <!--interrupt sources may share an IRQ; IAR requires IRQ+2-->
     <interrupt name="RESET" addr="0x8000" irq=""/>

@@ -2,6 +2,8 @@
 
   STM8S105S4.h - Device Declarations
 
+  STM8S/STM8AF, medium density with ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Mainstream Access line 8-bit MCU with 16 Kbytes Flash, 16 MHz CPU, integrated EEPROM 

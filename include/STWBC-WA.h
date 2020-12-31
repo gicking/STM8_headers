@@ -2,6 +2,8 @@
 
   STWBC-WA.h - Device Declarations
 
+  STWBC without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Digital controller for wireless battery charger transmitters for wearable and smart watches applications 

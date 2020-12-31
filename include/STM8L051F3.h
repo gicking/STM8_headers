@@ -2,6 +2,8 @@
 
   STM8L051F3.h - Device Declarations
 
+  STM8L/STM8AL, low density with ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Ultra-low-power 8-bit MCU with 8 Kbytes Flash, 16 MHz CPU, integrated EEPROM 

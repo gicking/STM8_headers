@@ -2,6 +2,8 @@
 
   STM8S003K3.h - Device Declarations
 
+  STM8S/STM8AF, low density without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Mainstream Value line 8-bit MCU with 8 Kbytes Flash, 16 MHz CPU, integrated EEPROM 

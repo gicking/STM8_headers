@@ -2,6 +2,8 @@
 
   STM8L101F2.h - Device Declarations
 
+  STM8L101, low density without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Ultra-low-power 8-bit MCU with 4 Kbytes Flash, 16 MHz CPU, integrated EEPROM 

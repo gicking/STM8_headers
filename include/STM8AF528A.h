@@ -2,6 +2,8 @@
 
   STM8AF528A.h - Device Declarations
 
+  STM8S/STM8AF, high density with ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Automotive 8-bit MCU with 64 Kbytes Flash, LIN, CAN, 24 MHz CPU, integrated EEPROM 

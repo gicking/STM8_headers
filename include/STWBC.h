@@ -2,6 +2,8 @@
 
   STWBC.h - Device Declarations
 
+  STWBC without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Digital controller for wireless battery charger transmitters supporting Qi A11 topology 

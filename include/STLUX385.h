@@ -2,6 +2,8 @@
 
   STLUX385.h - Device Declarations
 
+  STLUX without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Digital controller for lighting and power supply applications with 6 programmable PWM generators, 96 MHz PLL, DALI

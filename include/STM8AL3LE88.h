@@ -2,6 +2,8 @@
 
   STM8AL3LE88.h - Device Declarations
 
+  STM8L/STM8AL, high/medium+ density with ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Automotive 8-bit ultra-low-power MCU with 64 Kbytes Flash, LIN, RTC, LCD, data EEPROM, timers, USARTs, I2C, SPIs, ADC, DAC, COMPs, AES 

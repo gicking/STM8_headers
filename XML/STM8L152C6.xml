@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model chipname="STM8L152C6">
+  <family>STM8L/STM8AL, medium density</family>
   <chip_description>Ultra-low-power 8-bit MCU with 32 Kbytes Flash, 16 MHz CPU, integrated EEPROM </chip_description>
   <feature_list>Key Features
     Operating conditions
@@ -75,6 +76,7 @@
   <unique_identifier addr_start="0x4926" size="12">
     <!--unique identifier size in bytes-->
   </unique_identifier>
+  <ROM_bootloader>with ROM bootloader</ROM_bootloader>
   <interrupt_table>
     <!--interrupt sources may share an IRQ; IAR requires IRQ+2-->
     <interrupt name="RESET" addr="0x8000" irq=""/>

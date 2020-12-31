@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model chipname="STLUX383A">
+  <family>STLUX</family>
   <chip_description>Digital controllers for lighting and power conversion applications with up to 6 programmable PWM generators, 96 MHz PLL, DALI </chip_description>
   <feature_list>Key Features
     Up to 6 programmable PWM generators (SMEDs - “State Machine Event Driven”)
@@ -61,6 +62,7 @@
     <EEPROM addr_start="0x004000" addr_end="0x0043FF" size="1024"/>
     <OPTION addr_start="0x004800" addr_end="0x00487F" size="128"/>
   </memory>
+  <ROM_bootloader>without ROM bootloader</ROM_bootloader>
   <interrupt_table>
     <!--interrupt sources may share an IRQ; IAR requires IRQ+2-->
     <interrupt name="RESET" addr="0x8000" irq=""/>

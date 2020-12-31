@@ -2,6 +2,8 @@
 
   STM8TL53G4.h - Device Declarations
 
+  STM8T without ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   8-bit, ultra-low-power, touch-sensing MCUs with 16-Kbyte Flash and proximity detection 

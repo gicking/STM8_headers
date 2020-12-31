@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model chipname="STM8S005K6">
+  <family>STM8S/STM8AF, medium density</family>
   <chip_description>Mainstream Value line 8-bit MCU with 32 Kbytes Flash, 16 MHz CPU, integrated EEPROM </chip_description>
   <feature_list>Key Features
     Core
@@ -56,6 +57,7 @@
     <EEPROM addr_start="0x004000" addr_end="0x00407F" size="128"/>
     <OPTION addr_start="0x004800" addr_end="0x00487F" size="128"/>
   </memory>
+  <ROM_bootloader>with ROM bootloader</ROM_bootloader>
   <interrupt_table>
     <!--interrupt sources may share an IRQ; IAR requires IRQ+2-->
     <interrupt name="RESET" addr="0x8000" irq=""/>

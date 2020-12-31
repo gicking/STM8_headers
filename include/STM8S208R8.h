@@ -2,6 +2,8 @@
 
   STM8S208R8.h - Device Declarations
 
+  STM8S/STM8AF, high density with ROM bootloader
+
   Copyright (C) 2020, Georg Icking-Konert
 
   Mainstream Performance line 8-bit MCU with 64 Kbytes Flash, 24 MHz CPU, integrated EEPROM 
