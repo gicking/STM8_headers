@@ -415,7 +415,7 @@
         </register>
       </SFR>
       <SFR address="0x50C6">
-        <register name="ECKR" description="External clock control register" resetvalue="0x00">
+        <register name="ECKCR" description="External clock control register" resetvalue="0x00">
           <bitfield name="HSEON" bits="0"/>
           <bitfield name="HSERDY" bits="1"/>
           <bitfield name="LSEON" bits="2"/>
@@ -967,6 +967,11 @@
           <bitfield name="M1A7" bits="7"/>
         </register>
       </SFR>
+      <SFR address="0x5098">
+        <register name="C3M0EAR" description="DMA channel 3 memory 0 extended address register" resetvalue="0x00">
+          <bitfield name="M0A16" bits="0"/>
+        </register>
+      </SFR>
       <SFR address="0x5099">
         <register name="C3M0ARH" description="DMA1 memory 0 address high register (channel 3)" resetvalue="0x00">
           <bitfield name="M0A8" bits="0"/>
@@ -1076,6 +1081,12 @@
           <bitfield name="ADD9" bits="2"/>
           <bitfield name="ADDCONF" bits="6"/>
           <bitfield name="ADDMODE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5215">
+        <register name="OAR2" description="I2C1 own address register for dual mode" resetvalue="0x00">
+          <bitfield name="ENDUAL" bits="0"/>
+          <bitfield name="ADD2" bits="1-7"/>
         </register>
       </SFR>
       <SFR address="0x5216">
@@ -1212,7 +1223,7 @@
         </register>
       </SFR>
       <SFR address="0x50A5">
-        <register name="CONF" description="External interrupt port select register" resetvalue="0x00">
+        <register name="CONF1" description="External interrupt port select register" resetvalue="0x00">
           <bitfield name="PBLIS" bits="0"/>
           <bitfield name="PBHIS" bits="1"/>
           <bitfield name="PDLIS" bits="2"/>
@@ -1221,6 +1232,23 @@
           <bitfield name="PEHIS" bits="5"/>
           <bitfield name="PFLIS" bits="6"/>
           <bitfield name="PFES" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x50AA">
+        <register name="CR4" description="External interrupt control register 4" resetvalue="0x00">
+          <bitfield name="PGIS" bits="0-1"/>
+          <bitfield name="PHIS" bits="2-3"/>
+        </register>
+      </SFR>
+      <SFR address="0x50AB">
+        <register name="CONF2" description="External interrupt port select register 2" resetvalue="0x00">
+          <bitfield name="PFHIS" bits="0"/>
+          <bitfield name="PGLIS" bits="1"/>
+          <bitfield name="PGHIS" bits="2"/>
+          <bitfield name="PHLIS" bits="3"/>
+          <bitfield name="PHHIS" bits="4"/>
+          <bitfield name="PGBS" bits="5"/>
+          <bitfield name="PHDS" bits="6"/>
         </register>
       </SFR>
     </module>

@@ -218,6 +218,15 @@
 
 
 /*-------------------------------------------------------------------------
+  UNIQUE IDENTIFIER (size in bytes)
+-------------------------------------------------------------------------*/
+
+#define UID_ADDR_START                0x4926                ///< start address of unique identifier
+#define UID_SIZE                      12                    ///< size of unique identifier [B]
+#define UID(N)                        (*((uint8_t*) (UID_ADDR_START+N)))    ///< read unique identifier byte N
+
+
+/*-------------------------------------------------------------------------
   ISR Vector Table (SDCC, IAR)
   Notes:
     - IAR has an IRQ offset of +2 compared to datasheet and below numbers

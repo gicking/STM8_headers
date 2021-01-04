@@ -927,13 +927,13 @@ typedef struct {
   } CCOR;
 
 
-  /** External clock control register (ECKR at 0x50c6) */
+  /** External clock control register (ECKCR at 0x50c6) */
   union {
 
-    /// bytewise access to ECKR
+    /// bytewise access to ECKCR
     uint8_t  byte;
 
-    /// bitwise access to register ECKR
+    /// bitwise access to register ECKCR
     struct {
       BITS   HSEON               : 1;      // bit 0
       BITS   HSERDY              : 1;      // bit 1
@@ -942,12 +942,12 @@ typedef struct {
       BITS   HSEBYP              : 1;      // bit 4
       BITS   LSEBYP              : 1;      // bit 5
       BITS                       : 2;      // 2 bits
-    };  // ECKR bitfield
+    };  // ECKCR bitfield
 
-    /// register _CLK_ECKR reset value
-    #define sfr_CLK_ECKR_RESET_VALUE   ((uint8_t) 0x00)
+    /// register _CLK_ECKCR reset value
+    #define sfr_CLK_ECKCR_RESET_VALUE   ((uint8_t) 0x00)
 
-  } ECKR;
+  } ECKCR;
 
 
   /** Clock master status register (SCSR at 0x50c7) */
@@ -2384,8 +2384,22 @@ typedef struct {
   } C3PARL_C3M1ARL;
 
 
-  /// Reserved register (1B)
-  uint8_t     Reserved_8[1];
+  /** DMA channel 3 memory 0 extended address register (C3M0EAR at 0x5098) */
+  union {
+
+    /// bytewise access to C3M0EAR
+    uint8_t  byte;
+
+    /// bitwise access to register C3M0EAR
+    struct {
+      BITS   M0A16               : 1;      // bit 0
+      BITS                       : 7;      // 7 bits
+    };  // C3M0EAR bitfield
+
+    /// register _DMA1_C3M0EAR reset value
+    #define sfr_DMA1_C3M0EAR_RESET_VALUE   ((uint8_t) 0x00)
+
+  } C3M0EAR;
 
 
   /** DMA1 memory 0 address high register (channel 3) (C3M0ARH at 0x5099) */
@@ -2672,8 +2686,22 @@ typedef struct {
   } OARH;
 
 
-  /// Reserved register (1B)
-  uint8_t     Reserved_1[1];
+  /** I2C1 own address register for dual mode (OAR2 at 0x5215) */
+  union {
+
+    /// bytewise access to OAR2
+    uint8_t  byte;
+
+    /// bitwise access to register OAR2
+    struct {
+      BITS   ENDUAL              : 1;      // bit 0
+      BITS   ADD2                : 7;      // bits 1-7
+    };  // OAR2 bitfield
+
+    /// register _I2C1_OAR2 reset value
+    #define sfr_I2C1_OAR2_RESET_VALUE   ((uint8_t) 0x00)
+
+  } OAR2;
 
 
   /** I2C1 data register (DR at 0x5216) */
@@ -3017,13 +3045,13 @@ typedef struct {
   } SR2;
 
 
-  /** External interrupt port select register (CONF at 0x50a5) */
+  /** External interrupt port select register (CONF1 at 0x50a5) */
   union {
 
-    /// bytewise access to CONF
+    /// bytewise access to CONF1
     uint8_t  byte;
 
-    /// bitwise access to register CONF
+    /// bitwise access to register CONF1
     struct {
       BITS   PBLIS               : 1;      // bit 0
       BITS   PBHIS               : 1;      // bit 1
@@ -3033,12 +3061,59 @@ typedef struct {
       BITS   PEHIS               : 1;      // bit 5
       BITS   PFLIS               : 1;      // bit 6
       BITS   PFES                : 1;      // bit 7
-    };  // CONF bitfield
+    };  // CONF1 bitfield
 
-    /// register _ITC_EXTI_CONF reset value
-    #define sfr_ITC_EXTI_CONF_RESET_VALUE   ((uint8_t) 0x00)
+    /// register _ITC_EXTI_CONF1 reset value
+    #define sfr_ITC_EXTI_CONF1_RESET_VALUE   ((uint8_t) 0x00)
 
-  } CONF;
+  } CONF1;
+
+
+  /// Reserved register (4B)
+  uint8_t     Reserved_1[4];
+
+
+  /** External interrupt control register 4 (CR4 at 0x50aa) */
+  union {
+
+    /// bytewise access to CR4
+    uint8_t  byte;
+
+    /// bitwise access to register CR4
+    struct {
+      BITS   PGIS                : 2;      // bits 0-1
+      BITS   PHIS                : 2;      // bits 2-3
+      BITS                       : 4;      // 4 bits
+    };  // CR4 bitfield
+
+    /// register _ITC_EXTI_CR4 reset value
+    #define sfr_ITC_EXTI_CR4_RESET_VALUE   ((uint8_t) 0x00)
+
+  } CR4;
+
+
+  /** External interrupt port select register 2 (CONF2 at 0x50ab) */
+  union {
+
+    /// bytewise access to CONF2
+    uint8_t  byte;
+
+    /// bitwise access to register CONF2
+    struct {
+      BITS   PFHIS               : 1;      // bit 0
+      BITS   PGLIS               : 1;      // bit 1
+      BITS   PGHIS               : 1;      // bit 2
+      BITS   PHLIS               : 1;      // bit 3
+      BITS   PHHIS               : 1;      // bit 4
+      BITS   PGBS                : 1;      // bit 5
+      BITS   PHDS                : 1;      // bit 6
+      BITS                       : 1;      // 1 bit
+    };  // CONF2 bitfield
+
+    /// register _ITC_EXTI_CONF2 reset value
+    #define sfr_ITC_EXTI_CONF2_RESET_VALUE   ((uint8_t) 0x00)
+
+  } CONF2;
 
 } ITC_EXTI_t;
 
