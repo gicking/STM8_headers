@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model chipname="STM8L001J3">
+  <family>STM8L101, low density</family>
+  <chip_description>Ultra-low-power 8-bit MCU with 8 Kbytes Flash, 16 MHz CPU, integrated EEPROM </chip_description>
+  <feature_list>Key Features
+    Operating conditions
+        Operating power supply: 1.8 V to 3.6 V Temperature range: -40 °C to 125 °C
+    Low power features
+        3 low power modes: Wait, Active-halt with RTC (0.8 µA), Halt (0.3 µA)
+        Ultra-low leakage per I/0: 50 nA
+        Fast wakeup from Halt: 5 µs
+    Advanced STM8 core
+        Harvard architecture and 3-stage pipeline
+        Max freq: 16 MHz, 16 CISC MIPS peak
+        Up to 6 external interrupt sources
+    Reset and supply management
+        Ultra low power POR/PDR
+    Clock management
+        Internal 16 MHz factory-trimmed RC
+        Internal 38 kHz low consumption RC
+    Memories
+        8 Kbytes of Flash program memory and 2 Kbytes of data EEPROM with ECC
+        Flexible write and read protection modes
+        1.5 Kbyte of RAM
+    Comparators
+        2 comparators with 1 input each
+        Internal or external reference voltage
+    Timers
+        Two 16-bit general purpose timers (TIM2, TIM3) with up and down counter and 1 channel (used as IC, OC, PWM)
+        One 8-bit timer with 7-bit prescaler
+        Infrared remote control (IR)
+        Independent watchdog
+        Auto wake-up timer
+        Beeper timer with 1, 2 or 4 kHz frequencies
+    Communication interfaces
+        Synchronous serial interface (SPI)
+        Fast I2C 400 kHz SMBus and PMBus
+        USART
+    Up to 6 I/Os, all mappable on external interrupt vectors. One LED driver infrared output
+    Development support
+        Fast on-chip programming and non-intrusive debugging with SWIM
+    </feature_list>
+  <references>
+    <datasheet>https://www.st.com/resource/en/datasheet/stm8l001j3.pdf</datasheet>
+    <reference_manual>RM0013</reference_manual>
+    <reference_manual_link>https://www.st.com/content/ccc/resource/technical/document/reference_manual/73/41/6f/b1/fd/45/4e/18/CD00184503.pdf/files/CD00184503.pdf/jcr:content/translations/en.CD00184503.pdf</reference_manual_link>
+  </references>
+  <memory>
+    <!--memory sizes in bytes-->
+    <RAM addr_start="0x000000" addr_end="0x0005FF" size="1536"/>
+    <OPTION addr_start="0x004800" addr_end="0x0048FF" size="256"/>
+    <ID addr_start="0x004925" addr_end="0x004930" size="12"/>
+    <SFR1 addr_start="0x005000" addr_end="0x0057FF" size="2048"/>
+    <SFR2 addr_start="0x007F00" addr_end="0x007FFF" size="256"/>
+    <FLASH addr_start="0x008000" addr_end="0x009FFF" size="8192"/>
+  </memory>
+  <ROM_bootloader>without ROM bootloader</ROM_bootloader>
+  <interrupt_table>
+    <!--interrupt sources may share an IRQ; IAR requires IRQ+2-->
+    <interrupt name="RESET" addr="0x8000" irq=""/>
+    <interrupt name="TRAP" addr="0x8004" irq=""/>
+    <interrupt name="TLI" addr="0x8008" irq="0"/>
+    <interrupt name="FLASH_EOP" addr="0x800C" irq="1" enable="FLASH_CR1.IE" pending="FLASH_IAPSR.EOP" priority="ITC_SPR1.VECT1SPR"/>
+    <interrupt name="FLASH_WR_PG_DIS" addr="0x800C" irq="1" enable="FLASH_CR1.IE" pending="FLASH_IAPSR.WR_PG_DIS" priority="ITC_SPR1.VECT1SPR"/>
+    <interrupt name="AWU" addr="0x8018" irq="4" enable="AWU_CSR.AWUEN" pending="AWU_CSR.AWUF" priority="ITC_SPR2.VECT4SPR"/>
+    <interrupt name="EXTIB" addr="0x8020" irq="6" enable="EXTI_CR3.PBIS" pending="EXTI_SR2.PBF" priority="ITC_SPR2.VECT6SPR"/>
+    <interrupt name="EXTID" addr="0x8024" irq="7" enable="EXTI_CR3.PDIS" pending="EXTI_SR2.PDF" priority="ITC_SPR2.VECT7SPR"/>
+    <interrupt name="EXTI0" addr="0x8028" irq="8" enable="EXTI_CR1.P0IS" pending="EXTI_SR1.P0F" priority="ITC_SPR3.VECT8SPR"/>
+    <interrupt name="EXTI1" addr="0x802C" irq="9" enable="EXTI_CR1.P1IS" pending="EXTI_SR1.P1F" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="EXTI2" addr="0x8030" irq="10" enable="EXTI_CR1.P2IS" pending="EXTI_SR1.P2F" priority="ITC_SPR3.VECT10SPR"/>
+    <interrupt name="EXTI3" addr="0x8034" irq="11" enable="EXTI_CR1.P3IS" pending="EXTI_SR1.P3F" priority="ITC_SPR3.VECT11SPR"/>
+    <interrupt name="EXTI4" addr="0x8038" irq="12" enable="EXTI_CR2.P4IS" pending="EXTI_SR1.P4F" priority="ITC_SPR4.VECT12SPR"/>
+    <interrupt name="EXTI5" addr="0x803C" irq="13" enable="EXTI_CR2.P5IS" pending="EXTI_SR1.P5F" priority="ITC_SPR4.VECT13SPR"/>
+    <interrupt name="EXTI6" addr="0x8040" irq="14" enable="EXTI_CR2.P6IS" pending="EXTI_SR1.P6F" priority="ITC_SPR4.VECT14SPR"/>
+    <interrupt name="EXTI7" addr="0x8044" irq="15" enable="EXTI_CR2.P7IS" pending="EXTI_SR1.P7F" priority="ITC_SPR4.VECT15SPR"/>
+    <interrupt name="COMP_ITEN1" addr="0x8050" irq="18" enable="COMP_CSR.ITEN1" pending="COMP_CSR.CEF1" priority="ITC_SPR5.VECT18SPR"/>
+    <interrupt name="COMP_ITEN2" addr="0x8050" irq="18" enable="COMP_CSR.ITEN2" pending="COMP_CSR.CEF2" priority="ITC_SPR5.VECT18SPR"/>
+    <interrupt name="TIM2_BIF" addr="0x8054" irq="19" enable="TIM2_IER.BIE" pending="TIM2_SR1.BIF" priority="ITC_SPR5.VECT19SPR"/>
+    <interrupt name="TIM2_OVR_UIF" addr="0x8054" irq="19" enable="TIM2_IER.UIE" pending="TIM2_SR1.UIF" priority="ITC_SPR5.VECT19SPR"/>
+    <interrupt name="TIM2_TIF" addr="0x8054" irq="19" enable="TIM2_IER.TIE" pending="TIM2_SR1.TIF" priority="ITC_SPR5.VECT19SPR"/>
+    <interrupt name="TIM2_CAPCOM_CC1IF" addr="0x8058" irq="20" enable="TIM2_IER.CC1IE" pending="TIM2_SR1.CC1IF" priority="ITC_SPR6.VECT20SPR"/>
+    <interrupt name="TIM2_CAPCOM_CC2IF" addr="0x8058" irq="20" enable="TIM2_IER.CC2IE" pending="TIM2_SR1.CC2IF" priority="ITC_SPR6.VECT20SPR"/>
+    <interrupt name="TIM3_BIF" addr="0x805C" irq="21" enable="TIM3_IER.BIE" pending="TIM3_SR1.BIF" priority="ITC_SPR5.VECT21SPR"/>
+    <interrupt name="TIM3_OVR_UIF" addr="0x805C" irq="21" enable="TIM3_IER.UIE" pending="TIM3_SR1.UIF" priority="ITC_SPR5.VECT21SPR"/>
+    <interrupt name="TIM3_TIF" addr="0x805C" irq="21" enable="TIM3_IER.TIE" pending="TIM3_SR1.TIF" priority="ITC_SPR5.VECT21SPR"/>
+    <interrupt name="TIM3_CAPCOM_CC1IF" addr="0x8060" irq="22" enable="TIM3_IER.CC1IE" pending="TIM3_SR1.CC1IF" priority="ITC_SPR6.VECT22SPR"/>
+    <interrupt name="TIM3_CAPCOM_CC2IF" addr="0x8060" irq="22" enable="TIM3_IER.CC2IE" pending="TIM3_SR1.CC2IF" priority="ITC_SPR6.VECT22SPR"/>
+    <interrupt name="TIM4_TIF" addr="0x806C" irq="25" enable="TIM4_IER.TIE" pending="TIM4_SR1.TIF" priority="ITC_SPR7.VECT25SPR"/>
+    <interrupt name="TIM4_UIF" addr="0x806C" irq="25" enable="TIM4_IER.UIE" pending="TIM4_SR1.UIF" priority="ITC_SPR7.VECT25SPR"/>
+    <interrupt name="SPI_MODF" addr="0x8070" irq="26" enable="SPI_ICR.ERRIE" pending="SPI_SR.MODF" priority="ITC_SPR7.VECT26SPR"/>
+    <interrupt name="SPI_OVR" addr="0x8070" irq="26" enable="SPI_ICR.ERRIE" pending="SPI_SR.OVR" priority="ITC_SPR7.VECT26SPR"/>
+    <interrupt name="SPI_RXNE" addr="0x8070" irq="26" enable="SPI_ICR.RXIE" pending="SPI_SR.RXNE" priority="ITC_SPR7.VECT26SPR"/>
+    <interrupt name="SPI_TXE" addr="0x8070" irq="26" enable="SPI_ICR.TXIE" pending="SPI_SR.TXE" priority="ITC_SPR7.VECT26SPR"/>
+    <interrupt name="SPI_WKUP" addr="0x8070" irq="26" enable="SPI_ICR.WKIE" pending="SPI_SR.WKUP" priority="ITC_SPR7.VECT26SPR"/>
+    <interrupt name="USART_T_TC" addr="0x8074" irq="27" enable="USART_CR2.TCIEN" pending="USART_SR.TC" priority="ITC_SPR7.VECT27SPR"/>
+    <interrupt name="USART_T_TXE" addr="0x8074" irq="27" enable="USART_CR2.TIEN" pending="USART_SR.TXE" priority="ITC_SPR7.VECT27SPR"/>
+    <interrupt name="USART_R_IDLE" addr="0x8078" irq="28" enable="USART_CR2.ILIEN" pending="USART_SR.IDLE" priority="ITC_SPR7.VECT28SPR"/>
+    <interrupt name="USART_R_OR" addr="0x8078" irq="28" enable="USART_CR2.RIEN" pending="USART_SR.OR" priority="ITC_SPR7.VECT28SPR"/>
+    <interrupt name="USART_R_PE" addr="0x8078" irq="28" enable="USART_CR1.PIEN" pending="USART_SR.PE" priority="ITC_SPR7.VECT28SPR"/>
+    <interrupt name="USART_R_RXNE" addr="0x8078" irq="28" enable="USART_CR2.RIEN" pending="USART_SR.RXNE" priority="ITC_SPR7.VECT28SPR"/>
+    <interrupt name="I2C_ADD10" addr="0x807C" irq="29" enable="I2C_ITR.ITEVTEN" pending="I2C_SR1.ADD10" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_ADDR" addr="0x807C" irq="29" enable="I2C_ITR.ITEVTEN" pending="I2C_SR1.ADDR" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_AF" addr="0x807C" irq="29" enable="I2C_ITR.ITERREN" pending="I2C_SR2.AF" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_ARLO" addr="0x807C" irq="29" enable="I2C_ITR.ITERREN" pending="I2C_SR2.ARLO" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_BERR" addr="0x807C" irq="29" enable="I2C_ITR.ITERREN" pending="I2C_SR2.BERR" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_BTF" addr="0x807C" irq="29" enable="I2C_ITR.ITEVTEN" pending="I2C_SR1.BTF" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_OVR" addr="0x807C" irq="29" enable="I2C_ITR.ITERREN" pending="I2C_SR2.OVR" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_RXNE" addr="0x807C" irq="29" enable="I2C_ITR.ITBUFEN" pending="I2C_SR1.RXNE" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_SB" addr="0x807C" irq="29" enable="I2C_ITR.ITEVTEN" pending="I2C_SR1.SB" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_STOPF" addr="0x807C" irq="29" enable="I2C_ITR.ITEVTEN" pending="I2C_SR1.STOPF" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_TXE" addr="0x807C" irq="29" enable="I2C_ITR.ITBUFEN" pending="I2C_SR1.TXE" priority="ITC_SPR8.VECT29SPR"/>
+    <interrupt name="I2C_WUFH" addr="0x807C" irq="29" enable="I2C_ITR.ITEVTEN" pending="I2C_SR2.WUFH" priority="ITC_SPR8.VECT29SPR"/>
+  </interrupt_table>
+  <special_function_registers>
+    <module name="AWU">
+      <SFR address="0x50F0">
+        <register name="CSR" description="AWU control/status register" resetvalue="0x00">
+          <bitfield name="MSR" bits="0"/>
+          <bitfield name="AWUEN" bits="4"/>
+          <bitfield name="AWUF" bits="5"/>
+        </register>
+      </SFR>
+      <SFR address="0x50F1">
+        <register name="APR" description="AWU asynchronous prescaler buffer register" resetvalue="0x3F">
+          <bitfield name="APR" bits="0-5"/>
+        </register>
+      </SFR>
+      <SFR address="0x50F2">
+        <register name="TBR" description="AWU timebase selection register" resetvalue="0x00">
+          <bitfield name="AWUTB" bits="0-5"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="BEEP">
+      <SFR address="0x50F3">
+        <register name="CSR" description="BEEP control/status register" resetvalue="0x1F">
+          <bitfield name="BEEPDIV" bits="0-4"/>
+          <bitfield name="BEEPEN" bits="5"/>
+          <bitfield name="BEEPSEL" bits="6-7"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="CLK">
+      <SFR address="0x50C0">
+        <register name="CKDIVR" description="Clock divider register" resetvalue="0x03">
+          <bitfield name="HSIDIV" bits="0-1"/>
+        </register>
+      </SFR>
+      <SFR address="0x50C3">
+        <register name="PCKENR" description="Peripheral clock gating register" resetvalue="0x00">
+          <bitfield name="PCKEN" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x50C5">
+        <register name="CCOR" description="Configurable clock control register" resetvalue="0x00">
+          <bitfield name="CC0EN" bits="0"/>
+          <bitfield name="CCOSEL" bits="1-2"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="CMP">
+      <SFR address="0x5300">
+        <register name="CR" description="Comparator control register" resetvalue="0x00">
+          <bitfield name="BIAS_EN" bits="0"/>
+          <bitfield name="COMP2_EN" bits="1"/>
+          <bitfield name="COMP1_EN" bits="2"/>
+          <bitfield name="COMPREF" bits="3"/>
+          <bitfield name="POL" bits="4"/>
+          <bitfield name="CNF_TIM0" bits="5"/>
+          <bitfield name="CNF_TIM1" bits="6"/>
+          <bitfield name="IC1_BK" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5301">
+        <register name="CSR" description="Comparator status register" resetvalue="0x00">
+          <bitfield name="COMP1_OUT" bits="0"/>
+          <bitfield name="COMP2_OUT" bits="1"/>
+          <bitfield name="CEF1" bits="4"/>
+          <bitfield name="ITEN1" bits="5"/>
+          <bitfield name="CEF2" bits="6"/>
+          <bitfield name="ITEN2" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5302">
+        <register name="CCS" description="Comparator channel selection register" resetvalue="0x00">
+          <bitfield name="COMP1_CH1" bits="0"/>
+          <bitfield name="COMP1_CH2" bits="1"/>
+          <bitfield name="COMP1_CH3" bits="2"/>
+          <bitfield name="COMP1_CH4" bits="3"/>
+          <bitfield name="COMP2_CH1" bits="4"/>
+          <bitfield name="COMP2_CH2" bits="5"/>
+          <bitfield name="COMP2_CH3" bits="6"/>
+          <bitfield name="COMP2_CH4" bits="7"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="CPU">
+      <SFR address="0x7F00">
+        <register name="A" description="Accumulator" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F01">
+        <register name="PCE" description="Program counter extended" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F02">
+        <register name="PCH" description="Program counter high" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F03">
+        <register name="PCL" description="Program counter low" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F04">
+        <register name="XH" description="X index register high" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F05">
+        <register name="XL" description="X index register low" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F06">
+        <register name="YH" description="Y index register high" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F07">
+        <register name="YL" description="Y index register low" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F08">
+        <register name="SPH" description="Stack pointer high" resetvalue="0x03"/>
+      </SFR>
+      <SFR address="0x7F09">
+        <register name="SPL" description="Stack pointer low" resetvalue="0xFF"/>
+      </SFR>
+      <SFR address="0x7F0A">
+        <register name="CCR" description="Condition code register" resetvalue="0x28">
+          <bitfield name="C" bits="0"/>
+          <bitfield name="Z" bits="1"/>
+          <bitfield name="N" bits="2"/>
+          <bitfield name="I0" bits="3"/>
+          <bitfield name="H" bits="4"/>
+          <bitfield name="I1" bits="5"/>
+          <bitfield name="V" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x7F60">
+        <register name="CFG_GCR" description="Global configuration register" resetvalue="0x00">
+          <bitfield name="SWD" bits="0"/>
+          <bitfield name="AL" bits="1"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="DM">
+      <SFR address="0x7F90">
+        <register name="BK1RE" description="Breakpoint 1 register extended byte" resetvalue="0xFF"/>
+      </SFR>
+      <SFR address="0x7F91">
+        <register name="BK1RH" description="Breakpoint 1 register high byte" resetvalue="0xFF"/>
+      </SFR>
+      <SFR address="0x7F92">
+        <register name="BK1RL" description="Breakpoint 1 register low byte" resetvalue="0xFF"/>
+      </SFR>
+      <SFR address="0x7F93">
+        <register name="BK2RE" description="Breakpoint 2 register extended byte" resetvalue="0xFF"/>
+      </SFR>
+      <SFR address="0x7F94">
+        <register name="BK2RH" description="Breakpoint 2 register high byte" resetvalue="0xFF"/>
+      </SFR>
+      <SFR address="0x7F95">
+        <register name="BK2RL" description="Breakpoint 2 register low byte" resetvalue="0xFF"/>
+      </SFR>
+      <SFR address="0x7F96">
+        <register name="CR1" description="Debug module control register 1" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F97">
+        <register name="CR2" description="Debug module control register 2" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F98">
+        <register name="CSR1" description="Debug module control/status register 1" resetvalue="0x10"/>
+      </SFR>
+      <SFR address="0x7F99">
+        <register name="CSR2" description="Debug module control/status register 2" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x7F9A">
+        <register name="ENFCTR" description="Enable function register" resetvalue="0xFF"/>
+      </SFR>
+    </module>
+    <module name="FLASH">
+      <SFR address="0x5050">
+        <register name="CR1" description="Flash control register 1" resetvalue="0x00">
+          <bitfield name="FIX" bits="0"/>
+          <bitfield name="IE" bits="1"/>
+        </register>
+      </SFR>
+      <SFR address="0x5051">
+        <register name="CR2" description="Flash control register 2" resetvalue="0x00">
+          <bitfield name="PRG" bits="0"/>
+          <bitfield name="FPRG" bits="4"/>
+          <bitfield name="ERASE" bits="5"/>
+          <bitfield name="WPRG" bits="6"/>
+          <bitfield name="OPT" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5052">
+        <register name="PUKR" description="Flash Program memory unprotection register" resetvalue="0x00">
+          <bitfield name="MASS_PRG" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5053">
+        <register name="DUKR" description="Data EEPROM unprotection register" resetvalue="0x00">
+          <bitfield name="MASS_DATA" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5054">
+        <register name="IAPSR" description="Flash in-application programming status register" resetvalue="0x00">
+          <bitfield name="WR_PG_DIS" bits="0"/>
+          <bitfield name="PUL" bits="1"/>
+          <bitfield name="EOP" bits="2"/>
+          <bitfield name="DUL" bits="3"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="I2C">
+      <SFR address="0x5210">
+        <register name="CR1" description="I2C control register 1" resetvalue="0x00">
+          <bitfield name="PE" bits="0"/>
+          <bitfield name="ENGC" bits="6"/>
+          <bitfield name="NOSTRETCH" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5211">
+        <register name="CR2" description="I2C control register 2" resetvalue="0x00">
+          <bitfield name="START" bits="0"/>
+          <bitfield name="STOP" bits="1"/>
+          <bitfield name="ACK" bits="2"/>
+          <bitfield name="POS" bits="3"/>
+          <bitfield name="SWRST" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5212">
+        <register name="FREQR" description="I2C frequency register" resetvalue="0x00">
+          <bitfield name="FREQ" bits="0-5"/>
+        </register>
+      </SFR>
+      <SFR address="0x5213">
+        <register name="OARL" description="I2C Own address register low" resetvalue="0x00">
+          <bitfield name="ADD" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5214">
+        <register name="OARH" description="I2C Own address register high" resetvalue="0x00">
+          <bitfield name="ADD" bits="1-2"/>
+          <bitfield name="ADDCONF" bits="6"/>
+          <bitfield name="ADDMODE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5216">
+        <register name="DR" description="I2C data register" resetvalue="0x00">
+          <bitfield name="DR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5217">
+        <register name="SR1" description="I2C status register 1" resetvalue="0x00">
+          <bitfield name="SB" bits="0"/>
+          <bitfield name="ADDR" bits="1"/>
+          <bitfield name="BTF" bits="2"/>
+          <bitfield name="ADD10" bits="3"/>
+          <bitfield name="STOPF" bits="4"/>
+          <bitfield name="RXNE" bits="6"/>
+          <bitfield name="TXE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5218">
+        <register name="SR2" description="I2C status register 2" resetvalue="0x00">
+          <bitfield name="BERR" bits="0"/>
+          <bitfield name="ARLO" bits="1"/>
+          <bitfield name="AF" bits="2"/>
+          <bitfield name="OVR" bits="3"/>
+          <bitfield name="WUFH" bits="5"/>
+        </register>
+      </SFR>
+      <SFR address="0x5219">
+        <register name="SR3" description="I2C status register 3" resetvalue="0x00">
+          <bitfield name="MSL" bits="0"/>
+          <bitfield name="BUSY" bits="1"/>
+          <bitfield name="TRA" bits="2"/>
+          <bitfield name="GENCALL" bits="4"/>
+        </register>
+      </SFR>
+      <SFR address="0x521A">
+        <register name="ITR" description="I2C interrupt control register" resetvalue="0x00">
+          <bitfield name="ITERREN" bits="0"/>
+          <bitfield name="ITEVTEN" bits="1"/>
+          <bitfield name="ITBUFEN" bits="2"/>
+        </register>
+      </SFR>
+      <SFR address="0x521B">
+        <register name="CCRL" description="I2C Clock control register low" resetvalue="0x00">
+          <bitfield name="CCR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x521C">
+        <register name="CCRH" description="I2C Clock control register high" resetvalue="0x00">
+          <bitfield name="CCR" bits="0-3"/>
+          <bitfield name="DUTY" bits="6"/>
+          <bitfield name="F_S" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x521D">
+        <register name="TRISER" description="I2C TRISE register" resetvalue="0x02">
+          <bitfield name="TRISE" bits="0-5"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="IR">
+      <SFR address="0x52FF">
+        <register name="CR" description="Infra-red control register" resetvalue="0x00">
+          <bitfield name="IR_EN" bits="0"/>
+          <bitfield name="HS_EN" bits="1"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="ITC_EXTI">
+      <SFR address="0x50A0">
+        <register name="CR1" description="External interrupt control register 1" resetvalue="0x00">
+          <bitfield name="P0IS" bits="0-1"/>
+          <bitfield name="P1IS" bits="2-3"/>
+          <bitfield name="P2IS" bits="4-5"/>
+          <bitfield name="P3IS" bits="6-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x50A1">
+        <register name="CR2" description="External interrupt control register 2" resetvalue="0x00">
+          <bitfield name="P4IS" bits="0-1"/>
+          <bitfield name="P5IS" bits="2-3"/>
+          <bitfield name="P6IS" bits="4-5"/>
+          <bitfield name="P7IS" bits="6-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x50A2">
+        <register name="CR3" description="External interrupt control register 3" resetvalue="0x00">
+          <bitfield name="PDIS" bits="0-1"/>
+          <bitfield name="PBIS" bits="2-3"/>
+        </register>
+      </SFR>
+      <SFR address="0x50A3">
+        <register name="SR1" description="External interrupt status register 1" resetvalue="0x00">
+          <bitfield name="P0F" bits="0"/>
+          <bitfield name="P1F" bits="1"/>
+          <bitfield name="P2F" bits="2"/>
+          <bitfield name="P3F" bits="3"/>
+          <bitfield name="P4F" bits="4"/>
+          <bitfield name="P5F" bits="5"/>
+          <bitfield name="P6F" bits="6"/>
+          <bitfield name="P7F" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x50A4">
+        <register name="SR2" description="External interrupt status register 2" resetvalue="0x00">
+          <bitfield name="PBF" bits="0"/>
+          <bitfield name="PDF" bits="1"/>
+        </register>
+      </SFR>
+      <SFR address="0x50A5">
+        <register name="CONF" description="External interrupt port select register" resetvalue="0x00">
+          <bitfield name="PBLIS" bits="0"/>
+          <bitfield name="PBHIS" bits="1"/>
+          <bitfield name="PDLIS" bits="2"/>
+          <bitfield name="PDHIS" bits="3"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="ITC_SPR">
+      <SFR address="0x7F70">
+        <register name="SPR1" description="Interrupt Software priority register 1" resetvalue="0xFF">
+          <bitfield name="VECT1SPR" bits="2-3"/>
+        </register>
+      </SFR>
+      <SFR address="0x7F71">
+        <register name="SPR2" description="Interrupt Software priority register 2" resetvalue="0xFF">
+          <bitfield name="VECT4SPR" bits="0-1"/>
+          <bitfield name="VECT6SPR" bits="4-5"/>
+          <bitfield name="VECT7SPR" bits="6-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x7F72">
+        <register name="SPR3" description="Interrupt Software priority register 3" resetvalue="0xFF">
+          <bitfield name="VECT8SPR" bits="0-1"/>
+          <bitfield name="VECT9SPR" bits="2-3"/>
+          <bitfield name="VECT10SPR" bits="4-5"/>
+          <bitfield name="VECT11SPR" bits="6-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x7F73">
+        <register name="SPR4" description="Interrupt Software priority register 4" resetvalue="0xFF">
+          <bitfield name="VECT12SPR" bits="0-1"/>
+          <bitfield name="VECT13SPR" bits="2-3"/>
+          <bitfield name="VECT14SPR" bits="4-5"/>
+          <bitfield name="VECT15SPR" bits="6-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x7F74">
+        <register name="SPR5" description="Interrupt Software priority register 5" resetvalue="0xFF">
+          <bitfield name="VECT18SPR" bits="4-5"/>
+          <bitfield name="VECT19SPR" bits="6-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x7F75">
+        <register name="SPR6" description="Interrupt Software priority register 6" resetvalue="0xFF">
+          <bitfield name="VECT20SPR" bits="0-1"/>
+          <bitfield name="VECT21SPR" bits="2-3"/>
+          <bitfield name="VECT22SPR" bits="4-5"/>
+        </register>
+      </SFR>
+      <SFR address="0x7F76">
+        <register name="SPR7" description="Interrupt Software priority register 7" resetvalue="0xFF">
+          <bitfield name="VECT25SPR" bits="2-3"/>
+          <bitfield name="VECT26SPR" bits="4-5"/>
+          <bitfield name="VECT27SPR" bits="6-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x7F77">
+        <register name="SPR8" description="Interrupt Software priority register 8" resetvalue="0xFF">
+          <bitfield name="VECT28SPR" bits="0-1"/>
+          <bitfield name="VECT29SPR" bits="2-3"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="IWDG">
+      <SFR address="0x50E0">
+        <register name="KR" description="IWDG Key register" resetvalue="0x00">
+          <bitfield name="KEY" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x50E1">
+        <register name="PR" description="IWDG Prescaler register" resetvalue="0x00">
+          <bitfield name="PR" bits="0-2"/>
+        </register>
+      </SFR>
+      <SFR address="0x50E2">
+        <register name="RLR" description="IWDG Reload register" resetvalue="0xFF">
+          <bitfield name="RL" bits="0-7"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="OPT">
+      <SFR address="0x4800">
+        <register name="OPT1" description="Read-out protection (ROP)" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x4802">
+        <register name="OPT2" description="UBC (User Boot code size)" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x4803">
+        <register name="OPT3" description="DATASIZE" resetvalue="0x00"/>
+      </SFR>
+      <SFR address="0x4808">
+        <register name="OPT4" description="Independent watchdog option" resetvalue="0x00"/>
+      </SFR>
+    </module>
+    <module name="PORTA">
+      <SFR address="0x5000">
+        <register name="ODR" description="Port A data output latch register" resetvalue="0x00">
+          <bitfield name="ODR0" bits="0"/>
+          <bitfield name="ODR1" bits="1"/>
+          <bitfield name="ODR2" bits="2"/>
+          <bitfield name="ODR3" bits="3"/>
+          <bitfield name="ODR4" bits="4"/>
+          <bitfield name="ODR5" bits="5"/>
+          <bitfield name="ODR6" bits="6"/>
+          <bitfield name="ODR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5001">
+        <register name="IDR" description="Port A input pin value register" resetvalue="0x00">
+          <bitfield name="IDR0" bits="0"/>
+          <bitfield name="IDR1" bits="1"/>
+          <bitfield name="IDR2" bits="2"/>
+          <bitfield name="IDR3" bits="3"/>
+          <bitfield name="IDR4" bits="4"/>
+          <bitfield name="IDR5" bits="5"/>
+          <bitfield name="IDR6" bits="6"/>
+          <bitfield name="IDR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5002">
+        <register name="DDR" description="Port A data direction register" resetvalue="0x00">
+          <bitfield name="DDR0" bits="0"/>
+          <bitfield name="DDR1" bits="1"/>
+          <bitfield name="DDR2" bits="2"/>
+          <bitfield name="DDR3" bits="3"/>
+          <bitfield name="DDR4" bits="4"/>
+          <bitfield name="DDR5" bits="5"/>
+          <bitfield name="DDR6" bits="6"/>
+          <bitfield name="DDR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5003">
+        <register name="CR1" description="Port A control register 1" resetvalue="0x00">
+          <bitfield name="C10" bits="0"/>
+          <bitfield name="C11" bits="1"/>
+          <bitfield name="C12" bits="2"/>
+          <bitfield name="C13" bits="3"/>
+          <bitfield name="C14" bits="4"/>
+          <bitfield name="C15" bits="5"/>
+          <bitfield name="C16" bits="6"/>
+          <bitfield name="C17" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5004">
+        <register name="CR2" description="Port A control register 2" resetvalue="0x00">
+          <bitfield name="C20" bits="0"/>
+          <bitfield name="C21" bits="1"/>
+          <bitfield name="C22" bits="2"/>
+          <bitfield name="C23" bits="3"/>
+          <bitfield name="C24" bits="4"/>
+          <bitfield name="C25" bits="5"/>
+          <bitfield name="C26" bits="6"/>
+          <bitfield name="C27" bits="7"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="PORTB">
+      <SFR address="0x5005">
+        <register name="ODR" description="Port B data output latch register" resetvalue="0x00">
+          <bitfield name="ODR0" bits="0"/>
+          <bitfield name="ODR1" bits="1"/>
+          <bitfield name="ODR2" bits="2"/>
+          <bitfield name="ODR3" bits="3"/>
+          <bitfield name="ODR4" bits="4"/>
+          <bitfield name="ODR5" bits="5"/>
+          <bitfield name="ODR6" bits="6"/>
+          <bitfield name="ODR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5006">
+        <register name="IDR" description="Port B input pin value register" resetvalue="0x00">
+          <bitfield name="IDR0" bits="0"/>
+          <bitfield name="IDR1" bits="1"/>
+          <bitfield name="IDR2" bits="2"/>
+          <bitfield name="IDR3" bits="3"/>
+          <bitfield name="IDR4" bits="4"/>
+          <bitfield name="IDR5" bits="5"/>
+          <bitfield name="IDR6" bits="6"/>
+          <bitfield name="IDR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5007">
+        <register name="DDR" description="Port B data direction register" resetvalue="0x00">
+          <bitfield name="DDR0" bits="0"/>
+          <bitfield name="DDR1" bits="1"/>
+          <bitfield name="DDR2" bits="2"/>
+          <bitfield name="DDR3" bits="3"/>
+          <bitfield name="DDR4" bits="4"/>
+          <bitfield name="DDR5" bits="5"/>
+          <bitfield name="DDR6" bits="6"/>
+          <bitfield name="DDR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5008">
+        <register name="CR1" description="Port B control register 1" resetvalue="0x00">
+          <bitfield name="C10" bits="0"/>
+          <bitfield name="C11" bits="1"/>
+          <bitfield name="C12" bits="2"/>
+          <bitfield name="C13" bits="3"/>
+          <bitfield name="C14" bits="4"/>
+          <bitfield name="C15" bits="5"/>
+          <bitfield name="C16" bits="6"/>
+          <bitfield name="C17" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5009">
+        <register name="CR2" description="Port B control register 2" resetvalue="0x00">
+          <bitfield name="C20" bits="0"/>
+          <bitfield name="C21" bits="1"/>
+          <bitfield name="C22" bits="2"/>
+          <bitfield name="C23" bits="3"/>
+          <bitfield name="C24" bits="4"/>
+          <bitfield name="C25" bits="5"/>
+          <bitfield name="C26" bits="6"/>
+          <bitfield name="C27" bits="7"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="PORTC">
+      <SFR address="0x500A">
+        <register name="ODR" description="Port C data output latch register" resetvalue="0x00">
+          <bitfield name="ODR0" bits="0"/>
+          <bitfield name="ODR1" bits="1"/>
+          <bitfield name="ODR2" bits="2"/>
+          <bitfield name="ODR3" bits="3"/>
+          <bitfield name="ODR4" bits="4"/>
+          <bitfield name="ODR5" bits="5"/>
+          <bitfield name="ODR6" bits="6"/>
+          <bitfield name="ODR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x500B">
+        <register name="IDR" description="Port C input pin value register" resetvalue="0x00">
+          <bitfield name="IDR0" bits="0"/>
+          <bitfield name="IDR1" bits="1"/>
+          <bitfield name="IDR2" bits="2"/>
+          <bitfield name="IDR3" bits="3"/>
+          <bitfield name="IDR4" bits="4"/>
+          <bitfield name="IDR5" bits="5"/>
+          <bitfield name="IDR6" bits="6"/>
+          <bitfield name="IDR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x500C">
+        <register name="DDR" description="Port C data direction register" resetvalue="0x00">
+          <bitfield name="DDR0" bits="0"/>
+          <bitfield name="DDR1" bits="1"/>
+          <bitfield name="DDR2" bits="2"/>
+          <bitfield name="DDR3" bits="3"/>
+          <bitfield name="DDR4" bits="4"/>
+          <bitfield name="DDR5" bits="5"/>
+          <bitfield name="DDR6" bits="6"/>
+          <bitfield name="DDR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x500D">
+        <register name="CR1" description="Port C control register 1" resetvalue="0x00">
+          <bitfield name="C10" bits="0"/>
+          <bitfield name="C11" bits="1"/>
+          <bitfield name="C12" bits="2"/>
+          <bitfield name="C13" bits="3"/>
+          <bitfield name="C14" bits="4"/>
+          <bitfield name="C15" bits="5"/>
+          <bitfield name="C16" bits="6"/>
+          <bitfield name="C17" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x500E">
+        <register name="CR2" description="Port C control register 2" resetvalue="0x00">
+          <bitfield name="C20" bits="0"/>
+          <bitfield name="C21" bits="1"/>
+          <bitfield name="C22" bits="2"/>
+          <bitfield name="C23" bits="3"/>
+          <bitfield name="C24" bits="4"/>
+          <bitfield name="C25" bits="5"/>
+          <bitfield name="C26" bits="6"/>
+          <bitfield name="C27" bits="7"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="PORTD">
+      <SFR address="0x500F">
+        <register name="ODR" description="Port D data output latch register" resetvalue="0x00">
+          <bitfield name="ODR0" bits="0"/>
+          <bitfield name="ODR1" bits="1"/>
+          <bitfield name="ODR2" bits="2"/>
+          <bitfield name="ODR3" bits="3"/>
+          <bitfield name="ODR4" bits="4"/>
+          <bitfield name="ODR5" bits="5"/>
+          <bitfield name="ODR6" bits="6"/>
+          <bitfield name="ODR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5010">
+        <register name="IDR" description="Port D input pin value register" resetvalue="0x00">
+          <bitfield name="IDR0" bits="0"/>
+          <bitfield name="IDR1" bits="1"/>
+          <bitfield name="IDR2" bits="2"/>
+          <bitfield name="IDR3" bits="3"/>
+          <bitfield name="IDR4" bits="4"/>
+          <bitfield name="IDR5" bits="5"/>
+          <bitfield name="IDR6" bits="6"/>
+          <bitfield name="IDR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5011">
+        <register name="DDR" description="Port D data direction register" resetvalue="0x00">
+          <bitfield name="DDR0" bits="0"/>
+          <bitfield name="DDR1" bits="1"/>
+          <bitfield name="DDR2" bits="2"/>
+          <bitfield name="DDR3" bits="3"/>
+          <bitfield name="DDR4" bits="4"/>
+          <bitfield name="DDR5" bits="5"/>
+          <bitfield name="DDR6" bits="6"/>
+          <bitfield name="DDR7" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5012">
+        <register name="CR1" description="Port D control register 1" resetvalue="0x00">
+          <bitfield name="C10" bits="0"/>
+          <bitfield name="C11" bits="1"/>
+          <bitfield name="C12" bits="2"/>
+          <bitfield name="C13" bits="3"/>
+          <bitfield name="C14" bits="4"/>
+          <bitfield name="C15" bits="5"/>
+          <bitfield name="C16" bits="6"/>
+          <bitfield name="C17" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5013">
+        <register name="CR2" description="Port D control register 2" resetvalue="0x00">
+          <bitfield name="C20" bits="0"/>
+          <bitfield name="C21" bits="1"/>
+          <bitfield name="C22" bits="2"/>
+          <bitfield name="C23" bits="3"/>
+          <bitfield name="C24" bits="4"/>
+          <bitfield name="C25" bits="5"/>
+          <bitfield name="C26" bits="6"/>
+          <bitfield name="C27" bits="7"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="RST">
+      <SFR address="0x50B0">
+        <register name="CR" description="Reset control register" resetvalue="0x00">
+          <bitfield name="RSTPIN_KEY" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x50B1">
+        <register name="SR" description="Reset status register" resetvalue="0x01">
+          <bitfield name="PORF" bits="0"/>
+          <bitfield name="IWDGF" bits="1"/>
+          <bitfield name="ILLOPF" bits="2"/>
+          <bitfield name="SWIMF" bits="3"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="SPI">
+      <SFR address="0x5200">
+        <register name="CR1" description="SPI control register 1" resetvalue="0x00">
+          <bitfield name="CPHA" bits="0"/>
+          <bitfield name="CPOL" bits="1"/>
+          <bitfield name="MSTR" bits="2"/>
+          <bitfield name="BR" bits="3-5"/>
+          <bitfield name="SPE" bits="6"/>
+          <bitfield name="LSBFIRST" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5201">
+        <register name="CR2" description="SPI control register 2" resetvalue="0x00">
+          <bitfield name="SSI" bits="0"/>
+          <bitfield name="SSM" bits="1"/>
+          <bitfield name="RXOnly" bits="2"/>
+          <bitfield name="BD0E" bits="6"/>
+          <bitfield name="BDM" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5202">
+        <register name="ICR" description="SPI interrupt control register" resetvalue="0x00">
+          <bitfield name="WKIE" bits="4"/>
+          <bitfield name="ERRIE" bits="5"/>
+          <bitfield name="RXIE" bits="6"/>
+          <bitfield name="TXIE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5203">
+        <register name="SR" description="SPI status register" resetvalue="0x02">
+          <bitfield name="RXNE" bits="0"/>
+          <bitfield name="TXE" bits="1"/>
+          <bitfield name="WKUP" bits="3"/>
+          <bitfield name="MODF" bits="5"/>
+          <bitfield name="OVR" bits="6"/>
+          <bitfield name="BSY" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5204">
+        <register name="DR" description="SPI data register" resetvalue="0x00">
+          <bitfield name="DR" bits="0-7"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="SWIM">
+      <SFR address="0x7F80">
+        <register name="CSR" description="SWIM control status register" resetvalue="0x00"/>
+      </SFR>
+    </module>
+    <module name="TIM2">
+      <SFR address="0x5250">
+        <register name="CR1" description="TIM2 Control register 1" resetvalue="0x00">
+          <bitfield name="CEN" bits="0"/>
+          <bitfield name="UDIS" bits="1"/>
+          <bitfield name="URS" bits="2"/>
+          <bitfield name="OPM" bits="3"/>
+          <bitfield name="DIR" bits="4"/>
+          <bitfield name="CMS" bits="5-6"/>
+          <bitfield name="ARPE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5251">
+        <register name="CR2" description="TIM2 Control register 2" resetvalue="0x00">
+          <bitfield name="MMS" bits="4-6"/>
+        </register>
+      </SFR>
+      <SFR address="0x5252">
+        <register name="SMCR" description="TIM2 Slave Mode Control register" resetvalue="0x00">
+          <bitfield name="SMS" bits="0-2"/>
+          <bitfield name="TS" bits="4-6"/>
+          <bitfield name="MSM" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5253">
+        <register name="ETR" description="TIM2 external trigger register" resetvalue="0x00">
+          <bitfield name="ETF" bits="0-3"/>
+          <bitfield name="ETPS" bits="4-5"/>
+          <bitfield name="ECE" bits="6"/>
+          <bitfield name="ETP" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5254">
+        <register name="IER" description="TIM2 Interrupt enable register" resetvalue="0x00">
+          <bitfield name="UIE" bits="0"/>
+          <bitfield name="CC1IE" bits="1"/>
+          <bitfield name="CC2IE" bits="2"/>
+          <bitfield name="TIE" bits="6"/>
+          <bitfield name="BIE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5255">
+        <register name="SR1" description="TIM2 Status register 1" resetvalue="0x00">
+          <bitfield name="UIF" bits="0"/>
+          <bitfield name="CC1IF" bits="1"/>
+          <bitfield name="CC2IF" bits="2"/>
+          <bitfield name="TIF" bits="6"/>
+          <bitfield name="BIF" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5256">
+        <register name="SR2" description="TIM2 Status register 2" resetvalue="0x00">
+          <bitfield name="CC1OF" bits="1"/>
+          <bitfield name="CC2OF" bits="2"/>
+        </register>
+      </SFR>
+      <SFR address="0x5257">
+        <register name="EGR" description="TIM2 Event Generation register" resetvalue="0x00">
+          <bitfield name="UG" bits="0"/>
+          <bitfield name="CC1G" bits="1"/>
+          <bitfield name="CC2G" bits="2"/>
+          <bitfield name="TG" bits="6"/>
+          <bitfield name="BG" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5258">
+        <register name="CCMR1_CAPTURE" description="TIM2 Capture/Compare mode register 1" resetvalue="0x00">
+          <bitfield name="CC1S" bits="0-1"/>
+          <bitfield name="IC1PSC" bits="2-3"/>
+          <bitfield name="IC1F" bits="4-7"/>
+        </register>
+        <register name="CCMR1_COMPARE" description="TIM2 Capture/Compare mode register 1" resetvalue="0x00">
+          <bitfield name="CC1S" bits="0-1"/>
+          <bitfield name="OC1FE" bits="2"/>
+          <bitfield name="OC1PE" bits="3"/>
+          <bitfield name="OC1M" bits="4-6"/>
+        </register>
+      </SFR>
+      <SFR address="0x5259">
+        <register name="CCMR2_CAPTURE" description="TIM2 Capture/Compare mode register 2" resetvalue="0x00">
+          <bitfield name="CC2S" bits="0-1"/>
+          <bitfield name="IC2PSC" bits="2-3"/>
+          <bitfield name="IC2F" bits="4-7"/>
+        </register>
+        <register name="CCMR2_COMPARE" description="TIM2 Capture/Compare mode register 2" resetvalue="0x00">
+          <bitfield name="CC2S" bits="0-1"/>
+          <bitfield name="OC2FE" bits="2"/>
+          <bitfield name="OC2PE" bits="3"/>
+          <bitfield name="OC2M" bits="4-6"/>
+        </register>
+      </SFR>
+      <SFR address="0x525A">
+        <register name="CCER1" description="TIM2 Capture/Compare enable register 1" resetvalue="0x00">
+          <bitfield name="CC1E" bits="0"/>
+          <bitfield name="CC1P" bits="1"/>
+          <bitfield name="CC2E" bits="4"/>
+          <bitfield name="CC2P" bits="5"/>
+        </register>
+      </SFR>
+      <SFR address="0x525B">
+        <register name="CNTRH" description="TIM2 Counter high" resetvalue="0x00">
+          <bitfield name="CNT" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x525C">
+        <register name="CNTRL" description="TIM2 Counter low" resetvalue="0x00">
+          <bitfield name="CNT" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x525D">
+        <register name="PSCR" description="TIM2 Prescaler register" resetvalue="0x00">
+          <bitfield name="PSC" bits="0-2"/>
+        </register>
+      </SFR>
+      <SFR address="0x525E">
+        <register name="ARRH" description="TIM2 Auto-reload register high" resetvalue="0xFF">
+          <bitfield name="ARR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x525F">
+        <register name="ARRL" description="TIM2 Auto-reload register low" resetvalue="0xFF">
+          <bitfield name="ARR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5260">
+        <register name="CCR1H" description="TIM2 Capture/Compare register 1 high" resetvalue="0x00">
+          <bitfield name="CCR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5261">
+        <register name="CCR1L" description="TIM2 Capture/Compare register 1 low" resetvalue="0x00">
+          <bitfield name="CCR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5262">
+        <register name="CCR2H" description="TIM2 Capture/Compare register 2 high" resetvalue="0x00">
+          <bitfield name="CCR2" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5263">
+        <register name="CCR2L" description="TIM2 Capture/Compare register 2 low" resetvalue="0x00">
+          <bitfield name="CCR2" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5264">
+        <register name="BKR" description="TIM2 Break register" resetvalue="0x00">
+          <bitfield name="LOCK" bits="0-1"/>
+          <bitfield name="OSSI" bits="2"/>
+          <bitfield name="BKE" bits="4"/>
+          <bitfield name="BKP" bits="5"/>
+          <bitfield name="AOE" bits="6"/>
+          <bitfield name="MOE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5265">
+        <register name="OISR" description="TIM2 Output idle state register" resetvalue="0x00">
+          <bitfield name="OIS1" bits="0"/>
+          <bitfield name="PIS2" bits="2"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="TIM3">
+      <SFR address="0x5280">
+        <register name="CR1" description="TIM3 Control register 1" resetvalue="0x00">
+          <bitfield name="CEN" bits="0"/>
+          <bitfield name="UDIS" bits="1"/>
+          <bitfield name="URS" bits="2"/>
+          <bitfield name="OPM" bits="3"/>
+          <bitfield name="DIR" bits="4"/>
+          <bitfield name="CMS" bits="5-6"/>
+          <bitfield name="ARPE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5281">
+        <register name="CR2" description="TIM3 Control register 2" resetvalue="0x00">
+          <bitfield name="MMS" bits="4-6"/>
+        </register>
+      </SFR>
+      <SFR address="0x5282">
+        <register name="SMCR" description="TIM3 Slave Mode Control register" resetvalue="0x00">
+          <bitfield name="SMS" bits="0-2"/>
+          <bitfield name="TS" bits="4-6"/>
+          <bitfield name="MSM" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5283">
+        <register name="ETR" description="TIM3 external trigger register" resetvalue="0x00">
+          <bitfield name="ETF" bits="0-3"/>
+          <bitfield name="ETPS" bits="4-5"/>
+          <bitfield name="ECE" bits="6"/>
+          <bitfield name="ETP" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5284">
+        <register name="IER" description="TIM3 Interrupt enable register" resetvalue="0x00">
+          <bitfield name="UIE" bits="0"/>
+          <bitfield name="CC1IE" bits="1"/>
+          <bitfield name="CC2IE" bits="2"/>
+          <bitfield name="TIE" bits="6"/>
+          <bitfield name="BIE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5285">
+        <register name="SR1" description="TIM3 Status register 1" resetvalue="0x00">
+          <bitfield name="UIF" bits="0"/>
+          <bitfield name="CC1IF" bits="1"/>
+          <bitfield name="CC2IF" bits="2"/>
+          <bitfield name="TIF" bits="6"/>
+          <bitfield name="BIF" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5286">
+        <register name="SR2" description="TIM3 Status register 2" resetvalue="0x00">
+          <bitfield name="CC1OF" bits="1"/>
+          <bitfield name="CC2OF" bits="2"/>
+        </register>
+      </SFR>
+      <SFR address="0x5287">
+        <register name="EGR" description="TIM3 Event Generation register" resetvalue="0x00">
+          <bitfield name="UG" bits="0"/>
+          <bitfield name="CC1G" bits="1"/>
+          <bitfield name="CC2G" bits="2"/>
+          <bitfield name="TG" bits="6"/>
+          <bitfield name="BG" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5288">
+        <register name="CCMR1_CAPTURE" description="TIM3 Capture/Compare mode register 1" resetvalue="0x00">
+          <bitfield name="CC1S" bits="0-1"/>
+          <bitfield name="IC1PSC" bits="2-3"/>
+          <bitfield name="IC1F" bits="4-7"/>
+        </register>
+        <register name="CCMR1_COMPARE" description="TIM3 Capture/Compare mode register 1" resetvalue="0x00">
+          <bitfield name="CC1S" bits="0-1"/>
+          <bitfield name="OC1FE" bits="2"/>
+          <bitfield name="OC1PE" bits="3"/>
+          <bitfield name="OC1M" bits="4-6"/>
+        </register>
+      </SFR>
+      <SFR address="0x5289">
+        <register name="CCMR2_CAPTURE" description="TIM3 Capture/Compare mode register 2" resetvalue="0x00">
+          <bitfield name="CC2S" bits="0-1"/>
+          <bitfield name="IC2PSC" bits="2-3"/>
+          <bitfield name="IC2F" bits="4-7"/>
+        </register>
+        <register name="CCMR2_COMPARE" description="TIM3 Capture/Compare mode register 2" resetvalue="0x00">
+          <bitfield name="CC2S" bits="0-1"/>
+          <bitfield name="OC2FE" bits="2"/>
+          <bitfield name="OC2PE" bits="3"/>
+          <bitfield name="OC2M" bits="4-6"/>
+        </register>
+      </SFR>
+      <SFR address="0x528A">
+        <register name="CCER1" description="TIM3 Capture/Compare enable register 1" resetvalue="0x00">
+          <bitfield name="CC1E" bits="0"/>
+          <bitfield name="CC1P" bits="1"/>
+          <bitfield name="CC2E" bits="4"/>
+          <bitfield name="CC2P" bits="5"/>
+        </register>
+      </SFR>
+      <SFR address="0x528B">
+        <register name="CNTRH" description="TIM3 Counter high" resetvalue="0x00">
+          <bitfield name="CNT" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x528C">
+        <register name="CNTRL" description="TIM3 Counter low" resetvalue="0x00">
+          <bitfield name="CNT" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x528D">
+        <register name="PSCR" description="TIM3 Prescaler register" resetvalue="0x00">
+          <bitfield name="PSC" bits="0-2"/>
+        </register>
+      </SFR>
+      <SFR address="0x528E">
+        <register name="ARRH" description="TIM3 Auto-reload register high" resetvalue="0xFF">
+          <bitfield name="ARR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x528F">
+        <register name="ARRL" description="TIM3 Auto-reload register low" resetvalue="0xFF">
+          <bitfield name="ARR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5290">
+        <register name="CCR1H" description="TIM3 Capture/Compare register 1 high" resetvalue="0x00">
+          <bitfield name="CCR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5291">
+        <register name="CCR1L" description="TIM3 Capture/Compare register 1 low" resetvalue="0x00">
+          <bitfield name="CCR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5292">
+        <register name="CCR2H" description="TIM3 Capture/Compare register 2 high" resetvalue="0x00">
+          <bitfield name="CCR2" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5293">
+        <register name="CCR2L" description="TIM3 Capture/Compare register 2 low" resetvalue="0x00">
+          <bitfield name="CCR2" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5294">
+        <register name="BKR" description="TIM3 Break register" resetvalue="0x00">
+          <bitfield name="LOCK" bits="0-1"/>
+          <bitfield name="OSSI" bits="2"/>
+          <bitfield name="BKE" bits="4"/>
+          <bitfield name="BKP" bits="5"/>
+          <bitfield name="AOE" bits="6"/>
+          <bitfield name="MOE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5295">
+        <register name="OISR" description="TIM3 Output idle state register" resetvalue="0x00">
+          <bitfield name="OIS1" bits="0"/>
+          <bitfield name="PIS2" bits="2"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="TIM4">
+      <SFR address="0x52E0">
+        <register name="CR1" description="TIM4 Control register 1" resetvalue="0x00">
+          <bitfield name="CEN" bits="0"/>
+          <bitfield name="UDIS" bits="1"/>
+          <bitfield name="URS" bits="2"/>
+          <bitfield name="OPM" bits="3"/>
+          <bitfield name="ARPE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x52E1">
+        <register name="CR2" description="TIM4 Control register 2" resetvalue="0x00">
+          <bitfield name="MMS" bits="4-6"/>
+        </register>
+      </SFR>
+      <SFR address="0x52E2">
+        <register name="SMCR" description="TIM4 Slave Mode Control Register" resetvalue="0x00">
+          <bitfield name="SMS" bits="0-2"/>
+          <bitfield name="TS" bits="4-6"/>
+          <bitfield name="MSM" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x52E3">
+        <register name="IER" description="TIM4 Interrupt enable register" resetvalue="0x00">
+          <bitfield name="UIE" bits="0"/>
+          <bitfield name="TIE" bits="6"/>
+        </register>
+      </SFR>
+      <SFR address="0x52E4">
+        <register name="SR1" description="TIM4 Status register 1" resetvalue="0x00">
+          <bitfield name="UIF" bits="0"/>
+          <bitfield name="TIF" bits="6"/>
+        </register>
+      </SFR>
+      <SFR address="0x52E5">
+        <register name="EGR" description="TIM4 Event Generation register" resetvalue="0x00">
+          <bitfield name="UG" bits="0"/>
+          <bitfield name="TG" bits="6"/>
+        </register>
+      </SFR>
+      <SFR address="0x52E6">
+        <register name="CNTR" description="TIM4 Counter" resetvalue="0x00">
+          <bitfield name="CNT" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x52E7">
+        <register name="PSCR" description="TIM4 Prescaler register" resetvalue="0x00">
+          <bitfield name="PSC" bits="0-3"/>
+        </register>
+      </SFR>
+      <SFR address="0x52E8">
+        <register name="ARR" description="TIM4 Auto-reload register low" resetvalue="0xFF">
+          <bitfield name="ARR" bits="0-7"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="USART">
+      <SFR address="0x5230">
+        <register name="SR" description="USART Status Register" resetvalue="0xC0">
+          <bitfield name="PE" bits="0"/>
+          <bitfield name="FE" bits="1"/>
+          <bitfield name="NF" bits="2"/>
+          <bitfield name="OR" bits="3"/>
+          <bitfield name="IDLE" bits="4"/>
+          <bitfield name="RXNE" bits="5"/>
+          <bitfield name="TC" bits="6"/>
+          <bitfield name="TXE" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5231">
+        <register name="DR" description="USART Data Register" resetvalue="0x00">
+          <bitfield name="DR" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5232">
+        <register name="BRR1" description="USART Baud Rate Register 1" resetvalue="0x00">
+          <bitfield name="USART_DIV" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5233">
+        <register name="BRR2" description="USART Baud Rate Register 2" resetvalue="0x00">
+          <bitfield name="USART_DIV" bits="0-7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5234">
+        <register name="CR1" description="USART Control Register 1" resetvalue="0x00">
+          <bitfield name="PIEN" bits="0"/>
+          <bitfield name="PS" bits="1"/>
+          <bitfield name="PCEN" bits="2"/>
+          <bitfield name="WAKE" bits="3"/>
+          <bitfield name="MSL" bits="4"/>
+          <bitfield name="USARTD" bits="5"/>
+          <bitfield name="T8" bits="6"/>
+          <bitfield name="R8" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5235">
+        <register name="CR2" description="USART Control Register 2" resetvalue="0x00">
+          <bitfield name="SBK" bits="0"/>
+          <bitfield name="RWU" bits="1"/>
+          <bitfield name="REN" bits="2"/>
+          <bitfield name="TEN" bits="3"/>
+          <bitfield name="ILIEN" bits="4"/>
+          <bitfield name="RIEN" bits="5"/>
+          <bitfield name="TCIEN" bits="6"/>
+          <bitfield name="TIEN" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x5236">
+        <register name="CR3" description="USART Control Register 3" resetvalue="0x00">
+          <bitfield name="LBCL" bits="0"/>
+          <bitfield name="CPHA" bits="1"/>
+          <bitfield name="CPOL" bits="2"/>
+          <bitfield name="CLKEN" bits="3"/>
+          <bitfield name="STOP" bits="4-5"/>
+        </register>
+      </SFR>
+      <SFR address="0x5237">
+        <register name="CR4" description="USART Control Register 4" resetvalue="0x00">
+          <bitfield name="ADD" bits="0-3"/>
+        </register>
+      </SFR>
+    </module>
+    <module name="WFE">
+      <SFR address="0x50A6">
+        <register name="CR1" description="WFE control register 1" resetvalue="0x00">
+          <bitfield name="TIM2_EV0" bits="0"/>
+          <bitfield name="TIM2_EV1" bits="1"/>
+          <bitfield name="EXTI_EV0" bits="4"/>
+          <bitfield name="EXTI_EV1" bits="5"/>
+          <bitfield name="EXTI_EV2" bits="6"/>
+          <bitfield name="EXTI_EV3" bits="7"/>
+        </register>
+      </SFR>
+      <SFR address="0x50A7">
+        <register name="CR2" description="WFE control register 2" resetvalue="0x00">
+          <bitfield name="EXTI_EV4" bits="0"/>
+          <bitfield name="EXTI_EV5" bits="1"/>
+          <bitfield name="EXTI_EV6" bits="2"/>
+          <bitfield name="EXTI_EV7" bits="3"/>
+          <bitfield name="EXTI_EVB" bits="4"/>
+          <bitfield name="EXTI_EVD" bits="5"/>
+        </register>
+      </SFR>
+    </module>
+  </special_function_registers>
+</model>
