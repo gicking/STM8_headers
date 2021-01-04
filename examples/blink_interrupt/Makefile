@@ -10,6 +10,7 @@
 stm8flash_PATH   = ~/Öffentlich/GitHub/External/stm8flash/stm8flash
 stm8flash_DEVICE = stm8s105c6
 stm8flash_SWIM   = stlink
+#stm8flash_DEVICE = stm8s001j3
 #stm8flash_SWIM   = stlinkv2
 
 # required for stm8gal

@@ -4,6 +4,7 @@
   supported hardware:
     - STM8S Discovery board (https://www.st.com/en/evaluation-tools/stm8s-discovery.html)
     - STM8L Discovery board (https://www.st.com/en/evaluation-tools/stm8l-discovery.html)
+    - STM8-SO8 Discovery board (https://www.st.com/en/evaluation-tools/stm8-so8-disco.html)
     - Sduino Uno (https://github.com/roybaer/sduino_uno)
     - muBoard (http://www.cream-tea.de/presentations/160305_PiAndMore.pdf)
   
@@ -16,6 +17,7 @@
 ----------------------------------------------------------*/
 //#define STM8S_DISCOVERY
 //#define STM8L_DISCOVERY
+//#define STM8_SO8_DISCO_STM8S001
 #define SDUINO
 //#define MUBOARD
 
@@ -31,6 +33,10 @@
   #include "../../include/STM8L152C6.h"
   #define LED_PORT   sfr_PORTC
   #define LED_PIN    PIN7
+#elif defined(STM8_SO8_DISCO_STM8S001)
+  #include "../../include/STM8S001J3.h"
+  #define LED_PORT   sfr_PORTA
+  #define LED_PIN    PIN3
 #elif defined(SDUINO)
   #include "../../include/STM8S105K6.h"
   #define LED_PORT   sfr_PORTC
@@ -57,7 +63,7 @@
     SDCC: ISR must be declared in file containing main(). Header inclusion is ok
     Cosmic: interrupt service table is defined in file "stm8_interrupt_vector.c"
 */
-#if defined(STM8S_DISCOVERY) || defined(SDUINO)
+#if defined(STM8S_DISCOVERY) || defined(STM8_SO8_DISCO_STM8S001) || defined(SDUINO)
   ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_)
 #else
   ISR_HANDLER(TIM4_UPD_ISR, _TIM4_UIF_VECTOR_)
