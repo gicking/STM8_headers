@@ -131,3 +131,9 @@ SPI_LED_MAX7219
 STM8_StdPeriphLib
   - mix with functions/headers of the STM8S Standard Peripheral Library (SPL)
 
+------------------------
+
+Task_Scheduler
+  - port of an Arduino pre-emptive task scheduler library from https://github.com/kcl93/Tasks
+  - blink LED via task scheduler in "background"
+  - for reference see https://github.com/kcl93/Tasks
