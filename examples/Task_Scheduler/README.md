@@ -21,11 +21,14 @@ plus a variable `g\_flagMilli` which is set in the timer interrupt and can be us
 - Deadlocks can appear when one task waits for another taks which was started before.
 - Timing critical tasks may not execute properly when they are interrupted for too long by other tasks. Thus it is recommended to keep task execution as short as possible.
 - The STM8 leaves the interrupts state shortly after starting the task scheduler which makes the scheduler reentrant and allows any other interrupt (timer, UART, etc.) to be triggered.
-- If multiple tasks are due in the same timeslot, both are executed (see 2nd screenshot). Delay for task switch is ~6.25µs @ 16MHz 
 - Slow, blocking tasks are interrupted if their duration is longer than the period of a faster task (see 1st screenshot)
+- If multiple tasks are due in the same timeslot, both are executed (see 2nd screenshot). Delay for task switch is ~6.25µs @ 16MHz 
 - Time keeping functions `millis()` can be used within tasks (see main.c)
+
 <p align="center">
   <img src="images/multiple_tasks.png">
+</p>
+<p align="center">
   <img src="images/parallel_tasks.png">
 </p>
 
