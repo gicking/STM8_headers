@@ -82,7 +82,7 @@ void main (void) {
     // toggle LED. Pass port struct as pointer
     toggle_pin(&LED_PORT, LED_PIN);
     
-    // simple wait
+    // simple wait ~500ms @ 16MHz
     for (i=0; i<300000L; i++)
       NOP();
     
