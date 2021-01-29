@@ -15,19 +15,32 @@ A reference of the task scheduler library is available at https://htmlpreview.gi
 In addition this library also implements the known Arduino time keeping functions `millis()`, `micros()`, `delay()` and `delayMicroseconds()`, 
 plus a variable `g\_flagMilli` which is set in the timer interrupt and can be used to easily check if a millisecond has passed 
 
+
 ## Notes:
 
 - Deadlocks can appear when one task waits for another taks which was started before.
 - Timing critical tasks may not execute properly when they are interrupted for too long by other tasks. Thus it is recommended to keep task execution as short as possible.
 - The STM8 leaves the interrupts state shortly after starting the task scheduler which makes the scheduler reentrant and allows any other interrupt (timer, UART, etc.) to be triggered.
+- If multiple tasks are due in the same timeslot, both are executed. Delay for task switch is ~6.25µs @ 16MHz 
+<p align="center">
+  <img src="images/parallel_tasks.png">
+</p>
+- Slow, blocking tasks are interrupted if their duration is longer than the period of a faster task (see main.c)
+- Time keeping functions `millis()` can be used within tasks
+<p align="center">
+  <img src="images/multiple_tasks.png">
+</p>
+
 
 ## Supported Boards:
 
 - all STM8AF & STM8S boards, e.g. STM8 Discovery, SDuino Uno, STM8S207 Nucleo etc. (only tested with these)
 
+
 ## Consumed interrupt:
 
 - TIM4\_UPD\_ISR
+
 
 ***
 
