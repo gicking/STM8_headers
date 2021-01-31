@@ -18,6 +18,16 @@ Headers were generated from device descriptions in XML format, which are in fold
 a graphical debugger interface.
 
 
+# Related Projects
+
+The below projects have been ported to use these open-sources device headers for STMo.
+
+**atomthreads**
+  - port is available under [https://github.com/gicking/atomthreads](https://github.com/gicking/atomthreads), see "ports/stm8_oss"
+  - all provided tests have passed for [SDCC](http://sdcc.sourceforge.net/), [Cosmic](https://cosmic-software.com/stm8.php) and 
+  [IAR](https://www.iar.com/iar-embedded-workbench). Exception is IAR/queue9 which exceeds the size limit of my demo license
+
+
 # Example Projects 
 
 These projects have been tested successfully with [SDCC](http://sdcc.sourceforge.net/), 
