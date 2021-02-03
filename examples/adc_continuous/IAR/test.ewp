@@ -1642,7 +1642,16 @@
         <name>$PROJ_DIR$\..\adc1.h</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\..\config.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\..\main.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\..\timer4.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\..\timer4.h</name>
     </file>
     <file>
         <name>$PROJ_DIR$\..\uart2.c</name>

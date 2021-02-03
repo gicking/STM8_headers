@@ -20,6 +20,13 @@ struct interrupt_vector {
 extern void _stext();     /* startup routine */
 
 
+/*******************
+ DECLARATION OF USER ISRs
+*******************/
+@far @interrupt void TIM4_UPD_ISR(void);
+
+
+
 struct interrupt_vector const _vectab[] = {
 	{0x82, (interrupt_handler_t)_stext}, /* reset */
 	{0x82, NonHandledInterrupt}, /* trap  */
@@ -46,7 +53,7 @@ struct interrupt_vector const _vectab[] = {
 	{0x82, NonHandledInterrupt}, /* irq20 */
 	{0x82, NonHandledInterrupt}, /* irq21 */
 	{0x82, NonHandledInterrupt}, /* irq22 */
-	{0x82, NonHandledInterrupt}, /* irq23 */
+	{0x82, TIM4_UPD_ISR}, /* irq23 */
 	{0x82, NonHandledInterrupt}, /* irq24 */
 	{0x82, NonHandledInterrupt}, /* irq25 */
 	{0x82, NonHandledInterrupt}, /* irq26 */

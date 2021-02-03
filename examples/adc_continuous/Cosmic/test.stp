@@ -294,6 +294,11 @@ Next=Root.Source Files...\main.c
 [Root.Source Files...\main.c]
 ElemType=File
 PathName=..\main.c
+Next=Root.Source Files...\timer4.c
+
+[Root.Source Files...\timer4.c]
+ElemType=File
+PathName=..\timer4.c
 Next=Root.Source Files...\uart2.c
 
 [Root.Source Files...\uart2.c]
@@ -386,6 +391,16 @@ Next=Root.Include Files...\adc1.h
 [Root.Include Files...\adc1.h]
 ElemType=File
 PathName=..\adc1.h
+Next=Root.Include Files...\config.h
+
+[Root.Include Files...\config.h]
+ElemType=File
+PathName=..\config.h
+Next=Root.Include Files...\timer4.h
+
+[Root.Include Files...\timer4.h]
+ElemType=File
+PathName=..\timer4.h
 Next=Root.Include Files...\uart2.h
 
 [Root.Include Files...\uart2.h]
