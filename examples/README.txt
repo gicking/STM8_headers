@@ -7,8 +7,15 @@ Projects have been tested successfully with SDCC, Cosmic and IAR. Exceptions are
 
 ================================================================================
 
-adc_measure
-  - measure analog voltage every ~500ms
+adc_continuous
+  - measure analog voltage continuously
+  - read ADC value in timer ISR every 1ms
+  - every 500ms print ADC value via UART using printf()
+
+------------------------
+
+adc_single-shot
+  - measure analog voltage every ~500ms in single shot mode
   - print value via UART using printf()
 
 ------------------------
