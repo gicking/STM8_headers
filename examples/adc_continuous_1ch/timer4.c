@@ -140,7 +140,7 @@ ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_)
   g_flagMilli = 1;
 
   // read ADC result
-  g_ADC_result =  (uint16_t) sfr_ADC1.DRL.byte;
+  g_ADC_result  =  (uint16_t) sfr_ADC1.DRL.byte;
   g_ADC_result += ((uint16_t) sfr_ADC1.DRH.byte) << 8;
 
   return;
