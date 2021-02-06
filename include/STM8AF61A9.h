@@ -42,10 +42,10 @@
 #define STM8AF61A9_H
 
 // DEVICE NAME
-#define DEVICE_NAME  STM8AF61A9
+#define DEVICE_STM8AF61A9
 
 // DEVICE FAMILY
-#define DEVICE_FAMILY  STM8S
+#define FAMILY_STM8S
 
 // required for C++
 #ifdef __cplusplus
