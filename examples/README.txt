@@ -7,16 +7,25 @@ Projects have been tested successfully with SDCC, Cosmic and IAR. Exceptions are
 
 ================================================================================
 
-adc_continuous
-  - measure analog voltage continuously
-  - read ADC value in timer ISR every 1ms
-  - every 500ms print ADC value via UART using printf()
+adc1_scan
+    - perform an ADC1 scan of AIN0..AIN3 every 1ms 
+    - read result in TIM4 ISR and trigger next scan
+    - send result every 1s
 
 ------------------------
 
-adc_single-shot
-  - measure analog voltage every ~500ms in single shot mode
+adc_continuous_1ch
+  - measure 1 channel continuously
+  - read ADC value in timer ISR every 1ms
+  - every 500ms print ADC value via UART using printf()
+  - works with ADC1 (advanced) & ADC2 (basic)
+
+------------------------
+
+adc_single-shot_1ch
+  - measure 1 channel every ~500ms in single shot mode
   - print value via UART using printf()
+  - works with ADC1 (advanced) & ADC2 (basic)
 
 ------------------------
 
