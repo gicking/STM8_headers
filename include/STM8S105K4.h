@@ -41,8 +41,11 @@
 #ifndef STM8S105K4_H
 #define STM8S105K4_H
 
-// DEVICE DECLARATION
-#define DEVICE  STM8S105K4
+// DEVICE NAME
+#define DEVICE_NAME  STM8S105K4
+
+// DEVICE FAMILY
+#define DEVICE_FAMILY  STM8S
 
 // required for C++
 #ifdef __cplusplus

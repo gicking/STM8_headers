@@ -40,8 +40,11 @@
 #ifndef STLUX285A_H
 #define STLUX285A_H
 
-// DEVICE DECLARATION
-#define DEVICE  STLUX285A
+// DEVICE NAME
+#define DEVICE_NAME  STLUX285A
+
+// DEVICE FAMILY
+#define DEVICE_FAMILY  STLUX
 
 // required for C++
 #ifdef __cplusplus

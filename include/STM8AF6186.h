@@ -41,8 +41,11 @@
 #ifndef STM8AF6186_H
 #define STM8AF6186_H
 
-// DEVICE DECLARATION
-#define DEVICE  STM8AF6186
+// DEVICE NAME
+#define DEVICE_NAME  STM8AF6186
+
+// DEVICE FAMILY
+#define DEVICE_FAMILY  STM8S
 
 // required for C++
 #ifdef __cplusplus

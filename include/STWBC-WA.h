@@ -40,8 +40,11 @@
 #ifndef STWBC_WA_H
 #define STWBC_WA_H
 
-// DEVICE DECLARATION
-#define DEVICE  STWBC_WA
+// DEVICE NAME
+#define DEVICE_NAME  STWBC_WA
+
+// DEVICE FAMILY
+#define DEVICE_FAMILY  STWBC
 
 // required for C++
 #ifdef __cplusplus

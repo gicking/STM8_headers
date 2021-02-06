@@ -41,8 +41,11 @@
 #ifndef STM8L101F2_H
 #define STM8L101F2_H
 
-// DEVICE DECLARATION
-#define DEVICE  STM8L101F2
+// DEVICE NAME
+#define DEVICE_NAME  STM8L101F2
+
+// DEVICE FAMILY
+#define DEVICE_FAMILY  STM8L101
 
 // required for C++
 #ifdef __cplusplus

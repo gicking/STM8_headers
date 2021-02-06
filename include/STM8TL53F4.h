@@ -41,8 +41,11 @@
 #ifndef STM8TL53F4_H
 #define STM8TL53F4_H
 
-// DEVICE DECLARATION
-#define DEVICE  STM8TL53F4
+// DEVICE NAME
+#define DEVICE_NAME  STM8TL53F4
+
+// DEVICE FAMILY
+#define DEVICE_FAMILY  STM8T
 
 // required for C++
 #ifdef __cplusplus

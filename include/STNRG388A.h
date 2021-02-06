@@ -41,8 +41,11 @@
 #ifndef STNRG388A_H
 #define STNRG388A_H
 
-// DEVICE DECLARATION
-#define DEVICE  STNRG388A
+// DEVICE NAME
+#define DEVICE_NAME  STNRG388A
+
+// DEVICE FAMILY
+#define DEVICE_FAMILY  STNRG
 
 // required for C++
 #ifdef __cplusplus

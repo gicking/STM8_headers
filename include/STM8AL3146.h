@@ -41,8 +41,11 @@
 #ifndef STM8AL3146_H
 #define STM8AL3146_H
 
-// DEVICE DECLARATION
-#define DEVICE  STM8AL3146
+// DEVICE NAME
+#define DEVICE_NAME  STM8AL3146
+
+// DEVICE FAMILY
+#define DEVICE_FAMILY  STM8L
 
 // required for C++
 #ifdef __cplusplus
