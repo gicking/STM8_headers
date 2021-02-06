@@ -26,15 +26,22 @@
   \brief init timer 4 for 1ms master clock with interrupt
    
   init 8-bit timer TIM4 with 1ms tick. Is used for SW master clock
-  via TIM4 overflow interrupt.
+  via below interrupt.
 */
 void TIM4_init(void) {
 
+  // for low-power device activate TIM4 clock
+  #if defined(FAMILY_STM8L)
+    sfr_CLK.PCKENR1.PCKEN12 = 1;
+  #endif
+   
   // stop the timer
   sfr_TIM4.CR1.CEN = 0;
   
-  // initialize global clock variable
+  // initialize global clock variables
+  g_flagMilli = 0;
   g_millis    = 0;
+  g_micros    = 0;
   
   // clear counter
   sfr_TIM4.CNTR.byte = 0x00;
@@ -62,6 +69,59 @@ void TIM4_init(void) {
 
 
 /**
+  \fn void delay(uint32_t ms)
+   
+  \brief delay code execution for 'ms'
+  
+  \param[in]  ms   duration[ms] to halt code
+   
+  delay code execution for 'ms'. 
+  Requires TIM4 interrupt -> is not vulnerable to 
+  interrupts (within limits).
+  Note: 
+    - for ISR-free functions use sw_delay() (uses NOPs)
+    - for high accuracy use highRez_delay() (uses HW timer 3)
+*/
+void delay(uint32_t ms) {
+
+  uint32_t start = micros();
+
+  // wait until time [us] has passed
+  ms *= 1000L;
+  while (micros() - start < ms)
+    NOP();
+	
+} // delay()
+
+
+
+/**
+  \fn void delayMicroseconds(uint32_t us)
+   
+  \brief delay code execution for 'us'
+  
+  \param[in]  us   duration[us] to halt code
+   
+  delay code execution for 'us'. 
+  Requires TIM4 interrupt -> is not vulnerable to 
+  interrupts (within limits).
+  Note: 
+    - for ISR-free functions use sw_delayMicroseconds() (uses NOPs)
+    - for high accuracy use highRez_delayMicroseconds() (uses HW timer 3)
+*/
+void delayMicroseconds(uint32_t us) {
+
+  uint32_t start = micros();
+
+  // wait until time [us] has passed
+  while (micros() - start < us)
+    NOP();
+	
+} // delayMicroseconds()
+
+
+
+/**
   \fn void TIM4_UPD_ISR(void)
    
   \brief ISR for timer 4 (1ms master clock)
@@ -73,13 +133,25 @@ void TIM4_init(void) {
     SDCC: ISR must be declared in file containing main(). Header inclusion is ok
     Cosmic: interrupt service table is defined in file "stm8_interrupt_vector.c"
 */
-ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_)
+#if defined(_TIM4_OVR_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_)
+#elif defined(_TIM4_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_UIF_VECTOR_)
+#else
+  #error TIM4 vector undefined
+#endif
 {
   // clear timer 4 interrupt flag
-  sfr_TIM4.SR.UIF = 0;
+  #if defined(FAMILY_STM8S)
+    sfr_TIM4.SR.UIF = 0;
+  #else
+    sfr_TIM4.SR1.UIF = 0;
+  #endif
 
   // set/increase global variables
+  g_micros += 1000L;
   g_millis++;
+  g_flagMilli = 1;
     
   return;
 

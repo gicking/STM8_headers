@@ -14,9 +14,22 @@
 
 
 /*----------------------------------------------------------
+    SELECT BOARD
+----------------------------------------------------------*/
+#define STM8L_DISCOVERY
+//#define SDUINO
+
+
+/*----------------------------------------------------------
     INCLUDE FILES
 ----------------------------------------------------------*/
-#include "../../include/STM8S105K6.h"
+#if defined(STM8L_DISCOVERY)
+  #include "../../include/STM8L152C6.h"
+#elif defined(SDUINO)
+  #include "../../include/STM8S105K6.h"
+#else
+  #error undefined board
+#endif
 
 
 /*-----------------------------------------------------------------------------

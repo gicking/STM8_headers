@@ -36,6 +36,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <stdbool.h>
+#include "config.h"      // STM8 selection
 
 
 /*-----------------------------------------------------------------------------
@@ -93,7 +94,11 @@ INLINE uint32_t micros(void) {
 
   // get current us value, TIM4 counter, and TIM4 overflow flag
   cnt = sfr_TIM4.CNTR.byte;
-  uif = sfr_TIM4.SR.byte;
+  #if defined(STM8L_DISCOVERY)
+    uif = sfr_TIM4.SR1.byte;
+  #elif defined(SDUINO)
+    uif = sfr_TIM4.SR.byte;
+  #endif
   
   // restart timmer immediately to minimize time gap
   sfr_TIM4.CR1.CEN = 1;
@@ -101,9 +106,9 @@ INLINE uint32_t micros(void) {
   // calculate current time [us], including global variable (1000us steps) and counter value (4us steps)
   us  = g_micros;
   #if defined(__CSMC__)          // Cosmic compiler has a re-entrance bug with bitshift
-  us += 4 * (uint16_t) cnt;
+    us += 4 * (uint16_t) cnt;
   #else
-  us += ((uint16_t) cnt) << 2;
+    us += ((uint16_t) cnt) << 2;
   #endif
   
   // account for possible overflow of TIM4 --> check UIF (= bit 0)
@@ -278,7 +283,12 @@ void Tasks_Pause(void);
 
 
 /// ISR for timer 4 (1ms master clock)
-ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_);
-
+#if defined(_TIM4_OVR_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_);
+#elif defined(_TIM4_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_UIF_VECTOR_);
+#else
+  #error TIM4 vector undefined
+#endif
 
 #endif // TASKS_H

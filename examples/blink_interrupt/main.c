@@ -15,10 +15,10 @@
 /*----------------------------------------------------------
     SELECT BOARD
 ----------------------------------------------------------*/
-//#define STM8S_DISCOVERY
+#define STM8S_DISCOVERY
 //#define STM8L_DISCOVERY
 //#define STM8_SO8_DISCO_STM8S001
-#define SDUINO
+//#define SDUINO
 //#define MUBOARD
 
 
@@ -63,10 +63,12 @@
     SDCC: ISR must be declared in file containing main(). Header inclusion is ok
     Cosmic: interrupt service table is defined in file "stm8_interrupt_vector.c"
 */
-#if defined(STM8S_DISCOVERY) || defined(STM8_SO8_DISCO_STM8S001) || defined(SDUINO)
+#if defined(_TIM4_OVR_UIF_VECTOR_)
   ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_)
-#else
+#elif defined(_TIM4_UIF_VECTOR_)
   ISR_HANDLER(TIM4_UPD_ISR, _TIM4_UIF_VECTOR_)
+#else
+  #error TIM4 vector undefined
 #endif
 {
 
@@ -83,10 +85,10 @@
   } // 500ms
   
   // clear timer 4 interrupt flag
-  #if defined(STM8L_DISCOVERY)
-    sfr_TIM4.SR1.UIF = 0;
-  #else
+  #if defined(FAMILY_STM8S)
     sfr_TIM4.SR.UIF = 0;
+  #else
+    sfr_TIM4.SR1.UIF = 0;
   #endif
   
   return;
@@ -104,6 +106,11 @@
 */
 void TIM4_init(void) {
 
+  // for low-power device activate TIM4 clock
+  #if defined(FAMILY_STM8L)
+    sfr_CLK.PCKENR1.PCKEN12 = 1;
+  #endif
+   
   // stop the timer
   sfr_TIM4.CR1.CEN = 0;
   
@@ -143,11 +150,6 @@ void main (void) {
   // switch to 16MHz (default is 2MHz)
   sfr_CLK.CKDIVR.byte = 0x00;
   
-  // for low-power device activate TIM4 clock
-  #if defined(STM8L_DISCOVERY)
-    sfr_CLK.PCKENR1.PCKEN12 = 1;
-  #endif
-   
   // configure LED pin as output
   LED_PORT.DDR.byte = LED_PIN;    // input(=0) or output(=1)
   LED_PORT.CR1.byte = LED_PIN;    // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull

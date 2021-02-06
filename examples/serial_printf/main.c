@@ -17,8 +17,8 @@
 #include <stdio.h>
 #include "config.h"
 #define _MAIN_          // required for global variables
-  #include "uart2.h"
   #include "timer4.h"
+  #include "uart.h"
 #undef _MAIN_
 
 
@@ -43,7 +43,7 @@
 #endif
 
   // send byte
-  UART2_write(data);
+  UART_write(data);
   
   // return sent byte
   return(data);
@@ -65,13 +65,19 @@ void main (void) {
   // switch to 16MHz (default is 2MHz)
   sfr_CLK.CKDIVR.byte = 0x00;
     
-  // init UART2 for 19.2kBaud
-  UART2_begin(19200);
+  // configure LED pin as output
+  #if defined(STM8L_DISCOVERY)
+    sfr_PORTE.DDR.DDR7 = 1;     // input(=0) or output(=1)
+    sfr_PORTE.CR1.C17  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
+    sfr_PORTE.CR2.C27  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+  #elif defined(SDUINO)
+    sfr_PORTC.DDR.DDR5 = 1;     // input(=0) or output(=1)
+    sfr_PORTC.CR1.C15  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
+    sfr_PORTC.CR2.C25  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+  #endif
   
-  // LED connected to PC5
-  sfr_PORTC.DDR.DDR5 = 1;     // input(=0) or output(=1)
-  sfr_PORTC.CR1.C15  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
-  sfr_PORTC.CR2.C25  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+  // init UART for 19.2kBaud
+  UART_begin(19200);
   
   // init 1ms interrupt
   TIM4_init();
@@ -90,7 +96,11 @@ void main (void) {
       nextPrint += 500;
       
       // toggle LED
-      sfr_PORTC.ODR.ODR5 ^= 1;
+      #if defined(STM8L_DISCOVERY)
+        sfr_PORTE.ODR.ODR7 ^= 1;
+      #elif defined(SDUINO)
+        sfr_PORTC.ODR.ODR5 ^= 1;
+      #endif
     
       // print millis
       printf("  time: %ld\n", g_millis);
@@ -104,7 +114,7 @@ void main (void) {
       // on 'r' reset
       if (g_key == 'r') {
         printf("reset...\n");
-        UART2_flush();
+        UART_flush();
         SW_RESET();
       }
 

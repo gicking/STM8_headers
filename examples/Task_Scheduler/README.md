@@ -2,7 +2,7 @@
 
 Lightweight and fast preemptive scheduler for STM8
 
-This is a port from Arduino library available from https://github.com/kcl93/Tasks 
+This is a STM8S/STM8L port from Arduino library available from https://github.com/kcl93/Tasks 
 
 This library implements a simple, preemptive task scheduler that is executed via a 1ms timer interrupt. 
 It allows to define cyclic tasks or tasks that should be executed in the future in parallel to the normal program execution inside the main loop.
@@ -35,7 +35,8 @@ plus a variable `g\_flagMilli` which is set in the timer interrupt and can be us
 
 ## Supported Boards:
 
-- all STM8AF & STM8S boards, e.g. STM8 Discovery, SDuino Uno, STM8S207 Nucleo etc. (only tested with these)
+- all STM8AF & STM8S boards, e.g. STM8S Discovery, SDuino Uno, STM8S207 Nucleo etc. (only tested with these)
+- all STM8AL & STM8L boards, e.g. STM8L Discovery etc. (only tested with these)
 
 
 ## Consumed interrupt:

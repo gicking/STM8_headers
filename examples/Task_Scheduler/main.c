@@ -6,6 +6,7 @@
 
   supported hardware:
     - Sduino Uno (https://github.com/roybaer/sduino_uno)
+    - STM8L Discovery board (https://www.st.com/en/evaluation-tools/stm8l-discovery.html)
 
   Functionality:
     - run 3 independent tasks in "background":
@@ -22,21 +23,44 @@
 #include "Tasks.h"
 
 
-// define testpin 1 PC5 (=Sduino D13/LED)
-#define TEST1_PORT   sfr_PORTC
-#define TEST1_PIN    PIN5
+#if defined(STM8L_DISCOVERY)
 
-// define testpin 2 PC7 (=Sduino D12)
-#define TEST2_PORT   sfr_PORTC
-#define TEST2_PIN    PIN7
+  // define testpin 1 PE7 (=LED green)
+  #define TEST1_PORT   sfr_PORTE
+  #define TEST1_PIN    PIN7
 
-// define testpin 3 PC6 (=Sduino D11)
-#define TEST3_PORT   sfr_PORTC
-#define TEST3_PIN    PIN6
+  // define testpin 2 PC7 (=LED blue)
+  #define TEST2_PORT   sfr_PORTC
+  #define TEST2_PIN    PIN7
 
-// define testpin 4 PC4 (=Sduino D10)
-#define TEST4_PORT   sfr_PORTC
-#define TEST4_PIN    PIN4
+  // define testpin 3 PD7
+  #define TEST3_PORT   sfr_PORTD
+  #define TEST3_PIN    PIN7
+
+  // define testpin 4 PD6
+  #define TEST4_PORT   sfr_PORTD
+  #define TEST4_PIN    PIN6
+
+#elif defined(SDUINO)
+
+  // define testpin 1 PC5 (=Sduino D13/LED)
+  #define TEST1_PORT   sfr_PORTC
+  #define TEST1_PIN    PIN5
+
+  // define testpin 2 PC7 (=Sduino D12)
+  #define TEST2_PORT   sfr_PORTC
+  #define TEST2_PIN    PIN7
+
+  // define testpin 3 PC6 (=Sduino D11)
+  #define TEST3_PORT   sfr_PORTC
+  #define TEST3_PIN    PIN6
+
+  // define testpin 4 PC4 (=Sduino D10)
+  #define TEST4_PORT   sfr_PORTC
+  #define TEST4_PIN    PIN4
+  
+#endif
+
 
 
 // first scheduler task: generate 20ms high pulse ("blocking") on testpin 1. Call every 100ms
@@ -96,9 +120,18 @@ void main (void) {
   sfr_CLK.CKDIVR.byte = 0x00;
     
   // configure testpins as output (all on same port)
-  sfr_PORTC.DDR.byte |= (PIN4 | PIN5 | PIN6 | PIN7);    // input(=0) or output(=1)
-  sfr_PORTC.CR1.byte |= (PIN4 | PIN5 | PIN6 | PIN7);    // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
-  sfr_PORTC.CR2.byte |= (PIN4 | PIN5 | PIN6 | PIN7);    // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+  TEST1_PORT.DDR.byte |= TEST1_PIN;    // input(=0) or output(=1)
+  TEST1_PORT.CR1.byte |= TEST1_PIN;    // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
+  TEST1_PORT.CR2.byte |= TEST1_PIN;    // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+  TEST2_PORT.DDR.byte |= TEST2_PIN;
+  TEST2_PORT.CR1.byte |= TEST2_PIN;
+  TEST2_PORT.CR2.byte |= TEST2_PIN;
+  TEST3_PORT.DDR.byte |= TEST3_PIN;
+  TEST3_PORT.CR1.byte |= TEST3_PIN;
+  TEST3_PORT.CR2.byte |= TEST3_PIN;
+  TEST4_PORT.DDR.byte |= TEST4_PIN;
+  TEST4_PORT.CR1.byte |= TEST4_PIN;
+  TEST4_PORT.CR2.byte |= TEST4_PIN;
 
 
   // init 1ms clock and task scheduler

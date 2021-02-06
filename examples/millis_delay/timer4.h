@@ -64,7 +64,13 @@ void delay(uint32_t ms);
 void delayMicroseconds(uint32_t us);
 
 /// ISR for timer 4 (1ms master clock)
-ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_);
+#if defined(_TIM4_OVR_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_);
+#elif defined(_TIM4_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_UIF_VECTOR_);
+#else
+  #error TIM4 vector undefined
+#endif
 
 
 /*-----------------------------------------------------------------------------
@@ -92,7 +98,11 @@ INLINE uint32_t micros(void) {
 
   // get current us value, TIM4 counter, and TIM4 overflow flag
   cnt = sfr_TIM4.CNTR.byte;
-  uif = sfr_TIM4.SR.byte;
+  #if defined(FAMILY_STM8S)
+    uif = sfr_TIM4.SR.byte;
+  #else
+    uif = sfr_TIM4.SR1.byte;
+  #endif
   
   // restart timmer immediately to minimize time gap
   sfr_TIM4.CR1.CEN = 1;
@@ -101,12 +111,6 @@ INLINE uint32_t micros(void) {
   us  = g_micros;
   #if defined(__CSMC__)     // Cosmic compiler has a re-entrance bug with bitshift
     us += 4 * (uint16_t) cnt;
-    /*
-    us += cnt;
-    us += cnt;
-    us += cnt;
-    us += cnt;
-    */
   #else
     us += ((uint16_t) cnt) << 2;
   #endif

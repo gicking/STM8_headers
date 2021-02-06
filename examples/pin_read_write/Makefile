@@ -8,8 +8,11 @@
 
 # required for stm8flash
 stm8flash_PATH   = ~/Öffentlich/GitHub/External/stm8flash/stm8flash
-stm8flash_DEVICE = stm8s105c6
-stm8flash_SWIM   = stlink
+#stm8flash_DEVICE = stm8s105c6          # STM8S Discovery
+#stm8flash_SWIM   = stlink
+stm8flash_DEVICE = stm8l152c6           # STM8L Discovery
+stm8flash_SWIM   = stlinkv2
+#stm8flash_DEVICE = stm8s001j3          # STM8-SO8-DISCO (stm8s001j3)
 #stm8flash_SWIM   = stlinkv2
 
 # required for stm8gal

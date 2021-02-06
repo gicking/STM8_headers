@@ -24,7 +24,7 @@ extern void _stext();     /* startup routine */
  DECLARATION OF USER ISRs
 *******************/
 @far @interrupt void TIM4_UPD_ISR(void);
-@far @interrupt void UART2_RXNE_ISR(void);
+@far @interrupt void UART_RXNE_ISR(void);
 
 
 struct interrupt_vector const _vectab[] = {
@@ -51,7 +51,7 @@ struct interrupt_vector const _vectab[] = {
 	{0x82, NonHandledInterrupt}, /* irq18 */
 	{0x82, NonHandledInterrupt}, /* irq19 */
 	{0x82, NonHandledInterrupt}, /* irq20 */
-	{0x82, UART2_RXNE_ISR},      /* irq21 */
+	{0x82, UART_RXNE_ISR},      /* irq21 */
 	{0x82, NonHandledInterrupt}, /* irq22 */
 	{0x82, TIM4_UPD_ISR},        /* irq23 */
 	{0x82, NonHandledInterrupt}, /* irq24 */

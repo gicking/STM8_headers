@@ -30,6 +30,11 @@
 */
 void TIM4_init(void) {
 
+  // for low-power device activate TIM4 clock
+  #if defined(FAMILY_STM8L)
+    sfr_CLK.PCKENR1.PCKEN12 = 1;
+  #endif
+   
   // stop the timer
   sfr_TIM4.CR1.CEN = 0;
   
@@ -128,10 +133,20 @@ void delayMicroseconds(uint32_t us) {
     SDCC: ISR must be declared in file containing main(). Header inclusion is ok
     Cosmic: interrupt service table is defined in file "stm8_interrupt_vector.c"
 */
-ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_)
+#if defined(_TIM4_OVR_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_)
+#elif defined(_TIM4_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_UIF_VECTOR_)
+#else
+  #error TIM4 vector undefined
+#endif
 {
   // clear timer 4 interrupt flag
-  sfr_TIM4.SR.UIF = 0;
+  #if defined(FAMILY_STM8S)
+    sfr_TIM4.SR.UIF = 0;
+  #else
+    sfr_TIM4.SR1.UIF = 0;
+  #endif
 
   // set/increase global variables
   g_micros += 1000L;

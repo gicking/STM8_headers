@@ -139,6 +139,11 @@ void Tasks_Init(void)
   // stop the timer
   sfr_TIM4.CR1.CEN = 0;
   
+  // for low-power device activate TIM4 clock
+  #if defined(FAMILY_STM8L)
+    sfr_CLK.PCKENR1.PCKEN12 = 1;
+  #endif
+   
   // clear counter
   sfr_TIM4.CNTR.byte = 0x00;
 
@@ -457,12 +462,22 @@ void Tasks_Pause(void)
 /**************************************/
 /// @cond INTERNAL
 
-ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_)
+#if defined(_TIM4_OVR_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_OVR_UIF_VECTOR_)
+#elif defined(_TIM4_UIF_VECTOR_)
+  ISR_HANDLER(TIM4_UPD_ISR, _TIM4_UIF_VECTOR_)
+#else
+  #error TIM4 vector undefined
+#endif
 {
     uint8_t i;
     
     // clear timer 4 interrupt flag
-    sfr_TIM4.SR.UIF = 0;
+    #if defined(FAMILY_STM8S)
+        sfr_TIM4.SR.UIF = 0;
+    #else
+        sfr_TIM4.SR1.UIF = 0;
+    #endif
 
     // set/increase global variables for millis(), micros() etc.
     g_micros += 1000L;
