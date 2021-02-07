@@ -48,6 +48,14 @@ calculate_CRC
 
 ------------------------
 
+clock_switch
+  - periodically:
+    - switch between internal and external clock with timeout
+    - print active clock via UART
+  note: STM8L Discovery has no external resonator -> only used to demonstrate timeout
+
+------------------------
+
 I2C_LCD
   - Periodically print text to 2x16 char LCD attached to I2C
   - LCD type Batron BTHQ21605V-COG-FSRE-I2C 2X16 (Farnell 1220409)
