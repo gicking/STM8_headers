@@ -8,3 +8,4 @@ Debug
 # untested or unfinished projects (starting with 'x_')
 x_*
 /examples/aaa_playground
+/examples/_clean_all.sh
