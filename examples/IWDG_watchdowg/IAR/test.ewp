@@ -1645,6 +1645,6 @@
         <name>$PROJ_DIR$\..\timer4.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\..\uart2.c</name>
+        <name>$PROJ_DIR$\..\uart.c</name>
     </file>
 </project>

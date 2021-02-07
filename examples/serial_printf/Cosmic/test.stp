@@ -294,11 +294,11 @@ Next=Root.Source Files...\timer4.c
 [Root.Source Files...\timer4.c]
 ElemType=File
 PathName=..\timer4.c
-Next=Root.Source Files...\uart2.c
+Next=Root.Source Files...\uart.c
 
-[Root.Source Files...\uart2.c]
+[Root.Source Files...\uart.c]
 ElemType=File
-PathName=..\uart2.c
+PathName=..\uart.c
 Next=Root.Source Files.stm8_interrupt_vector.c
 
 [Root.Source Files.stm8_interrupt_vector.c]
@@ -386,8 +386,8 @@ Next=Root.Include Files...\timer4.h
 [Root.Include Files...\timer4.h]
 ElemType=File
 PathName=..\timer4.h
-Next=Root.Include Files...\uart2.h
+Next=Root.Include Files...\uart.h
 
-[Root.Include Files...\uart2.h]
+[Root.Include Files...\uart.h]
 ElemType=File
-PathName=..\uart2.h
+PathName=..\uart.h

@@ -44,7 +44,7 @@ ptn_Child33=Bar-32
 
 [WorkState_v1_2.DockState.Bar-0]
 BarID=59419
-Bars=20
+Bars=30
 Bar#0=0
 Bar#1=59647
 Bar#2=0
@@ -65,6 +65,16 @@ Bar#16=0
 Bar#17=32768
 Bar#18=0
 Bar#19=0
+Bar#20=0
+Bar#21=0
+Bar#22=0
+Bar#23=0
+Bar#24=0
+Bar#25=0
+Bar#26=0
+Bar#27=0
+Bar#28=0
+Bar#29=0
 Style=0
 ExStyle=0
 PrevFloating=False
@@ -1243,7 +1253,7 @@ ptn_Child2=ChildFrames
 
 [WorkState_v1_2.Frames.MainFrame]
 WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPMAAAAAABAAAAAAAAPGAAAAALFDAAAAA
-Title=ST Visual Develop - test.stw* - [main.c]
+Title=ST Visual Develop - test.stw - [main.c]
 
 [WorkState_v1_2.Frames.ChildFrames]
 ptn_Child1=Document-0

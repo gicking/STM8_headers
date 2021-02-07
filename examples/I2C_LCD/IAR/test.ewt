@@ -2162,7 +2162,4 @@
     <file>
         <name>$PROJ_DIR$\..\main.c</name>
     </file>
-    <file>
-        <name>$PROJ_DIR$\..\..\..\include\STM8S207MB.h</name>
-    </file>
 </project>

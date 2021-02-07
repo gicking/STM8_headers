@@ -2154,12 +2154,15 @@
         </settings>
     </configuration>
     <file>
+        <name>$PROJ_DIR$\..\config.h</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\..\main.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\..\uart2.c</name>
+        <name>$PROJ_DIR$\..\uart.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\..\uart2.h</name>
+        <name>$PROJ_DIR$\..\uart.h</name>
     </file>
 </project>

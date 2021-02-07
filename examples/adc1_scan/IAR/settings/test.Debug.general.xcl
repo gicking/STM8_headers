@@ -2,7 +2,7 @@
 
 "C:\Program Files\IAR Systems\Embedded Workbench 8.3\stm8\bin\stm8sim.dll" 
 
-"Z:\STM8_headers\examples\adc_continuous\IAR\Debug\Exe\test.out" 
+"Z:\STM8_headers\examples\adc1_scan\IAR\Debug\Exe\test.out" 
 
 --plugin="C:\Program Files\IAR Systems\Embedded Workbench 8.3\stm8\bin\stm8bat.dll" 
 

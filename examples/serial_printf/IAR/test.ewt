@@ -2163,9 +2163,9 @@
         <name>$PROJ_DIR$\..\timer4.h</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\..\uart2.c</name>
+        <name>$PROJ_DIR$\..\uart.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\..\uart2.h</name>
+        <name>$PROJ_DIR$\..\uart.h</name>
     </file>
 </project>

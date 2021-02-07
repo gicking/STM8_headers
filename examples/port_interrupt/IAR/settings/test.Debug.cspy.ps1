@@ -23,9 +23,9 @@
 
 if ($debugfile -eq "")
 {
-& "C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "Z:\examples\x_port_interrupt\IAR\settings\test.Debug.general.xcl" --backend -f "Z:\examples\x_port_interrupt\IAR\settings\test.Debug.driver.xcl" 
+& "C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "Z:\STM8_headers\examples\port_interrupt\IAR\settings\test.Debug.general.xcl" --backend -f "Z:\STM8_headers\examples\port_interrupt\IAR\settings\test.Debug.driver.xcl" 
 }
 else
 {
-& "C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "Z:\examples\x_port_interrupt\IAR\settings\test.Debug.general.xcl" --debug_file=$debugfile --backend -f "Z:\examples\x_port_interrupt\IAR\settings\test.Debug.driver.xcl" 
+& "C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "Z:\STM8_headers\examples\port_interrupt\IAR\settings\test.Debug.general.xcl" --debug_file=$debugfile --backend -f "Z:\STM8_headers\examples\port_interrupt\IAR\settings\test.Debug.driver.xcl" 
 }

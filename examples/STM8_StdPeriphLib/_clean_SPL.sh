@@ -12,6 +12,6 @@ rm stm8s.h
 rm stm8s_clk.h 
 rm stm8s_gpio.h 
 
-# copy required SPL sources
+# remove required SPL sources
 rm stm8s_clk.c 
 rm stm8s_gpio.c 

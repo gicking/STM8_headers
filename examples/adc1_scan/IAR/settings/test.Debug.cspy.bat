@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "Z:\STM8_headers\examples\adc_continuous\IAR\settings\test.Debug.general.xcl" --backend -f "Z:\STM8_headers\examples\adc_continuous\IAR\settings\test.Debug.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "Z:\STM8_headers\examples\adc1_scan\IAR\settings\test.Debug.general.xcl" --backend -f "Z:\STM8_headers\examples\adc1_scan\IAR\settings\test.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "Z:\STM8_headers\examples\adc_continuous\IAR\settings\test.Debug.general.xcl" "--debug_file=%~1" --backend -f "Z:\STM8_headers\examples\adc_continuous\IAR\settings\test.Debug.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 8.3\common\bin\cspybat" -f "Z:\STM8_headers\examples\adc1_scan\IAR\settings\test.Debug.general.xcl" "--debug_file=%~1" --backend -f "Z:\STM8_headers\examples\adc1_scan\IAR\settings\test.Debug.driver.xcl" 
 
 @echo off 
 :end

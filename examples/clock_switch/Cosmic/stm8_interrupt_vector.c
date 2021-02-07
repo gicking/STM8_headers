@@ -25,6 +25,7 @@ extern void _stext();     /* startup routine */
 *******************/
 @far @interrupt void TIM4_UPD_ISR(void);
 @far @interrupt void UART_RXNE_ISR(void);
+@far @interrupt void CLK_CSS_ISR(void);
 
 
 struct interrupt_vector const _vectab[] = {
@@ -32,7 +33,7 @@ struct interrupt_vector const _vectab[] = {
 	{0x82, NonHandledInterrupt}, /* trap  */
 	{0x82, NonHandledInterrupt}, /* irq0  */
 	{0x82, NonHandledInterrupt}, /* irq1  */
-	{0x82, NonHandledInterrupt}, /* irq2  */
+	{0x82, CLK_CSS_ISR}, /* irq2  */
 	{0x82, NonHandledInterrupt}, /* irq3  */
 	{0x82, NonHandledInterrupt}, /* irq4  */
 	{0x82, NonHandledInterrupt}, /* irq5  */

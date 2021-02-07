@@ -289,6 +289,11 @@ String.6.0=2020,4,27,19,17,36
 [Root.Source Files...\clock.c]
 ElemType=File
 PathName=..\clock.c
+Next=Root.Source Files...\iwdg.c
+
+[Root.Source Files...\iwdg.c]
+ElemType=File
+PathName=..\iwdg.c
 Next=Root.Source Files...\main.c
 
 [Root.Source Files...\main.c]
@@ -396,6 +401,11 @@ Next=Root.Include Files...\config.h
 [Root.Include Files...\config.h]
 ElemType=File
 PathName=..\config.h
+Next=Root.Include Files...\iwdg.h
+
+[Root.Include Files...\iwdg.h]
+ElemType=File
+PathName=..\iwdg.h
 Next=Root.Include Files...\timer4.h
 
 [Root.Include Files...\timer4.h]

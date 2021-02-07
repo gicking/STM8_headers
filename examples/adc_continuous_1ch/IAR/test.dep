@@ -7,7 +7,10 @@
         <outputs>
             <file>$PROJ_DIR$\..\adc1.c</file>
             <file>$PROJ_DIR$\..\adc1.h</file>
+            <file>$PROJ_DIR$\..\config.h</file>
             <file>$PROJ_DIR$\..\main.c</file>
+            <file>$PROJ_DIR$\..\timer4.c</file>
+            <file>$PROJ_DIR$\..\timer4.h</file>
             <file>$PROJ_DIR$\..\uart2.c</file>
             <file>$PROJ_DIR$\..\uart2.h</file>
             <file>$TOOLKIT_DIR$\inc\c\intrinsics.h</file>
@@ -38,11 +41,8 @@
             <file>$PROJ_DIR$\Debug\Obj\uart2.xcl</file>
             <file>$PROJ_DIR$\Debug\Obj\adc1.xcl</file>
             <file>$PROJ_DIR$\Debug\Obj\adc1.o</file>
-            <file>$PROJ_DIR$\..\config.h</file>
             <file>$PROJ_DIR$\Debug\Obj\timer4.__cstat.et</file>
             <file>$PROJ_DIR$\Debug\Obj\adc1.__cstat.et</file>
-            <file>$PROJ_DIR$\..\timer4.h</file>
-            <file>$PROJ_DIR$\..\timer4.c</file>
             <file>$PROJ_DIR$\Debug\Obj\timer4.xcl</file>
             <file>$PROJ_DIR$\Debug\Obj\timer4.o</file>
             <file>$PROJ_DIR$\Debug\Obj\uart2.__cstat.et</file>
@@ -52,7 +52,7 @@
             <outputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 13 9</file>
+                    <file> 16 12</file>
                 </tool>
             </outputs>
         </file>
@@ -61,21 +61,21 @@
             <outputs>
                 <tool>
                     <name>ICCSTM8</name>
-                    <file> 32</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
                     <file> 35</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 31</file>
+                    <file> 34</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 37</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICCSTM8</name>
-                    <file> 18 19 17 24 25 26 20 22 1 33 28 5</file>
+                    <file> 21 22 20 27 28 29 23 25 1 2 31 8</file>
                 </tool>
             </inputs>
         </file>
@@ -84,76 +84,21 @@
             <outputs>
                 <tool>
                     <name>ICCSTM8</name>
-                    <file> 8</file>
+                    <file> 11</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 15</file>
                 </tool>
                 <tool>
                     <name>__cstat</name>
-                    <file> 10</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 12</file>
+                    <file> 13</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICCSTM8</name>
-                    <file> 18 19 17 24 25 26 20 22 21 27 23 33 28 5 1 36 4</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\uart2.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCSTM8</name>
-                    <file> 29</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 40</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 30</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCSTM8</name>
-                    <file> 18 19 17 24 25 26 20 22 4 33 28 5</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\main.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCSTM8</name>
-                    <file> 8</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 12</file>
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Debug\Exe\test.out</name>
-            <outputs>
-                <tool>
-                    <name>ILINK</name>
-                    <file> 9</file>
-                </tool>
-                <tool>
-                    <name>OBJCOPY</name>
-                    <file> 6</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ILINK</name>
-                    <file> 16 32 8 39 29 11 14</file>
+                    <file> 21 22 20 27 28 29 23 25 24 30 26 2 31 8 1 5 7</file>
                 </tool>
             </inputs>
         </file>
@@ -165,18 +110,73 @@
                     <file> 39</file>
                 </tool>
                 <tool>
-                    <name>__cstat</name>
-                    <file> 34</file>
-                </tool>
-                <tool>
                     <name>BICOMP</name>
                     <file> 38</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 36</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICCSTM8</name>
-                    <file> 36 18 19 17 24 25 26 20 22 33 28 5 1</file>
+                    <file> 5 21 22 20 27 28 29 23 25 2 31 8 1</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\uart2.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCSTM8</name>
+                    <file> 32</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 33</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 40</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCSTM8</name>
+                    <file> 21 22 20 27 28 29 23 25 7 2 31 8</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\main.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCSTM8</name>
+                    <file> 11</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 15</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Debug\Exe\test.out</name>
+            <outputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 12</file>
+                </tool>
+                <tool>
+                    <name>OBJCOPY</name>
+                    <file> 9</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 19 35 11 39 32 14 17</file>
                 </tool>
             </inputs>
         </file>
