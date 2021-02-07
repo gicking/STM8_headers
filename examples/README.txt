@@ -52,7 +52,7 @@ clock_switch
   - periodically:
     - switch between internal and external clock with timeout
     - print active clock via UART
-  note: STM8L Discovery has no external resonator -> only used to demonstrate timeout
+  - for extra safety use independent watchdog (IWDG)
 
 ------------------------
 
