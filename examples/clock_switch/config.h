@@ -1,8 +1,8 @@
 /**
   \file config.h
-   
+
   \brief set project configurations
-   
+
   set project configurations like used device or board etc.
 */
 
@@ -16,8 +16,8 @@
 /*----------------------------------------------------------
     SELECT BOARD
 ----------------------------------------------------------*/
-//#define STM8L_DISCOVERY
-#define SDUINO
+#define STM8L_DISCOVERY
+//#define SDUINO
 
 
 /*----------------------------------------------------------
@@ -25,8 +25,12 @@
 ----------------------------------------------------------*/
 #if defined(STM8L_DISCOVERY)
   #include "../../include/STM8L152C6.h"
+  #define LED_PORT   sfr_PORTE
+  #define LED_PIN    PIN7
 #elif defined(SDUINO)
   #include "../../include/STM8S105K6.h"
+  #define LED_PORT   sfr_PORTC
+  #define LED_PIN    PIN5
 #else
   #error undefined board
 #endif
