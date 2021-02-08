@@ -32,7 +32,7 @@
         Auto wakeup timer
         Window watchdog, independent watchdog
     Communications interfaces
-        High speed 1 Mbit/s active beCAN 2.0B
+        High speed 1 Mbit/s active CAN 2.0B
         UART with clock output for synchronous operation - LIN master mode
         UART with LIN 2.1 compliant, master/slave modes and automatic resynchronization
         SPI interface up to 10 Mbit/s

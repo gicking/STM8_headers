@@ -576,11 +576,11 @@ typedef struct {
       BITS   NART                : 1;      // bit 4
       BITS   AWUM                : 1;      // bit 5
       BITS   ABOM                : 1;      // bit 6
-      BITS   TTCM                : 1;      // bit 7
+      BITS   TTOM                : 1;      // bit 7
     };  // MCR bitfield
 
-    /// register _CAN_MCR reset value
-    #define sfr_CAN_MCR_RESET_VALUE   ((uint8_t) 0x00)
+    /// register CAN_MCR reset value
+    #define sfr_CAN_MCR_RESET_VALUE   ((uint8_t) 0x02)
 
   } MCR;
 
@@ -602,8 +602,8 @@ typedef struct {
       BITS                       : 2;      // 2 bits
     };  // MSR bitfield
 
-    /// register _CAN_MSR reset value
-    #define sfr_CAN_MSR_RESET_VALUE   ((uint8_t) 0x00)
+    /// register CAN_MSR reset value
+    #define sfr_CAN_MSR_RESET_VALUE   ((uint8_t) 0x02)
 
   } MSR;
 
@@ -620,13 +620,13 @@ typedef struct {
       BITS   RQCP1               : 1;      // bit 1
       BITS   RQCP2               : 1;      // bit 2
       BITS                       : 1;      // 1 bit
-      BITS   TXOK0               : 1;      // bit 4
-      BITS   TXOK1               : 1;      // bit 5
-      BITS   TXOK2               : 1;      // bit 6
+      BITS   TXQOK0              : 1;      // bit 4
+      BITS   TXQOK1              : 1;      // bit 5
+      BITS   TXQOK2              : 1;      // bit 6
       BITS                       : 1;      // 1 bit
     };  // TSR bitfield
 
-    /// register _CAN_TSR reset value
+    /// register CAN_TSR reset value
     #define sfr_CAN_TSR_RESET_VALUE   ((uint8_t) 0x00)
 
   } TSR;
@@ -650,8 +650,8 @@ typedef struct {
       BITS   LOW2                : 1;      // bit 7
     };  // TPR bitfield
 
-    /// register _CAN_TPR reset value
-    #define sfr_CAN_TPR_RESET_VALUE   ((uint8_t) 0x00)
+    /// register CAN_TPR reset value
+    #define sfr_CAN_TPR_RESET_VALUE   ((uint8_t) 0x0C)
 
   } TPR;
 
@@ -672,7 +672,7 @@ typedef struct {
       BITS                       : 2;      // 2 bits
     };  // RFR bitfield
 
-    /// register _CAN_RFR reset value
+    /// register CAN_RFR reset value
     #define sfr_CAN_RFR_RESET_VALUE   ((uint8_t) 0x00)
 
   } RFR;
@@ -689,12 +689,12 @@ typedef struct {
       BITS   TMEIE               : 1;      // bit 0
       BITS   FMPIE               : 1;      // bit 1
       BITS   FFIE                : 1;      // bit 2
-      BITS   FOVIE               : 1;      // bit 3
+      BITS   FOVIE               : 1;      // bit 3 (mismatch with IAR!)
       BITS                       : 3;      // 3 bits
       BITS   WKUIE               : 1;      // bit 7
     };  // IER bitfield
 
-    /// register _CAN_IER reset value
+    /// register CAN_IER reset value
     #define sfr_CAN_IER_RESET_VALUE   ((uint8_t) 0x00)
 
   } IER;
@@ -716,8 +716,8 @@ typedef struct {
       BITS                       : 3;      // 3 bits
     };  // DGR bitfield
 
-    /// register _CAN_DGR reset value
-    #define sfr_CAN_DGR_RESET_VALUE   ((uint8_t) 0x00)
+    /// register CAN_DGR reset value
+    #define sfr_CAN_DGR_RESET_VALUE   ((uint8_t) 0x0C)
 
   } DGR;
 
@@ -734,241 +734,736 @@ typedef struct {
       BITS                       : 5;      // 5 bits
     };  // PSR bitfield
 
-    /// register _CAN_PSR reset value
+    /// register CAN_PSR reset value
     #define sfr_CAN_PSR_RESET_VALUE   ((uint8_t) 0x00)
 
   } PSR;
 
 
-  /** CAN paged register 0 N/A (P0 at 0x5428) */
+  /** CAN paged register 0 (REG0 at 0x5428) */
   union {
 
-    /// bytewise access to P0
+    /// bytewise access to page REG0
     uint8_t  byte;
 
-    /// skip bitwise access to register P0
 
-    /// register _CAN_P0 reset value
-    #define sfr_CAN_P0_RESET_VALUE   ((uint8_t) 0x00)
+    /// Page 0: bitwise access to CAN message control/status register (CAN_MCSR)
+    struct {
+      BITS   TXRQ                : 1;      // bit 0
+      BITS   ABRQ                : 1;      // bit 1
+      BITS   RQCP                : 1;      // bit 2
+      BITS   TXOK                : 1;      // bit 3
+      BITS   ALST                : 1;      // bit 4
+      BITS   TERR                : 1;      // bit 5
+      BITS                       : 2;      // 2 bits
+    } MCSR;  // MCSR bitfield
 
-  } P0;
+    /// register CAN_MCSR reset value
+    #define sfr_CAN_MCSR_RESET_VALUE   ((uint8_t) 0x00)
 
 
-  /** CAN paged register 1 N/A (P1 at 0x5429) */
+    /// Page 1: CAN message control/status register (CAN_MCSR), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 0 register 1 (CAN_F0R1)
+    uint8_t  F0R1;
+
+
+    /// Page 3: bytewise access to CAN filter bank 2 register 1 (CAN_F2R1)
+    uint8_t  F2R1;
+
+
+    /// Page 4: bytewise access to CAN filter bank 4 register 1 (CAN_F4R1)
+    uint8_t  F4R1;
+
+
+    /// Page 5: CAN message control/status register (CAN_MCSR), see page 0
+
+
+    /// Page 6: bitwise access to CAN error status register (CAN_ESR)
+    struct {
+      BITS   EWGF                : 1;      // bit 0
+      BITS   EPVF                : 1;      // bit 1
+      BITS   BOFF                : 1;      // bit 2
+      BITS                       : 1;      // 1 bit
+      BITS   LEC                 : 3;      // bits 4..6
+      BITS                       : 1;      // 1 bit
+    } ESR;  // ESR bitfield
+
+    /// register CAN_ESR reset value
+    #define sfr_CAN_ESR_RESET_VALUE   ((uint8_t) 0x00)
+
+
+    /// Page 7: bytewise access to CAN mailbox filter match index register (CAN_MFMIR)
+    uint8_t MFMIR;
+
+  } REG0;
+
+
+  /** CAN paged register 1 (REG1 at 0x5429) */
   union {
 
-    /// bytewise access to P1
+    /// bytewise access to page REG1
     uint8_t  byte;
 
-    /// skip bitwise access to register P1
 
-    /// register _CAN_P1 reset value
-    #define sfr_CAN_P1_RESET_VALUE   ((uint8_t) 0x00)
+    /// Page 0: bitwise access to CAN mailbox data length control register (CAN_MDLCR)
+    struct {
+      BITS   DLC                 : 4;      // bits 0-3
+      BITS                       : 3;      // 3 bits
+      BITS   TGT                 : 1;      // bit 7
+    } MDLCR;  // MDLCR bitfield
 
-  } P1;
+
+    /// Page 1: CAN mailbox data length control register (CAN_MDLCR), see page 0
 
 
-  /** CAN paged register 2 N/A (P2 at 0x542a) */
+    /// Page 2: bytewise access to CAN filter bank 0 register 2 (CAN_F0R2)
+    uint8_t  F0R2;
+
+
+    /// Page 3: bytewise access to CAN filter bank 2 register 2 (CAN_F2R2)
+    uint8_t  F2R2;
+
+
+    /// Page 4: bytewise access to CAN filter bank 4 register 2 (CAN_F4R2)
+    uint8_t  F4R2;
+
+
+    /// Page 5: CAN mailbox data length control register (CAN_MDLCR), see page 0
+
+
+    /// Page 6: bitwise access to CAN error interrupt enable register (CAN_EIER)
+    struct {
+      BITS   EWGIE               : 1;      // bit 0
+      BITS   EPVIE               : 1;      // bit 1
+      BITS   BOFIE               : 1;      // bit 2
+      BITS                       : 1;      // 1 bit
+      BITS   LECIE               : 1;      // bit 4
+      BITS                       : 2;      // 2 bits
+      BITS   ERRIE               : 1;      // bit 7
+    } EIER;  // EIER bitfield
+
+    /// register CAN_EIER reset value
+    #define sfr_CAN_EIER_RESET_VALUE   ((uint8_t) 0x00)
+
+
+    /// Page 7: CAN mailbox data length control register (CAN_MDLCR), see page 0
+
+  } REG1;
+
+
+  /** CAN paged register 2 (REG2 at 0x542a) */
   union {
 
-    /// bytewise access to P2
+    /// bytewise access to page REG2
     uint8_t  byte;
 
-    /// skip bitwise access to register P2
 
-    /// register _CAN_P2 reset value
-    #define sfr_CAN_P2_RESET_VALUE   ((uint8_t) 0x00)
+    /// Page 0: bitwise access to CAN mailbox identifier register 1 (CAN_MIDR1)
+    struct {
+      BITS   ID                  : 5;      // bits 0-4
+      BITS   RTR                 : 1;      // bit 5
+      BITS   IDE                 : 1;      // bit 6
+      BITS                       : 1;      // 1 bit
+    } MIDR1;  // MIDR1 bitfield
 
-  } P2;
+
+    /// Page 1: CAN mailbox identifier register 1 (CAN_MIDR1), see page 0
 
 
-  /** CAN paged register 3 N/A (P3 at 0x542b) */
+    /// Page 2: bytewise access to CAN filter bank 0 register 3 (CAN_F0R3)
+    uint8_t  F0R3;
+
+
+    /// Page 3: bytewise access to CAN filter bank 2 register 3 (CAN_F2R3)
+    uint8_t  F2R3;
+
+
+    /// Page 4: bytewise access to CAN filter bank 4 register 3 (CAN_F4R3)
+    uint8_t  F4R3;
+
+
+    /// Page 5: CAN mailbox identifier register 1 (CAN_MIDR1), see page 0
+
+
+    /// Page 6: bytewise access to CAN transmit error counter register (CAN_TECR)
+    uint8_t  TECR;
+
+    /// register CAN_TECR reset value
+    #define sfr_CAN_TECR_RESET_VALUE   ((uint8_t) 0x00)
+
+
+    /// Page 7: CAN mailbox identifier register 1 (CAN_MIDR1), see page 0
+
+  } REG2;
+
+
+  /** CAN paged register 3 (REG3 at 0x542b) */
   union {
 
-    /// bytewise access to P3
+    /// bytewise access to page REG3
     uint8_t  byte;
 
-    /// skip bitwise access to register P3
 
-    /// register _CAN_P3 reset value
-    #define sfr_CAN_P3_RESET_VALUE   ((uint8_t) 0x00)
-
-  } P3;
+    /// Page 0: bytewise access to CAN mailbox identifier register 2 (CAN_MIDR2)
+    uint8_t  MIDR2;
 
 
-  /** CAN paged register 4 N/A (P4 at 0x542c) */
+    /// Page 1: CAN mailbox identifier register 2 (CAN_MIDR2), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 0 register 4 (CAN_F0R4)
+    uint8_t  F0R4;
+
+
+    /// Page 3: bytewise access to CAN filter bank 2 register 4 (CAN_F2R4)
+    uint8_t  F2R4;
+
+
+    /// Page 4: bytewise access to CAN filter bank 4 register 4 (CAN_F4R4)
+    uint8_t  F4R4;
+
+
+    /// Page 5: CAN mailbox identifier register 2 (CAN_MIDR2), see page 0
+
+
+    /// Page 6: bytewise access to CAN receive error counter register (CAN_RECR)
+    uint8_t  RECR;
+
+    /// register CAN_RECR reset value
+    #define sfr_CAN_RECR_RESET_VALUE   ((uint8_t) 0x00)
+
+
+    /// Page 7: CAN mailbox identifier register 2 (CAN_MIDR2), see page 0
+
+  } REG3;
+
+
+  /** CAN paged register 4 (REG4 at 0x542c) */
   union {
 
-    /// bytewise access to P4
+    /// bytewise access to page REG4
     uint8_t  byte;
 
-    /// skip bitwise access to register P4
 
-    /// register _CAN_P4 reset value
-    #define sfr_CAN_P4_RESET_VALUE   ((uint8_t) 0x00)
-
-  } P4;
+    /// Page 0: bytewise access to CAN mailbox identifier register 3 (CAN_MIDR3)
+    uint8_t  MIDR3;
 
 
-  /** CAN paged register 5 N/A (P5 at 0x542d) */
+    /// Page 1: CAN mailbox identifier register 3 (CAN_MIDR3), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 0 register 5 (CAN_F0R5)
+    uint8_t  F0R5;
+
+
+    /// Page 3: bytewise access to CAN filter bank 2 register 5 (CAN_F2R5)
+    uint8_t  F2R5;
+
+
+    /// Page 4: bytewise access to CAN filter bank 4 register 5 (CAN_F4R5)
+    uint8_t  F4R5;
+
+
+    /// Page 5: CAN mailbox identifier register 3 (CAN_MIDR3), see page 0
+
+
+    /// Page 6: bitwise access to CAN bit timing register 1 (CAN_BTR1)
+    struct {
+      BITS   BRP                 : 6;      // bits 0-5
+      BITS   SJW                 : 2;      // bits 6-7
+    } BTR1;  // BTR1 bitfield
+
+    /// register CAN_BTR1 reset value
+    #define sfr_CAN_BTR1_RESET_VALUE   ((uint8_t) 0x40)
+
+
+    /// Page 7: CAN mailbox identifier register 3 (CAN_MIDR3), see page 0
+
+  } REG4;
+
+
+  /** CAN paged register 5 (REG5 at 0x542d) */
   union {
 
-    /// bytewise access to P5
+    /// bytewise access to page REG5
     uint8_t  byte;
 
-    /// skip bitwise access to register P5
 
-    /// register _CAN_P5 reset value
-    #define sfr_CAN_P5_RESET_VALUE   ((uint8_t) 0x00)
-
-  } P5;
+    /// Page 0: bytewise access to CAN mailbox identifier register 4 (CAN_MIDR4)
+    uint8_t  MIDR4;
 
 
-  /** CAN paged register 6 N/A (P6 at 0x542e) */
+    /// Page 1: CAN mailbox identifier register 4 (CAN_MIDR4), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 0 register 6 (CAN_F0R6)
+    uint8_t  F0R6;
+
+
+    /// Page 3: bytewise access to CAN filter bank 2 register 6 (CAN_F2R6)
+    uint8_t  F2R6;
+
+
+    /// Page 4: bytewise access to CAN filter bank 4 register 6 (CAN_F4R6)
+    uint8_t  F4R6;
+
+
+    /// Page 5: CAN mailbox identifier register 4 (CAN_MIDR4), see page 0
+
+
+    /// Page 6: bitwise access to CAN bit timing register 2 (CAN_BTR2)
+    struct {
+      BITS   BS1                 : 4;      // bits 0-3
+      BITS   BS2                 : 3;      // bits 4-6
+      BITS   CLK                 : 1;      // bit 7 (undocumented in newer UM!)
+    } BTR2;  // BTR2 bitfield
+
+    /// register CAN_BTR2 reset value
+    #define sfr_CAN_BTR2_RESET_VALUE   ((uint8_t) 0x23)
+
+
+    /// Page 7: CAN mailbox identifier register 4 (CAN_MIDR4), see page 0
+
+  } REG5;
+
+
+  /** CAN paged register 6 (REG6 at 0x542e) */
   union {
 
-    /// bytewise access to P6
+    /// bytewise access to page REG6
     uint8_t  byte;
 
-    /// skip bitwise access to register P6
 
-    /// register _CAN_P6 reset value
-    #define sfr_CAN_P6_RESET_VALUE   ((uint8_t) 0x00)
-
-  } P6;
+    /// Page 0: bytewise access to CAN mailbox data register 1 (CAN_MDAR1)
+    uint8_t  MDAR1;
 
 
-  /** CAN paged register 7 N/A (P7 at 0x542f) */
+    /// Page 1: CAN mailbox data register 1 (CAN_MDAR1), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 0 register 7 (CAN_F0R7)
+    uint8_t  F0R7;
+
+
+    /// Page 3: bytewise access to CAN filter bank 2 register 7 (CAN_F2R7)
+    uint8_t  F2R7;
+
+
+    /// Page 4: bytewise access to CAN filter bank 4 register 7 (CAN_F4R7)
+    uint8_t  F4R7;
+
+
+    /// Page 5: CAN mailbox data register 1 (CAN_MDAR1), see page 0
+
+
+    /// Page 6: Reserved
+
+
+    /// Page 7: CAN mailbox data register 1 (CAN_MDAR1), see page 0
+
+  } REG6;
+
+
+  /** CAN paged register 7 (REG7 at 0x542f) */
   union {
 
-    /// bytewise access to P7
+    /// bytewise access to page REG7
     uint8_t  byte;
 
-    /// skip bitwise access to register P7
 
-    /// register _CAN_P7 reset value
-    #define sfr_CAN_P7_RESET_VALUE   ((uint8_t) 0x00)
-
-  } P7;
+    /// Page 0: bytewise access to CAN mailbox data register 2 (CAN_MDAR2)
+    uint8_t  MDAR2;
 
 
-  /** CAN paged register 8 N/A (P8 at 0x5430) */
+    /// Page 1: CAN mailbox data register 2 (CAN_MDAR2), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 0 register 8 (CAN_F0R8)
+    uint8_t  F0R8;
+
+
+    /// Page 3: bytewise access to CAN filter bank 2 register 8 (CAN_F2R8)
+    uint8_t  F2R8;
+
+
+    /// Page 4: bytewise access to CAN filter bank 4 register 8 (CAN_F4R8)
+    uint8_t  F4R8;
+
+
+    /// Page 5: CAN mailbox data register 2 (CAN_MDAR2), see page 0
+
+
+    /// Page 6: Reserved
+
+
+    /// Page 7: CAN mailbox data register 2 (CAN_MDAR2), see page 0
+
+  } REG7;
+
+
+  /** CAN paged register 8 (REG8 at 0x5430) */
   union {
 
-    /// bytewise access to P8
+    /// bytewise access to page REG8
     uint8_t  byte;
 
-    /// skip bitwise access to register P8
 
-    /// register _CAN_P8 reset value
-    #define sfr_CAN_P8_RESET_VALUE   ((uint8_t) 0x00)
-
-  } P8;
+    /// Page 0: bytewise access to CAN mailbox data register 3 (CAN_MDAR3)
+    uint8_t  MDAR3;
 
 
-  /** CAN paged register 9 N/A (P9 at 0x5431) */
+    /// Page 1: CAN mailbox data register 3 (CAN_MDAR3), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 1 register 1 (CAN_F1R1)
+    uint8_t  F1R1;
+
+
+    /// Page 3: bytewise access to CAN filter bank 3 register 1 (CAN_F3R1)
+    uint8_t  F3R1;
+
+
+    /// Page 4: bytewise access to CAN filter bank 5 register 1 (CAN_F5R1)
+    uint8_t  F5R1;
+
+
+    /// Page 5: CAN mailbox data register 3 (CAN_MDAR3), see page 0
+
+
+    /// Page 6: bitwise access to CAN filter mode register 1 (CAN_FMR1)
+    struct {
+      BITS   FML0                : 1;      // bit 0
+      BITS   FMH0                : 1;      // bit 1
+      BITS   FML1                : 1;      // bit 2
+      BITS   FMH1                : 1;      // bit 3
+      BITS   FML2                : 1;      // bit 4
+      BITS   FMH2                : 1;      // bit 5
+      BITS   FML3                : 1;      // bit 6
+      BITS   FMH3                : 1;      // bit 7
+    } FMR1;  // FMR1 bitfield
+
+    /// register CAN_FMR1 reset value
+    #define sfr_CAN_FMR1_RESET_VALUE   ((uint8_t) 0x00)
+
+
+    /// Page 7: CAN mailbox data register 3 (CAN_MDAR3), see page 0
+
+  } REG8;
+
+
+  /** CAN paged register 9 (REG9 at 0x5431) */
   union {
 
-    /// bytewise access to P9
+    /// bytewise access to page REG9
     uint8_t  byte;
 
-    /// skip bitwise access to register P9
 
-    /// register _CAN_P9 reset value
-    #define sfr_CAN_P9_RESET_VALUE   ((uint8_t) 0x00)
-
-  } P9;
+    /// Page 0: bytewise access to CAN mailbox data register 4 (CAN_MDAR4)
+    uint8_t  MDAR4;
 
 
-  /** CAN paged register A N/A (PA at 0x5432) */
+    /// Page 1: CAN mailbox data register 4 (CAN_MDAR4), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 1 register 2 (CAN_F1R2)
+    uint8_t  F1R2;
+
+
+    /// Page 3: bytewise access to CAN filter bank 3 register 2 (CAN_F3R2)
+    uint8_t  F3R2;
+
+
+    /// Page 4: bytewise access to CAN filter bank 5 register 2 (CAN_F5R2)
+    uint8_t  F5R2;
+
+
+    /// Page 5: CAN mailbox data register 4 (CAN_MDAR4), see page 0
+
+
+    /// Page 6: bitwise access to CAN filter mode register 2 (CAN_FMR2)
+    struct {
+      BITS   FML4                : 1;      // bit 0
+      BITS   FMH4                : 1;      // bit 1
+      BITS   FML5                : 1;      // bit 2
+      BITS   FMH5                : 1;      // bit 3
+      BITS                       : 4;      // 4 bits
+    } FMR2;  // FMR2 bitfield
+
+    /// register CAN_FMR2 reset value
+    #define sfr_CAN_FMR2_RESET_VALUE   ((uint8_t) 0x00)
+
+
+    /// Page 7: CAN mailbox data register 4 (CAN_MDAR4), see page 0
+
+  } REG9;
+
+
+  /** CAN paged register A (REGA at 0x5432) */
   union {
 
-    /// bytewise access to PA
+    /// bytewise access to page REGA
     uint8_t  byte;
 
-    /// skip bitwise access to register PA
 
-    /// register _CAN_PA reset value
-    #define sfr_CAN_PA_RESET_VALUE   ((uint8_t) 0x00)
-
-  } PA;
+    /// Page 0: bytewise access to CAN mailbox data register 5 (CAN_MDAR5)
+    uint8_t  MDAR5;
 
 
-  /** CAN paged register B N/A (PB at 0x5433) */
+    /// Page 1: CAN mailbox data register 5 (CAN_MDAR5), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 1 register 3 (CAN_F1R3)
+    uint8_t  F1R3;
+
+
+    /// Page 3: bytewise access to CAN filter bank 3 register 3 (CAN_F3R3)
+    uint8_t  F3R3;
+
+
+    /// Page 4: bytewise access to CAN filter bank 5 register 3 (CAN_F5R3)
+    uint8_t  F5R3;
+
+
+    /// Page 5: CAN mailbox data register 5 (CAN_MDAR5), see page 0
+
+
+    /// Page 6: bitwise access to CAN filter configuration register 1 (CAN_FCR1)
+    struct {
+      BITS   FACT0               : 1;      // bit 0
+      BITS   FSC00               : 1;      // bit 1
+      BITS   FSC01               : 1;      // bit 2
+      BITS                       : 1;      // 1 bit
+      BITS   FACT1               : 1;      // bit 4
+      BITS   FSC10               : 1;      // bit 5
+      BITS   FSC11               : 1;      // bit 6
+      BITS                       : 1;      // 1 bit
+    } FCR1;  // FCR1 bitfield
+
+    /// register CAN_FCR1 reset value
+    #define sfr_CAN_FCR1_RESET_VALUE   ((uint8_t) 0x00)
+
+
+    /// Page 7: CAN mailbox data register 5 (CAN_MDAR5), see page 0
+
+  } REGA;
+
+
+  /** CAN paged register B (REGB at 0x5433) */
   union {
 
-    /// bytewise access to PB
+    /// bytewise access to page REGB
     uint8_t  byte;
 
-    /// skip bitwise access to register PB
 
-    /// register _CAN_PB reset value
-    #define sfr_CAN_PB_RESET_VALUE   ((uint8_t) 0x00)
-
-  } PB;
+    /// Page 0: bytewise access to CAN mailbox data register 6 (CAN_MDAR6)
+    uint8_t  MDAR6;
 
 
-  /** CAN paged register C N/A (PC at 0x5434) */
+    /// Page 1: CAN mailbox data register 6 (CAN_MDAR6), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 1 register 4 (CAN_F1R4)
+    uint8_t  F1R4;
+
+
+    /// Page 3: bytewise access to CAN filter bank 3 register 4 (CAN_F3R4)
+    uint8_t  F3R4;
+
+
+    /// Page 4: bytewise access to CAN filter bank 5 register 4 (CAN_F5R4)
+    uint8_t  F5R4;
+
+
+    /// Page 5: CAN mailbox data register 6 (CAN_MDAR6), see page 0
+
+
+    /// Page 6: bitwise access to CAN filter configuration register 2 (CAN_FCR2)
+    struct {
+      BITS   FACT2               : 1;      // bit 0
+      BITS   FSC20               : 1;      // bit 1
+      BITS   FSC21               : 1;      // bit 2
+      BITS                       : 1;      // 1 bit
+      BITS   FACT3               : 1;      // bit 4
+      BITS   FSC30               : 1;      // bit 5
+      BITS   FSC31               : 1;      // bit 6
+      BITS                       : 1;      // 1 bit
+    } FCR2;  // FCR2 bitfield
+
+    /// register CAN_FCR2 reset value
+    #define sfr_CAN_FCR2_RESET_VALUE   ((uint8_t) 0x00)
+
+
+    /// Page 7: CAN mailbox data register 6 (CAN_MDAR6), see page 0
+
+  } REGB;
+
+
+  /** CAN paged register C (REGC at 0x5434) */
   union {
 
-    /// bytewise access to PC
+    /// bytewise access to page REGC
     uint8_t  byte;
 
-    /// skip bitwise access to register PC
 
-    /// register _CAN_PC reset value
-    #define sfr_CAN_PC_RESET_VALUE   ((uint8_t) 0x00)
-
-  } PC;
+    /// Page 0: bytewise access to CAN mailbox data register 7 (CAN_MDAR7)
+    uint8_t  MDAR7;
 
 
-  /** CAN paged register D N/A (PD at 0x5435) */
+    /// Page 1: CAN mailbox data register 7 (CAN_MDAR7), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 1 register 5 (CAN_F1R5)
+    uint8_t  F1R5;
+
+
+    /// Page 3: bytewise access to CAN filter bank 3 register 5 (CAN_F3R5)
+    uint8_t  F3R5;
+
+
+    /// Page 4: bytewise access to CAN filter bank 5 register 5 (CAN_F5R5)
+    uint8_t  F5R5;
+
+
+    /// Page 5: CAN mailbox data register 7 (CAN_MDAR7), see page 0
+
+
+    /// Page 6: bitwise access to CAN filter configuration register 3 (CAN_FCR3)
+    struct {
+      BITS   FACT4               : 1;      // bit 0
+      BITS   FSC40               : 1;      // bit 1
+      BITS   FSC41               : 1;      // bit 2
+      BITS                       : 1;      // 1 bit
+      BITS   FACT5               : 1;      // bit 4
+      BITS   FSC50               : 1;      // bit 5
+      BITS   FSC51               : 1;      // bit 6
+      BITS                       : 1;      // 1 bit
+    } FCR3;  // FCR3 bitfield
+
+    /// register CAN_FCR3 reset value
+    #define sfr_CAN_FCR3_RESET_VALUE   ((uint8_t) 0x00)
+
+
+    /// Page 7: CAN mailbox data register 7 (CAN_MDAR7), see page 0
+
+  } REGC;
+
+
+  /** CAN paged register D (REGD at 0x5435) */
   union {
 
-    /// bytewise access to PD
+    /// bytewise access to page REGD
     uint8_t  byte;
 
-    /// skip bitwise access to register PD
 
-    /// register _CAN_PD reset value
-    #define sfr_CAN_PD_RESET_VALUE   ((uint8_t) 0x00)
-
-  } PD;
+    /// Page 0: bytewise access to CAN mailbox data register 8 (CAN_MDAR8)
+    uint8_t  MDAR8;
 
 
-  /** CAN paged register E N/A (PE at 0x5436) */
+    /// Page 1: CAN mailbox data register 8 (CAN_MDAR8), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 1 register 6 (CAN_F1R6)
+    uint8_t  F1R6;
+
+
+    /// Page 3: bytewise access to CAN filter bank 3 register 6 (CAN_F3R6)
+    uint8_t  F3R6;
+
+
+    /// Page 4: bytewise access to CAN filter bank 5 register 6 (CAN_F5R6)
+    uint8_t  F5R6;
+
+
+    /// Page 5: CAN mailbox data register 8 (CAN_MDAR8), see page 0
+
+
+    /// Page 6: Reserved
+
+
+    /// Page 5: CAN mailbox data register 8 (CAN_MDAR8), see page 0
+
+  } REGD;
+
+
+  /** CAN paged register E (REGE at 0x5436) */
   union {
 
-    /// bytewise access to PE
+    /// bytewise access to page REGE
     uint8_t  byte;
 
-    /// skip bitwise access to register PE
 
-    /// register _CAN_PE reset value
-    #define sfr_CAN_PE_RESET_VALUE   ((uint8_t) 0x00)
-
-  } PE;
+    /// Page 0: bytewise access to CAN mailbox time stamp register low (CAN_MTSRL)
+    uint8_t  MTSRL;
 
 
-  /** CAN paged register F N/A (PF at 0x5437) */
+    /// Page 1: CAN mailbox time stamp register low (CAN_MTSRL), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 1 register 7 (CAN_F1R7)
+    uint8_t  F1R7;
+
+
+    /// Page 3: bytewise access to CAN filter bank 3 register 7 (CAN_F3R7)
+    uint8_t  F3R7;
+
+
+    /// Page 4: bytewise access to CAN filter bank 5 register 7 (CAN_F5R7)
+    uint8_t  F5R7;
+
+
+    /// Page 5: CAN mailbox time stamp register low (CAN_MTSRL), see page 0
+
+
+    /// Page 6: Reserved
+
+
+    /// Page 7: CAN mailbox time stamp register low (CAN_MTSRL), see page 0
+
+  } REGE;
+
+
+  /** CAN paged register F (REGF at 0x5437) */
   union {
 
-    /// bytewise access to PF
+    /// bytewise access to page REGF
     uint8_t  byte;
 
-    /// skip bitwise access to register PF
 
-    /// register _CAN_PF reset value
-    #define sfr_CAN_PF_RESET_VALUE   ((uint8_t) 0x00)
+    /// Page 0: bytewise access to CAN mailbox time stamp register high (CAN_MTSRH)
+    uint8_t  MTSRH;
 
-  } PF;
+
+    /// Page 1: CAN mailbox time stamp register high (CAN_MTSRH), see page 0
+
+
+    /// Page 2: bytewise access to CAN filter bank 1 register 8 (CAN_F1R8)
+    uint8_t  F1R8;
+
+
+    /// Page 3: bytewise access to CAN filter bank 3 register 8 (CAN_F3R8)
+    uint8_t  F3R8;
+
+
+    /// Page 4: bytewise access to CAN filter bank 5 register 8 (CAN_F5R8)
+    uint8_t  F5R8;
+
+
+    /// Page 5: CAN mailbox time stamp register high (CAN_MTSRH), see page 0
+
+
+    /// Page 6: Reserved
+
+
+    /// Page 7: CAN mailbox time stamp register high (CAN_MTSRH), see page 0
+
+  } REGF;
 
 } CAN_t;
 
 /// access to CAN SFR registers
 #define sfr_CAN   (*((CAN_t*) 0x5420))
-
-
 //------------------------
 // Module CLK
 //------------------------

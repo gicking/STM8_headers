@@ -32,7 +32,7 @@
         Auto wakeup timer
         Window watchdog, independent watchdog
     Communications interfaces
-        High speed 1 Mbit/s active beCAN 2.0B
+        High speed 1 Mbit/s active CAN 2.0B
         UART with clock output for synchronous operation - LIN master mode
         UART with LIN 2.1 compliant, master/slave modes and automatic resynchronization
         SPI interface up to 10 Mbit/s
@@ -76,19 +76,19 @@
     <interrupt name="EXTI2" addr="0x801C" irq="5" enable="PC_CR2.C20" pending="PC_IDR.IDR0" priority="ITC_SPR2.VECT5SPR"/>
     <interrupt name="EXTI3" addr="0x8020" irq="6" enable="PD_CR2.C20" pending="PD_IDR.IDR0" priority="ITC_SPR2.VECT6SPR"/>
     <interrupt name="EXTI4" addr="0x8024" irq="7" enable="PE_CR2.C20" pending="PE_IDR.IDR0" priority="ITC_SPR2.VECT7SPR"/>
-    <interrupt name="beCAN_FMP" addr="0x8028" irq="8" enable="CAN_IER.FMPIE" pending="CAN_RFR.FMP" priority="ITC_SPR3.VECT8SPR"/>
-    <interrupt name="beCAN_FOVR" addr="0x8028" irq="8" enable="CAN_IER.FOVIE" pending="CAN_RFR.FOVR" priority="ITC_SPR3.VECT8SPR"/>
-    <interrupt name="beCAN_FULL" addr="0x8028" irq="8" enable="CAN_IER.FFIE" pending="CAN_RFR.FULL" priority="ITC_SPR3.VECT8SPR"/>
-    <interrupt name="beCAN_BOFF" addr="0x802C" irq="9" enable="CAN_EIER.BOFIE" pending="CAN_ESR.BOFF" priority="ITC_SPR3.VECT9SPR"/>
-    <interrupt name="beCAN_EPVF" addr="0x802C" irq="9" enable="CAN_EIER.EPVIE" pending="CAN_ESR.EPVF" priority="ITC_SPR3.VECT9SPR"/>
-    <interrupt name="beCAN_EWGF" addr="0x802C" irq="9" enable="CAN_EIER.EWGIE" pending="CAN_ESR.EWGF" priority="ITC_SPR3.VECT9SPR"/>
-    <interrupt name="beCAN_LEC0" addr="0x802C" irq="9" enable="CAN_EIER.LECIE" pending="CAN_ESR.LEC0" priority="ITC_SPR3.VECT9SPR"/>
-    <interrupt name="beCAN_LEC1" addr="0x802C" irq="9" enable="CAN_EIER.LECIE" pending="CAN_ESR.LEC1" priority="ITC_SPR3.VECT9SPR"/>
-    <interrupt name="beCAN_LEC2" addr="0x802C" irq="9" enable="CAN_EIER.LECIE" pending="CAN_ESR.LEC2" priority="ITC_SPR3.VECT9SPR"/>
-    <interrupt name="beCAN_RQCP0" addr="0x802C" irq="9" enable="CAN_IER.TMEIE" pending="CAN_TSR.RQCP0" priority="ITC_SPR3.VECT9SPR"/>
-    <interrupt name="beCAN_RQCP1" addr="0x802C" irq="9" enable="CAN_IER.TMEIE" pending="CAN_TSR.RQCP1" priority="ITC_SPR3.VECT9SPR"/>
-    <interrupt name="beCAN_RQCP2" addr="0x802C" irq="9" enable="CAN_IER.TMEIE" pending="CAN_TSR.RQCP2" priority="ITC_SPR3.VECT9SPR"/>
-    <interrupt name="beCAN_WKUI" addr="0x802C" irq="9" enable="CAN_IER.WKUIE" pending="CAN_MSR.WKUI" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_FMP" addr="0x8028" irq="8" enable="CAN_IER.FMPIE" pending="CAN_RFR.FMP" priority="ITC_SPR3.VECT8SPR"/>
+    <interrupt name="CAN_FOVR" addr="0x8028" irq="8" enable="CAN_IER.FOVIE" pending="CAN_RFR.FOVR" priority="ITC_SPR3.VECT8SPR"/>
+    <interrupt name="CAN_FULL" addr="0x8028" irq="8" enable="CAN_IER.FFIE" pending="CAN_RFR.FULL" priority="ITC_SPR3.VECT8SPR"/>
+    <interrupt name="CAN_BOFF" addr="0x802C" irq="9" enable="CAN_EIER.BOFIE" pending="CAN_ESR.BOFF" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_EPVF" addr="0x802C" irq="9" enable="CAN_EIER.EPVIE" pending="CAN_ESR.EPVF" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_EWGF" addr="0x802C" irq="9" enable="CAN_EIER.EWGIE" pending="CAN_ESR.EWGF" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_LEC0" addr="0x802C" irq="9" enable="CAN_EIER.LECIE" pending="CAN_ESR.LEC0" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_LEC1" addr="0x802C" irq="9" enable="CAN_EIER.LECIE" pending="CAN_ESR.LEC1" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_LEC2" addr="0x802C" irq="9" enable="CAN_EIER.LECIE" pending="CAN_ESR.LEC2" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_RQCP0" addr="0x802C" irq="9" enable="CAN_IER.TMEIE" pending="CAN_TSR.RQCP0" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_RQCP1" addr="0x802C" irq="9" enable="CAN_IER.TMEIE" pending="CAN_TSR.RQCP1" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_RQCP2" addr="0x802C" irq="9" enable="CAN_IER.TMEIE" pending="CAN_TSR.RQCP2" priority="ITC_SPR3.VECT9SPR"/>
+    <interrupt name="CAN_WKUI" addr="0x802C" irq="9" enable="CAN_IER.WKUIE" pending="CAN_MSR.WKUI" priority="ITC_SPR3.VECT9SPR"/>
     <interrupt name="SPI_CRCERR" addr="0x8030" irq="10" enable="SPI_ICR.ERRIE" pending="SPI_SR.CRCERR" priority="ITC_SPR3.VECT10SPR"/>
     <interrupt name="SPI_MODF" addr="0x8030" irq="10" enable="SPI_ICR.ERRIE" pending="SPI_SR.MODF" priority="ITC_SPR3.VECT10SPR"/>
     <interrupt name="SPI_OVR" addr="0x8030" irq="10" enable="SPI_ICR.ERRIE" pending="SPI_SR.OVR" priority="ITC_SPR3.VECT10SPR"/>
@@ -2057,7 +2057,7 @@
         </register>
       </SFR>
     </module>
-    <module name="BECAN">
+    <module name="CAN">
       <SFR address="0x5420">
         <register name="MCR" description="CAN master control register" resetvalue="0x02">
           <bitfield name="INRQ" bits="0"/>
@@ -2132,24 +2132,9 @@
         <register name="FPSR" description="CAN page selection register" resetvalue="0x00"/>
       </SFR>
       <SFR address="0x5428">
-        <register name="ESR" description="CAN Error Status Register" resetvalue="0x00">
-          <bitfield name="EWGF" bits="0"/>
-          <bitfield name="EPVF" bits="1"/>
-          <bitfield name="BOFF" bits="2"/>
-          <bitfield name="LEC0" bits="4"/>
-          <bitfield name="LEC1" bits="5"/>
-          <bitfield name="LEC2" bits="6"/>
-        </register>
         <register name="P0" description="CAN paged register 0" resetvalue="0x00"/>
       </SFR>
       <SFR address="0x5429">
-        <register name="EIER" description="CAN Error Interrupt Enable Register" resetvalue="0x00">
-          <bitfield name="EWGIE" bits="0"/>
-          <bitfield name="EPVIE" bits="1"/>
-          <bitfield name="BOFIE" bits="2"/>
-          <bitfield name="LECIE" bits="4"/>
-          <bitfield name="ERRIE" bits="7"/>
-        </register>
         <register name="P1" description="CAN paged register 1" resetvalue="0x00"/>
       </SFR>
       <SFR address="0x542A">
