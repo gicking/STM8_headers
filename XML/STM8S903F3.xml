@@ -59,6 +59,7 @@
     <!--unique identifier size in bytes-->
   </unique_identifier>
   <ROM_bootloader>without ROM bootloader</ROM_bootloader>
+  <LSI_measurement>TIM1_IC1</LSI_measurement>
   <interrupt_table>
     <!--interrupt sources may share an IRQ; IAR requires IRQ+2-->
     <interrupt name="RESET" addr="0x8000" irq=""/>

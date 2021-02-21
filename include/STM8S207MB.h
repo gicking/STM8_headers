@@ -6,7 +6,7 @@
 
   Copyright (C) 2020, Georg Icking-Konert
 
-  Mainstream Performance line 8-bit MCU with 128 Kbytes Flash, 24 MHz CPU, integrated EEPROM 
+  Mainstream Performance line 8-bit MCU with 128 Kbytes Flash, 24 MHz CPU, integrated EEPROM
 
   datasheet: https://www.st.com/resource/en/datasheet/stm8s207mb.pdf
   reference: RM0016 https://www.st.com/content/ccc/resource/technical/document/reference_manual/9a/1b/85/07/ca/eb/4f/dd/CD00190271.pdf/files/CD00190271.pdf/jcr:content/translations/en.CD00190271.pdf
@@ -100,7 +100,7 @@
     __interrupt void (a)( void )
   #define ISR_HANDLER_TRAP(a) \
     _Pragma( VECTOR_ID( 1 ) ) \
-    __interrupt void (a) (void)  
+    __interrupt void (a) (void)
 
   // definition of inline functions
   #define INLINE                 static inline                        ///< keyword for inline functions
@@ -230,6 +230,14 @@
 
 
 /*-------------------------------------------------------------------------
+  MISC OPTIONS
+-------------------------------------------------------------------------*/
+
+/// LSI frequency measurement channel
+#define LSI_MEASURE_TIM3_IC1
+
+
+/*-------------------------------------------------------------------------
   ISR Vector Table (SDCC, IAR)
   Notes:
     - IAR has an IRQ offset of +2 compared to datasheet and below numbers
@@ -238,7 +246,7 @@
 -------------------------------------------------------------------------*/
 
 // interrupt                                   IRQ
-#define _TLI_VECTOR_                             0          
+#define _TLI_VECTOR_                             0
 #define _AWU_VECTOR_                             1          ///< AWU interrupt vector: enable: AWU_CSR1.AWUEN, pending: AWU_CSR1.AWUF, priority: ITC_SPR1.VECT1SPR
 #define _CLK_CSS_VECTOR_                         2          ///< CLK_CSS interrupt vector: enable: CLK_CSSR.CSSDIE, pending: CLK_CSSR.CSSD, priority: ITC_SPR1.VECT2SPR
 #define _CLK_SWITCH_VECTOR_                      2          ///< CLK_SWITCH interrupt vector: enable: CLK_SWCR.SWIEN, pending: CLK_SWCR.SWIF, priority: ITC_SPR1.VECT2SPR

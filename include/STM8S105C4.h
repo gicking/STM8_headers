@@ -230,6 +230,14 @@
 
 
 /*-------------------------------------------------------------------------
+  MISC OPTIONS
+-------------------------------------------------------------------------*/
+
+/// LSI frequency measurement channel
+#define LSI_MEASURE_TIM1_IC1
+
+
+/*-------------------------------------------------------------------------
   ISR Vector Table (SDCC, IAR)
   Notes:
     - IAR has an IRQ offset of +2 compared to datasheet and below numbers

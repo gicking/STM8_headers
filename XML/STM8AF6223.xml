@@ -55,6 +55,7 @@
     <ROM addr_start="0x006000" addr_end="0x0067FF" size="2048"/>
   </memory>
   <ROM_bootloader>without ROM bootloader</ROM_bootloader>
+  <LSI_measurement>TIM1_IC1</LSI_measurement>
   <interrupt_table>
     <!--interrupt sources may share an IRQ; IAR requires IRQ+2-->
     <interrupt name="RESET" addr="0x8000" irq=""/>
