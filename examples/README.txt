@@ -1,4 +1,4 @@
-Collection of simple STM8 projects using the open-source devide headers from 
+Collection of simple STM8 projects using the open-source devide headers from
 https://github.com/gicking/STM8_headers
 
 Projects have been tested successfully with SDCC, Cosmic and IAR. Exceptions are SD-card_*, which
@@ -8,7 +8,7 @@ Projects have been tested successfully with SDCC, Cosmic and IAR. Exceptions are
 ================================================================================
 
 adc1_scan
-    - perform an ADC1 scan of AIN0..AIN3 every 1ms 
+    - perform an ADC1 scan of AIN0..AIN3 every 1ms
     - read result in TIM4 ISR and trigger next scan
     - send result every 1s
 
@@ -72,6 +72,13 @@ millis_delay
 
 ------------------------
 
+Modbus_RTU
+  - small Modbus RTU client/server implementation
+  - with optional RS485 support
+  - STM8 port of https://github.com/mbs38/yaMBSiavr for AVR
+
+------------------------
+
 pin_interrupt
   - TLI interrupt on pin D7 (not port). Corresponds to INTx on Arduino
 
@@ -129,7 +136,7 @@ serial_printf_FIFO_interrupt
   - serial output via printf
   - using Tx & Rx FIFO and interrupts
   - similar to Arduino Serial class
-  
+
 ------------------------
 
 serial_write
