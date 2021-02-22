@@ -7,7 +7,7 @@
   
   Functionality:
     - initialize IWDG to 100ms, service every 50ms
-    - print millis tio UART every 500ms
+    - print millis to UART every 500ms
     - if 'r' received, stop watchdog service --> reset 
 **********************/
 
