@@ -24,9 +24,9 @@
     u8id : node id = 0 for master, = 1..247 for slave
     port : serial port
     u8txenpin : 0 for RS-232 and USB-FTDI
-                 or any pin number > 1 for RS-485
+                 or any pin number >1 for RS-485
 */
-Modbus master(0, Serial1, 2); // this is master and RS-232 or USB-FTDI
+Modbus master(0, Serial1, 2);
 
 
 /**
@@ -37,18 +37,30 @@ modbus_t telegram;
 
 void write_registers(uint8_t id, uint8_t addr, uint8_t num, uint16_t *buf)
 {
-  telegram.u8id = id;                 // slave address
+  telegram.u8id = id;                 // slave address (0=broadcast)
   telegram.u8fct = MB_FC_WRITE_MULTIPLE_REGISTERS;  // function code
   telegram.u16RegAdd = addr;          // start address in slave
   telegram.u16CoilsNo = num;          // number of elements (coils or registers) to read
   telegram.au16reg = buf;             // pointer to a memory array in the Arduino
   master.query( telegram );           // send query (only once)
 
-  while (master.getState() != COM_IDLE)
-    master.poll(); // check incoming messages
+  // for unicast command receive response
+  if (id != 0)
+  { 
+    while (master.getState() != COM_IDLE)
+      master.poll(); // check incoming messages
 
-  if (master.getTimeOutState() != 0)
-    Serial.println("write_registers(): response timeout");
+    if (master.getTimeOutState() != 0)
+      Serial.println("write_registers(): response timeout");
+  }
+  
+  // for broadcast wait until bus is idle (no client response)
+  else
+  {
+    while (master.getState() != COM_IDLE)
+      ;
+  }
+  
 }
 
 
@@ -97,16 +109,13 @@ void setup()
 
 void loop() {
 
-  int pause = 200;
+  int pause = 500;
 
-  set_LED(1, 0);
-  delay(pause);
-  set_LED(2, 0);
-  delay(pause);
-  set_LED(1, 1);
-  delay(pause);
-  set_LED(2, 1);
-  delay(pause);
-
+  set_LED(1, 0); delay(pause);
+  set_LED(2, 0); delay(pause);
+  set_LED(1, 1); delay(pause);
+  set_LED(2, 1); delay(pause);
+  
   Serial.println((int) read_time(1));
+  delay(pause);
 }

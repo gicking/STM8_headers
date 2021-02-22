@@ -62,6 +62,13 @@ I2C_LCD
 
 ------------------------
 
+IWDG_watchdog
+  - initialize IWDG to 100ms, service every 50ms
+  - print millis to UART every 500ms
+  - if 'r' received, stop watchdog service --> reset 
+
+------------------------
+
 low-power_auto-wake
   - enter power-down mode with wake via port-ISR or AWU
 
@@ -91,6 +98,13 @@ pin_read_write
 
 port_interrupt
   - port interrupt on pin PE5. Corresponds to port change interrupts on Arduino
+
+------------------------
+
+PWM_2ch_phase-shift
+  - configure timer 1 for up-down counter with 50kHz frequency
+  - generate 2x PWM on TIM1_CH1 and TIM1_CH3
+  - ramp up/down duty cycle
 
 ------------------------
 
