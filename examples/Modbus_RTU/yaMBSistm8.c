@@ -355,7 +355,7 @@ void modbus_init(uint32_t BR)
   #endif
 
   // init Modbus state machine
-  _modbus_busState=(1<<MB_STATE_TIMER_ACTIVE);
+  _modbus_busState=(1 << MB_STATE_TIMER_ACTIVE);
   _modbus_dataPos = 0;
 
 } // modbus_init()
@@ -421,7 +421,7 @@ void modbus_sendMessage(uint8_t packtop)
   #endif
 
   // set new Modbus state machine state
-  _modbus_busState &= ~(1<<MB_STATE_RECEIVE_COMPLETED);
+  _modbus_busState &= ~(1 << MB_STATE_RECEIVE_COMPLETED);
   _modbus_busState |= (1 << MB_STATE_TRANSMIT_REQUESTED);
 
   // enable TxE interrupt
@@ -539,7 +539,7 @@ uint8_t modbus_exchangeBits(uint8_t *ptrToInArray, uint16_t startAddress, uint16
   uint16_t c;
 
   // check address range
-  if ((g_modbus_dataLocation >= startAddress) && ((startAddress+size) >= (g_modbus_dataAmount+g_modbus_dataLocation)))
+  if ((g_modbus_dataLocation >= startAddress) && ((startAddress + size) >= (g_modbus_dataAmount + g_modbus_dataLocation)))
   {
 
     if ((g_modbus_buffer[1] == MB_FC_READ_DISCRETE_INPUT) || (g_modbus_buffer[1] == MB_FC_READ_COILS))
@@ -558,18 +558,26 @@ uint8_t modbus_exchangeBits(uint8_t *ptrToInArray, uint16_t startAddress, uint16
         {
           _modbus_listBitCopy(ptrToInArray, g_modbus_dataLocation-startAddress+c, (uint8_t*) (g_modbus_buffer+3), c);
         }
-        modbus_sendMessage(g_modbus_buffer[2]+2);
+        if (g_modbus_buffer[0] != 0)
+          modbus_sendMessage(g_modbus_buffer[2]+2);           // unicast -> send response
+        else
+          modbus_reset();                                     // broadcast -> skip response
         return 1;
       }
 
       // too many bits requested within single request
       else
-        modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);
+      {
+        if (g_modbus_buffer[0] != 0)
+          modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);     // unicast -> send response
+        else
+          modbus_reset();                                     // broadcast -> skip response
+      }
 
     } // MB_FC_READ_DISCRETE_INPUT || MB_FC_READ_COILS
 
 
-    else if (g_modbus_buffer[1]==MB_FC_WRITE_MULTIPLE_COILS)
+    else if (g_modbus_buffer[1] == MB_FC_WRITE_MULTIPLE_COILS)
     {
       // if enough data received
       if (((g_modbus_buffer[6]*8) >= g_modbus_dataAmount) && ((_modbus_dataPos-9) >= g_modbus_buffer[6]))
@@ -578,13 +586,21 @@ uint8_t modbus_exchangeBits(uint8_t *ptrToInArray, uint16_t startAddress, uint16
         {
           _modbus_listBitCopy((uint8_t*) (g_modbus_buffer+7), c, ptrToInArray, g_modbus_dataLocation-startAddress+c);
         }
-        modbus_sendMessage(5);
+        if (g_modbus_buffer[0] != 0)
+          modbus_sendMessage(5);                              // unicast -> send response
+        else
+          modbus_reset();                                     // broadcast -> skip response
         return 1;
       }
 
       // exception too few data bytes received
       else
-        modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);
+      {
+        if (g_modbus_buffer[0] != 0)
+          modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);     // unicast -> send response
+        else
+          modbus_reset();                                     // broadcast -> skip response
+      }
 
     } // MB_FC_WRITE_MULTIPLE_COILS
 
@@ -592,7 +608,10 @@ uint8_t modbus_exchangeBits(uint8_t *ptrToInArray, uint16_t startAddress, uint16
     else if (g_modbus_buffer[1] == MB_FC_WRITE_COIL)
     {
       _modbus_listBitCopy((uint8_t*) (g_modbus_buffer+4),0,ptrToInArray,g_modbus_dataLocation-startAddress);
-      modbus_sendMessage(5);
+      if (g_modbus_buffer[0] != 0)
+        modbus_sendMessage(5);                                // unicast -> send response
+      else
+        modbus_reset();                                       // broadcast -> skip response
       return 1;
 
     } // MB_FC_WRITE_COIL
@@ -606,7 +625,10 @@ uint8_t modbus_exchangeBits(uint8_t *ptrToInArray, uint16_t startAddress, uint16
   // address out of range
   else
   {
-    modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);
+    if (g_modbus_buffer[0] != 0)
+      modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);         // unicast -> send response
+    else
+      modbus_reset();                                         // broadcast -> skip response
     return 0;
   }
 
@@ -630,23 +652,31 @@ uint8_t modbus_exchangeBits(uint8_t *ptrToInArray, uint16_t startAddress, uint16
 uint8_t modbus_exchangeRegisters(uint16_t *ptrToInArray, uint16_t startAddress, uint16_t size)
 {
   // check address range
-  if ((g_modbus_dataLocation >= startAddress) && ((startAddress+size) >= (g_modbus_dataAmount+g_modbus_dataLocation)))
+  if ((g_modbus_dataLocation >= startAddress) && ((startAddress+size) >= (g_modbus_dataAmount + g_modbus_dataLocation)))
   {
-
     if ((g_modbus_buffer[1] == MB_FC_READ_REGISTERS) || (g_modbus_buffer[1] == MB_FC_READ_INPUT_REGISTER) )
     {
       // if message buffer large enough
-      if ((g_modbus_dataAmount*2)<=(MB_MAX_FRAME_INDEX-4))
+      if ((g_modbus_dataAmount*2) <= (MB_MAX_FRAME_INDEX-4))
       {
         g_modbus_buffer[2] = (uint8_t)(g_modbus_dataAmount*2);
         _modbus_intToRegister(ptrToInArray+(g_modbus_dataLocation-startAddress), (uint8_t*) (g_modbus_buffer+3), g_modbus_dataAmount);
-        modbus_sendMessage(2+g_modbus_buffer[2]);
+        if (g_modbus_buffer[0] != 0)
+          modbus_sendMessage(2+g_modbus_buffer[2]);           // unicast -> send response
+        else
+          modbus_reset();                                     // broadcast -> skip response
         return 1;
       }
 
       // message buffer not large enough
       else
-        modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);
+      {
+        if (g_modbus_buffer[0] != 0)
+          modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);     // unicast -> send response
+        else
+          modbus_reset();                                     // broadcast -> skip response
+      }
+
     } // MB_FC_READ_REGISTERS || MB_FC_READ_INPUT_REGISTER
 
 
@@ -655,14 +685,22 @@ uint8_t modbus_exchangeRegisters(uint16_t *ptrToInArray, uint16_t startAddress, 
       // if enough data received
       if (((g_modbus_buffer[6]) >= g_modbus_dataAmount*2) && ((_modbus_dataPos-9) >= g_modbus_buffer[6]))
       {
-        _modbus_registerToInt((uint8_t*) (g_modbus_buffer+7),ptrToInArray+(g_modbus_dataLocation-startAddress),(uint8_t)(g_modbus_dataAmount));
-        modbus_sendMessage(5);
+        _modbus_registerToInt((uint8_t*) (g_modbus_buffer+7), ptrToInArray+(g_modbus_dataLocation-startAddress), (uint8_t)(g_modbus_dataAmount));
+        if (g_modbus_buffer[0] != 0)
+          modbus_sendMessage(5);                              // unicast -> send response
+        else
+          modbus_reset();                                     // broadcast -> skip response
         return 1;
       }
 
       // exception too few data bytes received
       else
-        modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);
+      {
+        if (g_modbus_buffer[0] != 0)
+          modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);     // unicast -> send response
+        else
+          modbus_reset();                                     // broadcast -> skip response
+      }
 
     } // MB_FC_WRITE_MULTIPLE_REGISTERS
 
@@ -670,7 +708,10 @@ uint8_t modbus_exchangeRegisters(uint16_t *ptrToInArray, uint16_t startAddress, 
     else if (g_modbus_buffer[1] == MB_FC_WRITE_REGISTER)
     {
       _modbus_registerToInt((uint8_t*) (g_modbus_buffer+4), ptrToInArray+(g_modbus_dataLocation-startAddress), 1);
-      modbus_sendMessage(5);
+      if (g_modbus_buffer[0] != 0)
+        modbus_sendMessage(5);                                // unicast -> send response
+      else
+        modbus_reset();                                       // broadcast -> skip response
       return 1;
 
     } // MB_FC_WRITE_REGISTER
@@ -681,8 +722,12 @@ uint8_t modbus_exchangeRegisters(uint16_t *ptrToInArray, uint16_t startAddress, 
   } // range check
 
   // address out of range
-  else {
-    modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);
+  else
+  {
+    if (g_modbus_buffer[0] != 0)
+      modbus_sendException(MB_EC_ILLEGAL_DATA_VALUE);         // unicast -> send response
+    else
+      modbus_reset();                                         // broadcast -> skip response
     return 0;
   }
 
@@ -738,12 +783,12 @@ ISR_HANDLER(UART_RXNE_ISR, _UART_R_RXNE_VECTOR_)
            !(_modbus_busState & (1 << MB_STATE_TRANSMITTING))      && !(_modbus_busState & (1 << MB_STATE_RECEIVING)) && \
            (_modbus_busState & (1 << MB_STATE_BUS_TIMEOUT)))
   {
-       // copy data to Modbus buffer
-       g_modbus_buffer[0] = data;
-       _modbus_dataPos = 1;
+     // copy data to Modbus buffer
+     g_modbus_buffer[0] = data;
+     _modbus_dataPos = 1;
 
-       // set new Modbus state
-       _modbus_busState = ((1 << MB_STATE_RECEIVING) | (1 << MB_STATE_TIMER_ACTIVE));
+     // set new Modbus state
+     _modbus_busState = ((1 << MB_STATE_RECEIVING) | (1 << MB_STATE_TIMER_ACTIVE));
 
   } // MB_STATE_BUS_TIMEOUT
 
@@ -864,8 +909,8 @@ void modbus_tickTimer(void)
           // only for single address mode
           #ifndef MB_MULTIPLE_ADR
 
-            // if message is for us and CRC16 is ok
-            if ((g_modbus_buffer[0] == _modbus_address) && (_modbus_crc16((uint8_t*) g_modbus_buffer, _modbus_dataPos-3)))
+            // if message ID matches or is broadcast (ID=0), and CRC16 is ok
+            if (((g_modbus_buffer[0] == _modbus_address) || (g_modbus_buffer[0] == 0x00)) && (_modbus_crc16((uint8_t*) g_modbus_buffer, _modbus_dataPos-3)))
             {
               _modbus_saveLocation();
               _modbus_busState = (1 << MB_STATE_RECEIVE_COMPLETED);
