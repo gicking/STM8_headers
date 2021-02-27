@@ -86,6 +86,13 @@ Modbus_RTU
 
 ------------------------
 
+Modbus_RTU_auto-address
+  - small Modbus RTU client implementation to demonstrate auto-addressing 
+  - demonstrate detection of colliding Modbus IDs and resolving the issue  
+  - see corresponding Python server in Utils
+
+------------------------
+
 pin_interrupt
   - TLI interrupt on pin D7 (not port). Corresponds to INTx on Arduino
 
