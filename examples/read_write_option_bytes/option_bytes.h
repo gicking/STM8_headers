@@ -13,8 +13,8 @@
 /*-----------------------------------------------------------------------------
     MODULE DEFINITION FOR MULTIPLE INCLUSION
 -----------------------------------------------------------------------------*/
-#ifndef _EEPROM_H_
-#define _EEPROM_H_
+#ifndef _OPTION_BYTE_H_
+#define _OPTION_BYTE_H_
 
 /*----------------------------------------------------------
     INCLUDE FILES
@@ -30,11 +30,8 @@
 /// write option byte
 uint8_t write_option_byte(uint16_t addr, uint8_t value);
 
-/// read 1B from D-flash / EEPROM
-uint8_t EEPROM_readByte(uint16_t logAddr);
-
 
 /*-----------------------------------------------------------------------------
     END OF MODULE DEFINITION FOR MULTIPLE INLUSION
 -----------------------------------------------------------------------------*/
-#endif // _EEPROM_H_
+#endif // _OPTION_BYTE_H_
