@@ -4,6 +4,7 @@
   supported hardware:
     - STM8S Discovery board (https://www.st.com/en/evaluation-tools/stm8s-discovery.html)
     - NUCLEO-8S207K8 (https://www.st.com/en/evaluation-tools/nucleo-8s207k8.html)
+    - NUCLEO-8S208RB (https://www.st.com/en/evaluation-tools/nucleo-8s208rb.html)
     - STM8L Discovery board (https://www.st.com/en/evaluation-tools/stm8l-discovery.html)
     - STM8-SO8 Discovery board (https://www.st.com/en/evaluation-tools/stm8-so8-disco.html)
     - Sduino Uno (https://github.com/roybaer/sduino_uno)
@@ -18,7 +19,8 @@
     SELECT BOARD
 ----------------------------------------------------------*/
 //#define STM8S_DISCOVERY
-#define NUCLEO_8S207K8
+//#define NUCLEO_8S207K8
+#define NUCLEO_8S208RB
 //#define STM8L_DISCOVERY
 //#define STM8_SO8_DISCO_STM8S001
 //#define SDUINO
@@ -33,6 +35,10 @@
   #define LED_PIN    PIN0
 #elif defined(NUCLEO_8S207K8)
   #include "../../include/STM8S207K8.h"
+  #define LED_PORT   sfr_PORTC
+  #define LED_PIN    PIN5
+#elif defined(NUCLEO_8S208RB)
+  #include "../../include/STM8S208RB.h"
   #define LED_PORT   sfr_PORTC
   #define LED_PIN    PIN5
 #elif defined(STM8L_DISCOVERY)
