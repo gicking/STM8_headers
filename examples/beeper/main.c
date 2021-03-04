@@ -15,6 +15,7 @@
     INCLUDE FILES
 ----------------------------------------------------------*/
 #include "config.h"
+#include "beeper.h"
 #include "option_bytes.h"
 
 
@@ -54,9 +55,9 @@ void main (void)
 
   // set clock prescaler and enable beeper
   // Note: LSI calibration not yet supported!
-  sfr_BEEP.CSR.BEEPDIV = 16;
-  sfr_BEEP.CSR.BEEPEN  = 1;
-  sfr_BEEP.CSR.BEEPSEL = 2;
+  beeper_divider(14);
+  beeper_freq(2);
+  beeper_enable();
 
 
   // configure LED pin as output
@@ -71,15 +72,15 @@ void main (void)
     sfr_PORTC.ODR.ODR5 ^= 1;
 
     // generate 1kHz
-    sfr_BEEP.CSR.BEEPSEL = 0;
+    beeper_freq(0);
     delay();
 
     // generate 2kHz
-    sfr_BEEP.CSR.BEEPSEL = 1;
+    beeper_freq(1);
     delay();
 
     // generate 4kHz
-    sfr_BEEP.CSR.BEEPSEL = 2;
+    beeper_freq(2);
     delay();
 
   } // main loop
