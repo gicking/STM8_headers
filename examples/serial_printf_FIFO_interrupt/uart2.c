@@ -21,11 +21,11 @@
     MODULE VARIABLES (for clarity module internal variables start with "m_")
 -----------------------------------------------------------------------------*/
 
-/// reserve UART1 receive FIFO buffer
-fifo_t  m_Rx_Fifo = { {0}, 0, 0, 0, 0 };
+/// reserve UART2 receive FIFO buffer
+volatile fifo_t  m_Rx_Fifo = { {0}, 0, 0, 0, 0 };
 
-/// reserve UART1 transmit FIFO buffer
-fifo_t  m_Tx_Fifo = { {0}, 0, 0, 0, 0 };
+/// reserve UART2 transmit FIFO buffer
+volatile fifo_t  m_Tx_Fifo = { {0}, 0, 0, 0, 0 };
 
 
 /**
@@ -60,7 +60,7 @@ void UART2_begin(uint32_t BR) {
   fifo_init(&m_Rx_Fifo);
   fifo_init(&m_Tx_Fifo);
     
-  // enable Rx interrupt. Tx interrupt is enabled in uart1_send()
+  // enable Rx interrupt. Tx interrupt is enabled in uart2_send()
   sfr_UART2.CR2.RIEN = 1;
 
 } // UART2_begin
@@ -295,7 +295,7 @@ ISR_HANDLER(UART2_TXE_ISR, _UART2_T_TXE_VECTOR_)
     
   return;
 
-} // UART1_TXE_ISR
+} // UART2_TXE_ISR
 
 /*-----------------------------------------------------------------------------
     END OF MODULE
