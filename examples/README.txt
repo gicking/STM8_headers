@@ -29,6 +29,14 @@ adc_single-shot_1ch
 
 ------------------------
 
+beeper
+  - activate beeper output via option bytes
+  - generate different frequencies on BEEP pin
+  - no LSI calibration (yet)
+  - no interrupts
+
+------------------------
+
 blink_interrupt
   - blink LED in TIM4 interrupt service routine
 
@@ -65,7 +73,7 @@ I2C_LCD
 IWDG_watchdog
   - initialize IWDG to 100ms, service every 50ms
   - print millis to UART every 500ms
-  - if 'r' received, stop watchdog service --> reset 
+  - if 'r' received, stop watchdog service --> reset
 
 ------------------------
 
@@ -87,8 +95,8 @@ Modbus_RTU
 ------------------------
 
 Modbus_RTU_auto-address
-  - small Modbus RTU client implementation to demonstrate auto-addressing 
-  - demonstrate detection of colliding Modbus IDs and resolving the issue  
+  - small Modbus RTU client implementation to demonstrate auto-addressing
+  - demonstrate detection of colliding Modbus IDs and resolving the issue
   - see corresponding Python server in Utils
 
 ------------------------
