@@ -69,6 +69,7 @@ void  cli_cmd_Led(void);
 
 /// list of command keywords with corresponding functions
 cli_command_t cli_command[] = {
+  {"clear",   0, cli_greeting},
   {"help",    0, cli_cmd_Help},
   {"login",   1, cli_cmd_Login},
   {"logout",  0, cli_cmd_Logout},
@@ -285,7 +286,7 @@ void cli_cmd_Help(void)
 {
   uint8_t  i;
 	
-	//int16_t pin = cli_get_parameter(0, CLI_HEX);
+  //int16_t pin = cli_get_parameter(0, CLI_HEX);
   //int16_t val = cli_get_parameter(1, HEX);
 
   printf("List of available commands: ");
@@ -396,7 +397,6 @@ void cli_greeting()
   printf("Debug Console v%s\n\n", CLI_VERSION);
   printf("type 'help' to get a list of available commands\n");
   printf("press TAB for last command\n\n");
-  printf(CLI_PROMPT);
 
 } // cli_greeting()
 
@@ -421,6 +421,13 @@ void cli_handler()
     switch (c) {
 
       case CLI_TAB:
+        // delete current command (if exists)
+        for (;cli_cmd_buffer_index>0; cli_cmd_buffer_index--)
+        {
+          UART1_send_byte(CLI_BACKSPACE);
+          UART1_send_byte(CLI_SPACE);
+          UART1_send_byte(CLI_BACKSPACE);
+        }
         // copy the last command into the command buffer
         // then echo it to the terminal and set the
         // the buffer's index pointer to the end

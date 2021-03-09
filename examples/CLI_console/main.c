@@ -78,6 +78,7 @@ void main (void) {
 
   // print console greeting message
   cli_greeting();
+  printf(CLI_PROMPT);
 
   // main loop
   while(1) {
