@@ -3,6 +3,9 @@
   
   supported hardware:
     - Sduino Uno (https://github.com/roybaer/sduino_uno)
+    - Nucleo-8S208RB (https://www.st.com/en/evaluation-tools/nucleo-8s208rb.html)
+    - STM8L Discovery (https://www.st.com/en/evaluation-tools/stm8l-discovery.html)
+
   
   Functionality:
     - send millis every 500ms
@@ -70,7 +73,7 @@ void main (void) {
     sfr_PORTE.DDR.DDR7 = 1;     // input(=0) or output(=1)
     sfr_PORTE.CR1.C17  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
     sfr_PORTE.CR2.C27  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
-  #elif defined(SDUINO)
+  #elif defined(SDUINO) || defined(NUCLEO_8S208RB)
     sfr_PORTC.DDR.DDR5 = 1;     // input(=0) or output(=1)
     sfr_PORTC.CR1.C15  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
     sfr_PORTC.CR2.C25  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
@@ -98,7 +101,7 @@ void main (void) {
       // toggle LED
       #if defined(STM8L_DISCOVERY)
         sfr_PORTE.ODR.ODR7 ^= 1;
-      #elif defined(SDUINO)
+      #elif defined(SDUINO) || defined(NUCLEO_8S208RB)
         sfr_PORTC.ODR.ODR5 ^= 1;
       #endif
     

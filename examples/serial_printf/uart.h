@@ -39,42 +39,18 @@
     GLOBAL MACROS
 ----------------------------------------------------------*/
 
-// STM8L
-#if defined(sfr_USART1)
+/// check if byte received
+#define UART_available()   ( sfr_UART.SR.RXNE )
 
-  /// check if byte received via USART1
-  #define UART_available()   ( sfr_USART1.SR.RXNE )
+/// read received byte from UART
+#define UART_read()        ( sfr_UART.DR.byte )
 
-  /// read received byte from USART1
-  #define UART_read()        ( sfr_USART1.DR.byte )
+/// send byte via UART
+#define UART_write(x)      { while (!(sfr_UART.SR.TXE)); sfr_UART.DR.byte = x; }
 
-  /// send byte via UART2
-  #define UART_write(x)	     { while (!(sfr_USART1.SR.TXE)); sfr_USART1.DR.byte = x; }
-
-  /// flush UART2
-  #define UART_flush()	     { while (!(sfr_USART1.SR.TC)); }
+/// flush UART Tx
+#define UART_flush()       { while (!(sfr_UART.SR.TC)); }
   
-// STM8S
-#elif defined(sfr_UART2)
-
-  /// check if byte received via UART2
-  #define UART_available()   ( sfr_UART2.SR.RXNE )
-
-  /// read received byte from UART2
-  #define UART_read()        ( sfr_UART2.DR.byte )
-
-  /// send byte via UART2
-  #define UART_write(x)	     { while (!(sfr_UART2.SR.TXE)); sfr_UART2.DR.byte = x; }
-
-  /// flush UART2
-  #define UART_flush()	     { while (!(sfr_UART2.SR.TC)); }
-
-// error 
-#else
-  #error UART not defined
-#endif
-
-
 
 /*----------------------------------------------------------
     GLOBAL FUNCTIONS
@@ -84,13 +60,7 @@
 void UART_begin(uint32_t BR);
 
 /// ISR for UART receive
-#if defined(_UART2_R_RXNE_VECTOR_)
-  ISR_HANDLER(UART_RXNE_ISR, _UART2_R_RXNE_VECTOR_);
-#elif defined(_USART_R_RXNE_VECTOR_)
-  ISR_HANDLER(UART_RXNE_ISR, _USART_R_RXNE_VECTOR_);
-#else
-  #error UART_RXNE vector undefined
-#endif
+ISR_HANDLER(UART_RXNE_ISR, _UART_RXNE_VECTOR_);
 
 
 /*-----------------------------------------------------------------------------
