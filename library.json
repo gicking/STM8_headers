@@ -1,0 +1,21 @@
+{
+    "name": "STM8_headers",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gicking/STM8_headers.git"
+    },
+    "authors": {
+        "name": "Georg Icking-Konert",
+        "email": "icking@onlinehome.de",
+        "url": "https://github.com/gicking"
+    },
+    "license": "MIT",
+    "platforms": "ststm8",
+    "frameworks": "*",
+    "build": {
+        "flags": [
+            "-I include/"
+        ]
+    }
+}
