@@ -7,6 +7,7 @@
   <description>Digital controller for power conversion applications with up to 6 programmable PWM generators, 96 MHz PLL </description>
   <cpu>
     <name>other</name>
+    <revision>r1p0</revision>
     <endian>big</endian>
     <mpuPresent>false</mpuPresent>
     <fpuPresent>false</fpuPresent>
@@ -27,8 +28,8 @@
       <name>ADC</name>
       <baseAddress>0x5400</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0016</size>
+        <offset>0x0000</offset>
+        <size>22</size>
         <usage>registers</usage>
       </addressBlock>
       <description>ADC</description>
@@ -371,23 +372,13 @@
         <description>ADC_EOC interrupt</description>
         <value>22</value>
       </interrupt>
-      <interrupt>
-        <name>ADC_EOS</name>
-        <description>ADC_EOS interrupt</description>
-        <value>22</value>
-      </interrupt>
-      <interrupt>
-        <name>ADC_SEQ</name>
-        <description>ADC_SEQ interrupt</description>
-        <value>22</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>AWU</name>
       <baseAddress>0x50F0</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0003</size>
+        <offset>0x0000</offset>
+        <size>3</size>
         <usage>registers</usage>
       </addressBlock>
       <description>AWU</description>
@@ -453,8 +444,18 @@
       <name>CLK</name>
       <baseAddress>0x50B4</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x001C</size>
+        <offset>0x0000</offset>
+        <size>6</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x000a</offset>
+        <size>13</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0018</offset>
+        <size>4</size>
         <usage>registers</usage>
       </addressBlock>
       <description>CLK</description>
@@ -970,18 +971,13 @@
         <description>CLK_CSS interrupt</description>
         <value>2</value>
       </interrupt>
-      <interrupt>
-        <name>CLK_SWITCH</name>
-        <description>CLK_SWITCH interrupt</description>
-        <value>2</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>DALI</name>
       <baseAddress>0x53C0</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x000A</size>
+        <offset>0x0000</offset>
+        <size>10</size>
         <usage>registers</usage>
       </addressBlock>
       <description>DALI</description>
@@ -1198,18 +1194,28 @@
         <description>DALI_ITF interrupt</description>
         <value>25</value>
       </interrupt>
-      <interrupt>
-        <name>DALI_WDGF</name>
-        <description>DALI_WDGF interrupt</description>
-        <value>25</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>FLASH</name>
       <baseAddress>0x505A</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x000E</size>
+        <offset>0x0000</offset>
+        <size>6</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0008</offset>
+        <size>1</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x000a</offset>
+        <size>1</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x000d</offset>
+        <size>1</size>
         <usage>registers</usage>
       </addressBlock>
       <description>FLASH</description>
@@ -1413,18 +1419,18 @@
         <description>FLASH_EOP interrupt</description>
         <value>24</value>
       </interrupt>
-      <interrupt>
-        <name>FLASH_WR_PG_DIS</name>
-        <description>FLASH_WR_PG_DIS interrupt</description>
-        <value>24</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>I2C</name>
       <baseAddress>0x5210</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x000E</size>
+        <offset>0x0000</offset>
+        <size>5</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0006</offset>
+        <size>8</size>
         <usage>registers</usage>
       </addressBlock>
       <description>I2C</description>
@@ -1770,63 +1776,13 @@
         <description>I2C_ADD10 interrupt</description>
         <value>19</value>
       </interrupt>
-      <interrupt>
-        <name>I2C_ADDR</name>
-        <description>I2C_ADDR interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_AF</name>
-        <description>I2C_AF interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_ARLO</name>
-        <description>I2C_ARLO interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_BERR</name>
-        <description>I2C_BERR interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_BTF</name>
-        <description>I2C_BTF interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_OVR</name>
-        <description>I2C_OVR interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_RXNE</name>
-        <description>I2C_RXNE interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_SB</name>
-        <description>I2C_SB interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_STOPF</name>
-        <description>I2C_STOPF interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_TXE</name>
-        <description>I2C_TXE interrupt</description>
-        <value>19</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>ITC</name>
       <baseAddress>0x7F70</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0008</size>
+        <offset>0x0000</offset>
+        <size>8</size>
         <usage>registers</usage>
       </addressBlock>
       <description>ITC</description>
@@ -2042,18 +1998,28 @@
           </fields>
         </register>
       </registers>
-      <interrupt>
-        <name>CLK_SWITCH</name>
-        <description>CLK_SWITCH interrupt</description>
-        <value>2</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>MSC</name>
       <baseAddress>0x5010</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x002E</size>
+        <offset>0x0000</offset>
+        <size>15</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0010</offset>
+        <size>17</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0026</offset>
+        <size>2</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0029</offset>
+        <size>5</size>
         <usage>registers</usage>
       </addressBlock>
       <description>MSC</description>
@@ -3144,8 +3110,13 @@
       <name>OPT</name>
       <baseAddress>0x4800</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0080</size>
+        <offset>0x0000</offset>
+        <size>23</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x007e</offset>
+        <size>2</size>
         <usage>registers</usage>
       </addressBlock>
       <description>OPT</description>
@@ -3307,8 +3278,8 @@
       <name>PORT0</name>
       <baseAddress>0x5000</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0005</size>
+        <offset>0x0000</offset>
+        <size>5</size>
         <usage>registers</usage>
       </addressBlock>
       <description>PORT0</description>
@@ -3560,8 +3531,8 @@
       <name>PORT1</name>
       <baseAddress>0x5005</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0005</size>
+        <offset>0x0000</offset>
+        <size>5</size>
         <usage>registers</usage>
       </addressBlock>
       <description>PORT1</description>
@@ -3813,8 +3784,8 @@
       <name>RST</name>
       <baseAddress>0x50B3</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0001</size>
+        <offset>0x0000</offset>
+        <size>1</size>
         <usage>registers</usage>
       </addressBlock>
       <description>RST</description>
@@ -3859,8 +3830,8 @@
       <name>SMED0</name>
       <baseAddress>0x5500</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0024</size>
+        <offset>0x0000</offset>
+        <size>36</size>
         <usage>registers</usage>
       </addressBlock>
       <description>SMED0</description>
@@ -5240,33 +5211,13 @@
         <description>SMED0_OVF interrupt</description>
         <value>6</value>
       </interrupt>
-      <interrupt>
-        <name>SMED0_STATE0</name>
-        <description>SMED0_STATE0 interrupt</description>
-        <value>6</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED0_STATE1</name>
-        <description>SMED0_STATE1 interrupt</description>
-        <value>6</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED0_STATE2</name>
-        <description>SMED0_STATE2 interrupt</description>
-        <value>6</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED0_STATE3</name>
-        <description>SMED0_STATE3 interrupt</description>
-        <value>6</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>SMED1</name>
       <baseAddress>0x5540</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0024</size>
+        <offset>0x0000</offset>
+        <size>36</size>
         <usage>registers</usage>
       </addressBlock>
       <description>SMED1</description>
@@ -6646,48 +6597,13 @@
         <description>SMED1_INSIG0 interrupt</description>
         <value>7</value>
       </interrupt>
-      <interrupt>
-        <name>SMED1_INSIG1</name>
-        <description>SMED1_INSIG1 interrupt</description>
-        <value>7</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED1_INSIG2</name>
-        <description>SMED1_INSIG2 interrupt</description>
-        <value>7</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED1_OVF</name>
-        <description>SMED1_OVF interrupt</description>
-        <value>7</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED1_STATE0</name>
-        <description>SMED1_STATE0 interrupt</description>
-        <value>7</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED1_STATE1</name>
-        <description>SMED1_STATE1 interrupt</description>
-        <value>7</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED1_STATE2</name>
-        <description>SMED1_STATE2 interrupt</description>
-        <value>7</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED1_STATE3</name>
-        <description>SMED1_STATE3 interrupt</description>
-        <value>7</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>SMED2</name>
       <baseAddress>0x5580</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0024</size>
+        <offset>0x0000</offset>
+        <size>36</size>
         <usage>registers</usage>
       </addressBlock>
       <description>SMED2</description>
@@ -8067,48 +7983,13 @@
         <description>SMED2_INSIG0 interrupt</description>
         <value>15</value>
       </interrupt>
-      <interrupt>
-        <name>SMED2_INSIG1</name>
-        <description>SMED2_INSIG1 interrupt</description>
-        <value>15</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED2_INSIG2</name>
-        <description>SMED2_INSIG2 interrupt</description>
-        <value>15</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED2_OVF</name>
-        <description>SMED2_OVF interrupt</description>
-        <value>15</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED2_STATE0</name>
-        <description>SMED2_STATE0 interrupt</description>
-        <value>15</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED2_STATE1</name>
-        <description>SMED2_STATE1 interrupt</description>
-        <value>15</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED2_STATE2</name>
-        <description>SMED2_STATE2 interrupt</description>
-        <value>15</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED2_STATE3</name>
-        <description>SMED2_STATE3 interrupt</description>
-        <value>15</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>SMED3</name>
       <baseAddress>0x55C0</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0024</size>
+        <offset>0x0000</offset>
+        <size>36</size>
         <usage>registers</usage>
       </addressBlock>
       <description>SMED3</description>
@@ -9488,48 +9369,13 @@
         <description>SMED3_INSIG0 interrupt</description>
         <value>16</value>
       </interrupt>
-      <interrupt>
-        <name>SMED3_INSIG1</name>
-        <description>SMED3_INSIG1 interrupt</description>
-        <value>16</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED3_INSIG2</name>
-        <description>SMED3_INSIG2 interrupt</description>
-        <value>16</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED3_OVF</name>
-        <description>SMED3_OVF interrupt</description>
-        <value>16</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED3_STATE0</name>
-        <description>SMED3_STATE0 interrupt</description>
-        <value>16</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED3_STATE1</name>
-        <description>SMED3_STATE1 interrupt</description>
-        <value>16</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED3_STATE2</name>
-        <description>SMED3_STATE2 interrupt</description>
-        <value>16</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED3_STATE3</name>
-        <description>SMED3_STATE3 interrupt</description>
-        <value>16</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>SMED4</name>
       <baseAddress>0x5600</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0024</size>
+        <offset>0x0000</offset>
+        <size>36</size>
         <usage>registers</usage>
       </addressBlock>
       <description>SMED4</description>
@@ -10909,48 +10755,13 @@
         <description>SMED4_INSIG0 interrupt</description>
         <value>26</value>
       </interrupt>
-      <interrupt>
-        <name>SMED4_INSIG1</name>
-        <description>SMED4_INSIG1 interrupt</description>
-        <value>26</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED4_INSIG2</name>
-        <description>SMED4_INSIG2 interrupt</description>
-        <value>26</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED4_OVF</name>
-        <description>SMED4_OVF interrupt</description>
-        <value>26</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED4_STATE0</name>
-        <description>SMED4_STATE0 interrupt</description>
-        <value>26</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED4_STATE1</name>
-        <description>SMED4_STATE1 interrupt</description>
-        <value>26</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED4_STATE2</name>
-        <description>SMED4_STATE2 interrupt</description>
-        <value>26</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED4_STATE3</name>
-        <description>SMED4_STATE3 interrupt</description>
-        <value>26</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>SMED5</name>
       <baseAddress>0x5640</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0024</size>
+        <offset>0x0000</offset>
+        <size>36</size>
         <usage>registers</usage>
       </addressBlock>
       <description>SMED5</description>
@@ -12330,48 +12141,13 @@
         <description>SMED5_INSIG0 interrupt</description>
         <value>27</value>
       </interrupt>
-      <interrupt>
-        <name>SMED5_INSIG1</name>
-        <description>SMED5_INSIG1 interrupt</description>
-        <value>27</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED5_INSIG2</name>
-        <description>SMED5_INSIG2 interrupt</description>
-        <value>27</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED5_OVF</name>
-        <description>SMED5_OVF interrupt</description>
-        <value>27</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED5_STATE0</name>
-        <description>SMED5_STATE0 interrupt</description>
-        <value>27</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED5_STATE1</name>
-        <description>SMED5_STATE1 interrupt</description>
-        <value>27</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED5_STATE2</name>
-        <description>SMED5_STATE2 interrupt</description>
-        <value>27</value>
-      </interrupt>
-      <interrupt>
-        <name>SMED5_STATE3</name>
-        <description>SMED5_STATE3 interrupt</description>
-        <value>27</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>STMR</name>
       <baseAddress>0x5340</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0009</size>
+        <offset>0x0000</offset>
+        <size>9</size>
         <usage>registers</usage>
       </addressBlock>
       <description>STMR</description>
@@ -12525,8 +12301,13 @@
       <name>SYS</name>
       <baseAddress>0x7F60</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0021</size>
+        <offset>0x0000</offset>
+        <size>1</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0020</offset>
+        <size>1</size>
         <usage>registers</usage>
       </addressBlock>
       <description>SYS</description>
@@ -12609,8 +12390,13 @@
       <name>UART</name>
       <baseAddress>0x5230</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x000B</size>
+        <offset>0x0000</offset>
+        <size>8</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0009</offset>
+        <size>2</size>
         <usage>registers</usage>
       </addressBlock>
       <description>UART</description>
@@ -12863,28 +12649,8 @@
         <value>17</value>
       </interrupt>
       <interrupt>
-        <name>UART_T_TXE</name>
-        <description>UART_T_TXE interrupt</description>
-        <value>17</value>
-      </interrupt>
-      <interrupt>
         <name>UART_R_IDLE</name>
         <description>UART_R_IDLE interrupt</description>
-        <value>18</value>
-      </interrupt>
-      <interrupt>
-        <name>UART_R_OR</name>
-        <description>UART_R_OR interrupt</description>
-        <value>18</value>
-      </interrupt>
-      <interrupt>
-        <name>UART_R_PE</name>
-        <description>UART_R_PE interrupt</description>
-        <value>18</value>
-      </interrupt>
-      <interrupt>
-        <name>UART_R_RXNE</name>
-        <description>UART_R_RXNE interrupt</description>
         <value>18</value>
       </interrupt>
     </peripheral>
@@ -12892,8 +12658,13 @@
       <name>WDG</name>
       <baseAddress>0x50D1</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0012</size>
+        <offset>0x0000</offset>
+        <size>2</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x000f</offset>
+        <size>3</size>
         <usage>registers</usage>
       </addressBlock>
       <description>WDG</description>

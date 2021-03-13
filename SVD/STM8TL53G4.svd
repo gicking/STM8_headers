@@ -7,6 +7,7 @@
   <description>8-bit, ultra-low-power, touch-sensing MCUs with 16-Kbyte Flash and proximity detection </description>
   <cpu>
     <name>other</name>
+    <revision>r1p0</revision>
     <endian>big</endian>
     <mpuPresent>false</mpuPresent>
     <fpuPresent>false</fpuPresent>
@@ -27,8 +28,8 @@
       <name>AWU</name>
       <baseAddress>0x50F0</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0003</size>
+        <offset>0x0000</offset>
+        <size>3</size>
         <usage>registers</usage>
       </addressBlock>
       <description>AWU</description>
@@ -94,8 +95,8 @@
       <name>BEEP</name>
       <baseAddress>0x50F3</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0001</size>
+        <offset>0x0000</offset>
+        <size>1</size>
         <usage>registers</usage>
       </addressBlock>
       <description>BEEP</description>
@@ -130,8 +131,13 @@
       <name>CLK</name>
       <baseAddress>0x50C0</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0006</size>
+        <offset>0x0000</offset>
+        <size>1</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0003</offset>
+        <size>3</size>
         <usage>registers</usage>
       </addressBlock>
       <description>CLK</description>
@@ -200,8 +206,13 @@
       <name>CPU</name>
       <baseAddress>0x7F00</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0061</size>
+        <offset>0x0000</offset>
+        <size>11</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0060</offset>
+        <size>1</size>
         <usage>registers</usage>
       </addressBlock>
       <description>CPU</description>
@@ -334,8 +345,8 @@
       <name>DM</name>
       <baseAddress>0x7F90</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x000B</size>
+        <offset>0x0000</offset>
+        <size>11</size>
         <usage>registers</usage>
       </addressBlock>
       <description>DM</description>
@@ -413,8 +424,8 @@
       <name>FLASH</name>
       <baseAddress>0x5050</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0005</size>
+        <offset>0x0000</offset>
+        <size>5</size>
         <usage>registers</usage>
       </addressBlock>
       <description>FLASH</description>
@@ -531,18 +542,13 @@
         <description>FLASH_EOP interrupt</description>
         <value>1</value>
       </interrupt>
-      <interrupt>
-        <name>FLASH_WR_PG_DIS</name>
-        <description>FLASH_WR_PG_DIS interrupt</description>
-        <value>1</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>I2C</name>
       <baseAddress>0x5210</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x000E</size>
+        <offset>0x0000</offset>
+        <size>14</size>
         <usage>registers</usage>
       </addressBlock>
       <description>I2C</description>
@@ -866,68 +872,13 @@
         <description>I2C_ADD10 interrupt</description>
         <value>29</value>
       </interrupt>
-      <interrupt>
-        <name>I2C_ADDR</name>
-        <description>I2C_ADDR interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_AF</name>
-        <description>I2C_AF interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_ARLO</name>
-        <description>I2C_ARLO interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_BERR</name>
-        <description>I2C_BERR interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_BTF</name>
-        <description>I2C_BTF interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_OVR</name>
-        <description>I2C_OVR interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_RXNE</name>
-        <description>I2C_RXNE interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_SB</name>
-        <description>I2C_SB interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_STOPF</name>
-        <description>I2C_STOPF interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_TXE</name>
-        <description>I2C_TXE interrupt</description>
-        <value>29</value>
-      </interrupt>
-      <interrupt>
-        <name>I2C_WUFH</name>
-        <description>I2C_WUFH interrupt</description>
-        <value>29</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>ITC_EXTI</name>
       <baseAddress>0x50A0</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0006</size>
+        <offset>0x0000</offset>
+        <size>6</size>
         <usage>registers</usage>
       </addressBlock>
       <description>ITC_EXTI</description>
@@ -1107,8 +1058,8 @@
       <name>ITC_SPR</name>
       <baseAddress>0x7F70</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0008</size>
+        <offset>0x0000</offset>
+        <size>8</size>
         <usage>registers</usage>
       </addressBlock>
       <description>ITC_SPR</description>
@@ -1294,8 +1245,18 @@
       <name>OPT</name>
       <baseAddress>0x4800</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0009</size>
+        <offset>0x0000</offset>
+        <size>1</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0002</offset>
+        <size>2</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0007</offset>
+        <size>2</size>
         <usage>registers</usage>
       </addressBlock>
       <description>OPT</description>
@@ -1337,8 +1298,8 @@
       <name>PORTA</name>
       <baseAddress>0x5000</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0005</size>
+        <offset>0x0000</offset>
+        <size>5</size>
         <usage>registers</usage>
       </addressBlock>
       <description>PORTA</description>
@@ -1590,8 +1551,8 @@
       <name>PORTB</name>
       <baseAddress>0x5005</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0005</size>
+        <offset>0x0000</offset>
+        <size>5</size>
         <usage>registers</usage>
       </addressBlock>
       <description>PORTB</description>
@@ -1843,8 +1804,8 @@
       <name>PORTD</name>
       <baseAddress>0x500F</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0005</size>
+        <offset>0x0000</offset>
+        <size>5</size>
         <usage>registers</usage>
       </addressBlock>
       <description>PORTD</description>
@@ -2096,8 +2057,43 @@
       <name>PXS</name>
       <baseAddress>0x5300</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x005A</size>
+        <offset>0x0000</offset>
+        <size>3</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0004</offset>
+        <size>1</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0006</offset>
+        <size>10</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0012</offset>
+        <size>2</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0016</offset>
+        <size>2</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x001a</offset>
+        <size>26</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0040</offset>
+        <size>10</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x0050</offset>
+        <size>10</size>
         <usage>registers</usage>
       </addressBlock>
       <description>PXS</description>
@@ -3381,18 +3377,13 @@
         <description>PXS_EOC interrupt</description>
         <value>2</value>
       </interrupt>
-      <interrupt>
-        <name>PXS_FCC</name>
-        <description>PXS_FCC interrupt</description>
-        <value>2</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>RST</name>
       <baseAddress>0x50B0</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0002</size>
+        <offset>0x0000</offset>
+        <size>2</size>
         <usage>registers</usage>
       </addressBlock>
       <description>RST</description>
@@ -3445,8 +3436,8 @@
       <name>SPI</name>
       <baseAddress>0x5200</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0005</size>
+        <offset>0x0000</offset>
+        <size>5</size>
         <usage>registers</usage>
       </addressBlock>
       <description>SPI</description>
@@ -3608,33 +3599,13 @@
         <description>SPI_MODF interrupt</description>
         <value>26</value>
       </interrupt>
-      <interrupt>
-        <name>SPI_OVR</name>
-        <description>SPI_OVR interrupt</description>
-        <value>26</value>
-      </interrupt>
-      <interrupt>
-        <name>SPI_RXNE</name>
-        <description>SPI_RXNE interrupt</description>
-        <value>26</value>
-      </interrupt>
-      <interrupt>
-        <name>SPI_TXE</name>
-        <description>SPI_TXE interrupt</description>
-        <value>26</value>
-      </interrupt>
-      <interrupt>
-        <name>SPI_WKUP</name>
-        <description>SPI_WKUP interrupt</description>
-        <value>26</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>SWIM</name>
       <baseAddress>0x7F80</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0001</size>
+        <offset>0x0000</offset>
+        <size>1</size>
         <usage>registers</usage>
       </addressBlock>
       <description>SWIM</description>
@@ -3652,8 +3623,8 @@
       <name>TIM2</name>
       <baseAddress>0x5250</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0016</size>
+        <offset>0x0000</offset>
+        <size>22</size>
         <usage>registers</usage>
       </addressBlock>
       <description>TIM2</description>
@@ -4147,23 +4118,8 @@
         <value>19</value>
       </interrupt>
       <interrupt>
-        <name>TIM2_TRIGGER</name>
-        <description>TIM2_TRIGGER interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
-        <name>TIM2_UPDATE</name>
-        <description>TIM2_UPDATE interrupt</description>
-        <value>19</value>
-      </interrupt>
-      <interrupt>
         <name>TIM2_CAPCOM_CC1IF</name>
         <description>TIM2_CAPCOM_CC1IF interrupt</description>
-        <value>20</value>
-      </interrupt>
-      <interrupt>
-        <name>TIM2_CAPCOM_CC2IF</name>
-        <description>TIM2_CAPCOM_CC2IF interrupt</description>
         <value>20</value>
       </interrupt>
     </peripheral>
@@ -4171,8 +4127,8 @@
       <name>TIM3</name>
       <baseAddress>0x5280</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0016</size>
+        <offset>0x0000</offset>
+        <size>22</size>
         <usage>registers</usage>
       </addressBlock>
       <description>TIM3</description>
@@ -4666,23 +4622,8 @@
         <value>21</value>
       </interrupt>
       <interrupt>
-        <name>TIM3_TRIGGER</name>
-        <description>TIM3_TRIGGER interrupt</description>
-        <value>21</value>
-      </interrupt>
-      <interrupt>
-        <name>TIM3_UPDATE</name>
-        <description>TIM3_UPDATE interrupt</description>
-        <value>21</value>
-      </interrupt>
-      <interrupt>
         <name>TIM3_CAPCOM_CC1IF</name>
         <description>TIM3_CAPCOM_CC1IF interrupt</description>
-        <value>22</value>
-      </interrupt>
-      <interrupt>
-        <name>TIM3_CAPCOM_CC2IF</name>
-        <description>TIM3_CAPCOM_CC2IF interrupt</description>
         <value>22</value>
       </interrupt>
     </peripheral>
@@ -4690,8 +4631,8 @@
       <name>TIM4</name>
       <baseAddress>0x52E0</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0009</size>
+        <offset>0x0000</offset>
+        <size>9</size>
         <usage>registers</usage>
       </addressBlock>
       <description>TIM4</description>
@@ -4865,18 +4806,13 @@
         <description>TIM4_TRIGGER interrupt</description>
         <value>25</value>
       </interrupt>
-      <interrupt>
-        <name>TIM4_UPDATE</name>
-        <description>TIM4_UPDATE interrupt</description>
-        <value>25</value>
-      </interrupt>
     </peripheral>
     <peripheral>
       <name>USART</name>
       <baseAddress>0x5230</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0008</size>
+        <offset>0x0000</offset>
+        <size>8</size>
         <usage>registers</usage>
       </addressBlock>
       <description>USART</description>
@@ -5118,28 +5054,8 @@
         <value>27</value>
       </interrupt>
       <interrupt>
-        <name>USART_T_TXE</name>
-        <description>USART_T_TXE interrupt</description>
-        <value>27</value>
-      </interrupt>
-      <interrupt>
         <name>USART_R_IDLE</name>
         <description>USART_R_IDLE interrupt</description>
-        <value>28</value>
-      </interrupt>
-      <interrupt>
-        <name>USART_R_OR</name>
-        <description>USART_R_OR interrupt</description>
-        <value>28</value>
-      </interrupt>
-      <interrupt>
-        <name>USART_R_PE</name>
-        <description>USART_R_PE interrupt</description>
-        <value>28</value>
-      </interrupt>
-      <interrupt>
-        <name>USART_R_RXNE</name>
-        <description>USART_R_RXNE interrupt</description>
         <value>28</value>
       </interrupt>
     </peripheral>
@@ -5147,8 +5063,8 @@
       <name>WFE</name>
       <baseAddress>0x50A6</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0002</size>
+        <offset>0x0000</offset>
+        <size>2</size>
         <usage>registers</usage>
       </addressBlock>
       <description>WFE</description>
@@ -5236,8 +5152,13 @@
       <name>WDG</name>
       <baseAddress>0x50D3</baseAddress>
       <addressBlock>
-        <offset>0</offset>
-        <size>0x0010</size>
+        <offset>0x0000</offset>
+        <size>2</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <addressBlock>
+        <offset>0x000d</offset>
+        <size>3</size>
         <usage>registers</usage>
       </addressBlock>
       <description>WDG</description>
