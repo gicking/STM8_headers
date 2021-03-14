@@ -38,6 +38,7 @@
         <register>
           <name>CSR</name>
           <description>AWU control/status register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -61,6 +62,7 @@
         <register>
           <name>APR</name>
           <description>AWU asynchronous prescaler buffer register</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x3F</resetValue>
           <fields>
@@ -74,6 +76,7 @@
         <register>
           <name>TBR</name>
           <description>AWU timebase selection register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -86,8 +89,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>AWU</name>
-        <description>AWU interrupt</description>
+        <name>AWU_AWU</name>
+        <description>AWU_AWU interrupt</description>
         <value>4</value>
       </interrupt>
     </peripheral>
@@ -105,6 +108,7 @@
         <register>
           <name>CSR</name>
           <description>BEEP control/status register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x1F</resetValue>
           <fields>
@@ -151,6 +155,7 @@
         <register>
           <name>CKDIVR</name>
           <description>Clock divider register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x03</resetValue>
           <fields>
@@ -164,6 +169,7 @@
         <register>
           <name>PCKENR</name>
           <description>Peripheral clock gating register</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -177,6 +183,7 @@
         <register>
           <name>CCOR</name>
           <description>Configurable clock control register</description>
+          <size>8</size>
           <addressOffset>0x0005</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -208,6 +215,7 @@
         <register>
           <name>CR</name>
           <description>Comparator control register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -256,6 +264,7 @@
         <register>
           <name>CSR</name>
           <description>Comparator status register</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -294,6 +303,7 @@
         <register>
           <name>CCS</name>
           <description>Comparator channel selection register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -360,66 +370,77 @@
         <register>
           <name>A</name>
           <description>Accumulator</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>PCE</name>
           <description>Program counter extended</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>PCH</name>
           <description>Program counter high</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>PCL</name>
           <description>Program counter low</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>XH</name>
           <description>X index register high</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>XL</name>
           <description>X index register low</description>
+          <size>8</size>
           <addressOffset>0x0005</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>YH</name>
           <description>Y index register high</description>
+          <size>8</size>
           <addressOffset>0x0006</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>YL</name>
           <description>Y index register low</description>
+          <size>8</size>
           <addressOffset>0x0007</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>SPH</name>
           <description>Stack pointer high</description>
+          <size>8</size>
           <addressOffset>0x0008</addressOffset>
           <resetValue>0x03</resetValue>
         </register>
         <register>
           <name>SPL</name>
           <description>Stack pointer low</description>
+          <size>8</size>
           <addressOffset>0x0009</addressOffset>
           <resetValue>0xFF</resetValue>
         </register>
         <register>
           <name>CCR</name>
           <description>Condition code register</description>
+          <size>8</size>
           <addressOffset>0x000A</addressOffset>
           <resetValue>0x28</resetValue>
           <fields>
@@ -463,6 +484,7 @@
         <register>
           <name>CFG_GCR</name>
           <description>Global configuration register</description>
+          <size>8</size>
           <addressOffset>0x0060</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -494,66 +516,77 @@
         <register>
           <name>BK1RE</name>
           <description>Breakpoint 1 register extended byte</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0xFF</resetValue>
         </register>
         <register>
           <name>BK1RH</name>
           <description>Breakpoint 1 register high byte</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0xFF</resetValue>
         </register>
         <register>
           <name>BK1RL</name>
           <description>Breakpoint 1 register low byte</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0xFF</resetValue>
         </register>
         <register>
           <name>BK2RE</name>
           <description>Breakpoint 2 register extended byte</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0xFF</resetValue>
         </register>
         <register>
           <name>BK2RH</name>
           <description>Breakpoint 2 register high byte</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0xFF</resetValue>
         </register>
         <register>
           <name>BK2RL</name>
           <description>Breakpoint 2 register low byte</description>
+          <size>8</size>
           <addressOffset>0x0005</addressOffset>
           <resetValue>0xFF</resetValue>
         </register>
         <register>
           <name>CR1</name>
           <description>Debug module control register 1</description>
+          <size>8</size>
           <addressOffset>0x0006</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>CR2</name>
           <description>Debug module control register 2</description>
+          <size>8</size>
           <addressOffset>0x0007</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>CSR1</name>
           <description>Debug module control/status register 1</description>
+          <size>8</size>
           <addressOffset>0x0008</addressOffset>
           <resetValue>0x10</resetValue>
         </register>
         <register>
           <name>CSR2</name>
           <description>Debug module control/status register 2</description>
+          <size>8</size>
           <addressOffset>0x0009</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>ENFCTR</name>
           <description>Enable function register</description>
+          <size>8</size>
           <addressOffset>0x000A</addressOffset>
           <resetValue>0xFF</resetValue>
         </register>
@@ -573,6 +606,7 @@
         <register>
           <name>CR1</name>
           <description>Flash control register 1</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -591,6 +625,7 @@
         <register>
           <name>CR2</name>
           <description>Flash control register 2</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -624,6 +659,7 @@
         <register>
           <name>PUKR</name>
           <description>Flash Program memory unprotection register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -637,6 +673,7 @@
         <register>
           <name>DUKR</name>
           <description>Data EEPROM unprotection register</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -650,6 +687,7 @@
         <register>
           <name>IAPSR</name>
           <description>Flash in-application programming status register</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -677,8 +715,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>FLASH_EOP</name>
-        <description>FLASH_EOP interrupt</description>
+        <name>FLASH_EOP_WR_PG_DIS</name>
+        <description>FLASH_EOP_WR_PG_DIS interrupt</description>
         <value>1</value>
       </interrupt>
     </peripheral>
@@ -701,6 +739,7 @@
         <register>
           <name>CR1</name>
           <description>I2C control register 1</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -724,6 +763,7 @@
         <register>
           <name>CR2</name>
           <description>I2C control register 2</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -757,6 +797,7 @@
         <register>
           <name>FREQR</name>
           <description>I2C frequency register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -770,6 +811,7 @@
         <register>
           <name>OARL</name>
           <description>I2C Own address register low</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -783,6 +825,7 @@
         <register>
           <name>OARH</name>
           <description>I2C Own address register high</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -806,6 +849,7 @@
         <register>
           <name>DR</name>
           <description>I2C data register</description>
+          <size>8</size>
           <addressOffset>0x0006</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -819,6 +863,7 @@
         <register>
           <name>SR1</name>
           <description>I2C status register 1</description>
+          <size>8</size>
           <addressOffset>0x0007</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -862,6 +907,7 @@
         <register>
           <name>SR2</name>
           <description>I2C status register 2</description>
+          <size>8</size>
           <addressOffset>0x0008</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -895,6 +941,7 @@
         <register>
           <name>SR3</name>
           <description>I2C status register 3</description>
+          <size>8</size>
           <addressOffset>0x0009</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -923,6 +970,7 @@
         <register>
           <name>ITR</name>
           <description>I2C interrupt control register</description>
+          <size>8</size>
           <addressOffset>0x000A</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -946,6 +994,7 @@
         <register>
           <name>CCRL</name>
           <description>I2C Clock control register low</description>
+          <size>8</size>
           <addressOffset>0x000B</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -959,6 +1008,7 @@
         <register>
           <name>CCRH</name>
           <description>I2C Clock control register high</description>
+          <size>8</size>
           <addressOffset>0x000C</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -982,6 +1032,7 @@
         <register>
           <name>TRISER</name>
           <description>I2C TRISE register</description>
+          <size>8</size>
           <addressOffset>0x000D</addressOffset>
           <resetValue>0x02</resetValue>
           <fields>
@@ -994,8 +1045,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>I2C_ADD10</name>
-        <description>I2C_ADD10 interrupt</description>
+        <name>I2C_ADD10_ADDR_AF_ARLO_BERR_BTF_OVR_RXNE_SB_STOPF_TXE_WUFH</name>
+        <description>I2C_ADD10_ADDR_AF_ARLO_BERR_BTF_OVR_RXNE_SB_STOPF_TXE_WUFH interrupt</description>
         <value>29</value>
       </interrupt>
     </peripheral>
@@ -1013,6 +1064,7 @@
         <register>
           <name>CR</name>
           <description>Infra-red control register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1044,6 +1096,7 @@
         <register>
           <name>CR1</name>
           <description>External interrupt control register 1</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1072,6 +1125,7 @@
         <register>
           <name>CR2</name>
           <description>External interrupt control register 2</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1100,6 +1154,7 @@
         <register>
           <name>CR3</name>
           <description>External interrupt control register 3</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1118,6 +1173,7 @@
         <register>
           <name>SR1</name>
           <description>External interrupt status register 1</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1166,6 +1222,7 @@
         <register>
           <name>SR2</name>
           <description>External interrupt status register 2</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1184,6 +1241,7 @@
         <register>
           <name>CONF</name>
           <description>External interrupt port select register</description>
+          <size>8</size>
           <addressOffset>0x0005</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1225,6 +1283,7 @@
         <register>
           <name>SPR1</name>
           <description>Interrupt Software priority register 1</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -1238,6 +1297,7 @@
         <register>
           <name>SPR2</name>
           <description>Interrupt Software priority register 2</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -1261,6 +1321,7 @@
         <register>
           <name>SPR3</name>
           <description>Interrupt Software priority register 3</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -1289,6 +1350,7 @@
         <register>
           <name>SPR4</name>
           <description>Interrupt Software priority register 4</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -1317,6 +1379,7 @@
         <register>
           <name>SPR5</name>
           <description>Interrupt Software priority register 5</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -1335,6 +1398,7 @@
         <register>
           <name>SPR6</name>
           <description>Interrupt Software priority register 6</description>
+          <size>8</size>
           <addressOffset>0x0005</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -1358,6 +1422,7 @@
         <register>
           <name>SPR7</name>
           <description>Interrupt Software priority register 7</description>
+          <size>8</size>
           <addressOffset>0x0006</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -1381,6 +1446,7 @@
         <register>
           <name>SPR8</name>
           <description>Interrupt Software priority register 8</description>
+          <size>8</size>
           <addressOffset>0x0007</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -1412,6 +1478,7 @@
         <register>
           <name>KR</name>
           <description>IWDG Key register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1425,6 +1492,7 @@
         <register>
           <name>PR</name>
           <description>IWDG Prescaler register</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1438,6 +1506,7 @@
         <register>
           <name>RLR</name>
           <description>IWDG Reload register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -1474,24 +1543,28 @@
         <register>
           <name>OPT1</name>
           <description>Read-out protection (ROP)</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>OPT2</name>
           <description>UBC (User Boot code size)</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>OPT3</name>
           <description>DATASIZE</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
         <register>
           <name>OPT4</name>
           <description>Independent watchdog option</description>
+          <size>8</size>
           <addressOffset>0x0008</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
@@ -1511,6 +1584,7 @@
         <register>
           <name>ODR</name>
           <description>Port A data output latch register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1559,6 +1633,7 @@
         <register>
           <name>IDR</name>
           <description>Port A input pin value register</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1607,6 +1682,7 @@
         <register>
           <name>DDR</name>
           <description>Port A data direction register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1655,6 +1731,7 @@
         <register>
           <name>CR1</name>
           <description>Port A control register 1</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1703,6 +1780,7 @@
         <register>
           <name>CR2</name>
           <description>Port A control register 2</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1764,6 +1842,7 @@
         <register>
           <name>ODR</name>
           <description>Port B data output latch register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1812,6 +1891,7 @@
         <register>
           <name>IDR</name>
           <description>Port B input pin value register</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1860,6 +1940,7 @@
         <register>
           <name>DDR</name>
           <description>Port B data direction register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1908,6 +1989,7 @@
         <register>
           <name>CR1</name>
           <description>Port B control register 1</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -1956,6 +2038,7 @@
         <register>
           <name>CR2</name>
           <description>Port B control register 2</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2017,6 +2100,7 @@
         <register>
           <name>ODR</name>
           <description>Port C data output latch register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2065,6 +2149,7 @@
         <register>
           <name>IDR</name>
           <description>Port C input pin value register</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2113,6 +2198,7 @@
         <register>
           <name>DDR</name>
           <description>Port C data direction register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2161,6 +2247,7 @@
         <register>
           <name>CR1</name>
           <description>Port C control register 1</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2209,6 +2296,7 @@
         <register>
           <name>CR2</name>
           <description>Port C control register 2</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2270,6 +2358,7 @@
         <register>
           <name>ODR</name>
           <description>Port D data output latch register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2318,6 +2407,7 @@
         <register>
           <name>IDR</name>
           <description>Port D input pin value register</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2366,6 +2456,7 @@
         <register>
           <name>DDR</name>
           <description>Port D data direction register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2414,6 +2505,7 @@
         <register>
           <name>CR1</name>
           <description>Port D control register 1</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2462,6 +2554,7 @@
         <register>
           <name>CR2</name>
           <description>Port D control register 2</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2523,6 +2616,7 @@
         <register>
           <name>CR</name>
           <description>Reset control register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2536,6 +2630,7 @@
         <register>
           <name>SR</name>
           <description>Reset status register</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x01</resetValue>
           <fields>
@@ -2577,6 +2672,7 @@
         <register>
           <name>CR1</name>
           <description>SPI control register 1</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2615,6 +2711,7 @@
         <register>
           <name>CR2</name>
           <description>SPI control register 2</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2648,6 +2745,7 @@
         <register>
           <name>ICR</name>
           <description>SPI interrupt control register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2676,6 +2774,7 @@
         <register>
           <name>SR</name>
           <description>SPI status register</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x02</resetValue>
           <fields>
@@ -2714,6 +2813,7 @@
         <register>
           <name>DR</name>
           <description>SPI data register</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2726,8 +2826,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>SPI_MODF</name>
-        <description>SPI_MODF interrupt</description>
+        <name>SPI_MODF_OVR_RXNE_TXE_WKUP</name>
+        <description>SPI_MODF_OVR_RXNE_TXE_WKUP interrupt</description>
         <value>26</value>
       </interrupt>
     </peripheral>
@@ -2745,6 +2845,7 @@
         <register>
           <name>CSR</name>
           <description>SWIM control status register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
         </register>
@@ -2764,6 +2865,7 @@
         <register>
           <name>CR1</name>
           <description>TIM2 Control register 1</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2807,6 +2909,7 @@
         <register>
           <name>CR2</name>
           <description>TIM2 Control register 2</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2820,6 +2923,7 @@
         <register>
           <name>SMCR</name>
           <description>TIM2 Slave Mode Control register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2843,6 +2947,7 @@
         <register>
           <name>ETR</name>
           <description>TIM2 external trigger register</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2871,6 +2976,7 @@
         <register>
           <name>IER</name>
           <description>TIM2 Interrupt enable register</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2904,6 +3010,7 @@
         <register>
           <name>SR1</name>
           <description>TIM2 Status register 1</description>
+          <size>8</size>
           <addressOffset>0x0005</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2937,6 +3044,7 @@
         <register>
           <name>SR2</name>
           <description>TIM2 Status register 2</description>
+          <size>8</size>
           <addressOffset>0x0006</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2955,6 +3063,7 @@
         <register>
           <name>EGR</name>
           <description>TIM2 Event Generation register</description>
+          <size>8</size>
           <addressOffset>0x0007</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -2988,6 +3097,7 @@
         <register>
           <name>CCMR1_CAPTURE</name>
           <description>TIM2 Capture/Compare mode register 1</description>
+          <size>8</size>
           <addressOffset>0x0008</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3011,6 +3121,7 @@
         <register>
           <name>CCMR2_CAPTURE</name>
           <description>TIM2 Capture/Compare mode register 2</description>
+          <size>8</size>
           <addressOffset>0x0009</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3034,6 +3145,7 @@
         <register>
           <name>CCER1</name>
           <description>TIM2 Capture/Compare enable register 1</description>
+          <size>8</size>
           <addressOffset>0x000A</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3062,6 +3174,7 @@
         <register>
           <name>CNTRH</name>
           <description>TIM2 Counter high</description>
+          <size>8</size>
           <addressOffset>0x000B</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3075,6 +3188,7 @@
         <register>
           <name>CNTRL</name>
           <description>TIM2 Counter low</description>
+          <size>8</size>
           <addressOffset>0x000C</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3088,6 +3202,7 @@
         <register>
           <name>PSCR</name>
           <description>TIM2 Prescaler register</description>
+          <size>8</size>
           <addressOffset>0x000D</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3101,6 +3216,7 @@
         <register>
           <name>ARRH</name>
           <description>TIM2 Auto-reload register high</description>
+          <size>8</size>
           <addressOffset>0x000E</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -3114,6 +3230,7 @@
         <register>
           <name>ARRL</name>
           <description>TIM2 Auto-reload register low</description>
+          <size>8</size>
           <addressOffset>0x000F</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -3127,6 +3244,7 @@
         <register>
           <name>CCR1H</name>
           <description>TIM2 Capture/Compare register 1 high</description>
+          <size>8</size>
           <addressOffset>0x0010</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3140,6 +3258,7 @@
         <register>
           <name>CCR1L</name>
           <description>TIM2 Capture/Compare register 1 low</description>
+          <size>8</size>
           <addressOffset>0x0011</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3153,6 +3272,7 @@
         <register>
           <name>CCR2H</name>
           <description>TIM2 Capture/Compare register 2 high</description>
+          <size>8</size>
           <addressOffset>0x0012</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3166,6 +3286,7 @@
         <register>
           <name>CCR2L</name>
           <description>TIM2 Capture/Compare register 2 low</description>
+          <size>8</size>
           <addressOffset>0x0013</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3179,6 +3300,7 @@
         <register>
           <name>BKR</name>
           <description>TIM2 Break register</description>
+          <size>8</size>
           <addressOffset>0x0014</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3217,6 +3339,7 @@
         <register>
           <name>OISR</name>
           <description>TIM2 Output idle state register</description>
+          <size>8</size>
           <addressOffset>0x0015</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3234,13 +3357,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM2_BIF</name>
-        <description>TIM2_BIF interrupt</description>
+        <name>TIM2_BIF_OVR_UIF_TIF</name>
+        <description>TIM2_BIF_OVR_UIF_TIF interrupt</description>
         <value>19</value>
       </interrupt>
       <interrupt>
-        <name>TIM2_CAPCOM_CC1IF</name>
-        <description>TIM2_CAPCOM_CC1IF interrupt</description>
+        <name>TIM2_CC1IF_CC2IF</name>
+        <description>TIM2_CC1IF_CC2IF interrupt</description>
         <value>20</value>
       </interrupt>
     </peripheral>
@@ -3258,6 +3381,7 @@
         <register>
           <name>CR1</name>
           <description>TIM3 Control register 1</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3301,6 +3425,7 @@
         <register>
           <name>CR2</name>
           <description>TIM3 Control register 2</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3314,6 +3439,7 @@
         <register>
           <name>SMCR</name>
           <description>TIM3 Slave Mode Control register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3337,6 +3463,7 @@
         <register>
           <name>ETR</name>
           <description>TIM3 external trigger register</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3365,6 +3492,7 @@
         <register>
           <name>IER</name>
           <description>TIM3 Interrupt enable register</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3398,6 +3526,7 @@
         <register>
           <name>SR1</name>
           <description>TIM3 Status register 1</description>
+          <size>8</size>
           <addressOffset>0x0005</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3431,6 +3560,7 @@
         <register>
           <name>SR2</name>
           <description>TIM3 Status register 2</description>
+          <size>8</size>
           <addressOffset>0x0006</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3449,6 +3579,7 @@
         <register>
           <name>EGR</name>
           <description>TIM3 Event Generation register</description>
+          <size>8</size>
           <addressOffset>0x0007</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3482,6 +3613,7 @@
         <register>
           <name>CCMR1_CAPTURE</name>
           <description>TIM3 Capture/Compare mode register 1</description>
+          <size>8</size>
           <addressOffset>0x0008</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3505,6 +3637,7 @@
         <register>
           <name>CCMR2_CAPTURE</name>
           <description>TIM3 Capture/Compare mode register 2</description>
+          <size>8</size>
           <addressOffset>0x0009</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3528,6 +3661,7 @@
         <register>
           <name>CCER1</name>
           <description>TIM3 Capture/Compare enable register 1</description>
+          <size>8</size>
           <addressOffset>0x000A</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3556,6 +3690,7 @@
         <register>
           <name>CNTRH</name>
           <description>TIM3 Counter high</description>
+          <size>8</size>
           <addressOffset>0x000B</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3569,6 +3704,7 @@
         <register>
           <name>CNTRL</name>
           <description>TIM3 Counter low</description>
+          <size>8</size>
           <addressOffset>0x000C</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3582,6 +3718,7 @@
         <register>
           <name>PSCR</name>
           <description>TIM3 Prescaler register</description>
+          <size>8</size>
           <addressOffset>0x000D</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3595,6 +3732,7 @@
         <register>
           <name>ARRH</name>
           <description>TIM3 Auto-reload register high</description>
+          <size>8</size>
           <addressOffset>0x000E</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -3608,6 +3746,7 @@
         <register>
           <name>ARRL</name>
           <description>TIM3 Auto-reload register low</description>
+          <size>8</size>
           <addressOffset>0x000F</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -3621,6 +3760,7 @@
         <register>
           <name>CCR1H</name>
           <description>TIM3 Capture/Compare register 1 high</description>
+          <size>8</size>
           <addressOffset>0x0010</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3634,6 +3774,7 @@
         <register>
           <name>CCR1L</name>
           <description>TIM3 Capture/Compare register 1 low</description>
+          <size>8</size>
           <addressOffset>0x0011</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3647,6 +3788,7 @@
         <register>
           <name>CCR2H</name>
           <description>TIM3 Capture/Compare register 2 high</description>
+          <size>8</size>
           <addressOffset>0x0012</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3660,6 +3802,7 @@
         <register>
           <name>CCR2L</name>
           <description>TIM3 Capture/Compare register 2 low</description>
+          <size>8</size>
           <addressOffset>0x0013</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3673,6 +3816,7 @@
         <register>
           <name>BKR</name>
           <description>TIM3 Break register</description>
+          <size>8</size>
           <addressOffset>0x0014</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3711,6 +3855,7 @@
         <register>
           <name>OISR</name>
           <description>TIM3 Output idle state register</description>
+          <size>8</size>
           <addressOffset>0x0015</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3728,13 +3873,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM3_BIF</name>
-        <description>TIM3_BIF interrupt</description>
+        <name>TIM3_BIF_OVR_UIF_TIF</name>
+        <description>TIM3_BIF_OVR_UIF_TIF interrupt</description>
         <value>21</value>
       </interrupt>
       <interrupt>
-        <name>TIM3_CAPCOM_CC1IF</name>
-        <description>TIM3_CAPCOM_CC1IF interrupt</description>
+        <name>TIM3_CC1IF_CC2IF</name>
+        <description>TIM3_CC1IF_CC2IF interrupt</description>
         <value>22</value>
       </interrupt>
     </peripheral>
@@ -3752,6 +3897,7 @@
         <register>
           <name>CR1</name>
           <description>TIM4 Control register 1</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3785,6 +3931,7 @@
         <register>
           <name>CR2</name>
           <description>TIM4 Control register 2</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3798,6 +3945,7 @@
         <register>
           <name>SMCR</name>
           <description>TIM4 Slave Mode Control Register</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3821,6 +3969,7 @@
         <register>
           <name>IER</name>
           <description>TIM4 Interrupt enable register</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3839,6 +3988,7 @@
         <register>
           <name>SR1</name>
           <description>TIM4 Status register 1</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3857,6 +4007,7 @@
         <register>
           <name>EGR</name>
           <description>TIM4 Event Generation register</description>
+          <size>8</size>
           <addressOffset>0x0005</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3875,6 +4026,7 @@
         <register>
           <name>CNTR</name>
           <description>TIM4 Counter</description>
+          <size>8</size>
           <addressOffset>0x0006</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3888,6 +4040,7 @@
         <register>
           <name>PSCR</name>
           <description>TIM4 Prescaler register</description>
+          <size>8</size>
           <addressOffset>0x0007</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3901,6 +4054,7 @@
         <register>
           <name>ARR</name>
           <description>TIM4 Auto-reload register low</description>
+          <size>8</size>
           <addressOffset>0x0008</addressOffset>
           <resetValue>0xFF</resetValue>
           <fields>
@@ -3913,8 +4067,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM4_TIF</name>
-        <description>TIM4_TIF interrupt</description>
+        <name>TIM4_TIF_UIF</name>
+        <description>TIM4_TIF_UIF interrupt</description>
         <value>25</value>
       </interrupt>
     </peripheral>
@@ -3932,6 +4086,7 @@
         <register>
           <name>SR</name>
           <description>USART Status Register</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0xC0</resetValue>
           <fields>
@@ -3980,6 +4135,7 @@
         <register>
           <name>DR</name>
           <description>USART Data Register</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -3993,6 +4149,7 @@
         <register>
           <name>BRR1</name>
           <description>USART Baud Rate Register 1</description>
+          <size>8</size>
           <addressOffset>0x0002</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -4006,6 +4163,7 @@
         <register>
           <name>BRR2</name>
           <description>USART Baud Rate Register 2</description>
+          <size>8</size>
           <addressOffset>0x0003</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -4019,6 +4177,7 @@
         <register>
           <name>CR1</name>
           <description>USART Control Register 1</description>
+          <size>8</size>
           <addressOffset>0x0004</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -4067,6 +4226,7 @@
         <register>
           <name>CR2</name>
           <description>USART Control Register 2</description>
+          <size>8</size>
           <addressOffset>0x0005</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -4115,6 +4275,7 @@
         <register>
           <name>CR3</name>
           <description>USART Control Register 3</description>
+          <size>8</size>
           <addressOffset>0x0006</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -4148,6 +4309,7 @@
         <register>
           <name>CR4</name>
           <description>USART Control Register 4</description>
+          <size>8</size>
           <addressOffset>0x0007</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -4160,13 +4322,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>USART_T_TC</name>
-        <description>USART_T_TC interrupt</description>
+        <name>USART_TC_TXE</name>
+        <description>USART_TC_TXE interrupt</description>
         <value>27</value>
       </interrupt>
       <interrupt>
-        <name>USART_R_IDLE</name>
-        <description>USART_R_IDLE interrupt</description>
+        <name>USART_IDLE_OR_PE_RXNE</name>
+        <description>USART_IDLE_OR_PE_RXNE interrupt</description>
         <value>28</value>
       </interrupt>
     </peripheral>
@@ -4184,6 +4346,7 @@
         <register>
           <name>CR1</name>
           <description>WFE control register 1</description>
+          <size>8</size>
           <addressOffset>0x0000</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
@@ -4222,6 +4385,7 @@
         <register>
           <name>CR2</name>
           <description>WFE control register 2</description>
+          <size>8</size>
           <addressOffset>0x0001</addressOffset>
           <resetValue>0x00</resetValue>
           <fields>
