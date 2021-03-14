@@ -18,6 +18,7 @@
     <itcmPresent>false</itcmPresent>
     <dtcmPresent>false</dtcmPresent>
     <vtorPresent>false</vtorPresent>
+    <nvicPrioBits>4</nvicPrioBits>
   </cpu>
   <size>8</size>
   <width>8</width>
@@ -596,8 +597,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>ADC_ADC1_AWDG_ADC1_EOC</name>
-        <description>ADC_ADC1_AWDG_ADC1_EOC interrupt</description>
+        <name>Interrupt_IRQ22</name>
+        <description>Interrupt_IRQ22 interrupt</description>
         <value>22</value>
       </interrupt>
     </peripheral>
@@ -666,8 +667,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>AWU_AWU</name>
-        <description>AWU_AWU interrupt</description>
+        <name>Interrupt_IRQ1</name>
+        <description>Interrupt_IRQ1 interrupt</description>
         <value>1</value>
       </interrupt>
     </peripheral>
@@ -979,8 +980,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>CLK_CSS_SWITCH</name>
-        <description>CLK_CSS_SWITCH interrupt</description>
+        <name>Interrupt_IRQ2</name>
+        <description>Interrupt_IRQ2 interrupt</description>
         <value>2</value>
       </interrupt>
     </peripheral>
@@ -1485,8 +1486,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>FLASH_EOP_WR_PG_DIS</name>
-        <description>FLASH_EOP_WR_PG_DIS interrupt</description>
+        <name>Interrupt_IRQ24</name>
+        <description>Interrupt_IRQ24 interrupt</description>
         <value>24</value>
       </interrupt>
     </peripheral>
@@ -1827,8 +1828,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>I2C_ADD10_ADDR_AF_ARLO_BERR_BTF_OVR_RXNE_SB_STOPF_TXE_WUFH</name>
-        <description>I2C_ADD10_ADDR_AF_ARLO_BERR_BTF_OVR_RXNE_SB_STOPF_TXE_WUFH interrupt</description>
+        <name>Interrupt_IRQ19</name>
+        <description>Interrupt_IRQ19 interrupt</description>
         <value>19</value>
       </interrupt>
     </peripheral>
@@ -2119,6 +2120,11 @@
           </fields>
         </register>
       </registers>
+      <interrupt>
+        <name>Interrupt_IRQ2</name>
+        <description>Interrupt_IRQ2 interrupt</description>
+        <value>2</value>
+      </interrupt>
     </peripheral>
     <peripheral>
       <name>IWDG</name>
@@ -2517,13 +2523,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>LINUART_TC_TXE</name>
-        <description>LINUART_TC_TXE interrupt</description>
+        <name>Interrupt_IRQ17</name>
+        <description>Interrupt_IRQ17 interrupt</description>
         <value>17</value>
       </interrupt>
       <interrupt>
-        <name>LINUART_IDLE_LBDF_LHDF_OR_PE_RXNE</name>
-        <description>LINUART_IDLE_LBDF_LHDF_OR_PE_RXNE interrupt</description>
+        <name>Interrupt_IRQ18</name>
+        <description>Interrupt_IRQ18 interrupt</description>
         <value>18</value>
       </interrupt>
     </peripheral>
@@ -4437,8 +4443,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>SPI_CRCERR_MODF_OVR_RXNE_TXE_WKUP</name>
-        <description>SPI_CRCERR_MODF_OVR_RXNE_TXE_WKUP interrupt</description>
+        <name>Interrupt_IRQ10</name>
+        <description>Interrupt_IRQ10 interrupt</description>
         <value>10</value>
       </interrupt>
     </peripheral>
@@ -5308,13 +5314,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM1_BIF_TIF_OVR_UIF</name>
-        <description>TIM1_BIF_TIF_OVR_UIF interrupt</description>
+        <name>Interrupt_IRQ11</name>
+        <description>Interrupt_IRQ11 interrupt</description>
         <value>11</value>
       </interrupt>
       <interrupt>
-        <name>TIM1_CC1IF_CC2IF_CC3IF_CC4IF_COMIF</name>
-        <description>TIM1_CC1IF_CC2IF_CC3IF_CC4IF_COMIF interrupt</description>
+        <name>Interrupt_IRQ12</name>
+        <description>Interrupt_IRQ12 interrupt</description>
         <value>12</value>
       </interrupt>
     </peripheral>
@@ -5813,13 +5819,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM5_OVR_UIF</name>
-        <description>TIM5_OVR_UIF interrupt</description>
+        <name>Interrupt_IRQ13</name>
+        <description>Interrupt_IRQ13 interrupt</description>
         <value>13</value>
       </interrupt>
       <interrupt>
-        <name>TIM5_CC1IF_CC2IF_CC3IF_TIF</name>
-        <description>TIM5_CC1IF_CC2IF_CC3IF_TIF interrupt</description>
+        <name>Interrupt_IRQ14</name>
+        <description>Interrupt_IRQ14 interrupt</description>
         <value>14</value>
       </interrupt>
     </peripheral>
@@ -6007,8 +6013,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM6_OVR_UIF</name>
-        <description>TIM6_OVR_UIF interrupt</description>
+        <name>Interrupt_IRQ23</name>
+        <description>Interrupt_IRQ23 interrupt</description>
         <value>23</value>
       </interrupt>
     </peripheral>

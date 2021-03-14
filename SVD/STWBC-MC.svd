@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <device xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="1.1" xs:noNamespaceSchemaLocation="CMSIS-SVD.xsd">
   <vendor>STMicroelectronics</vendor>
-  <name>STWBC-MC</name>
+  <name>STWBC_MC</name>
   <version>1.0</version>
   <series>STWBC</series>
   <description>Digital controller for wireless battery chargers transmitters for Qi multicoil applications</description>
@@ -18,6 +18,7 @@
     <itcmPresent>false</itcmPresent>
     <dtcmPresent>false</dtcmPresent>
     <vtorPresent>false</vtorPresent>
+    <nvicPrioBits>4</nvicPrioBits>
   </cpu>
   <size>8</size>
   <width>8</width>
@@ -390,8 +391,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>ADC_EOC_EOS_SEQ</name>
-        <description>ADC_EOC_EOS_SEQ interrupt</description>
+        <name>Interrupt_IRQ22</name>
+        <description>Interrupt_IRQ22 interrupt</description>
         <value>22</value>
       </interrupt>
     </peripheral>
@@ -460,8 +461,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>AWU_AWU</name>
-        <description>AWU_AWU interrupt</description>
+        <name>Interrupt_IRQ1</name>
+        <description>Interrupt_IRQ1 interrupt</description>
         <value>1</value>
       </interrupt>
     </peripheral>
@@ -1015,8 +1016,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>CLK_CSS_SWITCH</name>
-        <description>CLK_CSS_SWITCH interrupt</description>
+        <name>Interrupt_IRQ2</name>
+        <description>Interrupt_IRQ2 interrupt</description>
         <value>2</value>
       </interrupt>
     </peripheral>
@@ -1249,8 +1250,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>FLASH_EOP_WR_PG_DIS</name>
-        <description>FLASH_EOP_WR_PG_DIS interrupt</description>
+        <name>Interrupt_IRQ24</name>
+        <description>Interrupt_IRQ24 interrupt</description>
         <value>24</value>
       </interrupt>
     </peripheral>
@@ -1619,8 +1620,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>I2C_ADD10_ADDR_AF_ARLO_BERR_BTF_OVR_RXNE_SB_STOPF_TXE</name>
-        <description>I2C_ADD10_ADDR_AF_ARLO_BERR_BTF_OVR_RXNE_SB_STOPF_TXE interrupt</description>
+        <name>Interrupt_IRQ19</name>
+        <description>Interrupt_IRQ19 interrupt</description>
         <value>19</value>
       </interrupt>
     </peripheral>
@@ -1853,6 +1854,11 @@
           </fields>
         </register>
       </registers>
+      <interrupt>
+        <name>Interrupt_IRQ2</name>
+        <description>Interrupt_IRQ2 interrupt</description>
+        <value>2</value>
+      </interrupt>
     </peripheral>
     <peripheral>
       <name>MSC</name>
@@ -4962,8 +4968,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>SMED0_OVF_STATE0_STATE1_STATE2_STATE3</name>
-        <description>SMED0_OVF_STATE0_STATE1_STATE2_STATE3 interrupt</description>
+        <name>Interrupt_IRQ6</name>
+        <description>Interrupt_IRQ6 interrupt</description>
         <value>6</value>
       </interrupt>
     </peripheral>
@@ -6384,8 +6390,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>SMED1_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3</name>
-        <description>SMED1_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3 interrupt</description>
+        <name>Interrupt_IRQ7</name>
+        <description>Interrupt_IRQ7 interrupt</description>
         <value>7</value>
       </interrupt>
     </peripheral>
@@ -7806,8 +7812,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>SMED2_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3</name>
-        <description>SMED2_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3 interrupt</description>
+        <name>Interrupt_IRQ15</name>
+        <description>Interrupt_IRQ15 interrupt</description>
         <value>15</value>
       </interrupt>
     </peripheral>
@@ -9228,8 +9234,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>SMED3_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3</name>
-        <description>SMED3_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3 interrupt</description>
+        <name>Interrupt_IRQ16</name>
+        <description>Interrupt_IRQ16 interrupt</description>
         <value>16</value>
       </interrupt>
     </peripheral>
@@ -10650,8 +10656,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>SMED4_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3</name>
-        <description>SMED4_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3 interrupt</description>
+        <name>Interrupt_IRQ26</name>
+        <description>Interrupt_IRQ26 interrupt</description>
         <value>26</value>
       </interrupt>
     </peripheral>
@@ -12072,8 +12078,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>SMED5_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3</name>
-        <description>SMED5_INSIG0_INSIG1_INSIG2_OVF_STATE0_STATE1_STATE2_STATE3 interrupt</description>
+        <name>Interrupt_IRQ27</name>
+        <description>Interrupt_IRQ27 interrupt</description>
         <value>27</value>
       </interrupt>
     </peripheral>
@@ -12236,8 +12242,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>STMR_OVF</name>
-        <description>STMR_OVF interrupt</description>
+        <name>Interrupt_IRQ23</name>
+        <description>Interrupt_IRQ23 interrupt</description>
         <value>23</value>
       </interrupt>
     </peripheral>
@@ -12644,13 +12650,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>UART_TC_TXE</name>
-        <description>UART_TC_TXE interrupt</description>
+        <name>Interrupt_IRQ17</name>
+        <description>Interrupt_IRQ17 interrupt</description>
         <value>17</value>
       </interrupt>
       <interrupt>
-        <name>UART_IDLE_OR_PE_RXNE</name>
-        <description>UART_IDLE_OR_PE_RXNE interrupt</description>
+        <name>Interrupt_IRQ18</name>
+        <description>Interrupt_IRQ18 interrupt</description>
         <value>18</value>
       </interrupt>
     </peripheral>

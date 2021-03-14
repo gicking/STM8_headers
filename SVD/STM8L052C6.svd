@@ -18,6 +18,7 @@
     <itcmPresent>false</itcmPresent>
     <dtcmPresent>false</dtcmPresent>
     <vtorPresent>false</vtorPresent>
+    <nvicPrioBits>4</nvicPrioBits>
   </cpu>
   <size>8</size>
   <width>8</width>
@@ -774,8 +775,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>ADC1_AWD_EOC_OVER</name>
-        <description>ADC1_AWD_EOC_OVER interrupt</description>
+        <name>Interrupt_IRQ18</name>
+        <description>Interrupt_IRQ18 interrupt</description>
         <value>18</value>
       </interrupt>
     </peripheral>
@@ -1317,8 +1318,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>CLK_CSS_SWITCH</name>
-        <description>CLK_CSS_SWITCH interrupt</description>
+        <name>Interrupt_IRQ17</name>
+        <description>Interrupt_IRQ17 interrupt</description>
         <value>17</value>
       </interrupt>
     </peripheral>
@@ -1475,8 +1476,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>COMP_EF1_EF2</name>
-        <description>COMP_EF1_EF2 interrupt</description>
+        <name>Interrupt_IRQ18</name>
+        <description>Interrupt_IRQ18 interrupt</description>
         <value>18</value>
       </interrupt>
     </peripheral>
@@ -1933,13 +1934,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>DM_DMA1_CH0_HT_DMA1_CH0_TC_DMA1_CH1_HT_DMA1_CH1_TC</name>
-        <description>DM_DMA1_CH0_HT_DMA1_CH0_TC_DMA1_CH1_HT_DMA1_CH1_TC interrupt</description>
+        <name>Interrupt_IRQ2</name>
+        <description>Interrupt_IRQ2 interrupt</description>
         <value>2</value>
       </interrupt>
       <interrupt>
-        <name>DM_DMA1_CH2_HT_DMA1_CH2_TC_DMA1_CH3_HT_DMA1_CH3_TC</name>
-        <description>DM_DMA1_CH2_HT_DMA1_CH2_TC_DMA1_CH3_HT_DMA1_CH3_TC interrupt</description>
+        <name>Interrupt_IRQ3</name>
+        <description>Interrupt_IRQ3 interrupt</description>
         <value>3</value>
       </interrupt>
     </peripheral>
@@ -3366,13 +3367,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>DMA1_CH0_HT_CH0_TC_CH1_HT_CH1_TC</name>
-        <description>DMA1_CH0_HT_CH0_TC_CH1_HT_CH1_TC interrupt</description>
+        <name>Interrupt_IRQ2</name>
+        <description>Interrupt_IRQ2 interrupt</description>
         <value>2</value>
       </interrupt>
       <interrupt>
-        <name>DMA1_CH2_HT_CH2_TC_CH3_HT_CH3_TC</name>
-        <description>DMA1_CH2_HT_CH2_TC_CH3_HT_CH3_TC interrupt</description>
+        <name>Interrupt_IRQ3</name>
+        <description>Interrupt_IRQ3 interrupt</description>
         <value>3</value>
       </interrupt>
     </peripheral>
@@ -3514,8 +3515,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>FLASH_EOP_WR_PG_DIS</name>
-        <description>FLASH_EOP_WR_PG_DIS interrupt</description>
+        <name>Interrupt_IRQ1</name>
+        <description>Interrupt_IRQ1 interrupt</description>
         <value>1</value>
       </interrupt>
     </peripheral>
@@ -5668,8 +5669,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>LCD_SOF</name>
-        <description>LCD_SOF interrupt</description>
+        <name>Interrupt_IRQ16</name>
+        <description>Interrupt_IRQ16 interrupt</description>
         <value>16</value>
       </interrupt>
     </peripheral>
@@ -8759,8 +8760,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>RTC_ALARM_WAKEUP</name>
-        <description>RTC_ALARM_WAKEUP interrupt</description>
+        <name>Interrupt_IRQ4</name>
+        <description>Interrupt_IRQ4 interrupt</description>
         <value>4</value>
       </interrupt>
     </peripheral>
@@ -10441,18 +10442,18 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM1_BIF</name>
-        <description>TIM1_BIF interrupt</description>
+        <name>Interrupt_IRQ17</name>
+        <description>Interrupt_IRQ17 interrupt</description>
         <value>17</value>
       </interrupt>
       <interrupt>
-        <name>TIM1_OVR_UIF_TIF</name>
-        <description>TIM1_OVR_UIF_TIF interrupt</description>
+        <name>Interrupt_IRQ23</name>
+        <description>Interrupt_IRQ23 interrupt</description>
         <value>23</value>
       </interrupt>
       <interrupt>
-        <name>TIM1_CC1IF_CC2IF_CC3IF_CC4IF_COMIF</name>
-        <description>TIM1_CC1IF_CC2IF_CC3IF_CC4IF_COMIF interrupt</description>
+        <name>Interrupt_IRQ24</name>
+        <description>Interrupt_IRQ24 interrupt</description>
         <value>24</value>
       </interrupt>
     </peripheral>
@@ -11286,13 +11287,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM2_BIF_OVR_UIF_TIF</name>
-        <description>TIM2_BIF_OVR_UIF_TIF interrupt</description>
+        <name>Interrupt_IRQ19</name>
+        <description>Interrupt_IRQ19 interrupt</description>
         <value>19</value>
       </interrupt>
       <interrupt>
-        <name>TIM2_CC1IF_CC2IF</name>
-        <description>TIM2_CC1IF_CC2IF interrupt</description>
+        <name>Interrupt_IRQ20</name>
+        <description>Interrupt_IRQ20 interrupt</description>
         <value>20</value>
       </interrupt>
     </peripheral>
@@ -12126,13 +12127,13 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM3_BIF_OVR_UIF_TIF</name>
-        <description>TIM3_BIF_OVR_UIF_TIF interrupt</description>
+        <name>Interrupt_IRQ21</name>
+        <description>Interrupt_IRQ21 interrupt</description>
         <value>21</value>
       </interrupt>
       <interrupt>
-        <name>TIM3_CC1IF_CC2IF</name>
-        <description>TIM3_CC1IF_CC2IF interrupt</description>
+        <name>Interrupt_IRQ22</name>
+        <description>Interrupt_IRQ22 interrupt</description>
         <value>22</value>
       </interrupt>
     </peripheral>
@@ -12404,8 +12405,8 @@
         </register>
       </registers>
       <interrupt>
-        <name>TIM4_TIF_UIF</name>
-        <description>TIM4_TIF_UIF interrupt</description>
+        <name>Interrupt_IRQ25</name>
+        <description>Interrupt_IRQ25 interrupt</description>
         <value>25</value>
       </interrupt>
     </peripheral>
