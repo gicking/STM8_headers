@@ -83,7 +83,7 @@
   #define SW_RESET()             _asm("dc.b $75")                     ///< reset via illegal opcode (works for all devices)
 
   // data type in bit fields
-  #define BITS                   unsigned int                         ///< data type in bit structs (follow C90 standard)
+  #define BITFIELD_UINT          unsigned int                         ///< data type in bit structs (follow C90 standard)
 
 
 // IAR Compiler
@@ -115,7 +115,7 @@
   #define SW_RESET()             __asm("dc8 0x75")                    ///< reset via illegal opcode (works for all devices)
 
   // data type in bit fields
-  #define BITS                   unsigned char                        ///< data type in bit structs (deviating from C90 standard)
+  #define BITFIELD_UINT          unsigned char                        ///< data type in bit structs (deviating from C90 standard)
 
 
 // SDCC compiler
@@ -147,7 +147,7 @@
   #define SW_RESET()             __asm__(".db 0x75")                  ///< reset via illegal opcode (works for all devices)
 
   // data type in bit fields
-  #define BITS                   unsigned int                         ///< data type in bit structs (follow C90 standard)
+  #define BITFIELD_UINT          unsigned int                         ///< data type in bit structs (follow C90 standard)
 
 // unsupported compiler -> stop
 #else
@@ -300,11 +300,11 @@ typedef struct {
 
     /// bitwise access to register CSR
     struct {
-      BITS   MSR                 : 1;      // bit 0
-      BITS                       : 3;      // 3 bits
-      BITS   AWUEN               : 1;      // bit 4
-      BITS   AWUF                : 1;      // bit 5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   MSR        : 1;      // bit 0
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   AWUEN      : 1;      // bit 4
+      BITFIELD_UINT   AWUF       : 1;      // bit 5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // CSR bitfield
 
     /// register _AWU_CSR reset value
@@ -321,8 +321,8 @@ typedef struct {
 
     /// bitwise access to register APR
     struct {
-      BITS   APR                 : 6;      // bits 0-5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   APR        : 6;      // bits 0-5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // APR bitfield
 
     /// register _AWU_APR reset value
@@ -339,8 +339,8 @@ typedef struct {
 
     /// bitwise access to register TBR
     struct {
-      BITS   AWUTB               : 6;      // bits 0-5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   AWUTB      : 6;      // bits 0-5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // TBR bitfield
 
     /// register _AWU_TBR reset value
@@ -369,9 +369,9 @@ typedef struct {
 
     /// bitwise access to register CSR
     struct {
-      BITS   BEEPDIV             : 5;      // bits 0-4
-      BITS   BEEPEN              : 1;      // bit 5
-      BITS   BEEPSEL             : 2;      // bits 6-7
+      BITFIELD_UINT   BEEPDIV    : 5;      // bits 0-4
+      BITFIELD_UINT   BEEPEN     : 1;      // bit 5
+      BITFIELD_UINT   BEEPSEL    : 2;      // bits 6-7
     };  // CSR bitfield
 
     /// register _BEEP_CSR reset value
@@ -400,8 +400,8 @@ typedef struct {
 
     /// bitwise access to register CKDIVR
     struct {
-      BITS   HSIDIV              : 2;      // bits 0-1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   HSIDIV     : 2;      // bits 0-1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // CKDIVR bitfield
 
     /// register _CLK_CKDIVR reset value
@@ -422,7 +422,7 @@ typedef struct {
 
     /// bitwise access to register PCKENR1
     struct {
-      BITS   PCKENR1             : 8;      // bits 0-7
+      BITFIELD_UINT   PCKENR1    : 8;      // bits 0-7
     };  // PCKENR1 bitfield
 
     /// register _CLK_PCKENR1 reset value
@@ -439,7 +439,7 @@ typedef struct {
 
     /// bitwise access to register PCKENR2
     struct {
-      BITS   PCKENR2             : 8;      // bits 0-7
+      BITFIELD_UINT   PCKENR2    : 8;      // bits 0-7
     };  // PCKENR2 bitfield
 
     /// register _CLK_PCKENR2 reset value
@@ -456,9 +456,9 @@ typedef struct {
 
     /// bitwise access to register CCOR
     struct {
-      BITS   CC0EN               : 1;      // bit 0
-      BITS   CCOSEL              : 2;      // bits 1-2
-      BITS                       : 5;      // 5 bits
+      BITFIELD_UINT   CC0EN      : 1;      // bit 0
+      BITFIELD_UINT   CCOSEL     : 2;      // bits 1-2
+      BITFIELD_UINT              : 5;      // 5 bits
     };  // CCOR bitfield
 
     /// register _CLK_CCOR reset value
@@ -627,14 +627,14 @@ typedef struct {
 
     /// bitwise access to register CCR
     struct {
-      BITS   C                   : 1;      // bit 0
-      BITS   Z                   : 1;      // bit 1
-      BITS   N                   : 1;      // bit 2
-      BITS   I0                  : 1;      // bit 3
-      BITS   H                   : 1;      // bit 4
-      BITS   I1                  : 1;      // bit 5
-      BITS                       : 1;      // 1 bit
-      BITS   V                   : 1;      // bit 7
+      BITFIELD_UINT   C          : 1;      // bit 0
+      BITFIELD_UINT   Z          : 1;      // bit 1
+      BITFIELD_UINT   N          : 1;      // bit 2
+      BITFIELD_UINT   I0         : 1;      // bit 3
+      BITFIELD_UINT   H          : 1;      // bit 4
+      BITFIELD_UINT   I1         : 1;      // bit 5
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   V          : 1;      // bit 7
     };  // CCR bitfield
 
     /// register _CPU_CCR reset value
@@ -655,9 +655,9 @@ typedef struct {
 
     /// bitwise access to register CFG_GCR
     struct {
-      BITS   SWD                 : 1;      // bit 0
-      BITS   AL                  : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   SWD        : 1;      // bit 0
+      BITFIELD_UINT   AL         : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // CFG_GCR bitfield
 
     /// register _CPU_CFG_GCR reset value
@@ -852,9 +852,9 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   FIX                 : 1;      // bit 0
-      BITS   IE                  : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   FIX        : 1;      // bit 0
+      BITFIELD_UINT   IE         : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // CR1 bitfield
 
     /// register _FLASH_CR1 reset value
@@ -871,12 +871,12 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS   PRG                 : 1;      // bit 0
-      BITS                       : 3;      // 3 bits
-      BITS   FPRG                : 1;      // bit 4
-      BITS   ERASE               : 1;      // bit 5
-      BITS   WPRG                : 1;      // bit 6
-      BITS   OPT                 : 1;      // bit 7
+      BITFIELD_UINT   PRG        : 1;      // bit 0
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   FPRG       : 1;      // bit 4
+      BITFIELD_UINT   ERASE      : 1;      // bit 5
+      BITFIELD_UINT   WPRG       : 1;      // bit 6
+      BITFIELD_UINT   OPT        : 1;      // bit 7
     };  // CR2 bitfield
 
     /// register _FLASH_CR2 reset value
@@ -893,7 +893,7 @@ typedef struct {
 
     /// bitwise access to register PUKR
     struct {
-      BITS   MASS_PRG            : 8;      // bits 0-7
+      BITFIELD_UINT   MASS_PRG   : 8;      // bits 0-7
     };  // PUKR bitfield
 
     /// register _FLASH_PUKR reset value
@@ -910,7 +910,7 @@ typedef struct {
 
     /// bitwise access to register DUKR
     struct {
-      BITS   MASS_DATA           : 8;      // bits 0-7
+      BITFIELD_UINT   MASS_DATA  : 8;      // bits 0-7
     };  // DUKR bitfield
 
     /// register _FLASH_DUKR reset value
@@ -927,11 +927,11 @@ typedef struct {
 
     /// bitwise access to register IAPSR
     struct {
-      BITS   WR_PG_DIS           : 1;      // bit 0
-      BITS   PUL                 : 1;      // bit 1
-      BITS   EOP                 : 1;      // bit 2
-      BITS   DUL                 : 1;      // bit 3
-      BITS                       : 4;      // 4 bits
+      BITFIELD_UINT   WR_PG_DIS  : 1;      // bit 0
+      BITFIELD_UINT   PUL        : 1;      // bit 1
+      BITFIELD_UINT   EOP        : 1;      // bit 2
+      BITFIELD_UINT   DUL        : 1;      // bit 3
+      BITFIELD_UINT              : 4;      // 4 bits
     };  // IAPSR bitfield
 
     /// register _FLASH_IAPSR reset value
@@ -960,10 +960,10 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   PE                  : 1;      // bit 0
-      BITS                       : 5;      // 5 bits
-      BITS   ENGC                : 1;      // bit 6
-      BITS   NOSTRETCH           : 1;      // bit 7
+      BITFIELD_UINT   PE         : 1;      // bit 0
+      BITFIELD_UINT              : 5;      // 5 bits
+      BITFIELD_UINT   ENGC       : 1;      // bit 6
+      BITFIELD_UINT   NOSTRETCH  : 1;      // bit 7
     };  // CR1 bitfield
 
     /// register _I2C_CR1 reset value
@@ -980,12 +980,12 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS   START               : 1;      // bit 0
-      BITS   STOP                : 1;      // bit 1
-      BITS   ACK                 : 1;      // bit 2
-      BITS   POS                 : 1;      // bit 3
-      BITS                       : 3;      // 3 bits
-      BITS   SWRST               : 1;      // bit 7
+      BITFIELD_UINT   START      : 1;      // bit 0
+      BITFIELD_UINT   STOP       : 1;      // bit 1
+      BITFIELD_UINT   ACK        : 1;      // bit 2
+      BITFIELD_UINT   POS        : 1;      // bit 3
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   SWRST      : 1;      // bit 7
     };  // CR2 bitfield
 
     /// register _I2C_CR2 reset value
@@ -1002,8 +1002,8 @@ typedef struct {
 
     /// bitwise access to register FREQR
     struct {
-      BITS   FREQ                : 6;      // bits 0-5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   FREQ       : 6;      // bits 0-5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // FREQR bitfield
 
     /// register _I2C_FREQR reset value
@@ -1020,7 +1020,7 @@ typedef struct {
 
     /// bitwise access to register OAR1L
     struct {
-      BITS   ADD                 : 8;      // bits 0-7
+      BITFIELD_UINT   ADD        : 8;      // bits 0-7
     };  // OAR1L bitfield
 
     /// register _I2C_OAR1L reset value
@@ -1037,11 +1037,11 @@ typedef struct {
 
     /// bitwise access to register OAR1H
     struct {
-      BITS                       : 1;      // 1 bit
-      BITS   ADD                 : 2;      // bits 1-2
-      BITS                       : 3;      // 3 bits
-      BITS   ADDCONF             : 1;      // bit 6
-      BITS   ADDMODE             : 1;      // bit 7
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   ADD        : 2;      // bits 1-2
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   ADDCONF    : 1;      // bit 6
+      BITFIELD_UINT   ADDMODE    : 1;      // bit 7
     };  // OAR1H bitfield
 
     /// register _I2C_OAR1H reset value
@@ -1058,8 +1058,8 @@ typedef struct {
 
     /// bitwise access to register OAR2
     struct {
-      BITS   ENDUAL              : 1;      // bit 0
-      BITS   ADD2                : 7;      // bits 1-7
+      BITFIELD_UINT   ENDUAL     : 1;      // bit 0
+      BITFIELD_UINT   ADD2       : 7;      // bits 1-7
     };  // OAR2 bitfield
 
     /// register _I2C_OAR2 reset value
@@ -1076,7 +1076,7 @@ typedef struct {
 
     /// bitwise access to register DR
     struct {
-      BITS   DR                  : 8;      // bits 0-7
+      BITFIELD_UINT   DR         : 8;      // bits 0-7
     };  // DR bitfield
 
     /// register _I2C_DR reset value
@@ -1093,14 +1093,14 @@ typedef struct {
 
     /// bitwise access to register SR1
     struct {
-      BITS   SB                  : 1;      // bit 0
-      BITS   ADDR                : 1;      // bit 1
-      BITS   BTF                 : 1;      // bit 2
-      BITS   ADD10               : 1;      // bit 3
-      BITS   STOPF               : 1;      // bit 4
-      BITS                       : 1;      // 1 bit
-      BITS   RXNE                : 1;      // bit 6
-      BITS   TXE                 : 1;      // bit 7
+      BITFIELD_UINT   SB         : 1;      // bit 0
+      BITFIELD_UINT   ADDR       : 1;      // bit 1
+      BITFIELD_UINT   BTF        : 1;      // bit 2
+      BITFIELD_UINT   ADD10      : 1;      // bit 3
+      BITFIELD_UINT   STOPF      : 1;      // bit 4
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   RXNE       : 1;      // bit 6
+      BITFIELD_UINT   TXE        : 1;      // bit 7
     };  // SR1 bitfield
 
     /// register _I2C_SR1 reset value
@@ -1117,13 +1117,13 @@ typedef struct {
 
     /// bitwise access to register SR2
     struct {
-      BITS   BERR                : 1;      // bit 0
-      BITS   ARLO                : 1;      // bit 1
-      BITS   AF                  : 1;      // bit 2
-      BITS   OVR                 : 1;      // bit 3
-      BITS                       : 1;      // 1 bit
-      BITS   WUFH                : 1;      // bit 5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   BERR       : 1;      // bit 0
+      BITFIELD_UINT   ARLO       : 1;      // bit 1
+      BITFIELD_UINT   AF         : 1;      // bit 2
+      BITFIELD_UINT   OVR        : 1;      // bit 3
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   WUFH       : 1;      // bit 5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // SR2 bitfield
 
     /// register _I2C_SR2 reset value
@@ -1140,12 +1140,12 @@ typedef struct {
 
     /// bitwise access to register SR3
     struct {
-      BITS   MSL                 : 1;      // bit 0
-      BITS   BUSY                : 1;      // bit 1
-      BITS   TRA                 : 1;      // bit 2
-      BITS                       : 1;      // 1 bit
-      BITS   GENCALL             : 1;      // bit 4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   MSL        : 1;      // bit 0
+      BITFIELD_UINT   BUSY       : 1;      // bit 1
+      BITFIELD_UINT   TRA        : 1;      // bit 2
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   GENCALL    : 1;      // bit 4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // SR3 bitfield
 
     /// register _I2C_SR3 reset value
@@ -1162,10 +1162,10 @@ typedef struct {
 
     /// bitwise access to register ITR
     struct {
-      BITS   ITERREN             : 1;      // bit 0
-      BITS   ITEVTEN             : 1;      // bit 1
-      BITS   ITBUFEN             : 1;      // bit 2
-      BITS                       : 5;      // 5 bits
+      BITFIELD_UINT   ITERREN    : 1;      // bit 0
+      BITFIELD_UINT   ITEVTEN    : 1;      // bit 1
+      BITFIELD_UINT   ITBUFEN    : 1;      // bit 2
+      BITFIELD_UINT              : 5;      // 5 bits
     };  // ITR bitfield
 
     /// register _I2C_ITR reset value
@@ -1182,7 +1182,7 @@ typedef struct {
 
     /// bitwise access to register CCRL
     struct {
-      BITS   CCR                 : 8;      // bits 0-7
+      BITFIELD_UINT   CCR        : 8;      // bits 0-7
     };  // CCRL bitfield
 
     /// register _I2C_CCRL reset value
@@ -1199,10 +1199,10 @@ typedef struct {
 
     /// bitwise access to register CCRH
     struct {
-      BITS   CCR                 : 4;      // bits 0-3
-      BITS                       : 2;      // 2 bits
-      BITS   DUTY                : 1;      // bit 6
-      BITS   F_S                 : 1;      // bit 7
+      BITFIELD_UINT   CCR        : 4;      // bits 0-3
+      BITFIELD_UINT              : 2;      // 2 bits
+      BITFIELD_UINT   DUTY       : 1;      // bit 6
+      BITFIELD_UINT   F_S        : 1;      // bit 7
     };  // CCRH bitfield
 
     /// register _I2C_CCRH reset value
@@ -1219,8 +1219,8 @@ typedef struct {
 
     /// bitwise access to register TRISER
     struct {
-      BITS   TRISE               : 6;      // bits 0-5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   TRISE      : 6;      // bits 0-5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // TRISER bitfield
 
     /// register _I2C_TRISER reset value
@@ -1249,10 +1249,10 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   P0IS                : 2;      // bits 0-1
-      BITS   P1IS                : 2;      // bits 2-3
-      BITS   P2IS                : 2;      // bits 4-5
-      BITS   P3IS                : 2;      // bits 6-7
+      BITFIELD_UINT   P0IS       : 2;      // bits 0-1
+      BITFIELD_UINT   P1IS       : 2;      // bits 2-3
+      BITFIELD_UINT   P2IS       : 2;      // bits 4-5
+      BITFIELD_UINT   P3IS       : 2;      // bits 6-7
     };  // CR1 bitfield
 
     /// register _ITC_EXTI_CR1 reset value
@@ -1269,10 +1269,10 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS   P4IS                : 2;      // bits 0-1
-      BITS   P5IS                : 2;      // bits 2-3
-      BITS   P6IS                : 2;      // bits 4-5
-      BITS   P7IS                : 2;      // bits 6-7
+      BITFIELD_UINT   P4IS       : 2;      // bits 0-1
+      BITFIELD_UINT   P5IS       : 2;      // bits 2-3
+      BITFIELD_UINT   P6IS       : 2;      // bits 4-5
+      BITFIELD_UINT   P7IS       : 2;      // bits 6-7
     };  // CR2 bitfield
 
     /// register _ITC_EXTI_CR2 reset value
@@ -1289,9 +1289,9 @@ typedef struct {
 
     /// bitwise access to register CR3
     struct {
-      BITS   PDIS                : 2;      // bits 0-1
-      BITS   PBIS                : 2;      // bits 2-3
-      BITS                       : 4;      // 4 bits
+      BITFIELD_UINT   PDIS       : 2;      // bits 0-1
+      BITFIELD_UINT   PBIS       : 2;      // bits 2-3
+      BITFIELD_UINT              : 4;      // 4 bits
     };  // CR3 bitfield
 
     /// register _ITC_EXTI_CR3 reset value
@@ -1308,14 +1308,14 @@ typedef struct {
 
     /// bitwise access to register SR1
     struct {
-      BITS   P0F                 : 1;      // bit 0
-      BITS   P1F                 : 1;      // bit 1
-      BITS   P2F                 : 1;      // bit 2
-      BITS   P3F                 : 1;      // bit 3
-      BITS   P4F                 : 1;      // bit 4
-      BITS   P5F                 : 1;      // bit 5
-      BITS   P6F                 : 1;      // bit 6
-      BITS   P7F                 : 1;      // bit 7
+      BITFIELD_UINT   P0F        : 1;      // bit 0
+      BITFIELD_UINT   P1F        : 1;      // bit 1
+      BITFIELD_UINT   P2F        : 1;      // bit 2
+      BITFIELD_UINT   P3F        : 1;      // bit 3
+      BITFIELD_UINT   P4F        : 1;      // bit 4
+      BITFIELD_UINT   P5F        : 1;      // bit 5
+      BITFIELD_UINT   P6F        : 1;      // bit 6
+      BITFIELD_UINT   P7F        : 1;      // bit 7
     };  // SR1 bitfield
 
     /// register _ITC_EXTI_SR1 reset value
@@ -1332,9 +1332,9 @@ typedef struct {
 
     /// bitwise access to register SR2
     struct {
-      BITS   PBF                 : 1;      // bit 0
-      BITS   PDF                 : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   PBF        : 1;      // bit 0
+      BITFIELD_UINT   PDF        : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // SR2 bitfield
 
     /// register _ITC_EXTI_SR2 reset value
@@ -1351,11 +1351,11 @@ typedef struct {
 
     /// bitwise access to register CONF
     struct {
-      BITS   PBLIS               : 1;      // bit 0
-      BITS   PBHIS               : 1;      // bit 1
-      BITS   PDLIS               : 1;      // bit 2
-      BITS   PDHIS               : 1;      // bit 3
-      BITS                       : 4;      // 4 bits
+      BITFIELD_UINT   PBLIS      : 1;      // bit 0
+      BITFIELD_UINT   PBHIS      : 1;      // bit 1
+      BITFIELD_UINT   PDLIS      : 1;      // bit 2
+      BITFIELD_UINT   PDHIS      : 1;      // bit 3
+      BITFIELD_UINT              : 4;      // 4 bits
     };  // CONF bitfield
 
     /// register _ITC_EXTI_CONF reset value
@@ -1384,9 +1384,9 @@ typedef struct {
 
     /// bitwise access to register SPR1
     struct {
-      BITS                       : 2;      // 2 bits
-      BITS   VECT1SPR            : 2;      // bits 2-3
-      BITS                       : 4;      // 4 bits
+      BITFIELD_UINT              : 2;      // 2 bits
+      BITFIELD_UINT   VECT1SPR   : 2;      // bits 2-3
+      BITFIELD_UINT              : 4;      // 4 bits
     };  // SPR1 bitfield
 
     /// register _ITC_SPR_SPR1 reset value
@@ -1403,10 +1403,10 @@ typedef struct {
 
     /// bitwise access to register SPR2
     struct {
-      BITS   VECT4SPR            : 2;      // bits 0-1
-      BITS                       : 2;      // 2 bits
-      BITS   VECT6SPR            : 2;      // bits 4-5
-      BITS   VECT7SPR            : 2;      // bits 6-7
+      BITFIELD_UINT   VECT4SPR   : 2;      // bits 0-1
+      BITFIELD_UINT              : 2;      // 2 bits
+      BITFIELD_UINT   VECT6SPR   : 2;      // bits 4-5
+      BITFIELD_UINT   VECT7SPR   : 2;      // bits 6-7
     };  // SPR2 bitfield
 
     /// register _ITC_SPR_SPR2 reset value
@@ -1423,10 +1423,10 @@ typedef struct {
 
     /// bitwise access to register SPR3
     struct {
-      BITS   VECT8SPR            : 2;      // bits 0-1
-      BITS   VECT9SPR            : 2;      // bits 2-3
-      BITS   VECT10SPR           : 2;      // bits 4-5
-      BITS   VECT11SPR           : 2;      // bits 6-7
+      BITFIELD_UINT   VECT8SPR   : 2;      // bits 0-1
+      BITFIELD_UINT   VECT9SPR   : 2;      // bits 2-3
+      BITFIELD_UINT   VECT10SPR  : 2;      // bits 4-5
+      BITFIELD_UINT   VECT11SPR  : 2;      // bits 6-7
     };  // SPR3 bitfield
 
     /// register _ITC_SPR_SPR3 reset value
@@ -1443,10 +1443,10 @@ typedef struct {
 
     /// bitwise access to register SPR4
     struct {
-      BITS   VECT12SPR           : 2;      // bits 0-1
-      BITS   VECT13SPR           : 2;      // bits 2-3
-      BITS   VECT14SPR           : 2;      // bits 4-5
-      BITS   VECT15SPR           : 2;      // bits 6-7
+      BITFIELD_UINT   VECT12SPR  : 2;      // bits 0-1
+      BITFIELD_UINT   VECT13SPR  : 2;      // bits 2-3
+      BITFIELD_UINT   VECT14SPR  : 2;      // bits 4-5
+      BITFIELD_UINT   VECT15SPR  : 2;      // bits 6-7
     };  // SPR4 bitfield
 
     /// register _ITC_SPR_SPR4 reset value
@@ -1463,9 +1463,9 @@ typedef struct {
 
     /// bitwise access to register SPR5
     struct {
-      BITS                       : 4;      // 4 bits
-      BITS   VECT18SPR           : 2;      // bits 4-5
-      BITS   VECT19SPR           : 2;      // bits 6-7
+      BITFIELD_UINT              : 4;      // 4 bits
+      BITFIELD_UINT   VECT18SPR  : 2;      // bits 4-5
+      BITFIELD_UINT   VECT19SPR  : 2;      // bits 6-7
     };  // SPR5 bitfield
 
     /// register _ITC_SPR_SPR5 reset value
@@ -1482,10 +1482,10 @@ typedef struct {
 
     /// bitwise access to register SPR6
     struct {
-      BITS   VECT20SPR           : 2;      // bits 0-1
-      BITS   VECT21SPR           : 2;      // bits 2-3
-      BITS   VECT22SPR           : 2;      // bits 4-5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   VECT20SPR  : 2;      // bits 0-1
+      BITFIELD_UINT   VECT21SPR  : 2;      // bits 2-3
+      BITFIELD_UINT   VECT22SPR  : 2;      // bits 4-5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // SPR6 bitfield
 
     /// register _ITC_SPR_SPR6 reset value
@@ -1502,10 +1502,10 @@ typedef struct {
 
     /// bitwise access to register SPR7
     struct {
-      BITS                       : 2;      // 2 bits
-      BITS   VECT25SPR           : 2;      // bits 2-3
-      BITS   VECT26SPR           : 2;      // bits 4-5
-      BITS   VECT27SPR           : 2;      // bits 6-7
+      BITFIELD_UINT              : 2;      // 2 bits
+      BITFIELD_UINT   VECT25SPR  : 2;      // bits 2-3
+      BITFIELD_UINT   VECT26SPR  : 2;      // bits 4-5
+      BITFIELD_UINT   VECT27SPR  : 2;      // bits 6-7
     };  // SPR7 bitfield
 
     /// register _ITC_SPR_SPR7 reset value
@@ -1522,9 +1522,9 @@ typedef struct {
 
     /// bitwise access to register SPR8
     struct {
-      BITS   VECT28SPR           : 2;      // bits 0-1
-      BITS   VECT29SPR           : 2;      // bits 2-3
-      BITS                       : 4;      // 4 bits
+      BITFIELD_UINT   VECT28SPR  : 2;      // bits 0-1
+      BITFIELD_UINT   VECT29SPR  : 2;      // bits 2-3
+      BITFIELD_UINT              : 4;      // 4 bits
     };  // SPR8 bitfield
 
     /// register _ITC_SPR_SPR8 reset value
@@ -1643,14 +1643,14 @@ typedef struct {
 
     /// bitwise access to register ODR
     struct {
-      BITS   ODR0                : 1;      // bit 0
-      BITS   ODR1                : 1;      // bit 1
-      BITS   ODR2                : 1;      // bit 2
-      BITS   ODR3                : 1;      // bit 3
-      BITS   ODR4                : 1;      // bit 4
-      BITS   ODR5                : 1;      // bit 5
-      BITS   ODR6                : 1;      // bit 6
-      BITS   ODR7                : 1;      // bit 7
+      BITFIELD_UINT   ODR0       : 1;      // bit 0
+      BITFIELD_UINT   ODR1       : 1;      // bit 1
+      BITFIELD_UINT   ODR2       : 1;      // bit 2
+      BITFIELD_UINT   ODR3       : 1;      // bit 3
+      BITFIELD_UINT   ODR4       : 1;      // bit 4
+      BITFIELD_UINT   ODR5       : 1;      // bit 5
+      BITFIELD_UINT   ODR6       : 1;      // bit 6
+      BITFIELD_UINT   ODR7       : 1;      // bit 7
     };  // ODR bitfield
 
     /// register _PORT_ODR reset value
@@ -1667,14 +1667,14 @@ typedef struct {
 
     /// bitwise access to register IDR
     struct {
-      BITS   IDR0                : 1;      // bit 0
-      BITS   IDR1                : 1;      // bit 1
-      BITS   IDR2                : 1;      // bit 2
-      BITS   IDR3                : 1;      // bit 3
-      BITS   IDR4                : 1;      // bit 4
-      BITS   IDR5                : 1;      // bit 5
-      BITS   IDR6                : 1;      // bit 6
-      BITS   IDR7                : 1;      // bit 7
+      BITFIELD_UINT   IDR0       : 1;      // bit 0
+      BITFIELD_UINT   IDR1       : 1;      // bit 1
+      BITFIELD_UINT   IDR2       : 1;      // bit 2
+      BITFIELD_UINT   IDR3       : 1;      // bit 3
+      BITFIELD_UINT   IDR4       : 1;      // bit 4
+      BITFIELD_UINT   IDR5       : 1;      // bit 5
+      BITFIELD_UINT   IDR6       : 1;      // bit 6
+      BITFIELD_UINT   IDR7       : 1;      // bit 7
     };  // IDR bitfield
 
     /// register _PORT_IDR reset value
@@ -1691,14 +1691,14 @@ typedef struct {
 
     /// bitwise access to register DDR
     struct {
-      BITS   DDR0                : 1;      // bit 0
-      BITS   DDR1                : 1;      // bit 1
-      BITS   DDR2                : 1;      // bit 2
-      BITS   DDR3                : 1;      // bit 3
-      BITS   DDR4                : 1;      // bit 4
-      BITS   DDR5                : 1;      // bit 5
-      BITS   DDR6                : 1;      // bit 6
-      BITS   DDR7                : 1;      // bit 7
+      BITFIELD_UINT   DDR0       : 1;      // bit 0
+      BITFIELD_UINT   DDR1       : 1;      // bit 1
+      BITFIELD_UINT   DDR2       : 1;      // bit 2
+      BITFIELD_UINT   DDR3       : 1;      // bit 3
+      BITFIELD_UINT   DDR4       : 1;      // bit 4
+      BITFIELD_UINT   DDR5       : 1;      // bit 5
+      BITFIELD_UINT   DDR6       : 1;      // bit 6
+      BITFIELD_UINT   DDR7       : 1;      // bit 7
     };  // DDR bitfield
 
     /// register _PORT_DDR reset value
@@ -1715,14 +1715,14 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   C10                 : 1;      // bit 0
-      BITS   C11                 : 1;      // bit 1
-      BITS   C12                 : 1;      // bit 2
-      BITS   C13                 : 1;      // bit 3
-      BITS   C14                 : 1;      // bit 4
-      BITS   C15                 : 1;      // bit 5
-      BITS   C16                 : 1;      // bit 6
-      BITS   C17                 : 1;      // bit 7
+      BITFIELD_UINT   C10        : 1;      // bit 0
+      BITFIELD_UINT   C11        : 1;      // bit 1
+      BITFIELD_UINT   C12        : 1;      // bit 2
+      BITFIELD_UINT   C13        : 1;      // bit 3
+      BITFIELD_UINT   C14        : 1;      // bit 4
+      BITFIELD_UINT   C15        : 1;      // bit 5
+      BITFIELD_UINT   C16        : 1;      // bit 6
+      BITFIELD_UINT   C17        : 1;      // bit 7
     };  // CR1 bitfield
 
     /// register _PORT_CR1 reset value
@@ -1739,14 +1739,14 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS   C20                 : 1;      // bit 0
-      BITS   C21                 : 1;      // bit 1
-      BITS   C22                 : 1;      // bit 2
-      BITS   C23                 : 1;      // bit 3
-      BITS   C24                 : 1;      // bit 4
-      BITS   C25                 : 1;      // bit 5
-      BITS   C26                 : 1;      // bit 6
-      BITS   C27                 : 1;      // bit 7
+      BITFIELD_UINT   C20        : 1;      // bit 0
+      BITFIELD_UINT   C21        : 1;      // bit 1
+      BITFIELD_UINT   C22        : 1;      // bit 2
+      BITFIELD_UINT   C23        : 1;      // bit 3
+      BITFIELD_UINT   C24        : 1;      // bit 4
+      BITFIELD_UINT   C25        : 1;      // bit 5
+      BITFIELD_UINT   C26        : 1;      // bit 6
+      BITFIELD_UINT   C27        : 1;      // bit 7
     };  // CR2 bitfield
 
     /// register _PORT_CR2 reset value
@@ -1783,10 +1783,10 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS                       : 5;      // 5 bits
-      BITS   LOW_POWER           : 1;      // bit 5
-      BITS   START               : 1;      // bit 6
-      BITS   PXSEN               : 1;      // bit 7
+      BITFIELD_UINT              : 5;      // 5 bits
+      BITFIELD_UINT   LOW_POWER  : 1;      // bit 5
+      BITFIELD_UINT   START      : 1;      // bit 6
+      BITFIELD_UINT   PXSEN      : 1;      // bit 7
     };  // CR1 bitfield
 
     /// register _PXS_CR1 reset value
@@ -1803,14 +1803,14 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS   SYNCEDGE            : 1;      // bit 0
-      BITS   SYNCEN              : 1;      // bit 1
-      BITS   RXCOUPLING          : 1;      // bit 2
-      BITS   RXGROUP             : 1;      // bit 3
-      BITS                       : 1;      // 1 bit
-      BITS   NOISEDETEN          : 1;      // bit 5
-      BITS   FCCITEN             : 1;      // bit 6
-      BITS   EOCITEN             : 1;      // bit 7
+      BITFIELD_UINT   SYNCEDGE   : 1;      // bit 0
+      BITFIELD_UINT   SYNCEN     : 1;      // bit 1
+      BITFIELD_UINT   RXCOUPLING : 1;      // bit 2
+      BITFIELD_UINT   RXGROUP    : 1;      // bit 3
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   NOISEDETEN : 1;      // bit 5
+      BITFIELD_UINT   FCCITEN    : 1;      // bit 6
+      BITFIELD_UINT   EOCITEN    : 1;      // bit 7
     };  // CR2 bitfield
 
     /// register _PXS_CR2 reset value
@@ -1827,9 +1827,9 @@ typedef struct {
 
     /// bitwise access to register CR3
     struct {
-      BITS   VTHR                : 4;      // bits 0-3
-      BITS   BIAS                : 2;      // bits 4-5
-      BITS   STAB                : 2;      // bits 6-7
+      BITFIELD_UINT   VTHR       : 4;      // bits 0-3
+      BITFIELD_UINT   BIAS       : 2;      // bits 4-5
+      BITFIELD_UINT   STAB       : 2;      // bits 6-7
     };  // CR3 bitfield
 
     /// register _PXS_CR3 reset value
@@ -1850,13 +1850,13 @@ typedef struct {
 
     /// bitwise access to register ISR
     struct {
-      BITS                       : 2;      // 2 bits
-      BITS   SYNC_OVRF           : 1;      // bit 2
-      BITS   SYNCPF              : 1;      // bit 3
-      BITS   CIPF                : 1;      // bit 4
-      BITS   NOISEDETF           : 1;      // bit 5
-      BITS   FCCF                : 1;      // bit 6
-      BITS   EOCF                : 1;      // bit 7
+      BITFIELD_UINT              : 2;      // 2 bits
+      BITFIELD_UINT   SYNC_OVRF  : 1;      // bit 2
+      BITFIELD_UINT   SYNCPF     : 1;      // bit 3
+      BITFIELD_UINT   CIPF       : 1;      // bit 4
+      BITFIELD_UINT   NOISEDETF  : 1;      // bit 5
+      BITFIELD_UINT   FCCF       : 1;      // bit 6
+      BITFIELD_UINT   EOCF       : 1;      // bit 7
     };  // ISR bitfield
 
     /// register _PXS_ISR reset value
@@ -1877,10 +1877,10 @@ typedef struct {
 
     /// bitwise access to register CKCR1
     struct {
-      BITS   PASSLEN             : 3;      // bits 0-2
-      BITS                       : 1;      // 1 bit
-      BITS   PREUPLENSC          : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   PASSLEN    : 3;      // bits 0-2
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   PREUPLENSC : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CKCR1 bitfield
 
     /// register _PXS_CKCR1 reset value
@@ -1897,11 +1897,11 @@ typedef struct {
 
     /// bitwise access to register CKCR2
     struct {
-      BITS   INCPHASE            : 1;      // bit 0
-      BITS   ANADEAD             : 1;      // bit 1
-      BITS                       : 2;      // 2 bits
-      BITS   PRESC               : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   INCPHASE   : 1;      // bit 0
+      BITFIELD_UINT   ANADEAD    : 1;      // bit 1
+      BITFIELD_UINT              : 2;      // 2 bits
+      BITFIELD_UINT   PRESC      : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CKCR2 bitfield
 
     /// register _PXS_CKCR2 reset value
@@ -1918,9 +1918,9 @@ typedef struct {
 
     /// bitwise access to register RXENRH
     struct {
-      BITS   RXEN8               : 1;      // bit 0
-      BITS   RXEN9               : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   RXEN8      : 1;      // bit 0
+      BITFIELD_UINT   RXEN9      : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // RXENRH bitfield
 
     /// register _PXS_RXENRH reset value
@@ -1937,14 +1937,14 @@ typedef struct {
 
     /// bitwise access to register RXENRL
     struct {
-      BITS   RXEN0               : 1;      // bit 0
-      BITS   RXEN1               : 1;      // bit 1
-      BITS   RXEN2               : 1;      // bit 2
-      BITS   RXEN3               : 1;      // bit 3
-      BITS   RXEN4               : 1;      // bit 4
-      BITS   RXEN5               : 1;      // bit 5
-      BITS   RXEN6               : 1;      // bit 6
-      BITS   RXEN7               : 1;      // bit 7
+      BITFIELD_UINT   RXEN0      : 1;      // bit 0
+      BITFIELD_UINT   RXEN1      : 1;      // bit 1
+      BITFIELD_UINT   RXEN2      : 1;      // bit 2
+      BITFIELD_UINT   RXEN3      : 1;      // bit 3
+      BITFIELD_UINT   RXEN4      : 1;      // bit 4
+      BITFIELD_UINT   RXEN5      : 1;      // bit 5
+      BITFIELD_UINT   RXEN6      : 1;      // bit 6
+      BITFIELD_UINT   RXEN7      : 1;      // bit 7
     };  // RXENRL bitfield
 
     /// register _PXS_RXENRL reset value
@@ -1961,9 +1961,9 @@ typedef struct {
 
     /// bitwise access to register RXCR1H
     struct {
-      BITS   RXCR1_8             : 1;      // bit 0
-      BITS   RXCR1_9             : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   RXCR1_8    : 1;      // bit 0
+      BITFIELD_UINT   RXCR1_9    : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // RXCR1H bitfield
 
     /// register _PXS_RXCR1H reset value
@@ -1980,14 +1980,14 @@ typedef struct {
 
     /// bitwise access to register RXCR1L
     struct {
-      BITS   RXCR1_0             : 1;      // bit 0
-      BITS   RXCR1_1             : 1;      // bit 1
-      BITS   RXCR1_2             : 1;      // bit 2
-      BITS   RXCR1_3             : 1;      // bit 3
-      BITS   RXCR1_4             : 1;      // bit 4
-      BITS   RXCR1_5             : 1;      // bit 5
-      BITS   RXCR1_6             : 1;      // bit 6
-      BITS   RXCR1_7             : 1;      // bit 7
+      BITFIELD_UINT   RXCR1_0    : 1;      // bit 0
+      BITFIELD_UINT   RXCR1_1    : 1;      // bit 1
+      BITFIELD_UINT   RXCR1_2    : 1;      // bit 2
+      BITFIELD_UINT   RXCR1_3    : 1;      // bit 3
+      BITFIELD_UINT   RXCR1_4    : 1;      // bit 4
+      BITFIELD_UINT   RXCR1_5    : 1;      // bit 5
+      BITFIELD_UINT   RXCR1_6    : 1;      // bit 6
+      BITFIELD_UINT   RXCR1_7    : 1;      // bit 7
     };  // RXCR1L bitfield
 
     /// register _PXS_RXCR1L reset value
@@ -2004,9 +2004,9 @@ typedef struct {
 
     /// bitwise access to register RXCR2H
     struct {
-      BITS   RXCR2_8             : 1;      // bit 0
-      BITS   RXCR2_9             : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   RXCR2_8    : 1;      // bit 0
+      BITFIELD_UINT   RXCR2_9    : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // RXCR2H bitfield
 
     /// register _PXS_RXCR2H reset value
@@ -2023,14 +2023,14 @@ typedef struct {
 
     /// bitwise access to register RXCR2L
     struct {
-      BITS   RXCR2_0             : 1;      // bit 0
-      BITS   RXCR2_1             : 1;      // bit 1
-      BITS   RXCR2_2             : 1;      // bit 2
-      BITS   RXCR2_3             : 1;      // bit 3
-      BITS   RXCR2_4             : 1;      // bit 4
-      BITS   RXCR2_5             : 1;      // bit 5
-      BITS   RXCR2_6             : 1;      // bit 6
-      BITS   RXCR2_7             : 1;      // bit 7
+      BITFIELD_UINT   RXCR2_0    : 1;      // bit 0
+      BITFIELD_UINT   RXCR2_1    : 1;      // bit 1
+      BITFIELD_UINT   RXCR2_2    : 1;      // bit 2
+      BITFIELD_UINT   RXCR2_3    : 1;      // bit 3
+      BITFIELD_UINT   RXCR2_4    : 1;      // bit 4
+      BITFIELD_UINT   RXCR2_5    : 1;      // bit 5
+      BITFIELD_UINT   RXCR2_6    : 1;      // bit 6
+      BITFIELD_UINT   RXCR2_7    : 1;      // bit 7
     };  // RXCR2L bitfield
 
     /// register _PXS_RXCR2L reset value
@@ -2047,9 +2047,9 @@ typedef struct {
 
     /// bitwise access to register RXCR3H
     struct {
-      BITS   RXCR3_8             : 1;      // bit 0
-      BITS   RXCR3_9             : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   RXCR3_8    : 1;      // bit 0
+      BITFIELD_UINT   RXCR3_9    : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // RXCR3H bitfield
 
     /// register _PXS_RXCR3H reset value
@@ -2066,14 +2066,14 @@ typedef struct {
 
     /// bitwise access to register RXCR3L
     struct {
-      BITS   RXCR3_0             : 1;      // bit 0
-      BITS   RXCR3_1             : 1;      // bit 1
-      BITS   RXCR3_2             : 1;      // bit 2
-      BITS   RXCR3_3             : 1;      // bit 3
-      BITS   RXCR3_4             : 1;      // bit 4
-      BITS   RXCR3_5             : 1;      // bit 5
-      BITS   RXCR3_6             : 1;      // bit 6
-      BITS   RXCR3_7             : 1;      // bit 7
+      BITFIELD_UINT   RXCR3_0    : 1;      // bit 0
+      BITFIELD_UINT   RXCR3_1    : 1;      // bit 1
+      BITFIELD_UINT   RXCR3_2    : 1;      // bit 2
+      BITFIELD_UINT   RXCR3_3    : 1;      // bit 3
+      BITFIELD_UINT   RXCR3_4    : 1;      // bit 4
+      BITFIELD_UINT   RXCR3_5    : 1;      // bit 5
+      BITFIELD_UINT   RXCR3_6    : 1;      // bit 6
+      BITFIELD_UINT   RXCR3_7    : 1;      // bit 7
     };  // RXCR3L bitfield
 
     /// register _PXS_RXCR3L reset value
@@ -2094,9 +2094,9 @@ typedef struct {
 
     /// bitwise access to register RXINSRH
     struct {
-      BITS   RXINS8              : 1;      // bit 0
-      BITS   RXINS9              : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   RXINS8     : 1;      // bit 0
+      BITFIELD_UINT   RXINS9     : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // RXINSRH bitfield
 
     /// register _PXS_RXINSRH reset value
@@ -2113,14 +2113,14 @@ typedef struct {
 
     /// bitwise access to register RXINSRL
     struct {
-      BITS   RXINS0              : 1;      // bit 0
-      BITS   RXINS1              : 1;      // bit 1
-      BITS   RXINS2              : 1;      // bit 2
-      BITS   RXINS3              : 1;      // bit 3
-      BITS   RXINS4              : 1;      // bit 4
-      BITS   RXINS5              : 1;      // bit 5
-      BITS   RXINS6              : 1;      // bit 6
-      BITS   RXINS7              : 1;      // bit 7
+      BITFIELD_UINT   RXINS0     : 1;      // bit 0
+      BITFIELD_UINT   RXINS1     : 1;      // bit 1
+      BITFIELD_UINT   RXINS2     : 1;      // bit 2
+      BITFIELD_UINT   RXINS3     : 1;      // bit 3
+      BITFIELD_UINT   RXINS4     : 1;      // bit 4
+      BITFIELD_UINT   RXINS5     : 1;      // bit 5
+      BITFIELD_UINT   RXINS6     : 1;      // bit 6
+      BITFIELD_UINT   RXINS7     : 1;      // bit 7
     };  // RXINSRL bitfield
 
     /// register _PXS_RXINSRL reset value
@@ -2141,14 +2141,14 @@ typedef struct {
 
     /// bitwise access to register TXENRH
     struct {
-      BITS   TXEN8               : 1;      // bit 0
-      BITS   TXEN9               : 1;      // bit 1
-      BITS   TXEN10              : 1;      // bit 2
-      BITS   TXEN11              : 1;      // bit 3
-      BITS   TXEN12              : 1;      // bit 4
-      BITS   TXEN13              : 1;      // bit 5
-      BITS   TXEN14              : 1;      // bit 6
-      BITS   TXEN15              : 1;      // bit 7
+      BITFIELD_UINT   TXEN8      : 1;      // bit 0
+      BITFIELD_UINT   TXEN9      : 1;      // bit 1
+      BITFIELD_UINT   TXEN10     : 1;      // bit 2
+      BITFIELD_UINT   TXEN11     : 1;      // bit 3
+      BITFIELD_UINT   TXEN12     : 1;      // bit 4
+      BITFIELD_UINT   TXEN13     : 1;      // bit 5
+      BITFIELD_UINT   TXEN14     : 1;      // bit 6
+      BITFIELD_UINT   TXEN15     : 1;      // bit 7
     };  // TXENRH bitfield
 
     /// register _PXS_TXENRH reset value
@@ -2165,14 +2165,14 @@ typedef struct {
 
     /// bitwise access to register TXENRL
     struct {
-      BITS   TXEN0               : 1;      // bit 0
-      BITS   TXEN1               : 1;      // bit 1
-      BITS   TXEN2               : 1;      // bit 2
-      BITS   TXEN3               : 1;      // bit 3
-      BITS   TXEN4               : 1;      // bit 4
-      BITS   TXEN5               : 1;      // bit 5
-      BITS   TXEN6               : 1;      // bit 6
-      BITS   TXEN7               : 1;      // bit 7
+      BITFIELD_UINT   TXEN0      : 1;      // bit 0
+      BITFIELD_UINT   TXEN1      : 1;      // bit 1
+      BITFIELD_UINT   TXEN2      : 1;      // bit 2
+      BITFIELD_UINT   TXEN3      : 1;      // bit 3
+      BITFIELD_UINT   TXEN4      : 1;      // bit 4
+      BITFIELD_UINT   TXEN5      : 1;      // bit 5
+      BITFIELD_UINT   TXEN6      : 1;      // bit 6
+      BITFIELD_UINT   TXEN7      : 1;      // bit 7
     };  // TXENRL bitfield
 
     /// register _PXS_TXENRL reset value
@@ -2193,7 +2193,7 @@ typedef struct {
 
     /// bitwise access to register MAXRH
     struct {
-      BITS   MAX                 : 8;      // bits 0-7
+      BITFIELD_UINT   MAX        : 8;      // bits 0-7
     };  // MAXRH bitfield
 
     /// register _PXS_MAXRH reset value
@@ -2210,7 +2210,7 @@ typedef struct {
 
     /// bitwise access to register MAXRL
     struct {
-      BITS   MAX                 : 8;      // bits 0-7
+      BITFIELD_UINT   MAX        : 8;      // bits 0-7
     };  // MAXRL bitfield
 
     /// register _PXS_MAXRL reset value
@@ -2227,9 +2227,9 @@ typedef struct {
 
     /// bitwise access to register MAXENRH
     struct {
-      BITS   MAXEN8              : 1;      // bit 0
-      BITS   MAXEN9              : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   MAXEN8     : 1;      // bit 0
+      BITFIELD_UINT   MAXEN9     : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // MAXENRH bitfield
 
     /// register _PXS_MAXENRH reset value
@@ -2246,14 +2246,14 @@ typedef struct {
 
     /// bitwise access to register MAXENRL
     struct {
-      BITS   MAXEN0              : 1;      // bit 0
-      BITS   MAXEN1              : 1;      // bit 1
-      BITS   MAXEN2              : 1;      // bit 2
-      BITS   MAXEN3              : 1;      // bit 3
-      BITS   MAXEN4              : 1;      // bit 4
-      BITS   MAXEN5              : 1;      // bit 5
-      BITS   MAXEN6              : 1;      // bit 6
-      BITS   MAXEN7              : 1;      // bit 7
+      BITFIELD_UINT   MAXEN0     : 1;      // bit 0
+      BITFIELD_UINT   MAXEN1     : 1;      // bit 1
+      BITFIELD_UINT   MAXEN2     : 1;      // bit 2
+      BITFIELD_UINT   MAXEN3     : 1;      // bit 3
+      BITFIELD_UINT   MAXEN4     : 1;      // bit 4
+      BITFIELD_UINT   MAXEN5     : 1;      // bit 5
+      BITFIELD_UINT   MAXEN6     : 1;      // bit 6
+      BITFIELD_UINT   MAXEN7     : 1;      // bit 7
     };  // MAXENRL bitfield
 
     /// register _PXS_MAXENRL reset value
@@ -2270,9 +2270,9 @@ typedef struct {
 
     /// bitwise access to register RXSRH
     struct {
-      BITS   VALID8              : 1;      // bit 0
-      BITS   VALID9              : 1;      // bit 1
-      BITS                       : 6;      // 6 bits
+      BITFIELD_UINT   VALID8     : 1;      // bit 0
+      BITFIELD_UINT   VALID9     : 1;      // bit 1
+      BITFIELD_UINT              : 6;      // 6 bits
     };  // RXSRH bitfield
 
     /// register _PXS_RXSRH reset value
@@ -2289,14 +2289,14 @@ typedef struct {
 
     /// bitwise access to register RXSRL
     struct {
-      BITS   VALID0              : 1;      // bit 0
-      BITS   VALID1              : 1;      // bit 1
-      BITS   VALID2              : 1;      // bit 2
-      BITS   VALID3              : 1;      // bit 3
-      BITS   VALID4              : 1;      // bit 4
-      BITS   VALID5              : 1;      // bit 5
-      BITS   VALID6              : 1;      // bit 6
-      BITS   VALID7              : 1;      // bit 7
+      BITFIELD_UINT   VALID0     : 1;      // bit 0
+      BITFIELD_UINT   VALID1     : 1;      // bit 1
+      BITFIELD_UINT   VALID2     : 1;      // bit 2
+      BITFIELD_UINT   VALID3     : 1;      // bit 3
+      BITFIELD_UINT   VALID4     : 1;      // bit 4
+      BITFIELD_UINT   VALID5     : 1;      // bit 5
+      BITFIELD_UINT   VALID6     : 1;      // bit 6
+      BITFIELD_UINT   VALID7     : 1;      // bit 7
     };  // RXSRL bitfield
 
     /// register _PXS_RXSRL reset value
@@ -2313,7 +2313,7 @@ typedef struct {
 
     /// bitwise access to register RX0CNTRH
     struct {
-      BITS   RX0CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX0CNT     : 8;      // bits 0-7
     };  // RX0CNTRH bitfield
 
     /// register _PXS_RX0CNTRH reset value
@@ -2330,7 +2330,7 @@ typedef struct {
 
     /// bitwise access to register RX0CNTRL
     struct {
-      BITS   RX0CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX0CNT     : 8;      // bits 0-7
     };  // RX0CNTRL bitfield
 
     /// register _PXS_RX0CNTRL reset value
@@ -2347,7 +2347,7 @@ typedef struct {
 
     /// bitwise access to register RX1CNTRH
     struct {
-      BITS   RX1CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX1CNT     : 8;      // bits 0-7
     };  // RX1CNTRH bitfield
 
     /// register _PXS_RX1CNTRH reset value
@@ -2364,7 +2364,7 @@ typedef struct {
 
     /// bitwise access to register RX1CNTRL
     struct {
-      BITS   RX1CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX1CNT     : 8;      // bits 0-7
     };  // RX1CNTRL bitfield
 
     /// register _PXS_RX1CNTRL reset value
@@ -2381,7 +2381,7 @@ typedef struct {
 
     /// bitwise access to register RX2CNTRH
     struct {
-      BITS   RX2CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX2CNT     : 8;      // bits 0-7
     };  // RX2CNTRH bitfield
 
     /// register _PXS_RX2CNTRH reset value
@@ -2398,7 +2398,7 @@ typedef struct {
 
     /// bitwise access to register RX2CNTRL
     struct {
-      BITS   RX2CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX2CNT     : 8;      // bits 0-7
     };  // RX2CNTRL bitfield
 
     /// register _PXS_RX2CNTRL reset value
@@ -2415,7 +2415,7 @@ typedef struct {
 
     /// bitwise access to register RX3CNTRH
     struct {
-      BITS   RX3CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX3CNT     : 8;      // bits 0-7
     };  // RX3CNTRH bitfield
 
     /// register _PXS_RX3CNTRH reset value
@@ -2432,7 +2432,7 @@ typedef struct {
 
     /// bitwise access to register RX3CNTRL
     struct {
-      BITS   RX3CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX3CNT     : 8;      // bits 0-7
     };  // RX3CNTRL bitfield
 
     /// register _PXS_RX3CNTRL reset value
@@ -2449,7 +2449,7 @@ typedef struct {
 
     /// bitwise access to register RX4CNTRH
     struct {
-      BITS   RX4CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX4CNT     : 8;      // bits 0-7
     };  // RX4CNTRH bitfield
 
     /// register _PXS_RX4CNTRH reset value
@@ -2466,7 +2466,7 @@ typedef struct {
 
     /// bitwise access to register RX4CNTRL
     struct {
-      BITS   RX4CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX4CNT     : 8;      // bits 0-7
     };  // RX4CNTRL bitfield
 
     /// register _PXS_RX4CNTRL reset value
@@ -2483,7 +2483,7 @@ typedef struct {
 
     /// bitwise access to register RX5CNTRH
     struct {
-      BITS   RX5CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX5CNT     : 8;      // bits 0-7
     };  // RX5CNTRH bitfield
 
     /// register _PXS_RX5CNTRH reset value
@@ -2500,7 +2500,7 @@ typedef struct {
 
     /// bitwise access to register RX5CNTRL
     struct {
-      BITS   RX5CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX5CNT     : 8;      // bits 0-7
     };  // RX5CNTRL bitfield
 
     /// register _PXS_RX5CNTRL reset value
@@ -2517,7 +2517,7 @@ typedef struct {
 
     /// bitwise access to register RX6CNTRH
     struct {
-      BITS   RX6CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX6CNT     : 8;      // bits 0-7
     };  // RX6CNTRH bitfield
 
     /// register _PXS_RX6CNTRH reset value
@@ -2534,7 +2534,7 @@ typedef struct {
 
     /// bitwise access to register RX6CNTRL
     struct {
-      BITS   RX6CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX6CNT     : 8;      // bits 0-7
     };  // RX6CNTRL bitfield
 
     /// register _PXS_RX6CNTRL reset value
@@ -2551,7 +2551,7 @@ typedef struct {
 
     /// bitwise access to register RX7CNTRH
     struct {
-      BITS   RX7CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX7CNT     : 8;      // bits 0-7
     };  // RX7CNTRH bitfield
 
     /// register _PXS_RX7CNTRH reset value
@@ -2568,7 +2568,7 @@ typedef struct {
 
     /// bitwise access to register RX7CNTRL
     struct {
-      BITS   RX7CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX7CNT     : 8;      // bits 0-7
     };  // RX7CNTRL bitfield
 
     /// register _PXS_RX7CNTRL reset value
@@ -2585,7 +2585,7 @@ typedef struct {
 
     /// bitwise access to register RX8CNTRH
     struct {
-      BITS   RX8CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX8CNT     : 8;      // bits 0-7
     };  // RX8CNTRH bitfield
 
     /// register _PXS_RX8CNTRH reset value
@@ -2602,7 +2602,7 @@ typedef struct {
 
     /// bitwise access to register RX8CNTRL
     struct {
-      BITS   RX8CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX8CNT     : 8;      // bits 0-7
     };  // RX8CNTRL bitfield
 
     /// register _PXS_RX8CNTRL reset value
@@ -2619,7 +2619,7 @@ typedef struct {
 
     /// bitwise access to register RX9CNTRH
     struct {
-      BITS   RX9CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX9CNT     : 8;      // bits 0-7
     };  // RX9CNTRH bitfield
 
     /// register _PXS_RX9CNTRH reset value
@@ -2636,7 +2636,7 @@ typedef struct {
 
     /// bitwise access to register RX9CNTRL
     struct {
-      BITS   RX9CNT              : 8;      // bits 0-7
+      BITFIELD_UINT   RX9CNT     : 8;      // bits 0-7
     };  // RX9CNTRL bitfield
 
     /// register _PXS_RX9CNTRL reset value
@@ -2657,8 +2657,8 @@ typedef struct {
 
     /// bitwise access to register RX0CSSELR
     struct {
-      BITS   RX0CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX0CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX0CSSELR bitfield
 
     /// register _PXS_RX0CSSELR reset value
@@ -2675,8 +2675,8 @@ typedef struct {
 
     /// bitwise access to register RX1CSSELR
     struct {
-      BITS   RX1CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX1CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX1CSSELR bitfield
 
     /// register _PXS_RX1CSSELR reset value
@@ -2693,8 +2693,8 @@ typedef struct {
 
     /// bitwise access to register RX2CSSELR
     struct {
-      BITS   RX2CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX2CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX2CSSELR bitfield
 
     /// register _PXS_RX2CSSELR reset value
@@ -2711,8 +2711,8 @@ typedef struct {
 
     /// bitwise access to register RX3CSSELR
     struct {
-      BITS   RX3CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX3CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX3CSSELR bitfield
 
     /// register _PXS_RX3CSSELR reset value
@@ -2729,8 +2729,8 @@ typedef struct {
 
     /// bitwise access to register RX4CSSELR
     struct {
-      BITS   RX4CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX4CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX4CSSELR bitfield
 
     /// register _PXS_RX4CSSELR reset value
@@ -2747,8 +2747,8 @@ typedef struct {
 
     /// bitwise access to register RX5CSSELR
     struct {
-      BITS   RX5CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX5CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX5CSSELR bitfield
 
     /// register _PXS_RX5CSSELR reset value
@@ -2765,8 +2765,8 @@ typedef struct {
 
     /// bitwise access to register RX6CSSELR
     struct {
-      BITS   RX6CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX6CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX6CSSELR bitfield
 
     /// register _PXS_RX6CSSELR reset value
@@ -2783,8 +2783,8 @@ typedef struct {
 
     /// bitwise access to register RX7CSSELR
     struct {
-      BITS   RX7CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX7CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX7CSSELR bitfield
 
     /// register _PXS_RX7CSSELR reset value
@@ -2801,8 +2801,8 @@ typedef struct {
 
     /// bitwise access to register RX8CSSELR
     struct {
-      BITS   RX8CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX8CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX8CSSELR bitfield
 
     /// register _PXS_RX8CSSELR reset value
@@ -2819,8 +2819,8 @@ typedef struct {
 
     /// bitwise access to register RX9CSSELR
     struct {
-      BITS   RX9CSSEL            : 5;      // bits 0-4
-      BITS                       : 3;      // 3 bits
+      BITFIELD_UINT   RX9CSSEL   : 5;      // bits 0-4
+      BITFIELD_UINT              : 3;      // 3 bits
     };  // RX9CSSELR bitfield
 
     /// register _PXS_RX9CSSELR reset value
@@ -2841,7 +2841,7 @@ typedef struct {
 
     /// bitwise access to register RX0EPCCSELR
     struct {
-      BITS   RX0EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX0EPCC    : 8;      // bits 0-7
     };  // RX0EPCCSELR bitfield
 
     /// register _PXS_RX0EPCCSELR reset value
@@ -2858,7 +2858,7 @@ typedef struct {
 
     /// bitwise access to register RX1EPCCSELR
     struct {
-      BITS   RX1EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX1EPCC    : 8;      // bits 0-7
     };  // RX1EPCCSELR bitfield
 
     /// register _PXS_RX1EPCCSELR reset value
@@ -2875,7 +2875,7 @@ typedef struct {
 
     /// bitwise access to register RX2EPCCSELR
     struct {
-      BITS   RX2EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX2EPCC    : 8;      // bits 0-7
     };  // RX2EPCCSELR bitfield
 
     /// register _PXS_RX2EPCCSELR reset value
@@ -2892,7 +2892,7 @@ typedef struct {
 
     /// bitwise access to register RX3EPCCSELR
     struct {
-      BITS   RX3EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX3EPCC    : 8;      // bits 0-7
     };  // RX3EPCCSELR bitfield
 
     /// register _PXS_RX3EPCCSELR reset value
@@ -2909,7 +2909,7 @@ typedef struct {
 
     /// bitwise access to register RX4EPCCSELR
     struct {
-      BITS   RX4EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX4EPCC    : 8;      // bits 0-7
     };  // RX4EPCCSELR bitfield
 
     /// register _PXS_RX4EPCCSELR reset value
@@ -2926,7 +2926,7 @@ typedef struct {
 
     /// bitwise access to register RX5EPCCSELR
     struct {
-      BITS   RX5EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX5EPCC    : 8;      // bits 0-7
     };  // RX5EPCCSELR bitfield
 
     /// register _PXS_RX5EPCCSELR reset value
@@ -2943,7 +2943,7 @@ typedef struct {
 
     /// bitwise access to register RX6EPCCSELR
     struct {
-      BITS   RX6EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX6EPCC    : 8;      // bits 0-7
     };  // RX6EPCCSELR bitfield
 
     /// register _PXS_RX6EPCCSELR reset value
@@ -2960,7 +2960,7 @@ typedef struct {
 
     /// bitwise access to register RX7EPCCSELR
     struct {
-      BITS   RX7EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX7EPCC    : 8;      // bits 0-7
     };  // RX7EPCCSELR bitfield
 
     /// register _PXS_RX7EPCCSELR reset value
@@ -2977,7 +2977,7 @@ typedef struct {
 
     /// bitwise access to register RX8EPCCSELR
     struct {
-      BITS   RX8EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX8EPCC    : 8;      // bits 0-7
     };  // RX8EPCCSELR bitfield
 
     /// register _PXS_RX8EPCCSELR reset value
@@ -2994,7 +2994,7 @@ typedef struct {
 
     /// bitwise access to register RX9EPCCSELR
     struct {
-      BITS   RX9EPCC             : 8;      // bits 0-7
+      BITFIELD_UINT   RX9EPCC    : 8;      // bits 0-7
     };  // RX9EPCCSELR bitfield
 
     /// register _PXS_RX9EPCCSELR reset value
@@ -3023,7 +3023,7 @@ typedef struct {
 
     /// bitwise access to register CR
     struct {
-      BITS   RSTPIN_KEY          : 8;      // bits 0-7
+      BITFIELD_UINT   RSTPIN_KEY : 8;      // bits 0-7
     };  // CR bitfield
 
     /// register _RST_CR reset value
@@ -3040,11 +3040,11 @@ typedef struct {
 
     /// bitwise access to register SR
     struct {
-      BITS   PORF                : 1;      // bit 0
-      BITS   IWDGF               : 1;      // bit 1
-      BITS   ILLOPF              : 1;      // bit 2
-      BITS   SWIMF               : 1;      // bit 3
-      BITS                       : 4;      // 4 bits
+      BITFIELD_UINT   PORF       : 1;      // bit 0
+      BITFIELD_UINT   IWDGF      : 1;      // bit 1
+      BITFIELD_UINT   ILLOPF     : 1;      // bit 2
+      BITFIELD_UINT   SWIMF      : 1;      // bit 3
+      BITFIELD_UINT              : 4;      // 4 bits
     };  // SR bitfield
 
     /// register _RST_SR reset value
@@ -3073,12 +3073,12 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   CPHA                : 1;      // bit 0
-      BITS   CPOL                : 1;      // bit 1
-      BITS   MSTR                : 1;      // bit 2
-      BITS   BR                  : 3;      // bits 3-5
-      BITS   SPE                 : 1;      // bit 6
-      BITS   LSBFIRST            : 1;      // bit 7
+      BITFIELD_UINT   CPHA       : 1;      // bit 0
+      BITFIELD_UINT   CPOL       : 1;      // bit 1
+      BITFIELD_UINT   MSTR       : 1;      // bit 2
+      BITFIELD_UINT   BR         : 3;      // bits 3-5
+      BITFIELD_UINT   SPE        : 1;      // bit 6
+      BITFIELD_UINT   LSBFIRST   : 1;      // bit 7
     };  // CR1 bitfield
 
     /// register _SPI_CR1 reset value
@@ -3095,12 +3095,12 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS   SSI                 : 1;      // bit 0
-      BITS   SSM                 : 1;      // bit 1
-      BITS   RXOnly              : 1;      // bit 2
-      BITS                       : 3;      // 3 bits
-      BITS   BD0E                : 1;      // bit 6
-      BITS   BDM                 : 1;      // bit 7
+      BITFIELD_UINT   SSI        : 1;      // bit 0
+      BITFIELD_UINT   SSM        : 1;      // bit 1
+      BITFIELD_UINT   RXOnly     : 1;      // bit 2
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   BD0E       : 1;      // bit 6
+      BITFIELD_UINT   BDM        : 1;      // bit 7
     };  // CR2 bitfield
 
     /// register _SPI_CR2 reset value
@@ -3117,11 +3117,11 @@ typedef struct {
 
     /// bitwise access to register ICR
     struct {
-      BITS                       : 4;      // 4 bits
-      BITS   WKIE                : 1;      // bit 4
-      BITS   ERRIE               : 1;      // bit 5
-      BITS   RXIE                : 1;      // bit 6
-      BITS   TXIE                : 1;      // bit 7
+      BITFIELD_UINT              : 4;      // 4 bits
+      BITFIELD_UINT   WKIE       : 1;      // bit 4
+      BITFIELD_UINT   ERRIE      : 1;      // bit 5
+      BITFIELD_UINT   RXIE       : 1;      // bit 6
+      BITFIELD_UINT   TXIE       : 1;      // bit 7
     };  // ICR bitfield
 
     /// register _SPI_ICR reset value
@@ -3138,14 +3138,14 @@ typedef struct {
 
     /// bitwise access to register SR
     struct {
-      BITS   RXNE                : 1;      // bit 0
-      BITS   TXE                 : 1;      // bit 1
-      BITS                       : 1;      // 1 bit
-      BITS   WKUP                : 1;      // bit 3
-      BITS                       : 1;      // 1 bit
-      BITS   MODF                : 1;      // bit 5
-      BITS   OVR                 : 1;      // bit 6
-      BITS   BSY                 : 1;      // bit 7
+      BITFIELD_UINT   RXNE       : 1;      // bit 0
+      BITFIELD_UINT   TXE        : 1;      // bit 1
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   WKUP       : 1;      // bit 3
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   MODF       : 1;      // bit 5
+      BITFIELD_UINT   OVR        : 1;      // bit 6
+      BITFIELD_UINT   BSY        : 1;      // bit 7
     };  // SR bitfield
 
     /// register _SPI_SR reset value
@@ -3162,7 +3162,7 @@ typedef struct {
 
     /// bitwise access to register DR
     struct {
-      BITS   DR                  : 8;      // bits 0-7
+      BITFIELD_UINT   DR         : 8;      // bits 0-7
     };  // DR bitfield
 
     /// register _SPI_DR reset value
@@ -3217,13 +3217,13 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   CEN                 : 1;      // bit 0
-      BITS   UDIS                : 1;      // bit 1
-      BITS   URS                 : 1;      // bit 2
-      BITS   OPM                 : 1;      // bit 3
-      BITS   DIR                 : 1;      // bit 4
-      BITS   CMS                 : 2;      // bits 5-6
-      BITS   ARPE                : 1;      // bit 7
+      BITFIELD_UINT   CEN        : 1;      // bit 0
+      BITFIELD_UINT   UDIS       : 1;      // bit 1
+      BITFIELD_UINT   URS        : 1;      // bit 2
+      BITFIELD_UINT   OPM        : 1;      // bit 3
+      BITFIELD_UINT   DIR        : 1;      // bit 4
+      BITFIELD_UINT   CMS        : 2;      // bits 5-6
+      BITFIELD_UINT   ARPE       : 1;      // bit 7
     };  // CR1 bitfield
 
     /// register _TIM2_CR1 reset value
@@ -3240,9 +3240,9 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS                       : 4;      // 4 bits
-      BITS   MMS                 : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT              : 4;      // 4 bits
+      BITFIELD_UINT   MMS        : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CR2 bitfield
 
     /// register _TIM2_CR2 reset value
@@ -3259,10 +3259,10 @@ typedef struct {
 
     /// bitwise access to register SMCR
     struct {
-      BITS   SMS                 : 3;      // bits 0-2
-      BITS                       : 1;      // 1 bit
-      BITS   TS                  : 3;      // bits 4-6
-      BITS   MSM                 : 1;      // bit 7
+      BITFIELD_UINT   SMS        : 3;      // bits 0-2
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   TS         : 3;      // bits 4-6
+      BITFIELD_UINT   MSM        : 1;      // bit 7
     };  // SMCR bitfield
 
     /// register _TIM2_SMCR reset value
@@ -3279,10 +3279,10 @@ typedef struct {
 
     /// bitwise access to register ETR
     struct {
-      BITS   ETF                 : 4;      // bits 0-3
-      BITS   ETPS                : 2;      // bits 4-5
-      BITS   ECE                 : 1;      // bit 6
-      BITS   ETP                 : 1;      // bit 7
+      BITFIELD_UINT   ETF        : 4;      // bits 0-3
+      BITFIELD_UINT   ETPS       : 2;      // bits 4-5
+      BITFIELD_UINT   ECE        : 1;      // bit 6
+      BITFIELD_UINT   ETP        : 1;      // bit 7
     };  // ETR bitfield
 
     /// register _TIM2_ETR reset value
@@ -3299,12 +3299,12 @@ typedef struct {
 
     /// bitwise access to register IER
     struct {
-      BITS   UIE                 : 1;      // bit 0
-      BITS   CC1IE               : 1;      // bit 1
-      BITS   CC2IE               : 1;      // bit 2
-      BITS                       : 3;      // 3 bits
-      BITS   TIE                 : 1;      // bit 6
-      BITS   BIE                 : 1;      // bit 7
+      BITFIELD_UINT   UIE        : 1;      // bit 0
+      BITFIELD_UINT   CC1IE      : 1;      // bit 1
+      BITFIELD_UINT   CC2IE      : 1;      // bit 2
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   TIE        : 1;      // bit 6
+      BITFIELD_UINT   BIE        : 1;      // bit 7
     };  // IER bitfield
 
     /// register _TIM2_IER reset value
@@ -3321,12 +3321,12 @@ typedef struct {
 
     /// bitwise access to register SR1
     struct {
-      BITS   UIF                 : 1;      // bit 0
-      BITS   CC1IF               : 1;      // bit 1
-      BITS   CC2IF               : 1;      // bit 2
-      BITS                       : 3;      // 3 bits
-      BITS   TIF                 : 1;      // bit 6
-      BITS   BIF                 : 1;      // bit 7
+      BITFIELD_UINT   UIF        : 1;      // bit 0
+      BITFIELD_UINT   CC1IF      : 1;      // bit 1
+      BITFIELD_UINT   CC2IF      : 1;      // bit 2
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   TIF        : 1;      // bit 6
+      BITFIELD_UINT   BIF        : 1;      // bit 7
     };  // SR1 bitfield
 
     /// register _TIM2_SR1 reset value
@@ -3343,10 +3343,10 @@ typedef struct {
 
     /// bitwise access to register SR2
     struct {
-      BITS                       : 1;      // 1 bit
-      BITS   CC1OF               : 1;      // bit 1
-      BITS   CC2OF               : 1;      // bit 2
-      BITS                       : 5;      // 5 bits
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   CC1OF      : 1;      // bit 1
+      BITFIELD_UINT   CC2OF      : 1;      // bit 2
+      BITFIELD_UINT              : 5;      // 5 bits
     };  // SR2 bitfield
 
     /// register _TIM2_SR2 reset value
@@ -3363,12 +3363,12 @@ typedef struct {
 
     /// bitwise access to register EGR
     struct {
-      BITS   UG                  : 1;      // bit 0
-      BITS   CC1G                : 1;      // bit 1
-      BITS   CC2G                : 1;      // bit 2
-      BITS                       : 3;      // 3 bits
-      BITS   TG                  : 1;      // bit 6
-      BITS   BG                  : 1;      // bit 7
+      BITFIELD_UINT   UG         : 1;      // bit 0
+      BITFIELD_UINT   CC1G       : 1;      // bit 1
+      BITFIELD_UINT   CC2G       : 1;      // bit 2
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   TG         : 1;      // bit 6
+      BITFIELD_UINT   BG         : 1;      // bit 7
     };  // EGR bitfield
 
     /// register _TIM2_EGR reset value
@@ -3385,11 +3385,11 @@ typedef struct {
 
     /// bitwise access to register CCMR1_OUT
     struct {
-      BITS   CC1S                : 2;      // bits 0-1
-      BITS   OC1FE               : 1;      // bit 2
-      BITS   OC1PE               : 1;      // bit 3
-      BITS   OC1M                : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   CC1S       : 2;      // bits 0-1
+      BITFIELD_UINT   OC1FE      : 1;      // bit 2
+      BITFIELD_UINT   OC1PE      : 1;      // bit 3
+      BITFIELD_UINT   OC1M       : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CCMR1_OUT bitfield
 
     /// register _TIM2_CCMR1_OUT reset value
@@ -3398,10 +3398,10 @@ typedef struct {
 
     /// bitwise access to register CCMR1_IN
     struct {
-      BITS                       : 2;      // CC1S defined above 
-      BITS   IC1PSC              : 2;      // bits 2-3
-      BITS   IC1F                : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT              : 2;      // CC1S defined above 
+      BITFIELD_UINT   IC1PSC     : 2;      // bits 2-3
+      BITFIELD_UINT   IC1F       : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CCMR1_IN bitfield
 
     /// register _TIM2_CCMR1_IN reset value
@@ -3418,11 +3418,11 @@ typedef struct {
 
     /// bitwise access to register CCMR2_OUT
     struct {
-      BITS   CC2S                : 2;      // bits 0-1
-      BITS   OC2FE               : 1;      // bit 2
-      BITS   OC2PE               : 1;      // bit 3
-      BITS   OC2M                : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   CC2S       : 2;      // bits 0-1
+      BITFIELD_UINT   OC2FE      : 1;      // bit 2
+      BITFIELD_UINT   OC2PE      : 1;      // bit 3
+      BITFIELD_UINT   OC2M       : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CCMR2_OUT bitfield
 
     /// register _TIM2_CCMR2_OUT reset value
@@ -3431,10 +3431,10 @@ typedef struct {
 
     /// bitwise access to register CCMR2_IN
     struct {
-      BITS                       : 2;      // CC2S defined above 
-      BITS   IC2PSC              : 2;      // bits 2-3
-      BITS   IC2F                : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT              : 2;      // CC2S defined above 
+      BITFIELD_UINT   IC2PSC     : 2;      // bits 2-3
+      BITFIELD_UINT   IC2F       : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CCMR2_IN bitfield
 
     /// register _TIM2_CCMR2_IN reset value
@@ -3451,12 +3451,12 @@ typedef struct {
 
     /// bitwise access to register CCER1
     struct {
-      BITS   CC1E                : 1;      // bit 0
-      BITS   CC1P                : 1;      // bit 1
-      BITS                       : 2;      // 2 bits
-      BITS   CC2E                : 1;      // bit 4
-      BITS   CC2P                : 1;      // bit 5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   CC1E       : 1;      // bit 0
+      BITFIELD_UINT   CC1P       : 1;      // bit 1
+      BITFIELD_UINT              : 2;      // 2 bits
+      BITFIELD_UINT   CC2E       : 1;      // bit 4
+      BITFIELD_UINT   CC2P       : 1;      // bit 5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // CCER1 bitfield
 
     /// register _TIM2_CCER1 reset value
@@ -3473,7 +3473,7 @@ typedef struct {
 
     /// bitwise access to register CNTRH
     struct {
-      BITS   CNT                 : 8;      // bits 0-7
+      BITFIELD_UINT   CNT        : 8;      // bits 0-7
     };  // CNTRH bitfield
 
     /// register _TIM2_CNTRH reset value
@@ -3490,7 +3490,7 @@ typedef struct {
 
     /// bitwise access to register CNTRL
     struct {
-      BITS   CNT                 : 8;      // bits 0-7
+      BITFIELD_UINT   CNT        : 8;      // bits 0-7
     };  // CNTRL bitfield
 
     /// register _TIM2_CNTRL reset value
@@ -3507,8 +3507,8 @@ typedef struct {
 
     /// bitwise access to register PSCR
     struct {
-      BITS   PSC                 : 3;      // bits 0-2
-      BITS                       : 5;      // 5 bits
+      BITFIELD_UINT   PSC        : 3;      // bits 0-2
+      BITFIELD_UINT              : 5;      // 5 bits
     };  // PSCR bitfield
 
     /// register _TIM2_PSCR reset value
@@ -3525,7 +3525,7 @@ typedef struct {
 
     /// bitwise access to register ARRH
     struct {
-      BITS   ARR                 : 8;      // bits 0-7
+      BITFIELD_UINT   ARR        : 8;      // bits 0-7
     };  // ARRH bitfield
 
     /// register _TIM2_ARRH reset value
@@ -3542,7 +3542,7 @@ typedef struct {
 
     /// bitwise access to register ARRL
     struct {
-      BITS   ARR                 : 8;      // bits 0-7
+      BITFIELD_UINT   ARR        : 8;      // bits 0-7
     };  // ARRL bitfield
 
     /// register _TIM2_ARRL reset value
@@ -3559,7 +3559,7 @@ typedef struct {
 
     /// bitwise access to register CCR1H
     struct {
-      BITS   CCR                 : 8;      // bits 0-7
+      BITFIELD_UINT   CCR        : 8;      // bits 0-7
     };  // CCR1H bitfield
 
     /// register _TIM2_CCR1H reset value
@@ -3576,7 +3576,7 @@ typedef struct {
 
     /// bitwise access to register CCR1L
     struct {
-      BITS   CCR                 : 8;      // bits 0-7
+      BITFIELD_UINT   CCR        : 8;      // bits 0-7
     };  // CCR1L bitfield
 
     /// register _TIM2_CCR1L reset value
@@ -3593,7 +3593,7 @@ typedef struct {
 
     /// bitwise access to register CCR2H
     struct {
-      BITS   CCR2                : 8;      // bits 0-7
+      BITFIELD_UINT   CCR2       : 8;      // bits 0-7
     };  // CCR2H bitfield
 
     /// register _TIM2_CCR2H reset value
@@ -3610,7 +3610,7 @@ typedef struct {
 
     /// bitwise access to register CCR2L
     struct {
-      BITS   CCR2                : 8;      // bits 0-7
+      BITFIELD_UINT   CCR2       : 8;      // bits 0-7
     };  // CCR2L bitfield
 
     /// register _TIM2_CCR2L reset value
@@ -3627,13 +3627,13 @@ typedef struct {
 
     /// bitwise access to register BKR
     struct {
-      BITS   LOCK                : 2;      // bits 0-1
-      BITS   OSSI                : 1;      // bit 2
-      BITS                       : 1;      // 1 bit
-      BITS   BKE                 : 1;      // bit 4
-      BITS   BKP                 : 1;      // bit 5
-      BITS   AOE                 : 1;      // bit 6
-      BITS   MOE                 : 1;      // bit 7
+      BITFIELD_UINT   LOCK       : 2;      // bits 0-1
+      BITFIELD_UINT   OSSI       : 1;      // bit 2
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   BKE        : 1;      // bit 4
+      BITFIELD_UINT   BKP        : 1;      // bit 5
+      BITFIELD_UINT   AOE        : 1;      // bit 6
+      BITFIELD_UINT   MOE        : 1;      // bit 7
     };  // BKR bitfield
 
     /// register _TIM2_BKR reset value
@@ -3650,10 +3650,10 @@ typedef struct {
 
     /// bitwise access to register OISR
     struct {
-      BITS   OIS1                : 1;      // bit 0
-      BITS                       : 1;      // 1 bit
-      BITS   PIS2                : 1;      // bit 2
-      BITS                       : 5;      // 5 bits
+      BITFIELD_UINT   OIS1       : 1;      // bit 0
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   PIS2       : 1;      // bit 2
+      BITFIELD_UINT              : 5;      // 5 bits
     };  // OISR bitfield
 
     /// register _TIM2_OISR reset value
@@ -3682,13 +3682,13 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   CEN                 : 1;      // bit 0
-      BITS   UDIS                : 1;      // bit 1
-      BITS   URS                 : 1;      // bit 2
-      BITS   OPM                 : 1;      // bit 3
-      BITS   DIR                 : 1;      // bit 4
-      BITS   CMS                 : 2;      // bits 5-6
-      BITS   ARPE                : 1;      // bit 7
+      BITFIELD_UINT   CEN        : 1;      // bit 0
+      BITFIELD_UINT   UDIS       : 1;      // bit 1
+      BITFIELD_UINT   URS        : 1;      // bit 2
+      BITFIELD_UINT   OPM        : 1;      // bit 3
+      BITFIELD_UINT   DIR        : 1;      // bit 4
+      BITFIELD_UINT   CMS        : 2;      // bits 5-6
+      BITFIELD_UINT   ARPE       : 1;      // bit 7
     };  // CR1 bitfield
 
     /// register _TIM3_CR1 reset value
@@ -3705,9 +3705,9 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS                       : 4;      // 4 bits
-      BITS   MMS                 : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT              : 4;      // 4 bits
+      BITFIELD_UINT   MMS        : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CR2 bitfield
 
     /// register _TIM3_CR2 reset value
@@ -3724,10 +3724,10 @@ typedef struct {
 
     /// bitwise access to register SMCR
     struct {
-      BITS   SMS                 : 3;      // bits 0-2
-      BITS                       : 1;      // 1 bit
-      BITS   TS                  : 3;      // bits 4-6
-      BITS   MSM                 : 1;      // bit 7
+      BITFIELD_UINT   SMS        : 3;      // bits 0-2
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   TS         : 3;      // bits 4-6
+      BITFIELD_UINT   MSM        : 1;      // bit 7
     };  // SMCR bitfield
 
     /// register _TIM3_SMCR reset value
@@ -3744,10 +3744,10 @@ typedef struct {
 
     /// bitwise access to register ETR
     struct {
-      BITS   ETF                 : 4;      // bits 0-3
-      BITS   ETPS                : 2;      // bits 4-5
-      BITS   ECE                 : 1;      // bit 6
-      BITS   ETP                 : 1;      // bit 7
+      BITFIELD_UINT   ETF        : 4;      // bits 0-3
+      BITFIELD_UINT   ETPS       : 2;      // bits 4-5
+      BITFIELD_UINT   ECE        : 1;      // bit 6
+      BITFIELD_UINT   ETP        : 1;      // bit 7
     };  // ETR bitfield
 
     /// register _TIM3_ETR reset value
@@ -3764,12 +3764,12 @@ typedef struct {
 
     /// bitwise access to register IER
     struct {
-      BITS   UIE                 : 1;      // bit 0
-      BITS   CC1IE               : 1;      // bit 1
-      BITS   CC2IE               : 1;      // bit 2
-      BITS                       : 3;      // 3 bits
-      BITS   TIE                 : 1;      // bit 6
-      BITS   BIE                 : 1;      // bit 7
+      BITFIELD_UINT   UIE        : 1;      // bit 0
+      BITFIELD_UINT   CC1IE      : 1;      // bit 1
+      BITFIELD_UINT   CC2IE      : 1;      // bit 2
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   TIE        : 1;      // bit 6
+      BITFIELD_UINT   BIE        : 1;      // bit 7
     };  // IER bitfield
 
     /// register _TIM3_IER reset value
@@ -3786,12 +3786,12 @@ typedef struct {
 
     /// bitwise access to register SR1
     struct {
-      BITS   UIF                 : 1;      // bit 0
-      BITS   CC1IF               : 1;      // bit 1
-      BITS   CC2IF               : 1;      // bit 2
-      BITS                       : 3;      // 3 bits
-      BITS   TIF                 : 1;      // bit 6
-      BITS   BIF                 : 1;      // bit 7
+      BITFIELD_UINT   UIF        : 1;      // bit 0
+      BITFIELD_UINT   CC1IF      : 1;      // bit 1
+      BITFIELD_UINT   CC2IF      : 1;      // bit 2
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   TIF        : 1;      // bit 6
+      BITFIELD_UINT   BIF        : 1;      // bit 7
     };  // SR1 bitfield
 
     /// register _TIM3_SR1 reset value
@@ -3808,10 +3808,10 @@ typedef struct {
 
     /// bitwise access to register SR2
     struct {
-      BITS                       : 1;      // 1 bit
-      BITS   CC1OF               : 1;      // bit 1
-      BITS   CC2OF               : 1;      // bit 2
-      BITS                       : 5;      // 5 bits
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   CC1OF      : 1;      // bit 1
+      BITFIELD_UINT   CC2OF      : 1;      // bit 2
+      BITFIELD_UINT              : 5;      // 5 bits
     };  // SR2 bitfield
 
     /// register _TIM3_SR2 reset value
@@ -3828,12 +3828,12 @@ typedef struct {
 
     /// bitwise access to register EGR
     struct {
-      BITS   UG                  : 1;      // bit 0
-      BITS   CC1G                : 1;      // bit 1
-      BITS   CC2G                : 1;      // bit 2
-      BITS                       : 3;      // 3 bits
-      BITS   TG                  : 1;      // bit 6
-      BITS   BG                  : 1;      // bit 7
+      BITFIELD_UINT   UG         : 1;      // bit 0
+      BITFIELD_UINT   CC1G       : 1;      // bit 1
+      BITFIELD_UINT   CC2G       : 1;      // bit 2
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   TG         : 1;      // bit 6
+      BITFIELD_UINT   BG         : 1;      // bit 7
     };  // EGR bitfield
 
     /// register _TIM3_EGR reset value
@@ -3850,11 +3850,11 @@ typedef struct {
 
     /// bitwise access to register CCMR1_OUT
     struct {
-      BITS   CC1S                : 2;      // bits 0-1
-      BITS   OC1FE               : 1;      // bit 2
-      BITS   OC1PE               : 1;      // bit 3
-      BITS   OC1M                : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   CC1S       : 2;      // bits 0-1
+      BITFIELD_UINT   OC1FE      : 1;      // bit 2
+      BITFIELD_UINT   OC1PE      : 1;      // bit 3
+      BITFIELD_UINT   OC1M       : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CCMR1_OUT bitfield
 
     /// register _TIM3_CCMR1_OUT reset value
@@ -3863,10 +3863,10 @@ typedef struct {
 
     /// bitwise access to register CCMR1_IN
     struct {
-      BITS                       : 2;      // CC1S defined above 
-      BITS   IC1PSC              : 2;      // bits 2-3
-      BITS   IC1F                : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT              : 2;      // CC1S defined above 
+      BITFIELD_UINT   IC1PSC     : 2;      // bits 2-3
+      BITFIELD_UINT   IC1F       : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CCMR1_IN bitfield
 
     /// register _TIM3_CCMR1_IN reset value
@@ -3883,11 +3883,11 @@ typedef struct {
 
     /// bitwise access to register CCMR2_OUT
     struct {
-      BITS   CC2S                : 2;      // bits 0-1
-      BITS   OC2FE               : 1;      // bit 2
-      BITS   OC2PE               : 1;      // bit 3
-      BITS   OC2M                : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   CC2S       : 2;      // bits 0-1
+      BITFIELD_UINT   OC2FE      : 1;      // bit 2
+      BITFIELD_UINT   OC2PE      : 1;      // bit 3
+      BITFIELD_UINT   OC2M       : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CCMR2_OUT bitfield
 
     /// register _TIM3_CCMR2_OUT reset value
@@ -3896,10 +3896,10 @@ typedef struct {
 
     /// bitwise access to register CCMR2_IN
     struct {
-      BITS                       : 2;      // CC2S defined above 
-      BITS   IC2PSC              : 2;      // bits 2-3
-      BITS   IC2F                : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT              : 2;      // CC2S defined above 
+      BITFIELD_UINT   IC2PSC     : 2;      // bits 2-3
+      BITFIELD_UINT   IC2F       : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CCMR2_IN bitfield
 
     /// register _TIM3_CCMR2_IN reset value
@@ -3916,12 +3916,12 @@ typedef struct {
 
     /// bitwise access to register CCER1
     struct {
-      BITS   CC1E                : 1;      // bit 0
-      BITS   CC1P                : 1;      // bit 1
-      BITS                       : 2;      // 2 bits
-      BITS   CC2E                : 1;      // bit 4
-      BITS   CC2P                : 1;      // bit 5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   CC1E       : 1;      // bit 0
+      BITFIELD_UINT   CC1P       : 1;      // bit 1
+      BITFIELD_UINT              : 2;      // 2 bits
+      BITFIELD_UINT   CC2E       : 1;      // bit 4
+      BITFIELD_UINT   CC2P       : 1;      // bit 5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // CCER1 bitfield
 
     /// register _TIM3_CCER1 reset value
@@ -3938,7 +3938,7 @@ typedef struct {
 
     /// bitwise access to register CNTRH
     struct {
-      BITS   CNT                 : 8;      // bits 0-7
+      BITFIELD_UINT   CNT        : 8;      // bits 0-7
     };  // CNTRH bitfield
 
     /// register _TIM3_CNTRH reset value
@@ -3955,7 +3955,7 @@ typedef struct {
 
     /// bitwise access to register CNTRL
     struct {
-      BITS   CNT                 : 8;      // bits 0-7
+      BITFIELD_UINT   CNT        : 8;      // bits 0-7
     };  // CNTRL bitfield
 
     /// register _TIM3_CNTRL reset value
@@ -3972,8 +3972,8 @@ typedef struct {
 
     /// bitwise access to register PSCR
     struct {
-      BITS   PSC                 : 3;      // bits 0-2
-      BITS                       : 5;      // 5 bits
+      BITFIELD_UINT   PSC        : 3;      // bits 0-2
+      BITFIELD_UINT              : 5;      // 5 bits
     };  // PSCR bitfield
 
     /// register _TIM3_PSCR reset value
@@ -3990,7 +3990,7 @@ typedef struct {
 
     /// bitwise access to register ARRH
     struct {
-      BITS   ARR                 : 8;      // bits 0-7
+      BITFIELD_UINT   ARR        : 8;      // bits 0-7
     };  // ARRH bitfield
 
     /// register _TIM3_ARRH reset value
@@ -4007,7 +4007,7 @@ typedef struct {
 
     /// bitwise access to register ARRL
     struct {
-      BITS   ARR                 : 8;      // bits 0-7
+      BITFIELD_UINT   ARR        : 8;      // bits 0-7
     };  // ARRL bitfield
 
     /// register _TIM3_ARRL reset value
@@ -4024,7 +4024,7 @@ typedef struct {
 
     /// bitwise access to register CCR1H
     struct {
-      BITS   CCR                 : 8;      // bits 0-7
+      BITFIELD_UINT   CCR        : 8;      // bits 0-7
     };  // CCR1H bitfield
 
     /// register _TIM3_CCR1H reset value
@@ -4041,7 +4041,7 @@ typedef struct {
 
     /// bitwise access to register CCR1L
     struct {
-      BITS   CCR                 : 8;      // bits 0-7
+      BITFIELD_UINT   CCR        : 8;      // bits 0-7
     };  // CCR1L bitfield
 
     /// register _TIM3_CCR1L reset value
@@ -4058,7 +4058,7 @@ typedef struct {
 
     /// bitwise access to register CCR2H
     struct {
-      BITS   CCR2                : 8;      // bits 0-7
+      BITFIELD_UINT   CCR2       : 8;      // bits 0-7
     };  // CCR2H bitfield
 
     /// register _TIM3_CCR2H reset value
@@ -4075,7 +4075,7 @@ typedef struct {
 
     /// bitwise access to register CCR2L
     struct {
-      BITS   CCR2                : 8;      // bits 0-7
+      BITFIELD_UINT   CCR2       : 8;      // bits 0-7
     };  // CCR2L bitfield
 
     /// register _TIM3_CCR2L reset value
@@ -4092,13 +4092,13 @@ typedef struct {
 
     /// bitwise access to register BKR
     struct {
-      BITS   LOCK                : 2;      // bits 0-1
-      BITS   OSSI                : 1;      // bit 2
-      BITS                       : 1;      // 1 bit
-      BITS   BKE                 : 1;      // bit 4
-      BITS   BKP                 : 1;      // bit 5
-      BITS   AOE                 : 1;      // bit 6
-      BITS   MOE                 : 1;      // bit 7
+      BITFIELD_UINT   LOCK       : 2;      // bits 0-1
+      BITFIELD_UINT   OSSI       : 1;      // bit 2
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   BKE        : 1;      // bit 4
+      BITFIELD_UINT   BKP        : 1;      // bit 5
+      BITFIELD_UINT   AOE        : 1;      // bit 6
+      BITFIELD_UINT   MOE        : 1;      // bit 7
     };  // BKR bitfield
 
     /// register _TIM3_BKR reset value
@@ -4115,10 +4115,10 @@ typedef struct {
 
     /// bitwise access to register OISR
     struct {
-      BITS   OIS1                : 1;      // bit 0
-      BITS                       : 1;      // 1 bit
-      BITS   PIS2                : 1;      // bit 2
-      BITS                       : 5;      // 5 bits
+      BITFIELD_UINT   OIS1       : 1;      // bit 0
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   PIS2       : 1;      // bit 2
+      BITFIELD_UINT              : 5;      // 5 bits
     };  // OISR bitfield
 
     /// register _TIM3_OISR reset value
@@ -4147,12 +4147,12 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   CEN                 : 1;      // bit 0
-      BITS   UDIS                : 1;      // bit 1
-      BITS   URS                 : 1;      // bit 2
-      BITS   OPM                 : 1;      // bit 3
-      BITS                       : 3;      // 3 bits
-      BITS   ARPE                : 1;      // bit 7
+      BITFIELD_UINT   CEN        : 1;      // bit 0
+      BITFIELD_UINT   UDIS       : 1;      // bit 1
+      BITFIELD_UINT   URS        : 1;      // bit 2
+      BITFIELD_UINT   OPM        : 1;      // bit 3
+      BITFIELD_UINT              : 3;      // 3 bits
+      BITFIELD_UINT   ARPE       : 1;      // bit 7
     };  // CR1 bitfield
 
     /// register _TIM4_CR1 reset value
@@ -4169,9 +4169,9 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS                       : 4;      // 4 bits
-      BITS   MMS                 : 3;      // bits 4-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT              : 4;      // 4 bits
+      BITFIELD_UINT   MMS        : 3;      // bits 4-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // CR2 bitfield
 
     /// register _TIM4_CR2 reset value
@@ -4188,10 +4188,10 @@ typedef struct {
 
     /// bitwise access to register SMCR
     struct {
-      BITS   SMS                 : 3;      // bits 0-2
-      BITS                       : 1;      // 1 bit
-      BITS   TS                  : 3;      // bits 4-6
-      BITS   MSM                 : 1;      // bit 7
+      BITFIELD_UINT   SMS        : 3;      // bits 0-2
+      BITFIELD_UINT              : 1;      // 1 bit
+      BITFIELD_UINT   TS         : 3;      // bits 4-6
+      BITFIELD_UINT   MSM        : 1;      // bit 7
     };  // SMCR bitfield
 
     /// register _TIM4_SMCR reset value
@@ -4208,10 +4208,10 @@ typedef struct {
 
     /// bitwise access to register IER
     struct {
-      BITS   UIE                 : 1;      // bit 0
-      BITS                       : 5;      // 5 bits
-      BITS   TIE                 : 1;      // bit 6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   UIE        : 1;      // bit 0
+      BITFIELD_UINT              : 5;      // 5 bits
+      BITFIELD_UINT   TIE        : 1;      // bit 6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // IER bitfield
 
     /// register _TIM4_IER reset value
@@ -4228,10 +4228,10 @@ typedef struct {
 
     /// bitwise access to register SR1
     struct {
-      BITS   UIF                 : 1;      // bit 0
-      BITS                       : 5;      // 5 bits
-      BITS   TIF                 : 1;      // bit 6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   UIF        : 1;      // bit 0
+      BITFIELD_UINT              : 5;      // 5 bits
+      BITFIELD_UINT   TIF        : 1;      // bit 6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // SR1 bitfield
 
     /// register _TIM4_SR1 reset value
@@ -4248,10 +4248,10 @@ typedef struct {
 
     /// bitwise access to register EGR
     struct {
-      BITS   UG                  : 1;      // bit 0
-      BITS                       : 5;      // 5 bits
-      BITS   TG                  : 1;      // bit 6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   UG         : 1;      // bit 0
+      BITFIELD_UINT              : 5;      // 5 bits
+      BITFIELD_UINT   TG         : 1;      // bit 6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // EGR bitfield
 
     /// register _TIM4_EGR reset value
@@ -4268,7 +4268,7 @@ typedef struct {
 
     /// bitwise access to register CNTR
     struct {
-      BITS   CNT                 : 8;      // bits 0-7
+      BITFIELD_UINT   CNT        : 8;      // bits 0-7
     };  // CNTR bitfield
 
     /// register _TIM4_CNTR reset value
@@ -4285,8 +4285,8 @@ typedef struct {
 
     /// bitwise access to register PSCR
     struct {
-      BITS   PSC                 : 4;      // bits 0-3
-      BITS                       : 4;      // 4 bits
+      BITFIELD_UINT   PSC        : 4;      // bits 0-3
+      BITFIELD_UINT              : 4;      // 4 bits
     };  // PSCR bitfield
 
     /// register _TIM4_PSCR reset value
@@ -4303,7 +4303,7 @@ typedef struct {
 
     /// bitwise access to register ARR
     struct {
-      BITS   ARR                 : 8;      // bits 0-7
+      BITFIELD_UINT   ARR        : 8;      // bits 0-7
     };  // ARR bitfield
 
     /// register _TIM4_ARR reset value
@@ -4332,14 +4332,14 @@ typedef struct {
 
     /// bitwise access to register SR
     struct {
-      BITS   PE                  : 1;      // bit 0
-      BITS   FE                  : 1;      // bit 1
-      BITS   NF                  : 1;      // bit 2
-      BITS   OR                  : 1;      // bit 3
-      BITS   IDLE                : 1;      // bit 4
-      BITS   RXNE                : 1;      // bit 5
-      BITS   TC                  : 1;      // bit 6
-      BITS   TXE                 : 1;      // bit 7
+      BITFIELD_UINT   PE         : 1;      // bit 0
+      BITFIELD_UINT   FE         : 1;      // bit 1
+      BITFIELD_UINT   NF         : 1;      // bit 2
+      BITFIELD_UINT   OR         : 1;      // bit 3
+      BITFIELD_UINT   IDLE       : 1;      // bit 4
+      BITFIELD_UINT   RXNE       : 1;      // bit 5
+      BITFIELD_UINT   TC         : 1;      // bit 6
+      BITFIELD_UINT   TXE        : 1;      // bit 7
     };  // SR bitfield
 
     /// register _USART_SR reset value
@@ -4356,7 +4356,7 @@ typedef struct {
 
     /// bitwise access to register DR
     struct {
-      BITS   DR                  : 8;      // bits 0-7
+      BITFIELD_UINT   DR         : 8;      // bits 0-7
     };  // DR bitfield
 
     /// register _USART_DR reset value
@@ -4373,7 +4373,7 @@ typedef struct {
 
     /// bitwise access to register BRR1
     struct {
-      BITS   USART_DIV           : 8;      // bits 0-7
+      BITFIELD_UINT   USART_DIV  : 8;      // bits 0-7
     };  // BRR1 bitfield
 
     /// register _USART_BRR1 reset value
@@ -4390,7 +4390,7 @@ typedef struct {
 
     /// bitwise access to register BRR2
     struct {
-      BITS   USART_DIV           : 8;      // bits 0-7
+      BITFIELD_UINT   USART_DIV  : 8;      // bits 0-7
     };  // BRR2 bitfield
 
     /// register _USART_BRR2 reset value
@@ -4407,14 +4407,14 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   PIEN                : 1;      // bit 0
-      BITS   PS                  : 1;      // bit 1
-      BITS   PCEN                : 1;      // bit 2
-      BITS   WAKE                : 1;      // bit 3
-      BITS   MSL                 : 1;      // bit 4
-      BITS   USARTD              : 1;      // bit 5
-      BITS   T8                  : 1;      // bit 6
-      BITS   R8                  : 1;      // bit 7
+      BITFIELD_UINT   PIEN       : 1;      // bit 0
+      BITFIELD_UINT   PS         : 1;      // bit 1
+      BITFIELD_UINT   PCEN       : 1;      // bit 2
+      BITFIELD_UINT   WAKE       : 1;      // bit 3
+      BITFIELD_UINT   MSL        : 1;      // bit 4
+      BITFIELD_UINT   USARTD     : 1;      // bit 5
+      BITFIELD_UINT   T8         : 1;      // bit 6
+      BITFIELD_UINT   R8         : 1;      // bit 7
     };  // CR1 bitfield
 
     /// register _USART_CR1 reset value
@@ -4431,14 +4431,14 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS   SBK                 : 1;      // bit 0
-      BITS   RWU                 : 1;      // bit 1
-      BITS   REN                 : 1;      // bit 2
-      BITS   TEN                 : 1;      // bit 3
-      BITS   ILIEN               : 1;      // bit 4
-      BITS   RIEN                : 1;      // bit 5
-      BITS   TCIEN               : 1;      // bit 6
-      BITS   TIEN                : 1;      // bit 7
+      BITFIELD_UINT   SBK        : 1;      // bit 0
+      BITFIELD_UINT   RWU        : 1;      // bit 1
+      BITFIELD_UINT   REN        : 1;      // bit 2
+      BITFIELD_UINT   TEN        : 1;      // bit 3
+      BITFIELD_UINT   ILIEN      : 1;      // bit 4
+      BITFIELD_UINT   RIEN       : 1;      // bit 5
+      BITFIELD_UINT   TCIEN      : 1;      // bit 6
+      BITFIELD_UINT   TIEN       : 1;      // bit 7
     };  // CR2 bitfield
 
     /// register _USART_CR2 reset value
@@ -4455,12 +4455,12 @@ typedef struct {
 
     /// bitwise access to register CR3
     struct {
-      BITS   LBCL                : 1;      // bit 0
-      BITS   CPHA                : 1;      // bit 1
-      BITS   CPOL                : 1;      // bit 2
-      BITS   CLKEN               : 1;      // bit 3
-      BITS   STOP                : 2;      // bits 4-5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   LBCL       : 1;      // bit 0
+      BITFIELD_UINT   CPHA       : 1;      // bit 1
+      BITFIELD_UINT   CPOL       : 1;      // bit 2
+      BITFIELD_UINT   CLKEN      : 1;      // bit 3
+      BITFIELD_UINT   STOP       : 2;      // bits 4-5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // CR3 bitfield
 
     /// register _USART_CR3 reset value
@@ -4477,8 +4477,8 @@ typedef struct {
 
     /// bitwise access to register CR4
     struct {
-      BITS   ADD                 : 4;      // bits 0-3
-      BITS                       : 4;      // 4 bits
+      BITFIELD_UINT   ADD        : 4;      // bits 0-3
+      BITFIELD_UINT              : 4;      // 4 bits
     };  // CR4 bitfield
 
     /// register _USART_CR4 reset value
@@ -4507,13 +4507,13 @@ typedef struct {
 
     /// bitwise access to register CR1
     struct {
-      BITS   TIM2_EV0            : 1;      // bit 0
-      BITS   TIM2_EV1            : 1;      // bit 1
-      BITS                       : 2;      // 2 bits
-      BITS   EXTI_EV0            : 1;      // bit 4
-      BITS   EXTI_EV1            : 1;      // bit 5
-      BITS   EXTI_EV2            : 1;      // bit 6
-      BITS   EXTI_EV3            : 1;      // bit 7
+      BITFIELD_UINT   TIM2_EV0   : 1;      // bit 0
+      BITFIELD_UINT   TIM2_EV1   : 1;      // bit 1
+      BITFIELD_UINT              : 2;      // 2 bits
+      BITFIELD_UINT   EXTI_EV0   : 1;      // bit 4
+      BITFIELD_UINT   EXTI_EV1   : 1;      // bit 5
+      BITFIELD_UINT   EXTI_EV2   : 1;      // bit 6
+      BITFIELD_UINT   EXTI_EV3   : 1;      // bit 7
     };  // CR1 bitfield
 
     /// register _WFE_CR1 reset value
@@ -4530,13 +4530,13 @@ typedef struct {
 
     /// bitwise access to register CR2
     struct {
-      BITS   EXTI_EV4            : 1;      // bit 0
-      BITS   EXTI_EV5            : 1;      // bit 1
-      BITS   EXTI_EV6            : 1;      // bit 2
-      BITS   EXTI_EV7            : 1;      // bit 3
-      BITS   EXTI_EVB            : 1;      // bit 4
-      BITS   EXTI_EVD            : 1;      // bit 5
-      BITS                       : 2;      // 2 bits
+      BITFIELD_UINT   EXTI_EV4   : 1;      // bit 0
+      BITFIELD_UINT   EXTI_EV5   : 1;      // bit 1
+      BITFIELD_UINT   EXTI_EV6   : 1;      // bit 2
+      BITFIELD_UINT   EXTI_EV7   : 1;      // bit 3
+      BITFIELD_UINT   EXTI_EVB   : 1;      // bit 4
+      BITFIELD_UINT   EXTI_EVD   : 1;      // bit 5
+      BITFIELD_UINT              : 2;      // 2 bits
     };  // CR2 bitfield
 
     /// register _WFE_CR2 reset value
@@ -4565,8 +4565,8 @@ typedef struct {
 
     /// bitwise access to register WWDG_CR
     struct {
-      BITS   T                   : 7;      // bits 0-6
-      BITS   WDGA                : 1;      // bit 7
+      BITFIELD_UINT   T          : 7;      // bits 0-6
+      BITFIELD_UINT   WDGA       : 1;      // bit 7
     };  // WWDG_CR bitfield
 
     /// register _WDG_WWDG_CR reset value
@@ -4583,8 +4583,8 @@ typedef struct {
 
     /// bitwise access to register WWDG_WR
     struct {
-      BITS   W                   : 7;      // bits 0-6
-      BITS                       : 1;      // 1 bit
+      BITFIELD_UINT   W          : 7;      // bits 0-6
+      BITFIELD_UINT              : 1;      // 1 bit
     };  // WWDG_WR bitfield
 
     /// register _WDG_WWDG_WR reset value
@@ -4605,7 +4605,7 @@ typedef struct {
 
     /// bitwise access to register IWDG_KR
     struct {
-      BITS   KEY                 : 8;      // bits 0-7
+      BITFIELD_UINT   KEY        : 8;      // bits 0-7
     };  // IWDG_KR bitfield
 
     /// register _WDG_IWDG_KR reset value
@@ -4622,8 +4622,8 @@ typedef struct {
 
     /// bitwise access to register IWDG_PR
     struct {
-      BITS   PR                  : 3;      // bits 0-2
-      BITS                       : 5;      // 5 bits
+      BITFIELD_UINT   PR         : 3;      // bits 0-2
+      BITFIELD_UINT              : 5;      // 5 bits
     };  // IWDG_PR bitfield
 
     /// register _WDG_IWDG_PR reset value
@@ -4640,7 +4640,7 @@ typedef struct {
 
     /// bitwise access to register IWDG_RLR
     struct {
-      BITS   RL                  : 8;      // bits 0-7
+      BITFIELD_UINT   RL         : 8;      // bits 0-7
     };  // IWDG_RLR bitfield
 
     /// register _WDG_IWDG_RLR reset value
@@ -4655,7 +4655,7 @@ typedef struct {
 
 
 // undefine local macros
-#undef  BITS
+#undef  BITFIELD_UINT
 
 // required for C++
 #ifdef __cplusplus
