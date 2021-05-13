@@ -35,9 +35,38 @@ These projects have been tested successfully with [SDCC](http://sdcc.sourceforge
 
 
 
-**adc_measure**
-  - measure analog voltage every ~500ms
+**adc1_scan**
+  - perform an ADC1 scan of AIN0..AIN3 every 1ms
+  - read result in TIM4 ISR and trigger next scan
+  - send result every 1s
+
+------------------------
+
+**adc_continuous_1ch**
+  - measure 1 channel continuously
+  - read ADC value in timer ISR every 1ms
+  - every 500ms print ADC value via UART using printf()
+  - works with ADC1 (advanced) & ADC2 (basic)
+
+------------------------
+
+**adc_single-shot_1ch**
+  - measure 1 channel every ~500ms in single shot mode
   - print value via UART using printf()
+  - works with ADC1 (advanced) & ADC2 (basic)
+
+------------------------
+
+**beeper**
+  - activate beeper output via option bytes
+  - generate different frequencies on BEEP pin
+  - no LSI calibration (yet)
+  - no interrupts
+
+------------------------
+
+**benchmark_biquad**
+  - benchmark for comparison of Biquad algorithms performance
 
 ------------------------
 
@@ -60,9 +89,31 @@ These projects have been tested successfully with [SDCC](http://sdcc.sourceforge
 
 ------------------------
 
+**CLI_console**
+  - cimple CLI from https://www.avrfreaks.net/forum/simple-command-interpreter
+  - print prompt to and read CLI commands from UART 
+  - use FIFO and interrupts for transmit & receive
+
+------------------------
+
+**clock_switch**
+  - periodically:
+    - switch between internal and external clock with timeout
+    - print active clock via UART
+  - for extra safety use independent watchdog (IWDG)
+
+------------------------
+
 **I2C_LCD**
   - Periodically print text to 2x16 char LCD attached to I2C
   - LCD type Batron BTHQ21605V-COG-FSRE-I2C 2X16 (Farnell 1220409)
+
+------------------------
+
+**IWDG_watchdog**
+  - initialize IWDG to 100ms, service every 50ms
+  - print millis to UART every 500ms
+  - if 'r' received, stop watchdog service --> reset
 
 ------------------------
 
@@ -73,6 +124,20 @@ These projects have been tested successfully with [SDCC](http://sdcc.sourceforge
 
 **millis_delay**
   - implement 1ms ISR, millis(), micros() etc., similar to  Arduino
+
+------------------------
+
+**Modbus_RTU**
+  - small Modbus RTU client/server implementation
+  - with optional RS485 support
+  - STM8 port of https://github.com/mbs38/yaMBSiavr for AVR
+
+------------------------
+
+**Modbus_RTU_auto-address**
+  - small Modbus RTU client implementation to demonstrate auto-addressing
+  - demonstrate detection of colliding Modbus IDs and resolving the issue
+  - see corresponding Python server in Utils
 
 ------------------------
 
@@ -91,14 +156,15 @@ These projects have been tested successfully with [SDCC](http://sdcc.sourceforge
 
 ------------------------
 
-**PWM_generate**
-  - generate a PWM on pin PD2/TIM3_CH1 (=pin 3 on sduino)
+**PWM_2ch_phase-shift**
+  - configure timer 1 for up-down counter with 50kHz frequency
+  - generate 2x PWM on TIM1_CH1 and TIM1_CH3
+  - ramp up/down duty cycle
 
 ------------------------
 
-**read_unique_ID**
-  - read unique identifier and print via UART
-  - Note: UID not supported by all devices
+**PWM_generate**
+  - generate a PWM on pin PD2/TIM3_CH1 (=pin 3 on sduino)
 
 ------------------------
 
@@ -165,5 +231,12 @@ These projects have been tested successfully with [SDCC](http://sdcc.sourceforge
 **STM8_StdPeriphLib**
   - mix with functions/headers of the STM8S Standard Peripheral Library (SPL)
   - SDCC compatibility requires patch, see e.g. [here](https://github.com/gicking/STM8-SPL_SDCC_patch).
+
+------------------------
+
+**Task_Scheduler**
+  - port of an Arduino pre-emptive task scheduler library from https://github.com/kcl93/Tasks
+  - blink LED via task scheduler in "background"
+  - for reference see https://github.com/kcl93/Tasks
 
 
