@@ -1,14 +1,13 @@
 /**********************
-  Serial communication using FIFO and interrupts
-  similar to Arduino Serial class
+  Simple commandline interface adapted from
+  https://www.avrfreaks.net/forum/simple-command-interpreter (search for Graynomad)
 
   supported hardware:
     - Nucleo-8S208RB (https://www.st.com/en/evaluation-tools/nucleo-8s208rb.html)
 
   Functionality:
-    - send millis every 500ms
+    - print prompt to and read CLI commands from UART 
     - use FIFO and interrupts for transmit & receive
-    - functionality is like Arduino Serial class
 **********************/
 
 /*----------------------------------------------------------
