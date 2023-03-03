@@ -89,7 +89,7 @@ void main (void)
   clock_switch(CLK_HSE);
 
   // enable HSE supervision (CSS)
-  // Note: if CSS triggers, HSE remains disable until reset
+  // Note: if CSS triggers, HSE remains disabled until reset
   clock_init_css();
 
   // init IWDG watchdog with 100ms period and start (cannot be stopped)

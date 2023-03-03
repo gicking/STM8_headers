@@ -78,7 +78,7 @@ void main (void) {
   // enable interrupts
   ENABLE_INTERRUPTS();   
   
-	// save data  
+  // save data  
   printf("\nsave data to P-flash ... ");
   count = 0;
   for (i=0; i<NUM_DATA; i++)
