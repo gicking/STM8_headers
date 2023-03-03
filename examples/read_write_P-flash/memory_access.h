@@ -31,21 +31,21 @@
   
   // read & write data from memory (16-bit address). For size use 16b pointers
   #if (FLASH_ADDR_WIDTH==16)
-    #define read_1B(addr)       (*((uint8_t*) addr))                     /**< read 1B from 16-bit address */
-    #define read_2B(addr)       (*((uint16_t*) addr))                    /**< read 2B from 16-bit address */
-    #define read_4B(addr)       (*((uint32_t*) addr))                    /**< read 4B from 16-bit address */
-    #define write_1B(addr,val)  *((uint8_t*) addr) = val                 /**< write 1B to 16-bit address */
-    #define write_2B(addr,val)  *((uint16_t*) addr) = val                /**< write 1B to 16-bit address */
-    #define write_4B(addr,val)  *((uint32_t*) addr) = val                /**< write 1B to 16-bit address */
+    #define read_1B(addr)       (*((uint8_t*) (addr)))                     /**< read 1B from 16-bit address */
+    #define read_2B(addr)       (*((uint16_t*) (addr)))                    /**< read 2B from 16-bit address */
+    #define read_4B(addr)       (*((uint32_t*) (addr)))                    /**< read 4B from 16-bit address */
+    #define write_1B(addr,val)  *((uint8_t*) (addr)) = val                 /**< write 1B to 16-bit address */
+    #define write_2B(addr,val)  *((uint16_t*) (addr)) = val                /**< write 1B to 16-bit address */
+    #define write_4B(addr,val)  *((uint32_t*) (addr)) = val                /**< write 1B to 16-bit address */
   
   // read & write data from memory (24-bit address). Use 24b far pointers
   #else
-    #define read_1B(addr)       (*((@far uint8_t*) addr))                /**< read 1B from 24-bit address */
-    #define read_2B(addr)       (*((@far uint16_t*) addr))               /**< read 2B from 24-bit address */
-    #define read_4B(addr)       (*((@far uint32_t*) addr))               /**< read 4B from 24-bit address */
-    #define write_1B(addr,val)  *((@far uint8_t*) addr) = val            /**< write 1B to 24-bit address */
-    #define write_2B(addr,val)  *((@far uint16_t*) addr) = val           /**< write 1B to 24-bit address */
-    #define write_4B(addr,val)  *((@far uint32_t*) addr) = val           /**< write 1B to 24-bit address */
+    #define read_1B(addr)       (*((@far uint8_t*) (addr)))                /**< read 1B from 24-bit address */
+    #define read_2B(addr)       (*((@far uint16_t*) (addr)))               /**< read 2B from 24-bit address */
+    #define read_4B(addr)       (*((@far uint32_t*) (addr)))               /**< read 4B from 24-bit address */
+    #define write_1B(addr,val)  *((@far uint8_t*) (addr)) = val            /**< write 1B to 24-bit address */
+    #define write_2B(addr,val)  *((@far uint16_t*) (addr)) = val           /**< write 1B to 24-bit address */
+    #define write_4B(addr,val)  *((@far uint32_t*) (addr)) = val           /**< write 1B to 24-bit address */
   #endif
 
 
@@ -56,21 +56,21 @@
   
   // read & write data from memory (16-bit address). For size use 16b pointers
   #if (FLASH_ADDR_WIDTH==16)
-    #define read_1B(addr)       (*((uint8_t*) (uint16_t) addr))          /**< read 1B from 16-bit address */
-    #define read_2B(addr)       (*((uint16_t*) (uint16_t) addr))         /**< read 2B from 16-bit address */
-    #define read_4B(addr)       (*((uint32_t*) (uint16_t) addr))         /**< read 4B from 16-bit address */
-    #define write_1B(addr,val)  *((uint8_t*) (uint16_t) addr) = val      /**< write 1B to 16-bit address */
-    #define write_2B(addr,val)  *((uint16_t*)(uint16_t)  addr) = val     /**< write 1B to 16-bit address */
-    #define write_4B(addr,val)  *((uint32_t*) (uint16_t) addr) = val     /**< write 1B to 16-bit address */
+    #define read_1B(addr)       (*((uint8_t*) (uint16_t) (addr)))          /**< read 1B from 16-bit address */
+    #define read_2B(addr)       (*((uint16_t*) (uint16_t) (addr)))         /**< read 2B from 16-bit address */
+    #define read_4B(addr)       (*((uint32_t*) (uint16_t) (addr)))         /**< read 4B from 16-bit address */
+    #define write_1B(addr,val)  *((uint8_t*) (uint16_t) (addr)) = val      /**< write 1B to 16-bit address */
+    #define write_2B(addr,val)  *((uint16_t*)(uint16_t)  (addr)) = val     /**< write 1B to 16-bit address */
+    #define write_4B(addr,val)  *((uint32_t*) (uint16_t) (addr)) = val     /**< write 1B to 16-bit address */
   
   // read & write data from memory (24-bit address). Use 24b far pointers
   #else
-    #define read_1B(addr)       (*((uint8_t __far*) addr))               /**< read 1B from 24-bit address */
-    #define read_2B(addr)       (*((uint16_t __far*) addr))              /**< read 2B from 24-bit address */
-    #define read_4B(addr)       (*((uint32_t __far*) addr))              /**< read 4B from 24-bit address */
-    #define write_1B(addr,val)  *((uint8_t __far*) addr) = val           /**< write 1B to 24-bit address */
-    #define write_2B(addr,val)  *((uint16_t __far*) addr) = val          /**< write 1B to 24-bit address */
-    #define write_4B(addr,val)  *((uint32_t __far*) addr) = val          /**< write 1B to 24-bit address */
+    #define read_1B(addr)       (*((uint8_t __far*) (addr)))               /**< read 1B from 24-bit address */
+    #define read_2B(addr)       (*((uint16_t __far*) (addr)))              /**< read 2B from 24-bit address */
+    #define read_4B(addr)       (*((uint32_t __far*) (addr)))              /**< read 4B from 24-bit address */
+    #define write_1B(addr,val)  *((uint8_t __far*) (addr)) = val           /**< write 1B to 24-bit address */
+    #define write_2B(addr,val)  *((uint16_t __far*) (addr)) = val          /**< write 1B to 24-bit address */
+    #define write_4B(addr,val)  *((uint32_t __far*) (addr)) = val          /**< write 1B to 24-bit address */
   #endif
 
 
@@ -81,12 +81,12 @@
 
   // read & write data from memory (16-bit address)
   #if (FLASH_ADDR_WIDTH==16)
-    #define read_1B(addr)       (*((uint8_t*) addr))                     /**< read 1B from 16-bit address */
-    #define read_2B(addr)       (*((uint16_t*) addr))                    /**< read 2B from 16-bit address */
-    #define read_4B(addr)       (*((uint32_t*) addr))                    /**< read 4B from 16-bit address */
-    #define write_1B(addr,val)  *((uint8_t*) addr) = val                 /**< write 1B to 16-bit address */
-    #define write_2B(addr,val)  *((uint16_t*) addr) = val                /**< write 1B to 16-bit address */
-    #define write_4B(addr,val)  *((uint32_t*) addr) = val                /**< write 1B to 16-bit address */
+    #define read_1B(addr)       (*((uint8_t*) (addr)))                     /**< read 1B from 16-bit address */
+    #define read_2B(addr)       (*((uint16_t*) (addr)))                    /**< read 2B from 16-bit address */
+    #define read_4B(addr)       (*((uint32_t*) (addr)))                    /**< read 4B from 16-bit address */
+    #define write_1B(addr,val)  *((uint8_t*) (addr)) = val                 /**< write 1B to 16-bit address */
+    #define write_2B(addr,val)  *((uint16_t*) (addr)) = val                /**< write 1B to 16-bit address */
+    #define write_4B(addr,val)  *((uint32_t*) (addr)) = val                /**< write 1B to 16-bit address */
 
   // read & write data from memory (24-bit address). SDCC doesn't support far pointers -> use inline assembly
   #else
