@@ -33,6 +33,12 @@ uint8_t EEPROM_writeByte(uint16_t logAddr, uint8_t data);
 /// read 1B from D-flash / EEPROM
 uint8_t EEPROM_readByte(uint16_t logAddr);
 
+/// write 4B to D-flash / EEPROM
+uint8_t EEPROM_writeDWord(uint16_t logAddr, uint32_t data);
+
+/// read 4B from D-flash / EEPROM
+uint32_t EEPROM_readDWord(uint16_t logAddr);
+
 
 /*-----------------------------------------------------------------------------
     END OF MODULE DEFINITION FOR MULTIPLE INLUSION

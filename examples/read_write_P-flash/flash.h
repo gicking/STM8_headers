@@ -28,8 +28,11 @@
     GLOBAL FUNCTIONS
 ----------------------------------------------------------*/
 
-/// write 1B to D-flash / EEPROM
+/// write 1B to D-flash
 uint8_t FLASH_writeByte(uint32_t addr, uint8_t data);
+
+/// write 4B to P-flash (big-endian)
+uint8_t FLASH_writeDWord(uint32_t addr, uint32_t data);
 
 
 
