@@ -3,10 +3,11 @@
   
   supported hardware:
     - Sduino Uno (https://github.com/roybaer/sduino_uno)
-    - Nucleo-8S208RB (https://www.st.com/en/evaluation-tools/nucleo-8s208rb.html)
     - STM8L Discovery (https://www.st.com/en/evaluation-tools/stm8l-discovery.html)
+    - STM8S Discovery (https://www.st.com/en/evaluation-tools/stm8s-discovery.html)
+    - NUCLEO-8S207K8 (https://www.st.com/en/evaluation-tools/nucleo-8s207k8.html)
+    - NUCLEO-8S207K8 (https://www.st.com/en/evaluation-tools/nucleo-8s208rb.html)
 
-  
   Functionality:
     - send millis every 500ms
     - echo received bytes
@@ -69,14 +70,33 @@ void main (void) {
   sfr_CLK.CKDIVR.byte = 0x00;
     
   // configure LED pin as output
-  #if defined(STM8L_DISCOVERY)
-    sfr_PORTE.DDR.DDR7 = 1;     // input(=0) or output(=1)
-    sfr_PORTE.CR1.C17  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
-    sfr_PORTE.CR2.C27  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
-  #elif defined(SDUINO) || defined(NUCLEO_8S208RB)
+  #if defined(SDUINO)
     sfr_PORTC.DDR.DDR5 = 1;     // input(=0) or output(=1)
     sfr_PORTC.CR1.C15  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
     sfr_PORTC.CR2.C25  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+    #define ODR_LED  sfr_PORTC.ODR.ODR5
+  #elif defined(STM8L_DISCOVERY)
+    sfr_PORTE.DDR.DDR7 = 1;     // input(=0) or output(=1)
+    sfr_PORTE.CR1.C17  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
+    sfr_PORTE.CR2.C27  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+    #define ODR_LED  sfr_PORTE.ODR.ODR7
+  #elif defined(STM8S_DISCOVERY)
+    sfr_PORTD.DDR.DDR0 = 1;     // input(=0) or output(=1)
+    sfr_PORTD.CR1.C10  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
+    sfr_PORTD.CR2.C20  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+    #define ODR_LED  sfr_PORTD.ODR.ODR0
+  #elif defined(NUCLEO_8S207K8)
+    sfr_PORTC.DDR.DDR5 = 1;     // input(=0) or output(=1)
+    sfr_PORTC.CR1.C15  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
+    sfr_PORTC.CR2.C25  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+    #define ODR_LED  sfr_PORTC.ODR.ODR5
+  #elif defined(NUCLEO_8S208RB)
+    sfr_PORTC.DDR.DDR5 = 1;     // input(=0) or output(=1)
+    sfr_PORTC.CR1.C15  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
+    sfr_PORTC.CR2.C25  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+    #define ODR_LED  sfr_PORTC.ODR.ODR5
+  #else
+    #error undefined board
   #endif
   
   // init UART for 19.2kBaud
@@ -99,11 +119,7 @@ void main (void) {
       nextPrint += 500;
       
       // toggle LED
-      #if defined(STM8L_DISCOVERY)
-        sfr_PORTE.ODR.ODR7 ^= 1;
-      #elif defined(SDUINO) || defined(NUCLEO_8S208RB)
-        sfr_PORTC.ODR.ODR5 ^= 1;
-      #endif
+      ODR_LED ^= 1;
     
       // print millis
       printf("  time: %ld\n", g_millis);
@@ -125,6 +141,7 @@ void main (void) {
       printf("received '%c'\n", (char) g_key);
 
       g_key = 0;
+
     } // byte received
     
     

@@ -39,6 +39,32 @@
     GLOBAL MACROS
 ----------------------------------------------------------*/
 
+// define specific board UART 
+#if defined(SDUINO)
+  #define sfr_UART             sfr_UART2
+  #define _UART_RXNE_VECTOR_   _UART2_R_RXNE_VECTOR_
+    
+#elif defined(NUCLEO_8S207K8)
+  #define sfr_UART             sfr_UART3
+  #define _UART_RXNE_VECTOR_   _UART3_R_RXNE_VECTOR_
+
+#elif defined(NUCLEO_8S208RB)
+  #define sfr_UART             sfr_UART1
+  #define _UART_RXNE_VECTOR_   _UART1_R_RXNE_VECTOR_
+
+#elif defined(STM8L_DISCOVERY)
+  #define sfr_UART             sfr_USART1
+  #define _UART_RXNE_VECTOR_   _USART_R_RXNE_VECTOR_
+  
+#elif defined(STM8S_DISCOVERY)
+  #define sfr_UART             sfr_UART2
+  #define _UART_RXNE_VECTOR_   _UART2_R_RXNE_VECTOR_
+
+#else
+  #error undefined board
+#endif
+
+
 /// check if byte received
 #define UART_available()   ( sfr_UART.SR.RXNE )
 
@@ -46,7 +72,7 @@
 #define UART_read()        ( sfr_UART.DR.byte )
 
 /// send byte via UART
-#define UART_write(x)      { while (!(sfr_UART.SR.TXE)); sfr_UART.DR.byte = x; }
+#define UART_write(x)      { while (!(sfr_UART.SR.TXE)); sfr_UART.DR.byte = x; while (!(sfr_UART.SR.TC)); }
 
 /// flush UART Tx
 #define UART_flush()       { while (!(sfr_UART.SR.TC)); }
@@ -66,4 +92,4 @@ ISR_HANDLER(UART_RXNE_ISR, _UART_RXNE_VECTOR_);
 /*-----------------------------------------------------------------------------
     END OF MODULE DEFINITION FOR MULTIPLE INLUSION
 -----------------------------------------------------------------------------*/
-#endif // _UART2_H_
+#endif // _UART_H_
