@@ -8,16 +8,19 @@
 
 # required for stm8flash
 stm8flash_PATH   = ~/Öffentlich/GitHub/External/stm8flash/stm8flash
+#stm8flash_DEVICE = stm8l152c6          # STM8L Discovery
+#stm8flash_SWIM   = stlinkv2
 #stm8flash_DEVICE = stm8s105c6          # STM8S Discovery
 #stm8flash_SWIM   = stlink
-stm8flash_DEVICE = stm8l152c6           # STM8L Discovery
-stm8flash_SWIM   = stlinkv2
-#stm8flash_DEVICE = stm8s001j3          # STM8-SO8-DISCO (stm8s001j3)
-#stm8flash_SWIM   = stlinkv2
+stm8flash_DEVICE = stm8s207k8           # NUCLEO 8S207K8
+stm8flash_SWIM   = stlinkv21
+#stm8flash_DEVICE = stm8s208rb         # NUCLEO 8S208RB
+#stm8flash_SWIM   = stlinkv21
 
 # required for stm8gal
-stm8gal_PATH     = ~/Öffentlich/GitHub/stm8gal/binaries/stm8gal_linux64
-stm8gal_PORT     = /dev/ttyUSB0
+stm8gal_PATH     = ~/Öffentlich/GitHub/stm8gal/stm8gal
+#stm8gal_PORT     = /dev/ttyUSB0
+stm8gal_PORT     = /dev/ttyACM0
 
 # define compiler path (if not in PATH), and flags
 CC               = sdcc

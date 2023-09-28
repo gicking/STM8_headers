@@ -39,42 +39,44 @@
     GLOBAL MACROS
 ----------------------------------------------------------*/
 
-// STM8L
-#if defined(sfr_USART1)
+// define specific board UART 
+#if defined(SDUINO)
+  #define sfr_UART             sfr_UART2
+  #define _UART_RXNE_VECTOR_   _UART2_R_RXNE_VECTOR_
+    
+#elif defined(NUCLEO_8S207K8)
+  #define sfr_UART             sfr_UART3
+  #define _UART_RXNE_VECTOR_   _UART3_R_RXNE_VECTOR_
 
-  /// check if byte received via USART1
-  #define UART_available()   ( sfr_USART1.SR.RXNE )
+#elif defined(NUCLEO_8S208RB)
+  #define sfr_UART             sfr_UART1
+  #define _UART_RXNE_VECTOR_   _UART1_R_RXNE_VECTOR_
 
-  /// read received byte from USART1
-  #define UART_read()        ( sfr_USART1.DR.byte )
-
-  /// send byte via UART2
-  #define UART_write(x)	     { while (!(sfr_USART1.SR.TXE)); sfr_USART1.DR.byte = x; }
-
-  /// flush UART2
-  #define UART_flush()	     { while (!(sfr_USART1.SR.TC)); }
+#elif defined(STM8L_DISCOVERY)
+  #define sfr_UART             sfr_USART1
+  #define _UART_RXNE_VECTOR_   _USART_R_RXNE_VECTOR_
   
-// STM8S
-#elif defined(sfr_UART2)
+#elif defined(STM8S_DISCOVERY)
+  #define sfr_UART             sfr_UART2
+  #define _UART_RXNE_VECTOR_   _UART2_R_RXNE_VECTOR_
 
-  /// check if byte received via UART2
-  #define UART_available()   ( sfr_UART2.SR.RXNE )
-
-  /// read received byte from UART2
-  #define UART_read()        ( sfr_UART2.DR.byte )
-
-  /// send byte via UART2
-  #define UART_write(x)	     { while (!(sfr_UART2.SR.TXE)); sfr_UART2.DR.byte = x; }
-
-  /// flush UART2
-  #define UART_flush()	     { while (!(sfr_UART2.SR.TC)); }
-
-// error 
 #else
-  #error UART not defined
+  #error undefined board
 #endif
 
 
+/// check if byte received
+#define UART_available()   ( sfr_UART.SR.RXNE )
+
+/// read received byte from UART
+#define UART_read()        ( sfr_UART.DR.byte )
+
+/// send byte via UART
+#define UART_write(x)      { while (!(sfr_UART.SR.TXE)); sfr_UART.DR.byte = x; while (!(sfr_UART.SR.TC)); }
+
+/// flush UART Tx
+#define UART_flush()       { while (!(sfr_UART.SR.TC)); }
+  
 
 /*----------------------------------------------------------
     GLOBAL FUNCTIONS
@@ -84,16 +86,10 @@
 void UART_begin(uint32_t BR);
 
 /// ISR for UART receive
-#if defined(_UART2_R_RXNE_VECTOR_)
-  ISR_HANDLER(UART_RXNE_ISR, _UART2_R_RXNE_VECTOR_);
-#elif defined(_USART_R_RXNE_VECTOR_)
-  ISR_HANDLER(UART_RXNE_ISR, _USART_R_RXNE_VECTOR_);
-#else
-  #error UART_RXNE vector undefined
-#endif
+ISR_HANDLER(UART_RXNE_ISR, _UART_RXNE_VECTOR_);
 
 
 /*-----------------------------------------------------------------------------
     END OF MODULE DEFINITION FOR MULTIPLE INLUSION
 -----------------------------------------------------------------------------*/
-#endif // _UART2_H_
+#endif // _UART_H_

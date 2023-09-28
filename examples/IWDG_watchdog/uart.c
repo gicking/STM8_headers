@@ -33,52 +33,27 @@ void UART_begin(uint32_t BR) {
 
   uint16_t  val16;
   
-  // STM8L
-  #if defined(sfr_USART1)
-  
-    // for low-power device enable clock gating to USART1
+  // for low-power device enable clock gating to USART1
+  #if defined(FAMILY_STM8L)
     sfr_CLK.PCKENR1.PCKEN15 = 1;
-    
-    // set UART behaviour
-    sfr_USART1.CR1.byte = sfr_USART1_CR1_RESET_VALUE;  // enable UART2, 8 data bits, no parity control
-    sfr_USART1.CR2.byte = sfr_USART1_CR2_RESET_VALUE;  // no interrupts, disable sender/receiver 
-    sfr_USART1.CR3.byte = sfr_USART1_CR3_RESET_VALUE;  // no LIN support, 1 stop bit, no clock output(?)
-
-    // set baudrate (note: BRR2 must be written before BRR1!)
-    val16 = (uint16_t) (((uint32_t) 16000000L)/BR);
-    sfr_USART1.BRR2.byte = (uint8_t) (((val16 & 0xF000) >> 8) | (val16 & 0x000F));
-    sfr_USART1.BRR1.byte = (uint8_t) ((val16 & 0x0FF0) >> 4);
-  
-    // enable transmission, no transmission
-    sfr_USART1.CR2.REN  = 1;  // enable receiver
-    sfr_USART1.CR2.TEN  = 1;  // enable sender
-    //sfr_USART1.CR2.TIEN = 1;  // enable transmit interrupt
-    sfr_USART1.CR2.RIEN = 1;  // enable receive interrupt
-  
-  // STM8S
-  #elif defined(sfr_UART2)
-    
-    // set UART2 behaviour
-    sfr_UART2.CR1.byte = sfr_UART2_CR1_RESET_VALUE;  // enable UART2, 8 data bits, no parity control
-    sfr_UART2.CR2.byte = sfr_UART2_CR2_RESET_VALUE;  // no interrupts, disable sender/receiver 
-    sfr_UART2.CR3.byte = sfr_UART2_CR3_RESET_VALUE;  // no LIN support, 1 stop bit, no clock output(?)
-
-    // set baudrate (note: BRR2 must be written before BRR1!)
-    val16 = (uint16_t) (((uint32_t) 16000000L)/BR);
-    sfr_UART2.BRR2.byte = (uint8_t) (((val16 & 0xF000) >> 8) | (val16 & 0x000F));
-    sfr_UART2.BRR1.byte = (uint8_t) ((val16 & 0x0FF0) >> 4);
-  
-    // enable transmission, no transmission
-    sfr_UART2.CR2.REN  = 1;  // enable receiver
-    sfr_UART2.CR2.TEN  = 1;  // enable sender
-    //sfr_UART2.CR2.TIEN = 1;  // enable transmit interrupt
-    sfr_UART2.CR2.RIEN = 1;  // enable receive interrupt
-
-  // error 
-  #else
-    #error UART not defined
   #endif
+  
+  // reset UART
+  sfr_UART.CR1.byte = 0x00;
+  sfr_UART.CR2.byte = 0x00;
+  sfr_UART.CR3.byte = 0x00;
 
+  // set baudrate (note: BRR2 must be written before BRR1!)
+  val16 = (uint16_t) (((uint32_t) 16000000L)/BR);
+  sfr_UART.BRR2.byte = (uint8_t) (((val16 & 0xF000) >> 8) | (val16 & 0x000F));
+  sfr_UART.BRR1.byte = (uint8_t) ((val16 & 0x0FF0) >> 4);
+  
+  // enable transmission, no transmission interrupt
+  sfr_UART.CR2.REN  = 1;  // enable receiver
+  sfr_UART.CR2.TEN  = 1;  // enable sender
+  //sfr_UART.CR2.TIEN = 1;  // enable transmit interrupt
+  sfr_UART.CR2.RIEN = 1;  // enable receive interrupt
+  
 } // UART2_begin
 
 
@@ -95,32 +70,13 @@ void UART_begin(uint32_t BR) {
     SDCC: ISR must be declared in file containing main(). Header inclusion is ok
     Cosmic: interrupt service table is defined in file "stm8_interrupt_vector.c"
 */
-#if defined(_UART2_R_RXNE_VECTOR_)
-  ISR_HANDLER(UART_RXNE_ISR, _UART2_R_RXNE_VECTOR_)
-#elif defined(_USART_R_RXNE_VECTOR_)
-  ISR_HANDLER(UART_RXNE_ISR, _USART_R_RXNE_VECTOR_)
-#else
-  #error UART_RXNE vector undefined
-#endif
+ISR_HANDLER(UART_RXNE_ISR, _UART_RXNE_VECTOR_)
 {
-  #if defined(_UART2_R_RXNE_VECTOR_)
+  // clean UART2 receive flag
+  sfr_UART.SR.RXNE = 0;
 
-    // clean UART2 receive flag
-    sfr_UART2.SR.RXNE = 0;
-
-    // save received byte
-    g_key = sfr_UART2.DR.byte;
-  
-
-  #elif defined(_USART_R_RXNE_VECTOR_)
-
-    // clean UART2 receive flag
-    sfr_USART1.SR.RXNE = 0;
-
-    // save received byte
-    g_key = sfr_USART1.DR.byte;
-
-  #endif
+  // save received byte
+  g_key = sfr_UART.DR.byte;
   
   return;
 

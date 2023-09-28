@@ -31,8 +31,11 @@
     DECLARATION OF GLOBAL FUNCTIONS
 -----------------------------------------------------------------------------*/
 
-/// initialize and start IWDG watchdog
+/// start IWDG watchdog and set period [ms]
 void iwdg_init(uint8_t period);
+
+/// set IWDG timeout period
+void iwdg_set_period(uint8_t prescaler, uint8_t reload);
 
 
 /**

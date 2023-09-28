@@ -35,21 +35,39 @@
 void iwdg_init(uint8_t period) {
 
   // start IDWG (must be the first value written to this register, see UM)
-  sfr_IWDG.KR.byte  = (uint8_t) 0xCC;     
+  sfr_IWDG.KR.byte  = (uint8_t) 0xCC;
   
+  // set IWDG frequency to 1kHz and period in ms
+  iwdg_set_period(0x04, period);
+    
+} // iwdg_init
+
+
+/**
+  \fn void iwdg_set_period(uint8_t prescaler, uint8_t reload)
+   
+  \brief change IWDG timeout period
+  
+  \param[in]  prescaler   IWDG clock prescaler (freq=64kHz/2^(PR+2))
+  \param[in]  reload      IWDG reload value
+   
+  set independent watchdog (IWDG) timeout period
+*/
+void iwdg_set_period(uint8_t prescaler, uint8_t reload) {
+
   // unlock write access to prescaler and reload registers
   sfr_IWDG.KR.byte  = (uint8_t) 0x55;
   
-  // set clock to 1kHz (=64kHz/2^(PR+2))
-  sfr_IWDG.PR.byte  = (uint8_t) 0x04;
+  // set clock prescaler (freq=64kHz/2^(PR+2))
+  sfr_IWDG.PR.byte  = prescaler;
   
-  // set timeout period
-  sfr_IWDG.RLR.byte = period;
+  // set reload counter
+  sfr_IWDG.RLR.byte = reload;
   
-  // start IDWG
-  sfr_IWDG.KR.byte  = (uint8_t) 0xCC;
+  // re-lock IWDG registers and start new period
+  sfr_IWDG.KR.byte  = (uint8_t) 0xAA;
     
-} // iwdg_init
+} // iwdg_set_period
 
 /*-----------------------------------------------------------------------------
     END OF MODULE
