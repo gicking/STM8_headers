@@ -74,9 +74,17 @@ void main (void) {
   ENABLE_INTERRUPTS();   
   
     
-  // mirror button status to green LED via polling
+  // main loop
   while(1)
-    LED_GREEN = PIN_BUTTON;
+  {
+    // simple wait ~500ms @ 16MHz
+    for (uint32_t i=0; i<300000L; i++)
+      NOP();
+
+    // toggle green LED as life beat
+    LED_GREEN ^= 1;
+
+  } // main loop
 
 } // main
 
