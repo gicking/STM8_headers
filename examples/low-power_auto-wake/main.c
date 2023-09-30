@@ -71,6 +71,12 @@ void main (void) {
   sfr_PORTH.CR2.byte = (1 << 2) | (1 << 3);     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
   sfr_PORTH.ODR.byte = (1 << 2) | (1 << 3);     // LED off
   
+  // configure IO2 pin PD2 as output for time measurements 
+  sfr_PORTD.DDR.DDR2 = 1;     // input(=0) or output(=1)
+  sfr_PORTD.CR1.C12  = 1;     // input: 0=float, 1=pull-up; output: 0=open-drain, 1=push-pull
+  sfr_PORTD.CR2.C22  = 1;     // input: 0=no exint, 1=exint; output: 0=2MHz slope, 1=10MHz slope
+
+
   // enable interrupts
   ENABLE_INTERRUPTS();   
   
@@ -85,16 +91,22 @@ void main (void) {
         NOP();
     }
 
+    // set IO2=PD2 for time measurements
+    sfr_PORTD.ODR.ODR2 = 1;
+
     // enter power saving mode (sorted by decreasing power consumption)
     //lowPower_Wait();          // enter WAIT mode, wake via button
     //lowPower_Halt();          // enter HALT mode, wake via button
-    lowPower_HaltAWU(2000);   // enter active HALT mode, wake via button, or latest after 2s
+    lowPower_HaltAWU(950);   // enter active HALT mode, wake via button, or latest after 2s
 
     // toggle red LED in AWU-ISR to indicate wake
 
-  }
+    // clear IO2=PD2 for time measurements
+    sfr_PORTD.ODR.ODR2 = 0;
 
-} // main
+  } // main loop
+
+} // main()
 
 /*-----------------------------------------------------------------------------
     END OF MODULE

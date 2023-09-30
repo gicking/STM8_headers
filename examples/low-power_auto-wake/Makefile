@@ -13,7 +13,7 @@ stm8flash_SWIM   = stlink
 #stm8flash_SWIM   = stlinkv2
 
 # required for stm8gal
-stm8gal_PATH     = ~/Öffentlich/GitHub/stm8gal/binaries/stm8gal_linux64
+stm8gal_PATH     = ~/Öffentlich/GitHub/stm8gal/stm8gal
 stm8gal_PORT     = /dev/ttyUSB0
 
 # define compiler path (if not in PATH), and flags

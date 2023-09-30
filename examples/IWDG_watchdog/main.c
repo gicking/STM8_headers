@@ -6,7 +6,7 @@
     - STM8L Discovery (https://www.st.com/en/evaluation-tools/stm8l-discovery.html)
     - STM8S Discovery (https://www.st.com/en/evaluation-tools/stm8s-discovery.html)
     - NUCLEO-8S207K8 (https://www.st.com/en/evaluation-tools/nucleo-8s207k8.html)
-    - NUCLEO-8S207K8 (https://www.st.com/en/evaluation-tools/nucleo-8s208rb.html)
+    - NUCLEO-8S208RB (https://www.st.com/en/evaluation-tools/nucleo-8s208rb.html)
 
   Functionality:
     - initialize IWDG to 100ms, service every 50ms

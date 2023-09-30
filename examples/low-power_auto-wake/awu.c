@@ -56,45 +56,35 @@ ISR_HANDLER(AWU_ISR, _AWU_VECTOR_) {
 */
 void AWU_setTime(uint16_t ms) {
 
-  uint8_t    APR, AWUTB;
+  #define AWU_NUM  9
+  const uint16_t  timeMax[AWU_NUM]  = {    32,   64,  128,  256,  512, 1024, 2048, 5120, 30720 };  // max. wake period [ms]
+  const uint16_t  scalFreq[AWU_NUM] = { 16384, 8192, 4096, 2048, 1024,  512,  256,  102,    17 };  // AWU frequency [Hz*8.192]
+  uint8_t         TBR, APR;
 
-  // skip optional measurement of LSI with fCPU
+  // find smallest TBR for best accuracy 
+  for (TBR = 0; TBR < AWU_NUM-1; TBR++)
+    if (ms <= timeMax[TBR])
+      break;
 
-  // clip to valid AWU range
-  if (ms < 1)     ms = 1;
-  if (ms > 30000) ms = 30000;
+  // find corresponding APR counter value. Use scaled frequency and bit shift operation 
+  APR = (uint8_t) ((((uint32_t) ms * (uint32_t) scalFreq[TBR]) >> 13)) - 2;
 
-  // calculate AWU parameters
-  if (ms>=5120) {
-    AWUTB = 15;
-    APR   = (uint8_t) ((ms >> 4)/30L);
-  }
-  else if (ms>=2048) {
-    AWUTB = 14;
-    APR   = (uint8_t) ((ms >> 4)/5L);
-  }
-  else {
-    AWUTB = 0;    // calculate log2(ms)
-    while ((1L<<AWUTB) < ms)
-      AWUTB++;
-    AWUTB += 2;
-    if (AWUTB < 3)  AWUTB = 3;  // clip value
-    if (AWUTB > 13) AWUTB = 13;
-    APR   = (uint8_t) ((((uint32_t) ms) << 8) >> AWUTB);
-  }
+  // clip APR to valid range
+  if (APR > 0x3E) APR = 0x3E;
+
+  // add TBR offset (above windows ignore lowest 6 TBR settings with dt<1ms)
+  TBR += 7; 
+
+
+  // set AWU timebase selection register
+  sfr_AWU.TBR.AWUTB = TBR;
   
-  // clip ARP
-  if (APR < 0x3E) APR = 0x3E;
-
-  // set (N+2) prescaler for 128kHz LSI clock
+  // set AWU asynchronous prescaler register
   sfr_AWU.APR.APR   = APR;
   
-  // set AWU counter 2^0..2^12, 5*2^11, 30*2^11
-  sfr_AWU.TBR.AWUTB = AWUTB;
-  
-  // enable wake and enable AWU interrupt
+  // enable wake and AWU interrupt
   sfr_AWU.CSR1.AWUEN = 1;
-  
+
 } // AWU_setTime
 
 
