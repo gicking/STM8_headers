@@ -43,6 +43,16 @@
 
 
 /*----------------------------------------------------------
+  GLOBAL VARIABLES
+----------------------------------------------------------*/
+
+// previous port state
+#if (EDGE_SENSITIVITY > 0)
+  volatile uint8_t  state_old_portd; 
+#endif
+
+
+/*----------------------------------------------------------
   GLOBAL FUNCTIONS
 ----------------------------------------------------------*/
 
@@ -99,17 +109,17 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
   #if (EDGE_SENSITIVITY == 0)
 
     // get current state of port D once for speed
-    uint8_t state_curr = sfr_PORTD.IDR.byte;
+    uint8_t state_curr_portd = sfr_PORTD.IDR.byte;
 
     // if PD3=low react accordingly
-    if (!(state_curr & PIN3))
+    if (!(state_curr_portd & PIN3))
     {
       // act on PD3 interrupt. Here simply write '3' to UART
       send_uart('3');
     }
 
     // if PD4=low react accordingly
-    if (!(state_curr & PIN4))
+    if (!(state_curr_portd & PIN4))
     {
       // act on PD3 interrupt. Here simply write '3' to UART
       send_uart('3');
@@ -121,14 +131,13 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
   // interrupt on rising edge. Check if respective ISR pin is high and compare with previous state
   #elif (EDGE_SENSITIVITY == 1)
 
-    uint8_t         state_curr;           // current port state
-    static uint8_t  state_old = 0xFF;     // previous port state 
+    uint8_t         state_curr_portd;           // current port state
 
     // get current port state only once for speed
-    state_curr = sfr_PORTD.IDR.byte;
+    state_curr_portd = sfr_PORTD.IDR.byte;
 
     // check if PD3=high and pin status changed since last call
-    if ((state_curr & PIN3) && ((state_curr & PIN3) != (state_old & PIN3)))
+    if ((state_curr_portd & PIN3) && ((state_curr_portd & PIN3) != (state_old_portd & PIN3)))
     {
       // act on PD3 rising edge. Here send 'A' via UART
       send_uart('A');
@@ -136,7 +145,7 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
     } // PD3 rising edge
 
     // check if PD4=high and pin status changed since last call
-    if ((state_curr & PIN4) && ((state_curr & PIN4) != (state_old & PIN4)))
+    if ((state_curr_portd & PIN4) && ((state_curr_portd & PIN4) != (state_old_portd & PIN4)))
     {
       // act on PD4 rising edge. Here send 'B' via UART
       send_uart('B');
@@ -144,7 +153,7 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
     } // PD4 rising edge
   
     // remember port state for next call
-    state_old = state_curr;
+    state_old_portd = state_curr_portd;
   
     return;
 
@@ -152,14 +161,13 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
   // interrupt on falling edge. Check if respective ISR pin is low and compare with previous state
   #elif (EDGE_SENSITIVITY == 2)
 
-    uint8_t         state_curr;           // current port state
-    static uint8_t  state_old = 0xFF;     // previous port state 
+    uint8_t         state_curr_portd;           // current port state
 
     // get current port state only once for speed
-    state_curr = sfr_PORTD.IDR.byte;
+    state_curr_portd = sfr_PORTD.IDR.byte;
 
     // check if PD3=low and pin status changed since last call
-    if ((!(state_curr & PIN3)) && ((state_curr & PIN3) != (state_old & PIN3)))
+    if ((!(state_curr_portd & PIN3)) && ((state_curr_portd & PIN3) != (state_old_portd & PIN3)))
     {
       // act on PD3 falling edge. Here send 'a' via UART
       send_uart('a');
@@ -167,7 +175,7 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
     } // PD3 falling edge
 
     // check if PD4=low and pin status changed since last call
-    if ((!(state_curr & PIN4)) && ((state_curr & PIN4) != (state_old & PIN4)))
+    if ((!(state_curr_portd & PIN4)) && ((state_curr_portd & PIN4) != (state_old_portd & PIN4)))
     {
       // act on PD4 falling edge. Here send 'b' via UART
       send_uart('b');
@@ -175,7 +183,7 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
     } // PD4 falling edge
   
     // remember port state for next call
-    state_old = state_curr;
+    state_old_portd = state_curr_portd;
   
     return;
 
@@ -183,17 +191,16 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
   // interrupt on rising or falling edge. Check if respective pin state has changed
   #elif (EDGE_SENSITIVITY == 3)
 
-    uint8_t         state_curr;           // current port state
-    static uint8_t  state_old = 0xFF;     // previous port state 
+    uint8_t         state_curr_portd;           // current port state
 
     // get current port state only once for speed
-    state_curr = sfr_PORTD.IDR.byte;
+    state_curr_portd = sfr_PORTD.IDR.byte;
 
     // check if PD3 status changed since last call
-    if ((state_curr & PIN3) != (state_old & PIN3))
+    if ((state_curr_portd & PIN3) != (state_old_portd & PIN3))
     {
       // PD3 is high (-> rising). Send 'A' via UART
-      if (state_curr & PIN3)
+      if (state_curr_portd & PIN3)
         send_uart('A');
 
       // PD3 is low (-> falling). Send 'a' via UART
@@ -203,10 +210,10 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
     } // PD3 changed
 
     // check if PD4 status changed since last call
-    if ((state_curr & PIN4) != (state_old & PIN4))
+    if ((state_curr_portd & PIN4) != (state_old_portd & PIN4))
     {
       // PD4 is high (-> rising). Send 'B' via UART
-      if (state_curr & PIN4)
+      if (state_curr_portd & PIN4)
         send_uart('B');
 
       // PD4 is low (-> falling). Send 'b' via UART
@@ -216,7 +223,7 @@ ISR_HANDLER(PORTD_ISR, _EXTI3_VECTOR_)
     } // PD4 changed
   
     // remember port state for next call
-    state_old = state_curr;
+    state_old_portd = state_curr_portd;
   
     return;
 
@@ -262,6 +269,11 @@ void main (void) {
     sfr_ITC_EXTI.CR1.PDIS = 0;
   #else
     sfr_ITC_EXTI.CR1.PDIS = 3;
+  #endif
+
+  // read initial port D state
+  #if (EDGE_SENSITIVITY > 0)
+    state_old_portd = sfr_PORTD.IDR.byte;
   #endif
 
   // enable interrupts
